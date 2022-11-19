@@ -1,11 +1,10 @@
-import random
+import secrets
+import string
 from tkinter import *
 
 root = Tk()
 
-characterList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','~','`','!','@','#','$','%','^','&','*','(',')','_','-','+','=','{','[','}',']','|',':',';','<','>',',','.','?','/']
-global password
-password = ""
+characters = string.hexdigits + string.punctuation
 
 root.minsize(854, 240)
 root.maxsize(854, 240)
@@ -45,10 +44,7 @@ def Click():
     lengthInt = int(lengthFloat) # Gets the length the user requested.
     if lengthInt > 100:
         lengthInt = 100 # Maxes it out at 100.
-    while lengthInt > 0:
-        global password 
-        password = password + characterList[random.randint(0, 90)]
-        lengthInt = lengthInt- 1 # Chooses random random characters
+    password = ''.join(secrets.choice(characters) for i in range(lengthInt))
 
     passwordLabel = Text(root, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
     passwordLabel.insert(1.0, password)
