@@ -28,7 +28,7 @@ You can fork the project to play around with it and create a pull request to sub
 This project is licensed under the GNU General Public License v3.0. Read LICENSE.txt for more information.
 
 ## Contact
-Project Link: https://github.com/IceTheDev2/Passwordsy/  
+Project Link: https://github.com/IceTheDev2/
 Reddit: https://www.reddit.com/user/AnEntirePeach
 
 ## Acknowledgments
