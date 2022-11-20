@@ -32,6 +32,6 @@ Project Link: https://github.com/IceTheDev2/Passwordsy/
 Reddit: https://www.reddit.com/user/AnEntirePeach
 
 ## Acknowledgments
-* The [r/Python](r/https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips on suggestions.
+* The [r/Python](r/https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips and suggestions.
 * The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials.
 * [Exercism](https://exercism.org/) for its large array of exercises.
