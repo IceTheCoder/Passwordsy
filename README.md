@@ -11,7 +11,7 @@ Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ int
 
 ## Usage
 You can use this program to generate a random string of up to 100 letters, numbers and punctuation marks, and use the string how you desire.
-![alt text](https://github.com/IceTheDev2/Passwordsy/main/Password\ generator/Screenshots/1.png?raw=true)
+![alt text](https://github.com/IceTheDev2/Passwordsy/main/PasswordGenerator/Screenshots/1.png?raw=true)
 
 ## Roadmap
 - [ ] Create a release
