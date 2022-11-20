@@ -5,6 +5,7 @@ from tkinter import *
 root = Tk()
 
 characters = string.hexdigits + string.punctuation
+error = "An error occured, try again with a whole number greater than 0"
 
 root.minsize(854, 240)
 root.maxsize(854, 240)
@@ -40,19 +41,31 @@ def Click():
         and shows it on the screen.
     '''
     lengthStr = Input.get()
-    lengthInt = int(lengthStr) # Gets the length the user requested.
-    if lengthInt > 100:
-        lengthInt = 100 # Maxes it out at 100.
-    password = ''.join(secrets.choice(characters) for i in range(lengthInt))
+    try:
+        lengthInt = int(lengthStr) # Gets the length the user requested.
+        if lengthInt > 100:
+            lengthInt = 100 # Maxes it out at 100.
+        if lengthInt <= 0:
+            raise ValueError("Integer is less than 0")
 
-    passwordLabel = Text(root, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
-    passwordLabel.insert(1.0, password)
-    passwordLabel.grid(row = 6, pady = 10) # Shows the password.
-    passwordLabel.configure(state = "disabled") # Makes it uneditable.
-    passwordLabel.grid_rowconfigure(1, weight = 1)
-    passwordLabel.grid_columnconfigure(1, weight = 1)
+        password = ''.join(secrets.choice(characters) for i in range(lengthInt))
 
-    password = ""
+        passwordLabel = Text(root, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
+        passwordLabel.insert(1.0, password)
+        passwordLabel.grid(row = 6, pady = 10) # Shows the password.
+        passwordLabel.configure(state = "disabled") # Makes it uneditable.
+        passwordLabel.grid_rowconfigure(1, weight = 1)
+        passwordLabel.grid_columnconfigure(1, weight = 1)
+
+        password = ""
+    except ValueError:
+        passwordLabel = Text(root, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
+        passwordLabel.insert(1.0, error)
+        passwordLabel.grid(row = 6, pady = 10) # Shows the password.
+        passwordLabel.configure(state = "disabled") # Makes it uneditable.
+        passwordLabel.grid_rowconfigure(1, weight = 1)
+        passwordLabel.grid_columnconfigure(1, weight = 1)
+
 
 done_btn = PhotoImage(file="doneButton.png")
 
