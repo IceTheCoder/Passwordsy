@@ -15,10 +15,15 @@ You can use this program to generate a random string of up to 100 letters, numbe
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/2.png)  
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/3.png)  
 
-## Roadmap
-- [ ] Create a release
-- [ ] Publish a package
-- [ ] Cleaning up code
+## Planned features
+- [x] Create a release
+- [ ] Clean up code
+- [ ] Generate passwords with less symbols
+- [ ] Make sure each password has at least one uppercase letter, one lowercase letter, and one digit
+- [ ] Send a message instead of an error if the input box is empty
+- [ ] Let users choose different character sets
+- [ ] Output multiple choices at once
+- [ ] Separating logic and GUI scripts
 
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first ever project!  
