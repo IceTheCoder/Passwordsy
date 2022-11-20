@@ -40,8 +40,7 @@ def Click():
         and shows it on the screen.
     '''
     lengthStr = Input.get()
-    lengthFloat = float(lengthStr)
-    lengthInt = int(lengthFloat) # Gets the length the user requested.
+    lengthInt = int(lengthStr) # Gets the length the user requested.
     if lengthInt > 100:
         lengthInt = 100 # Maxes it out at 100.
     password = ''.join(secrets.choice(characters) for i in range(lengthInt))
