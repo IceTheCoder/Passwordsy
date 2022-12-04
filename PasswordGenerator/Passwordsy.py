@@ -50,6 +50,7 @@ def Click() -> str:
 
         password = ''.join(secrets.choice(characters) for i in range(lengthInt))
 
+        passwordLabel = tk.Text(root, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
         passwordLabel.insert(1.0, password)
         passwordLabel.grid(row = 6, pady = 10) # Shows the password.
         passwordLabel.configure(state = "disabled") # Makes it uneditable.
