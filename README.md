@@ -7,7 +7,7 @@ You will need to install Python (from the Microsoft Store, for example) to run t
 
 ### Installation
 Clone the repository using GitHub Desktop.  
-Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ into the URL field, and select which directory you want to clone the repository in.
+Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ into the URL field, and select which directory you want to clone the repository in.  
 Run main.py from a terminal.
 
 ## Usage
