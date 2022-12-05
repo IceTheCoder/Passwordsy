@@ -61,7 +61,7 @@ def main():
     done_btn_image = tk.PhotoImage(file = 'doneButton.png')
 
     done_btn = tk.Button(window, image = done_btn_image, borderwidth = 0, command = StartPasswordGeneration)
-    done_btn.grid(row = 5, column = 0, pady = 10, sticky = 'nsew')
+    done_btn.grid(row = 5, column = 0, pady = 10)
     done_btn.grid_rowconfigure(0, weight = 1)
     done_btn.grid_columnconfigure(0, weight = 1)
 
