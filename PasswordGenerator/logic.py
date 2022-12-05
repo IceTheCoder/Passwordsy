@@ -10,11 +10,9 @@ def GeneratePassword(requested_length) -> str:
     raises a value error if it's not.
     '''
 
-    if 1 <= requested_length:
-        if requested_length > 100:
-            requested_length = 100
+    requested_length = min(requested_length, 100)
 
+    if 0 < requested_length <= 100:
         return ''.join(secrets.choice(characters) for i in range(requested_length)) # This is where the password itself is generated.
-
     else:
         raise ValueError
