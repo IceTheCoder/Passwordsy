@@ -1,7 +1,7 @@
 import secrets
 import string
 
-characters = string.ascii_letters + string.punctuation
+characters = string.ascii_letters + string.punctuation + string.digits
 
 def GeneratePassword(requested_length) -> str:
     '''
@@ -9,6 +9,7 @@ def GeneratePassword(requested_length) -> str:
     returns a password if it is,
     raises a value error if it's not.
     '''
+    print(characters)
 
     requested_length = min(requested_length, 100)
 
