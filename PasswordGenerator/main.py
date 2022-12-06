@@ -4,32 +4,30 @@ import logic
 def main():
     window = tk.Tk()
 
-    window.minsize(854, 480)
-    window.maxsize(854, 480)
+    WINDOW_WIDTH = 854
+    WINDOW_HEIGHT = 350
+    RESIZABLE_ABILITY = 0
+    APP_NAME = 'Passwordsy'
+    DESCRIPTION_FONT = 'Helvetica 12'
+
+    window.minsize(WINDOW_WIDTH, WINDOW_HEIGHT)
+    window.maxsize(WINDOW_WIDTH, WINDOW_HEIGHT)
     window.grid_columnconfigure(0, weight = 1)
-    window.resizable(0,0)
+    window.resizable(RESIZABLE_ABILITY, RESIZABLE_ABILITY)
     window.iconphoto(False, tk.PhotoImage(file='logo.png'))
-    window.title('Passwordsy')
+    window.title(APP_NAME)
 
-    title = tk.Label(window, text = 'Passwordsy', font = 'Helvetica 24')
+    title = tk.Label(window, text = APP_NAME, font = 'Helvetica 24')
     title.grid(row = 1)
-    title.grid_rowconfigure(1, weight = 1)
-    title.grid_columnconfigure(1, weight = 1)
 
-    question = tk.Label(window, text = 'Number of characters (up to 100):', font = 'Helvetica 12')
+    question = tk.Label(window, text = 'Number of characters (up to 100):', font = DESCRIPTION_FONT)
     question.grid(row = 3)
-    question.grid_rowconfigure(1, weight = 1)
-    question.grid_columnconfigure(1, weight = 1)
 
     input_box = tk.Entry(window, width = 10, borderwidth = 2)
     input_box.grid(row = 4)
-    input_box.grid_rowconfigure(1, weight = 1)
-    input_box.grid_columnconfigure(1, weight = 1)
 
-    tip = tk.Label(window, text = 'CTRL + C to copy \nCTRL + V to paste', font = 'Helvetica 12')
+    tip = tk.Label(window, text = 'CTRL + C to copy \nCTRL + V to paste', font = DESCRIPTION_FONT)
     tip.grid(row = 2)
-    tip.grid_rowconfigure(1, weight = 1)
-    tip.grid_columnconfigure(1, weight = 1)
 
 
     def createPasswordLabels() -> None:
@@ -39,10 +37,17 @@ def main():
             and calls the ShowPassword function to show the passwords or error.
             '''
 
-            password_label_1 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
-            password_label_2 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
-            password_label_3 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
-            password_label_4 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
+            PASSWORD_WIDTH = 100
+            PASSWORD_HEIGHT = 1
+            PASSWORD_BORDER_WIDTH = 0
+            PASSWORD_FONT = 'Consolas 11'
+            
+            error = 'An error occured. Try again with a whole number greater than 0.'
+
+            password_label_1 = tk.Text(window, width = PASSWORD_WIDTH, height = PASSWORD_HEIGHT, borderwidth = PASSWORD_BORDER_WIDTH, font = PASSWORD_FONT)
+            password_label_2 = tk.Text(window, width = PASSWORD_WIDTH, height = PASSWORD_HEIGHT, borderwidth = PASSWORD_BORDER_WIDTH, font = PASSWORD_FONT)
+            password_label_3 = tk.Text(window, width = PASSWORD_WIDTH, height = PASSWORD_HEIGHT, borderwidth = PASSWORD_BORDER_WIDTH, font = PASSWORD_FONT)
+            password_label_4 = tk.Text(window, width = PASSWORD_WIDTH, height = PASSWORD_HEIGHT, borderwidth = PASSWORD_BORDER_WIDTH, font = PASSWORD_FONT)
             password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
             try:
@@ -51,7 +56,7 @@ def main():
                     showPassword(password_label, password, password_labels.index(password_label))
 
             except:
-                showPassword(password_label_1, 'An error occured. Try again with a whole number greater than 0.', 0)
+                showPassword(password_label_1, error, 0)
 
 
     def showPassword(label, text, index) -> None:
@@ -66,16 +71,14 @@ def main():
         label.insert(1.0, text)
         label.grid(row = 6 + index, pady = 5)
         label.configure(state = 'disabled') # Makes the text uneditable.
-        label.grid_rowconfigure(1 , weight = 1)
-        label.grid_columnconfigure(1, weight = 1)
 
 
     done_btn_image = tk.PhotoImage(file = 'doneButton.png')
 
-    done_btn = tk.Button(window, image = done_btn_image, borderwidth = 0, command = createPasswordLabels)
+    DONE_BUTTON_BORDER_WIDTH = 0
+
+    done_btn = tk.Button(window, image = done_btn_image, borderwidth = DONE_BUTTON_BORDER_WIDTH, command = createPasswordLabels)
     done_btn.grid(row = 5, column = 0, pady = 10)
-    done_btn.grid_rowconfigure(0, weight = 1)
-    done_btn.grid_columnconfigure(0, weight = 1)
 
     window.mainloop()
         
