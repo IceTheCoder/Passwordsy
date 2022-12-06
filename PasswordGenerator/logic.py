@@ -3,7 +3,7 @@ import string
 
 characters = string.ascii_letters + string.punctuation + string.digits
 
-def GeneratePassword(requested_length) -> str:
+def generatePassword(requested_length) -> str:
     '''
     Called by the CreatePasswordLabels function,
     this function checks if the requested_length is valid,

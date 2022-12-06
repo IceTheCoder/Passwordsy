@@ -32,7 +32,7 @@ def main():
     tip.grid_columnconfigure(1, weight = 1)
 
 
-    def CreatePasswordLabels() -> None:
+    def createPasswordLabels() -> None:
             '''
             Called upon done button click,
             this function creates the password/error label(s),
@@ -47,14 +47,14 @@ def main():
 
             try:
                 for password_label in password_labels:
-                    password = logic.GeneratePassword(input_box.get())
-                    ShowPassword(password_label, password, password_labels.index(password_label))
+                    password = logic.generatePassword(input_box.get())
+                    showPassword(password_label, password, password_labels.index(password_label))
 
             except:
-                ShowPassword(password_label_1, 'An error occured. Try again with a whole number greater than 0.', 0)
+                showPassword(password_label_1, 'An error occured. Try again with a whole number greater than 0.', 0)
 
 
-    def ShowPassword(label, text, index) -> None:
+    def showPassword(label, text, index) -> None:
         '''
         Called by the CreatePasswordLabels function,
         this function displays the passwords or an error.
@@ -72,7 +72,7 @@ def main():
 
     done_btn_image = tk.PhotoImage(file = 'doneButton.png')
 
-    done_btn = tk.Button(window, image = done_btn_image, borderwidth = 0, command = CreatePasswordLabels)
+    done_btn = tk.Button(window, image = done_btn_image, borderwidth = 0, command = createPasswordLabels)
     done_btn.grid(row = 5, column = 0, pady = 10)
     done_btn.grid_rowconfigure(0, weight = 1)
     done_btn.grid_columnconfigure(0, weight = 1)
