@@ -4,8 +4,8 @@ import logic
 def main():
     window = tk.Tk()
 
-    window.minsize(854, 240)
-    window.maxsize(854, 240)
+    window.minsize(854, 480)
+    window.maxsize(854, 480)
     window.grid_columnconfigure(0, weight = 1)
     window.resizable(0,0)
     window.iconphoto(False, tk.PhotoImage(file='logo.png'))
@@ -32,35 +32,47 @@ def main():
     tip.grid_columnconfigure(1, weight = 1)
 
 
-    def ShowPassword(string) -> None:
+    def CreatePasswordLabels() -> None:
             '''
-            Displays the password or the error.
+            Called upon done button click,
+            this function creates the password/error label(s),
+            and calls the ShowPassword function to show the passwords or error.
             '''
-            password_label = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
-            password_label.insert(1.0, string)
-            password_label.grid(row = 6, pady = 10)
-            password_label.configure(state = 'disabled') # Makes the text uneditable.
-            password_label.grid_rowconfigure(1, weight = 1)
-            password_label.grid_columnconfigure(1, weight = 1)
+
+            password_label_1 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
+            password_label_2 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
+            password_label_3 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
+            password_label_4 = tk.Text(window, width=100, height = 1, borderwidth = 0, font = 'Consolas 11')
+            password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
+
+            try:
+                for password_label in password_labels:
+                    password = logic.GeneratePassword(input_box.get())
+                    ShowPassword(password_label, password, password_labels.index(password_label))
+
+            except:
+                ShowPassword(password_label_1, 'An error occured. Try again with a whole number greater than 0.', 0)
 
 
-    def StartPasswordGeneration() -> None:
+    def ShowPassword(label, text, index) -> None:
         '''
-        After clicking the done button,
-        the function runs password generation
-        and displays the password or an error.
-        '''
-        try:
-            password = logic.GeneratePassword(int(input_box.get()))
-            ShowPassword(password)
+        Called by the CreatePasswordLabels function,
+        this function displays the passwords or an error.
 
-        except ValueError:
-            ShowPassword('An error occured. Try again with a whole number greater than 0.')
+        :param tk.Text label: Each individual password or error label.
+        :param str text: The generated password or the error.
+        :param int index: Which label is being displayed.
+        '''
+        label.insert(1.0, text)
+        label.grid(row = 6 + index, pady = 5)
+        label.configure(state = 'disabled') # Makes the text uneditable.
+        label.grid_rowconfigure(1 , weight = 1)
+        label.grid_columnconfigure(1, weight = 1)
 
 
     done_btn_image = tk.PhotoImage(file = 'doneButton.png')
 
-    done_btn = tk.Button(window, image = done_btn_image, borderwidth = 0, command = StartPasswordGeneration)
+    done_btn = tk.Button(window, image = done_btn_image, borderwidth = 0, command = CreatePasswordLabels)
     done_btn.grid(row = 5, column = 0, pady = 10)
     done_btn.grid_rowconfigure(0, weight = 1)
     done_btn.grid_columnconfigure(0, weight = 1)
