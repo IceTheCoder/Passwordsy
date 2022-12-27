@@ -55,7 +55,7 @@ def main():
                     password = logic.generatePassword(input_box.get())
                     showPassword(password_label, password, password_labels.index(password_label))
 
-            except:
+            except ValueError:
                 showPassword(password_label_1, error, 0)
 
 
