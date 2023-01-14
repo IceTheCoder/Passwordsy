@@ -50,10 +50,11 @@ def main():
 
             try:
                 for password_label in password_labels:
-                    password = logic.generatePassword(input_box.get())
+                    password = logic.generatePassword(int(input_box.get()))
                     showPassword(password_label, password, password_labels.index(password_label))
 
             except ValueError:
+                input_box.delete(0, 'end')
                 showPassword(password_label_1, error, 0)
 
     input_box = tk.Entry(window, width = 10, borderwidth = 2)
@@ -74,16 +75,14 @@ def main():
         label.configure(state = 'disabled') # Makes the text uneditable.
 
 
-    done_btn_image = tk.PhotoImage(file = 'doneButton.png')
+    DONE_BUTTON_IMAGE = tk.PhotoImage(file = 'doneButton.png')
 
     DONE_BUTTON_BORDER_WIDTH = 0
 
-    done_btn = tk.Button(window, image = done_btn_image, borderwidth = DONE_BUTTON_BORDER_WIDTH, command = lambda: createPasswordLabels(None))
+    done_btn = tk.Button(window, image = DONE_BUTTON_IMAGE, borderwidth = DONE_BUTTON_BORDER_WIDTH, command = lambda: createPasswordLabels(None))
     done_btn.grid(row = 5, column = 0, pady = 10)
 
     window.mainloop()
 
 if __name__ == "__main__":
     exit(main())
-
-

@@ -14,7 +14,7 @@ def generatePassword(requested_length) -> str:
     :raises ValueError: if the requested_length is not an integer.
     '''
     
-    if int(requested_length) > 0:
+    if requested_length > 0:
         return ''.join(secrets.choice(characters) for i in range(min(int(requested_length), 100))) # This is where the password itself is generated
     else:
         raise ValueError
