@@ -14,7 +14,9 @@ Run main.py from a terminal.
 You can use this program to generate a random string of up to 100 letters, numbers and punctuation marks, and use the string how you desire.  
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/1.png)  
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/2.png)  
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/3.png)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/3.png)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/4.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/5.PNG)
 
 ## Planned features
 - [x] Create a release
@@ -38,6 +40,9 @@ Project Link: https://github.com/IceTheDev2/Passwordsy/
 Reddit: https://www.reddit.com/user/AnEntirePeach
 
 ## Acknowledgments
-* The [r/Python](r/https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips and suggestions.
-* The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials.
-* [Exercism](https://exercism.org/) for its large array of exercises.
+* The [r/Python](https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips and suggestions
+* The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials
+* The GitHub contributors to this project, [dwaffle](https://github.com/dwaffle) and [christopher-chandler](https://trello.com/c/f72vJsYk/50-https-githubcom-christopher-chandler)
+* Paul Miskew for his [PYTHON 3 TKINTER - GUI ENTRY BIND KEY](https://youtu.be/JThKYGapGzU) video
+* This [Stack Overflow question](https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter)
+* [Exercism](https://exercism.org/) for its large array of exercises
