@@ -23,14 +23,10 @@ def main():
     question = tk.Label(window, text = 'Number of characters (up to 100):', font = DESCRIPTION_FONT)
     question.grid(row = 3)
 
-    input_box = tk.Entry(window, width = 10, borderwidth = 2)
-    input_box.grid(row = 4)
-
     tip = tk.Label(window, text = 'CTRL + C to copy \nCTRL + V to paste', font = DESCRIPTION_FONT)
     tip.grid(row = 2)
 
-
-    def createPasswordLabels() -> None:
+    def createPasswordLabels(event) -> None:
             '''
             Called upon done button click,
             this function creates the password/error label(s),
@@ -58,6 +54,9 @@ def main():
             except ValueError:
                 showPassword(password_label_1, error, 0)
 
+    input_box = tk.Entry(window, width = 10, borderwidth = 2)
+    input_box.bind("<Return>", createPasswordLabels)
+    input_box.grid(row = 4)
 
     def showPassword(label, text, index) -> None:
         '''
@@ -77,10 +76,12 @@ def main():
 
     DONE_BUTTON_BORDER_WIDTH = 0
 
-    done_btn = tk.Button(window, image = done_btn_image, borderwidth = DONE_BUTTON_BORDER_WIDTH, command = createPasswordLabels)
+    done_btn = tk.Button(window, image = done_btn_image, borderwidth = DONE_BUTTON_BORDER_WIDTH, command = lambda: createPasswordLabels(None))
     done_btn.grid(row = 5, column = 0, pady = 10)
 
     window.mainloop()
-        
+
 if __name__ == "__main__":
     exit(main())
+
+
