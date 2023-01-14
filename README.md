@@ -29,7 +29,7 @@ This project is licensed under the GNU General Public License v3.0. Read LICENSE
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
 Reddit: https://www.reddit.com/user/AnEntirePeach
 
-## Acknowledgments
+## Acknowledgements
 * The [r/Python](https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips and suggestions
 * The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials
 * The GitHub contributors to this project, [dwaffle](https://github.com/dwaffle) and [christopher-chandler](https://trello.com/c/f72vJsYk/50-https-githubcom-christopher-chandler)
