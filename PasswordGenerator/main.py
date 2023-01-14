@@ -28,9 +28,11 @@ def main():
 
     def createPasswordLabels(event) -> None:
             '''
-            Called upon done button click,
-            this function creates the password/error label(s),
+            Called upon clicking the done button or pressing the ENTER key,
+            this function creates the password or error label,
             and calls the ShowPassword function to show the passwords or error.
+
+            :param event: Used for calling the function when pressing the ENTER key.
             '''
 
             PASSWORD_WIDTH = 100
