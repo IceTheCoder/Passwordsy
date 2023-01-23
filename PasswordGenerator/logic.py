@@ -1,8 +1,7 @@
 import secrets
 import string
 
-CHARACTERS = string.ascii_letters + string.punctuation + string.digits
-
+characters = string.ascii_letters + string.punctuation + string.digits
 
 def generate_password(requested_length) -> str:
     """
@@ -16,7 +15,6 @@ def generate_password(requested_length) -> str:
     """
     
     if requested_length > 0:
-        # This is where the password itself is generated
-        return ''.join(secrets.choice(CHARACTERS) for _ in range(min(int(requested_length), 100)))
+        return ''.join(secrets.choice(characters) for _ in range(min(int(requested_length), 100))) # This is where the password itself is generated
     else:
         raise ValueError
