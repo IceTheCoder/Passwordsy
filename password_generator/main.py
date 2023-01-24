@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk as ttk
-import generate_password
 from PIL import ImageTk, Image
+import generate_password
+import password_strength
 
 def main() -> None:
     '''
@@ -46,9 +47,12 @@ def main() -> None:
 
         generate_password.show_generate_password_frame(generate_password_frame, done_btn_image)
 
-    password_strength_frame = ttk.Frame(notebook, width = 854, height = 350)
-    password_strength_frame.grid(column = 0, row = 0)
-    notebook.add(password_strength_frame, text = 'Check a password\'s strength')
+    class PasswordStrengthFrame:
+        password_strength_frame = ttk.Frame(notebook, width = 854, height = 350)
+        password_strength_frame.grid(column = 0, row = 0)
+        notebook.add(password_strength_frame, text = 'Check a password\'s strength')
+
+        password_strength.show_password_strength_frame(password_strength_frame)
 
     window.mainloop()
 
