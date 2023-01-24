@@ -12,11 +12,11 @@ Run main.py from a terminal.
 
 ## Usage
 You can use this program to generate a random string of up to 100 letters, numbers and punctuation marks, and use the string how you desire.  
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/1.png)  
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/2.png)  
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/3.png)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/4.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/PasswordGenerator/Screenshots/5.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/1.png)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/2.png)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/3.png)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/4.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/5.PNG)
 
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first ever project!  
