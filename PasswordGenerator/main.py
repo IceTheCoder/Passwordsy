@@ -31,7 +31,7 @@ def main():
     tip.place(relx = 0.5, rely = 0.1, anchor = 'n')
 
     question = tk.Label(generate_password_frame, text = 'Number of characters (up to 100):', font = description_font)
-    question.place(relx = 0.5, rely = 0.15, anchor = 'n')
+    question.place(relx = 0.5, rely = 0.16, anchor = 'n')
 
     window.minsize(window_width, window_height)
     window.maxsize(window_width, window_height)
@@ -78,7 +78,7 @@ def main():
 
     input_box = tk.Entry(generate_password_frame, width = 10, borderwidth = 2)
     input_box.bind("<Return>", create_password_labels)
-    input_box.place(relx = 0.5, rely = 0.2225, anchor = 'n')
+    input_box.place(relx = 0.5, rely = 0.2325, anchor = 'n')
 
     def show_password(label, text, index) -> None:
         """
