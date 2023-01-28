@@ -24,22 +24,53 @@ def show_password_strength_frame(frame):
     done_btn = tk.Button(frame, text = 'DONE', command = check_password_strength)
     done_btn.place(relx = 0.5, rely = 0.2, anchor = 'n')
 
-    global result_label
-    result_label = tk.Label(global_frame, font = tips_font)
+    global first_label
+    first_label = tk.Label(global_frame, font = tips_font, text = '')
     
+    global second_label
+    second_label = tk.Label(global_frame, font = tips_font, text = '')
+
 
 def check_password_strength():
+    first_label.place_forget()
+    second_label.place_forget()
 
-    if len(input_box.get()) == 0:
-        result_label.configure(text = 'Please input a password.')
-        result_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
 
-    elif modified.count(input_box.get()) > 0:
-        result_label.configure(text = 'Your passord is common')
-        result_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
+    def check_if_password_is_common():
+        if len(input_box.get()) == 0:
+            first_label.configure(text = 'Please input a password.')
+            first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
 
-    elif modified.count(input_box.get()) == 0:
-        result_label.configure(text = 'Your passord isn\'t common')
-        result_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
+        elif modified.count(input_box.get()) > 0:
+            first_label.configure(text = 'Common: Your passord is common')
+            first_label.place(relx = 0.01, rely = 0.3, anchor = 'w')
 
-    # Find a way to check if the input is in the top 100,000 most commonly used passwords according to SecLists.
+        elif modified.count(input_box.get()) == 0:
+            first_label.configure(text = 'Not common: Your passord isn\'t common')
+            first_label.place(relx = 0.01, rely = 0.3, anchor = 'w')
+
+    def check_password_length():
+
+        if len(input_box.get()) == 0:
+            first_label.configure(text = 'Please input a password.')
+            first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
+
+        elif 0 < len(input_box.get()) <= 7:
+            second_label.configure(text = 'Very weak: Your password has only ' + str(len(input_box.get())) + ' characters')
+            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+        
+        elif 8 <= len(input_box.get()) <= 10:
+            second_label.configure(text = 'Weak: Your password has only ' + str(len(input_box.get())) + ' characters')
+            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+
+        elif 11 <= len(input_box.get()) <= 13:
+            second_label.configure(text = 'Good: Your password has ' + str(len(input_box.get())) + ' characters')
+            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+
+        elif 14 <= len(input_box.get()):
+            second_label.configure(text = 'Strong: Your password has ' + str(len(input_box.get())) + ' characters')
+            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+
+
+    check_if_password_is_common()
+    check_password_length()
