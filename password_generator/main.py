@@ -27,7 +27,7 @@ def main() -> None:
     window.iconphoto(False, tk.PhotoImage(file = 'logo.png'))
     window.title(app_name)
 
-    done_btn_image = ImageTk.PhotoImage(Image.open('done_button.png'))
+    done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
     class GeneratePasswordFrame:
         '''

@@ -9,7 +9,7 @@ common_passwords_read = common_passwords_file.readlines()
 modified_common_passwords = []
 
 for line in common_passwords_read:
-    modified_common_passwords.append(line.strip())
+    modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
 
 def show_password_strength_frame(frame, done_btn_image):
     '''
@@ -31,8 +31,10 @@ def show_password_strength_frame(frame, done_btn_image):
     global input_box
     input_box = tk.Entry(frame, width = 16, borderwidth = 2)
     input_box.place(relx = 0.5, rely = 0.125, anchor = 'n')
+    input_box.bind('<Return>', check_password_strength)
 
-    done_btn = tk.Button(frame, image = done_btn_image, text = 'DONE', borderwidth = 0, command = check_password_strength)
+
+    done_btn = tk.Button(frame, image = done_btn_image, text = 'DONE', borderwidth = 0, command = lambda: check_password_strength(None))
     done_btn.place(relx = 0.5, rely = 0.2, anchor = 'n')
 
     global first_label
@@ -49,11 +51,16 @@ def show_password_strength_frame(frame, done_btn_image):
 
 
 
-def check_password_strength():
+def check_password_strength(event):
     '''
     Called upon pressing the done button,
     this functions hosts all functions neccesary to check:
     if a password is common, a password's length, a password's complexity, if a password contains repeated patterns.
+
+    Parameters
+    ----------
+    event:
+         Necessary for initiating the function when pressing the ENTER key
     '''
     first_label.place_forget()
     second_label.place_forget()
