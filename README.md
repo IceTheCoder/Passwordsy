@@ -11,14 +11,17 @@ Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ int
 Run main.py from a terminal.
 
 ## Usage
-You can use this program to generate a random string of up to 100 letters, numbers and punctuation marks, and use the string how you desire.  
+You can use this program to generate a random string of up to 100 letters, numbers and punctuation marks, and use the string how you desire.
+
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/1.PNG)  
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/2.PNG)  
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/3.PNG)
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/4.PNG)
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/5.PNG)
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/6.PNG)  
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/7.PNG)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/7.PNG)
+
+But you can also use it to discover weaknesses of a password, such as it being a commonly used password, having a short length, not containing upper and lower case letters, digits, AND punctuation, and containing a repeated character.
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/8.PNG)
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/9.PNG)
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/10.PNG)
