@@ -27,6 +27,8 @@ def main() -> None:
     window.iconphoto(False, tk.PhotoImage(file = 'logo.png'))
     window.title(app_name)
 
+    done_btn_image = ImageTk.PhotoImage(Image.open('done_button.png'))
+
     class GeneratePasswordFrame:
         '''
         A class that contains the creation of the "generate password" frame.
@@ -43,7 +45,6 @@ def main() -> None:
         generate_password_frame = ttk.Frame(notebook, width = 854, height = 350)
         generate_password_frame.grid(column = 0, row = 1)
         notebook.add(generate_password_frame, text = 'Generate password')
-        done_btn_image = ImageTk.PhotoImage(Image.open('done_button.png'))
 
         generate_password.show_generate_password_frame(generate_password_frame, done_btn_image)
 
@@ -52,7 +53,7 @@ def main() -> None:
         password_strength_frame.grid(column = 0, row = 0)
         notebook.add(password_strength_frame, text = 'Check a password\'s strength')
 
-        password_strength.show_password_strength_frame(password_strength_frame)
+        password_strength.show_password_strength_frame(password_strength_frame, done_btn_image)
 
     window.mainloop()
 
