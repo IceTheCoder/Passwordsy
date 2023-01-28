@@ -39,8 +39,6 @@ def main() -> None:
         ----------
         generate_password_frame: ttk.frame
             The generate password frame
-        done_btn_image: ImageTk.PhotoImage
-            The photo that will be used for the done button.
         '''
         generate_password_frame = ttk.Frame(notebook, width = 854, height = 350)
         generate_password_frame.grid(column = 0, row = 1)
@@ -49,6 +47,16 @@ def main() -> None:
         generate_password.show_generate_password_frame(generate_password_frame, done_btn_image)
 
     class PasswordStrengthFrame:
+        '''
+        A class that contains the creation of the "password strength" frame.
+
+        ...
+
+        Attributes
+        ----------
+        password_strength_frame: ttk.frame
+            The password strength frame
+        '''
         password_strength_frame = ttk.Frame(notebook, width = 854, height = 350)
         password_strength_frame.grid(column = 0, row = 0)
         notebook.add(password_strength_frame, text = 'Check a password\'s strength')

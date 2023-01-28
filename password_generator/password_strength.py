@@ -12,6 +12,17 @@ for line in common_passwords_read:
     modified_common_passwords.append(line.strip())
 
 def show_password_strength_frame(frame, done_btn_image):
+    '''
+    Called upon starting the program,
+    this function creates the "password strength" frame.
+
+    Parameters
+    ----------
+    frame: ttk.Frame
+        The "password strength" frame
+    done_btn_image: tk.PhotoImage
+        Image of the done button
+    '''
     global global_frame
     global_frame = frame
     instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
@@ -39,12 +50,23 @@ def show_password_strength_frame(frame, done_btn_image):
 
 
 def check_password_strength():
+    '''
+    Called upon pressing the done button,
+    this functions hosts all functions neccesary to check:
+    if a password is common, a password's length, a password's complexity, if a password contains repeated patterns.
+    '''
     first_label.place_forget()
     second_label.place_forget()
     third_label.place_forget()
     fourth_label.place_forget()
 
     def check_if_password_is_common():
+        '''
+        Called upon pressing the done button,
+        this function checks if there's any input,
+        searches if the password is in the 100,000 most used ones if there is,
+        asks the user to input a password if there's not.
+        '''
         if len(input_box.get()) == 0:
             first_label.configure(text = 'Please input a password.')
             first_label.place(relx = 0.5, rely = 0.38, anchor = 'n')
@@ -58,6 +80,12 @@ def check_password_strength():
             first_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
 
     def check_password_length():
+        '''
+        Called upon pressing the done button,
+        this function checks if there's any input,
+        categorises the inputted password as very weak, weak, good, or strong depending on its length if there is,
+        asks the user to input a password if there's not.
+        '''
         if len(input_box.get()) == 0:
             first_label.configure(text = 'Please input a password.')
             first_label.place(relx = 0.5, rely = 0.38, anchor = 'n')
@@ -79,6 +107,15 @@ def check_password_strength():
             second_label.place(relx = 0.01, rely = 0.5, anchor = 'w')
 
     def check_password_complexity():
+        '''
+        Called upon pressing the done button,
+        this function checks if there's any input,
+        checks how many of the following the inputted password is missing: 
+        lowercase letters, uppercase letters, digits, and punctuation,
+        and warns the user about them if there is input,
+        asks the user to input a password if there's not.
+        '''
+
         if len(input_box.get()) == 0:
             first_label.configure(text = 'Please input a password.')
             first_label.place(relx = 0.5, rely = 0.38, anchor = 'n')
@@ -142,10 +179,24 @@ def check_password_strength():
                 third_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
     
     def check_for_patterns_in_password():
+        '''
+        Called upon pressing the done button,
+        this function checks if there's any input,
+        checks if there are any repeating characters in the input if there is,
+        asks the user to input a password if there's not.
+        '''
+
         input = []
         input[:0] = input_box.get()
 
         def show_repeated_pattern_warning():
+            '''
+            Called upon pressing the done button,
+            this function checks if there's any input,
+            warns the user if there is a repeating pattern if there is input,
+            asks the user to input a password if there's not.
+            '''
+
             fourth_label.configure(text = 'Repeated character: Your password contains at least one repeated character.')
             fourth_label.place(relx = 0.01, rely = 0.7, anchor = 'w')
 
