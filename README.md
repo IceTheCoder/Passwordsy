@@ -17,6 +17,13 @@ You can use this program to generate a random string of up to 100 letters, numbe
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/3.PNG)
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/4.PNG)
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/5.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/6.PNG)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/7.PNG)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/8.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/9.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/10.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/11.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/12.PNG)
 
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first ever project!  
