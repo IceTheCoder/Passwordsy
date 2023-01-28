@@ -4,13 +4,12 @@ import string as string
 title_font = 'Helvetica 24'
 tips_font = 'Helvetica 12'
 
-file = open('passwords.txt', 'r')
-read = file.readlines()
-modified = []
+common_passwords_file = open('passwords.txt', 'r')
+common_passwords_read = common_passwords_file.readlines()
+modified_common_passwords = []
 
-for line in read:
-    modified.append(line.strip())
-
+for line in common_passwords_read:
+    modified_common_passwords.append(line.strip())
 
 def show_password_strength_frame(frame, done_btn_image):
     global global_frame
@@ -34,22 +33,27 @@ def show_password_strength_frame(frame, done_btn_image):
     global third_label
     third_label = tk.Label(global_frame, font = tips_font, text = '')
 
+    global fourth_label
+    fourth_label = tk.Label(global_frame, font = tips_font, text = '')
+
+
 
 def check_password_strength():
     first_label.place_forget()
     second_label.place_forget()
     third_label.place_forget()
+    fourth_label.place_forget()
 
     def check_if_password_is_common():
         if len(input_box.get()) == 0:
             first_label.configure(text = 'Please input a password.')
             first_label.place(relx = 0.5, rely = 0.38, anchor = 'n')
 
-        elif modified.count(input_box.get()) > 0:
+        elif modified_common_passwords.count(input_box.get()) > 0:
             first_label.configure(text = 'Common: Your passord is common.')
             first_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
 
-        elif modified.count(input_box.get()) == 0:
+        elif modified_common_passwords.count(input_box.get()) == 0:
             first_label.configure(text = 'Not common: Your passord isn\'t common.')
             first_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
 
@@ -137,7 +141,23 @@ def check_password_strength():
                 third_label.configure(text = 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctation.')
                 third_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
     
+    def check_for_patterns_in_password():
+        input = []
+        input[:0] = input_box.get()
+
+        def show_repeated_pattern_warning():
+            fourth_label.configure(text = 'Repeated character: Your password contains at least one repeated character.')
+            fourth_label.place(relx = 0.01, rely = 0.7, anchor = 'w')
+
+        for character in input:
+            count = 0
+            for other_character in input:
+                if character == other_character:
+                    count += 1
+            if count > 1:
+                show_repeated_pattern_warning()
 
     check_if_password_is_common()
     check_password_length()
     check_password_complexity()
+    check_for_patterns_in_password()
