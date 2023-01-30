@@ -4,7 +4,7 @@ import string as string
 title_font = 'Helvetica 24'
 tips_font = 'Helvetica 12'
 
-common_passwords_file = open('passwords.txt', 'r')
+common_passwords_file = open('passwords.txt', 'r') # passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
 common_passwords_read = common_passwords_file.readlines()
 modified_common_passwords = []
 
