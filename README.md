@@ -34,7 +34,7 @@ I'd love to hear your suggestions on how I can improve my first ever project!
 You can fork the project to play around with it and create a pull request to submit your suggestions. You can also open an issue to tell me about any problems my code might have.
 
 ## License
-This project is licensed under the GNU General Public License v3.0. Read LICENSE.txt for more information.
+This project is licensed under the MIT License. Read LICENSE.txt for more information.
 
 ## Contact
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
