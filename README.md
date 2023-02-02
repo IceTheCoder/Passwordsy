@@ -47,7 +47,7 @@ Reddit: https://www.reddit.com/user/AnEntirePeach
 * The [SecLists repository](https://github.com/danielmiessler/SecLists) of danielmiessler, used here for the 100,000 most common passwords
 * [Exercism](https://exercism.org/) for its large array of exercises
 * Paul Miskew for his [PYTHON 3 TKINTER - GUI ENTRY BIND KEY](https://youtu.be/JThKYGapGzU) video
-* These Stack Overflow questions: https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter, https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python, https://stackoverflow.com/questions/61139160/tkinter-error-tkinter-tclerror-invalid-command-name-frame-entry-python, https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter
+* These Stack Overflow questions: https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter, https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python, https://stackoverflow.com/questions/61139160/tkinter-error-tkinter-tclerror-invalid-command-name-frame-entry-python, https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind.
 * [This simplilearn.com page](https://www.simplilearn.com/tutorials/python-tutorial/python-typeof-function)
 * [This realpython.com page](https://realpython.com/documenting-python-code/#documenting-your-python-code-base-using-docstrings)
 * [This](https://www.youtube.com/watch?v=DCaKj3eIrro) video tutorial of LeMaster Tech on reading from .txt file in Python
@@ -59,3 +59,4 @@ Reddit: https://www.reddit.com/user/AnEntirePeach
 * [This edureka.co page](https://www.edureka.co/community/33869/how-to-use-not-equal-operator-in-python#:~:text=You%20can%20use%20%22!%3D,are%20not%20equal%2C%20otherwise%20false%20.)
 * [security.org](https://www.security.org/how-secure-is-my-password/)
 * [This GitHub Docs page](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/approving-a-pull-request-with-required-reviews)
+* [This video by plus 2 net](https://youtu.be/mSpLnnXeiIc)
