@@ -61,7 +61,7 @@ def main() -> None:
         password_strength_frame.grid(column = 0, row = 0)
         notebook.add(password_strength_frame, text = 'Check a password\'s strength')
 
-        password_strength.show_password_strength_frame(password_strength_frame, done_btn_image)
+        password_strength.show_password_strength_frame(password_strength_frame)
 
     window.mainloop()
 
