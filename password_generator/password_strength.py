@@ -90,6 +90,10 @@ def check_password_strength(event):
             first_label.configure(text = 'Please input a password.')
             first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
 
+        elif len(input_box.get()) == 1:
+            second_label.configure(text = 'Very weak length: Your password has only ' + str(len(input_box.get())) + ' character.')
+            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+
         elif 0 < len(input_box.get()) <= 7:
             second_label.configure(text = 'Very weak length: Your password has only ' + str(len(input_box.get())) + ' characters.')
             second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
