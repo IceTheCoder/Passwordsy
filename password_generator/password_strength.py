@@ -220,7 +220,7 @@ def check_password_strength(event):
                     show_repeated_pattern_warning()
 
             if are_there_repeated_characters == False:
-                fourth_label.configure(text = 'No repeated characters: Your password contains at least one repeated character.')
+                fourth_label.configure(text = 'No repeated characters: Your password contains no repeated characters.')
                 fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
 
 
