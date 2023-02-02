@@ -23,12 +23,6 @@ You can use this program to generate a random string of up to 100 letters, numbe
 
 But you can also use it to discover weaknesses of a password, such as it being a commonly used password, having a short length, not containing upper and lower case letters, digits, AND punctuation, and containing a repeated character.
 
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/8.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/9.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/10.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/11.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/12.PNG)
-
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first ever project!  
 You can fork the project to play around with it and create a pull request to submit your suggestions. You can also open an issue to tell me about any problems my code might have.
