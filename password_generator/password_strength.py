@@ -170,7 +170,9 @@ def check_password_strength(event):
                 output = ''
     
                 for missing_feature in missing_security_features_list:
-                    if missing_feature != missing_security_features_list[-1]:
+                    if len(missing_security_features_list) == 1:
+                        output = str(missing_feature)
+                    elif missing_feature != missing_security_features_list[-1]:
                         output = output + str(missing_feature) + ', '
                     else:
                         output = output + 'and ' + str(missing_feature)
