@@ -27,9 +27,12 @@ def show_password_strength_frame(frame) -> None:
     instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
     instruction_label.place(relx = 0.5, rely = 0, anchor = 'n')
 
+    tip_label = tk.Label(frame, text = 'CTRL + V to paste', font = warning_font)
+    tip_label.place(relx = 0.5, rely = 0.12, anchor = 'n')
+
     global input_box
     input_box = tk.Entry(frame, width = 16, borderwidth = 2)
-    input_box.place(relx = 0.5, rely = 0.125, anchor = 'n')
+    input_box.place(relx = 0.5, rely = 0.2, anchor = 'n')
     input_box.bind('<KeyRelease>', check_password_strength)
 
     global first_label
