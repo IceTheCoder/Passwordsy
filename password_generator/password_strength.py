@@ -192,6 +192,9 @@ def check_password_strength(event):
         asks the user to input a password if there's not.
         '''
 
+        global are_there_repeated_characters
+        are_there_repeated_characters = False
+
         input = []
         input[:0] = input_box.get() # Adds each character of the input to a list.
 
@@ -200,19 +203,27 @@ def check_password_strength(event):
             Called upon pressing the done button,
             this function checks if there's any input,
             warns the user if there is a repeating pattern if there is input,
-            asks the user to input a password if there's not.
+            asks the user to input a password if there's no input.
             '''
 
-            fourth_label.configure(text = 'Repeated character: Your password contains at least one repeated character.')
+            fourth_label.configure(text = 'Repeated character(s): Your password contains at least one repeated character.')
             fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
 
-        for character in input: # For every character in the input, it checks if there is another character that matches, and shows the repeated pattern warning if there is.
-            count = 0
-            for other_character in input:
-                if character == other_character:
-                    count += 1
-            if count > 1:
-                show_repeated_pattern_warning()
+        if input != []:
+            for character in input: # For every character in the input, it checks if there is another character that matches, and shows the repeated pattern warning if there is.
+                count = 0
+                for other_character in input:
+                    if character == other_character:
+                        count += 1
+                if count > 1:
+                    are_there_repeated_characters = True
+                    show_repeated_pattern_warning()
+
+            if are_there_repeated_characters == False:
+                fourth_label.configure(text = 'No repeated characters: Your password contains at least one repeated character.')
+                fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
+
+
 
     check_if_password_is_common()
     check_password_length()
