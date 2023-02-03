@@ -31,6 +31,18 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     question = tk.Label(frame, text = 'Number of characters (up to 100):', font = description_font)
     question.place(relx = 0.5, rely = 0.16, anchor = 'n')
 
+    def show_copy_menu(event):
+        global copy
+        copy = tk.Label(frame, text = 'Copy', font = description_font)
+        copy.place(relx = 0.5, rely = 0.85)
+
+    def hide_copy_menu(event):
+        try:
+            copy.place_forget()
+        except:
+            pass
+
+
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
@@ -47,6 +59,11 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         ValueError
             If an invalid value is placed in the input box.
         '''
+
+        try:
+            copy.place_forget()
+        except:
+            pass
 
         password_width = 100
         password_height = 1
@@ -68,6 +85,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
         try:
             for password_label in password_labels:
+                password_label.bind('<ButtonRelease>', show_copy_menu)
+                password_label.bind('<Button>', hide_copy_menu)
                 requested_length = int(input_box.get())
                 password = generate_password(requested_length)
                 show_password(password_label, password, password_labels.index(password_label))

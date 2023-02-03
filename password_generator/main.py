@@ -40,6 +40,7 @@ def main() -> None:
         generate_password_frame: ttk.frame
             The generate password frame
         '''
+
         generate_password_frame = ttk.Frame(notebook, width = 854, height = 350)
         generate_password_frame.grid(column = 0, row = 1)
         notebook.add(generate_password_frame, text = 'Generate password')
@@ -62,6 +63,12 @@ def main() -> None:
         notebook.add(password_strength_frame, text = 'Check a password\'s strength')
 
         password_strength.show_password_strength_frame(password_strength_frame)
+
+    def motion(event):
+        global x, y
+        x, y = event.x, event.y
+
+    window.bind('<Motion>', motion)
 
     window.mainloop()
 
