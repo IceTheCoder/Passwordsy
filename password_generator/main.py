@@ -74,7 +74,6 @@ def main() -> None:
     my_label.grid(column = 0, row = 0)
     
     window.bind('<Motion>', motion)
-    window.bind('<Button>', generate_password.hide_copy_menu)
 
     window.mainloop()
 

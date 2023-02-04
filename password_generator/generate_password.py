@@ -1,9 +1,10 @@
-import secrets as secrets
-import string as string
+import secrets
+import string
 import tkinter as tk
 
 title_font = 'Helvetica 24'
 description_font = 'Helvetica 12'
+
 
 characters = string.ascii_letters + string.punctuation + string.digits
 
@@ -23,6 +24,9 @@ def hide_copy_menu(event):
     except:
         pass
 
+def copy_text():
+    print('Hello, World!')
+    copy.place_forget()
 
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
@@ -39,7 +43,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
 
     global copy
-    copy = tk.Label(frame, text = 'Copy', font = description_font)
+    copy = tk.Button(frame, text = 'Copy', font = description_font, command = copy_text)
     
     frame_title_text = 'Generate password'
 
