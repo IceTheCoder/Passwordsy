@@ -14,13 +14,13 @@ def update_mouse_coordinates(x, y):
     global x_coordinate, y_coordinate
     x_coordinate, y_coordinate = x, y
 
-def show_copy_menu(event):
+def show_copy_button(event):
     global x_coordinate, y_coordinate
     global copy
     copy.place(x = x_coordinate - 20, y = y_coordinate - 75)
     copy.lift()
 
-def hide_copy_menu(event):
+def hide_copy_button(event):
     try:
         copy.place_forget()
     except:
@@ -100,8 +100,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
         try:
             for password_label in password_labels:
-                password_label.bind('<ButtonRelease>', show_copy_menu)
-                password_label.bind('<Button>', hide_copy_menu)
+                password_label.bind('<ButtonRelease>', show_copy_button)
+                password_label.bind('<Button>', hide_copy_button)
                 requested_length = int(input_box.get())
                 password = generate_password(requested_length)
                 show_password(password_label, password, password_labels.index(password_label))

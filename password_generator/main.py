@@ -32,8 +32,7 @@ def main() -> None:
 
     def motion(event):
         generate_password.update_mouse_coordinates(event.x_root - window.winfo_rootx(), event.y_root - window.winfo_rooty())
-
-        my_label.config(text = 'Coordinates: x = ' + str(event.x_root - window.winfo_rootx()) + ' y = ' + str(event.x_root - window.winfo_rootx()))
+        password_strength.update_mouse_coordinates(event.x_root - window.winfo_rootx(), event.y_root - window.winfo_rooty())
 
     class GeneratePasswordFrame:
         '''
@@ -70,10 +69,6 @@ def main() -> None:
 
         password_strength.show_password_strength_frame(password_strength_frame)
 
-
-    my_label = tk.Label(window, text = '')
-    my_label.grid(column = 0, row = 0)
-    
     window.bind('<Motion>', motion)
 
     window.mainloop()

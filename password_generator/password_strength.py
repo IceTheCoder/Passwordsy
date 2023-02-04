@@ -14,6 +14,29 @@ modified_common_passwords = []
 for line in common_passwords_read:
     modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
 
+def update_mouse_coordinates(x, y):
+    global x_coordinate, y_coordinate
+    x_coordinate, y_coordinate = x, y
+
+def show_paste_button(event):
+    global x_coordinate, y_coordinate
+    global paste
+    paste.place(x = x_coordinate - 20, y = y_coordinate - 75)
+    paste.lift()
+
+def hide_paste_button(event):
+    try:
+        paste.place_forget()
+    except:
+        pass
+
+def paste_text():
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('v')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release('v')
+    paste.place_forget()
+
 def show_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
@@ -24,6 +47,10 @@ def show_password_strength_frame(frame) -> None:
     frame: ttk.Frame
         The "password strength" frame
     '''
+
+    global paste
+    paste = tk.Button(frame, text = 'Paste', font = warning_font, command = paste_text)
+
     instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
     instruction_label.place(relx = 0.5, rely = 0, anchor = 'n')
 
@@ -34,6 +61,8 @@ def show_password_strength_frame(frame) -> None:
     input_box = tk.Entry(frame, width = 32, borderwidth = 2)
     input_box.place(relx = 0.5, rely = 0.2, anchor = 'n')
     input_box.bind('<KeyRelease>', check_password_strength)
+    input_box.bind('<Button-3>', show_paste_button)
+    input_box.bind('<Button-1>', hide_paste_button)
 
     global first_label
     first_label = tk.Label(frame, font = warning_font, text = '')
