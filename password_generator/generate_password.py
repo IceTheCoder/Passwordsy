@@ -1,10 +1,12 @@
 import secrets
 import string
 import tkinter as tk
+from pynput.keyboard import Key, Controller
 
 title_font = 'Helvetica 24'
 description_font = 'Helvetica 12'
 
+keyboard = Controller()
 
 characters = string.ascii_letters + string.punctuation + string.digits
 
@@ -26,6 +28,10 @@ def hide_copy_menu(event):
 
 def copy_text():
     print('Hello, World!')
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('c')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release('c')
     copy.place_forget()
 
 def show_generate_password_frame(frame, done_btn_image) -> None:
