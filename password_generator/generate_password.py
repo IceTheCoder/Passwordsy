@@ -1,11 +1,74 @@
-import secrets as secrets
-import string as string
+import secrets
+import string
 import tkinter as tk
+from pynput.keyboard import Key, Controller
 
 title_font = 'Helvetica 24'
 description_font = 'Helvetica 12'
 
+keyboard = Controller()
+
 characters = string.ascii_letters + string.punctuation + string.digits
+
+def update_mouse_coordinates(x, y) -> None:
+    '''
+    Called by the motion function in main.py,
+    this function sends the current x and y coordinates,
+    relative to the window,
+    to generate_password.py.
+
+    Parametres
+    ----------
+    x: int
+        The x coordinate of the mouse cursor, relative to the window.
+    y: int
+        The y coordinate of the mouse cursor, relative to the window.
+    '''
+    global x_coordinate, y_coordinate
+    x_coordinate, y_coordinate = x, y
+
+def show_copy_button(event) -> None:
+    '''
+    Called when the user releases a mouse button on a password label,
+    this function displays a 'copy' button slightly above the mouse cursor,
+    and places it on top of all other widgets.
+
+    Parametres
+    ----------
+    event:
+        Necessary for initiating the function when the user releases a mouse button a password label
+    '''
+    global x_coordinate, y_coordinate
+    global copy
+    copy.place(x = x_coordinate - 20, y = y_coordinate - 75)
+    copy.lift()
+
+def hide_copy_button(event) -> None:
+    '''
+    Called when the user clicks on a password label,
+    this function attempts to hide the 'copy' button.
+
+    Parametres
+    ----------
+    event:
+        Necessary for initiating the function when the user releases a mouse button a password label
+
+    '''
+    try:
+        copy.place_forget()
+    except:
+        pass
+
+def copy_text() -> None:
+    '''
+    Called upon pressing the copy button,
+    this function simulates pressing CTRL and C to copy whatever is selected.
+    '''
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('c')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release('c')
+    copy.place_forget()
 
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
@@ -20,16 +83,17 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
     '''
+
+    global copy
+    copy = tk.Button(frame, text = 'Copy', font = description_font, command = copy_text)
+    
     frame_title_text = 'Generate password'
 
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
     frame_title.place(relx = 0.5, rely = 0.0, anchor = 'n')
 
-    tip = tk.Label(frame, text = 'CTRL + C to copy', font = description_font)
-    tip.place(relx = 0.5, rely = 0.1, anchor = 'n')
-
     question = tk.Label(frame, text = 'Number of characters (up to 100):', font = description_font)
-    question.place(relx = 0.5, rely = 0.16, anchor = 'n')
+    question.place(relx = 0.5, rely = 0.12, anchor = 'n')
 
     def create_password_labels(event) -> None:
         '''
@@ -47,6 +111,11 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         ValueError
             If an invalid value is placed in the input box.
         '''
+
+        try:
+            copy.place_forget()
+        except:
+            pass
 
         password_width = 100
         password_height = 1
@@ -68,6 +137,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
         try:
             for password_label in password_labels:
+                password_label.bind('<ButtonRelease>', show_copy_button)
+                password_label.bind('<Button>', hide_copy_button)
                 requested_length = int(input_box.get())
                 password = generate_password(requested_length)
                 show_password(password_label, password, password_labels.index(password_label))
@@ -78,10 +149,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
     input_box.bind('<Return>', create_password_labels)
-    input_box.place(relx = 0.5, rely = 0.2325, anchor = 'n')
+    input_box.place(relx = 0.5, rely = 0.21, anchor = 'n')
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
-    done_btn.place(relx = 0.5, rely = 0.31, anchor = 'n')
+    done_btn.place(relx = 0.5, rely = 0.3, anchor = 'n')
 
     def show_password(label, text, index) -> None:
         '''
