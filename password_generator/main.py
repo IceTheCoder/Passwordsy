@@ -29,6 +29,11 @@ def main() -> None:
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
+    def motion(event):
+        generate_password.update_coordinates(event.x, event.y)
+
+        my_label.config(text = 'Coordinates: x = ' + str(event.x) + ' y = ' + str(event.y))
+
     class GeneratePasswordFrame:
         '''
         A class that contains the creation of the "generate password" frame.
@@ -64,11 +69,12 @@ def main() -> None:
 
         password_strength.show_password_strength_frame(password_strength_frame)
 
-    def motion(event):
-        global x, y
-        x, y = event.x, event.y
 
+    my_label = tk.Label(window, text = '')
+    my_label.grid(column = 0, row = 0)
+    
     window.bind('<Motion>', motion)
+    window.bind('<Button>', generate_password.hide_copy_menu)
 
     window.mainloop()
 

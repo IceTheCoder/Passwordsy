@@ -7,6 +7,22 @@ description_font = 'Helvetica 12'
 
 characters = string.ascii_letters + string.punctuation + string.digits
 
+def update_coordinates(x, y):
+    global x_coordinate, y_coordinate
+    x_coordinate, y_coordinate = x, y
+
+def show_copy_menu(event):
+    global x_coordinate, y_coordinate
+    global copy
+    copy.place(x = x_coordinate, y = y_coordinate)
+
+def hide_copy_menu(event):
+    try:
+        copy.place_forget()
+    except:
+        pass
+
+
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
     Called upon starting the program,
@@ -20,6 +36,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
     '''
+
+    global copy
+    copy = tk.Label(frame, text = 'Copy', font = description_font)
+    
     frame_title_text = 'Generate password'
 
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
@@ -30,18 +50,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
     question = tk.Label(frame, text = 'Number of characters (up to 100):', font = description_font)
     question.place(relx = 0.5, rely = 0.16, anchor = 'n')
-
-    def show_copy_menu(event):
-        global copy
-        copy = tk.Label(frame, text = 'Copy', font = description_font)
-        copy.place(relx = 0.5, rely = 0.85)
-
-    def hide_copy_menu(event):
-        try:
-            copy.place_forget()
-        except:
-            pass
-
 
     def create_password_labels(event) -> None:
         '''
@@ -86,7 +94,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         try:
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', show_copy_menu)
-                password_label.bind('<Button>', hide_copy_menu)
                 requested_length = int(input_box.get())
                 password = generate_password(requested_length)
                 show_password(password_label, password, password_labels.index(password_label))
