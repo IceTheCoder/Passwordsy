@@ -14,7 +14,7 @@ def update_mouse_coordinates(x, y):
 def show_copy_menu(event):
     global x_coordinate, y_coordinate
     global copy
-    copy.place(x = x_coordinate, y = y_coordinate - 50)
+    copy.place(x = x_coordinate - 20, y = y_coordinate - 50)
     copy.lift()
 
 def hide_copy_menu(event):
