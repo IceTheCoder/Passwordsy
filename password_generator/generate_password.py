@@ -10,23 +10,60 @@ keyboard = Controller()
 
 characters = string.ascii_letters + string.punctuation + string.digits
 
-def update_mouse_coordinates(x, y):
+def update_mouse_coordinates(x, y) -> None:
+    '''
+    Called by the motion function in main.py,
+    this function sends the current x and y coordinates,
+    relative to the window,
+    to generate_password.py.
+
+    Parametres
+    ----------
+    x: int
+        The x coordinate of the mouse cursor, relative to the window.
+    y: int
+        The y coordinate of the mouse cursor, relative to the window.
+    '''
     global x_coordinate, y_coordinate
     x_coordinate, y_coordinate = x, y
 
-def show_copy_button(event):
+def show_copy_button(event) -> None:
+    '''
+    Called when the user releases a mouse button on a password label,
+    this function displays a 'copy' button slightly above the mouse cursor,
+    and places it on top of all other widgets.
+
+    Parametres
+    ----------
+    event:
+        Necessary for initiating the function when the user releases a mouse button a password label
+    '''
     global x_coordinate, y_coordinate
     global copy
     copy.place(x = x_coordinate - 20, y = y_coordinate - 75)
     copy.lift()
 
-def hide_copy_button(event):
+def hide_copy_button(event) -> None:
+    '''
+    Called when the user clicks on a password label,
+    this function attempts to hide the 'copy' button.
+
+    Parametres
+    ----------
+    event:
+        Necessary for initiating the function when the user releases a mouse button a password label
+
+    '''
     try:
         copy.place_forget()
     except:
         pass
 
-def copy_text():
+def copy_text() -> None:
+    '''
+    Called upon pressing the copy button,
+    this function simulates pressing CTRL and C to copy whatever is selected.
+    '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)

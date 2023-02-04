@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk as ttk
+from tkinter import ttk
 from PIL import ImageTk, Image
 import generate_password
 import password_strength
@@ -7,7 +7,7 @@ import password_strength
 def main() -> None:
     '''
     Called upon starting the program,
-    it generates the window, notebook and frames for the app.
+    it generates the window, notebook and frames.
     '''
     window = tk.Tk()
 
@@ -30,9 +30,20 @@ def main() -> None:
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
-    def motion(event):
-        generate_password.update_mouse_coordinates(event.x_root - window.winfo_rootx(), event.y_root - window.winfo_rooty())
-        password_strength.update_mouse_coordinates(event.x_root - window.winfo_rootx(), event.y_root - window.winfo_rooty())
+    def motion(event) -> None:
+        '''
+        Called as the mouse cursor moves,
+        this function sends the x and y coordinates,
+        relative to the window,
+        to each file.
+
+        Parametres
+        ----------
+        event:
+            Tkinter event
+        '''
+        generate_password.update_mouse_coordinates(event.x_root - window.winfo_rootx(), event.y_root - window.winfo_rooty()) # Subtracts the leftmost x position in the window from the current x position in the entire screen
+        password_strength.update_mouse_coordinates(event.x_root - window.winfo_rootx(), event.y_root - window.winfo_rooty()) # Subtracts the upmost x position in the window from the current x position in the entire screen
 
     class GeneratePasswordFrame:
         '''

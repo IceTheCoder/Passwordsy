@@ -14,23 +14,60 @@ modified_common_passwords = []
 for line in common_passwords_read:
     modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
 
-def update_mouse_coordinates(x, y):
+def update_mouse_coordinates(x, y) -> None:
+    '''
+    Called by the motion function in main.py,
+    this function sends the current x and y coordinates,
+    relative to the window,
+    to password_strength.py.
+
+    Parametres
+    ----------
+    x: int
+        The x coordinate of the mouse cursor, relative to the window.
+    y: int
+        The y coordinate of the mouse cursor, relative to the window.
+    '''
     global x_coordinate, y_coordinate
     x_coordinate, y_coordinate = x, y
 
-def show_paste_button(event):
+def show_paste_button(event) -> None:
+    '''
+    Called when the user left-clicks on the input box,
+    this function displays a 'paste' button slightly above the mouse cursor,
+    and places it on top of all other widgets.
+
+    Parametres
+    ----------
+    event:
+        Necessary for initiating the function when the user releases a mouse button a password label
+    '''
     global x_coordinate, y_coordinate
     global paste
     paste.place(x = x_coordinate - 20, y = y_coordinate - 75)
     paste.lift()
 
-def hide_paste_button(event):
+def hide_paste_button(event) -> None:
+    '''
+    Called when the user right-clicks on a password label,
+    this function attempts to hide the 'paste' button.
+
+    Parametres
+    ----------
+    event:
+        Necessary for initiating the function when the user releases a mouse button a password label
+
+    '''
     try:
         paste.place_forget()
     except:
         pass
 
-def paste_text():
+def paste_text() -> None:
+    '''
+    Called upon pressing the paste button,
+    this function simulates pressing CTRL and V to paste whatever was copied.
+    '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
     keyboard.release(Key.ctrl_l)
