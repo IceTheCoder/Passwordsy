@@ -7,14 +7,15 @@ description_font = 'Helvetica 12'
 
 characters = string.ascii_letters + string.punctuation + string.digits
 
-def update_coordinates(x, y):
+def update_mouse_coordinates(x, y):
     global x_coordinate, y_coordinate
     x_coordinate, y_coordinate = x, y
 
 def show_copy_menu(event):
     global x_coordinate, y_coordinate
     global copy
-    copy.place(x = x_coordinate, y = y_coordinate)
+    copy.place(x = x_coordinate, y = y_coordinate - 50)
+    copy.lift()
 
 def hide_copy_menu(event):
     try:

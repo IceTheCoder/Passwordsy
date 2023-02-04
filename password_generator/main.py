@@ -30,9 +30,9 @@ def main() -> None:
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
     def motion(event):
-        generate_password.update_coordinates(event.x, event.y)
+        generate_password.update_mouse_coordinates(event.x_root - window.winfo_rootx(), event.y_root - window.winfo_rooty())
 
-        my_label.config(text = 'Coordinates: x = ' + str(event.x) + ' y = ' + str(event.y))
+        my_label.config(text = 'Coordinates: x = ' + str(event.x_root - window.winfo_rootx()) + ' y = ' + str(event.x_root - window.winfo_rootx()))
 
     class GeneratePasswordFrame:
         '''
