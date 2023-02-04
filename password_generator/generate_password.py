@@ -17,7 +17,7 @@ def update_mouse_coordinates(x, y):
 def show_copy_menu(event):
     global x_coordinate, y_coordinate
     global copy
-    copy.place(x = x_coordinate - 20, y = y_coordinate - 50)
+    copy.place(x = x_coordinate - 20, y = y_coordinate - 75)
     copy.lift()
 
 def hide_copy_menu(event):
@@ -27,7 +27,6 @@ def hide_copy_menu(event):
         pass
 
 def copy_text():
-    print('Hello, World!')
     keyboard.press(Key.ctrl_l)
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
@@ -56,11 +55,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
     frame_title.place(relx = 0.5, rely = 0.0, anchor = 'n')
 
-    tip = tk.Label(frame, text = 'CTRL + C to copy', font = description_font)
-    tip.place(relx = 0.5, rely = 0.1, anchor = 'n')
-
     question = tk.Label(frame, text = 'Number of characters (up to 100):', font = description_font)
-    question.place(relx = 0.5, rely = 0.16, anchor = 'n')
+    question.place(relx = 0.5, rely = 0.12, anchor = 'n')
 
     def create_password_labels(event) -> None:
         '''
@@ -115,10 +111,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
     input_box.bind('<Return>', create_password_labels)
-    input_box.place(relx = 0.5, rely = 0.2325, anchor = 'n')
+    input_box.place(relx = 0.5, rely = 0.21, anchor = 'n')
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
-    done_btn.place(relx = 0.5, rely = 0.31, anchor = 'n')
+    done_btn.place(relx = 0.5, rely = 0.3, anchor = 'n')
 
     def show_password(label, text, index) -> None:
         '''
