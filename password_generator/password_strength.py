@@ -33,7 +33,7 @@ def update_mouse_coordinates(x, y) -> None:
 
 def show_paste_button(event) -> None:
     '''
-    Called when the user left-clicks on the input box,
+    Called when the user right-clicks on the input box,
     this function displays a 'paste' button slightly above the mouse cursor,
     and places it on top of all other widgets.
 
@@ -49,7 +49,7 @@ def show_paste_button(event) -> None:
 
 def hide_paste_button(event) -> None:
     '''
-    Called when the user right-clicks on a password label,
+    Called when the user left-clicks on the input box,
     this function attempts to hide the 'paste' button.
 
     Parametres
