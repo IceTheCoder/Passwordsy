@@ -10,6 +10,7 @@ def main() -> None:
     it generates the window, notebook and frames for the app.
     '''
     window = tk.Tk()
+
     notebook = ttk.Notebook(window)
     notebook.grid(column = 0, row = 0)
 
