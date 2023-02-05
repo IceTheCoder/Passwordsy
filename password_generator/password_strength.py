@@ -21,7 +21,7 @@ def update_mouse_coordinates(x, y) -> None:
     relative to the window,
     to password_strength.py.
 
-    Parametres
+    Parameters
     ----------
     x: int
         The x coordinate of the mouse cursor, relative to the window.
@@ -37,7 +37,7 @@ def show_paste_button(event) -> None:
     this function displays a 'paste' button slightly above the mouse cursor,
     and places it on top of all other widgets.
 
-    Parametres
+    Parameters
     ----------
     event:
         Necessary for initiating the function when the user releases a mouse button a password label
@@ -52,7 +52,7 @@ def hide_paste_button(event) -> None:
     Called when the user left-clicks on the input box,
     this function attempts to hide the 'paste' button.
 
-    Parametres
+    Parameters
     ----------
     event:
         Necessary for initiating the function when the user releases a mouse button a password label

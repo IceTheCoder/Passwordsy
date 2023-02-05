@@ -37,7 +37,7 @@ def main() -> None:
         relative to the window,
         to each file.
 
-        Parametres
+        Parameters
         ----------
         event:
             Tkinter event
