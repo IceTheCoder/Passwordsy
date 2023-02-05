@@ -10,6 +10,13 @@ keyboard = Controller()
 
 characters = string.ascii_letters + string.punctuation + string.digits
 
+password_width = 100
+password_height = 1
+password_border_width = 0
+password_font = 'Consolas 11'
+
+error = 'An error occured. Try again with a whole number between 6 and 100.'
+
 def update_mouse_coordinates(x, y) -> None:
     '''
     Called by the motion function in main.py,
@@ -17,7 +24,7 @@ def update_mouse_coordinates(x, y) -> None:
     relative to the window,
     to generate_password.py.
 
-    Parametres
+    Parameters
     ----------
     x: int
         The x coordinate of the mouse cursor, relative to the window.
@@ -33,13 +40,14 @@ def show_copy_button(event) -> None:
     this function displays a 'copy' button slightly above the mouse cursor,
     and places it on top of all other widgets.
 
-    Parametres
+    Parameters
     ----------
     event:
         Necessary for initiating the function when the user releases a mouse button a password label
     '''
     global x_coordinate, y_coordinate
     global copy
+
     copy.place(x = x_coordinate - 20, y = y_coordinate - 75)
     copy.lift()
 
@@ -48,7 +56,7 @@ def hide_copy_button(event) -> None:
     Called when the user clicks on a password label,
     this function attempts to hide the 'copy' button.
 
-    Parametres
+    Parameters
     ----------
     event:
         Necessary for initiating the function when the user releases a mouse button a password label
@@ -92,14 +100,15 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
     frame_title.place(relx = 0.5, rely = 0.0, anchor = 'n')
 
-    question = tk.Label(frame, text = 'Number of characters (up to 100):', font = description_font)
+    question = tk.Label(frame, text = 'Number of characters (6 to 100):', font = description_font)
     question.place(relx = 0.5, rely = 0.12, anchor = 'n')
 
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
         this function creates the password(s) or error label(s),
-        and calls the show_password() function to show the passwords or the error.
+        calls the generate_password function to get a password,
+        and calls the show_password function to show the passwords or the error.
 
         Parameters
         ----------
@@ -117,13 +126,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         except:
             pass
 
-        password_width = 100
-        password_height = 1
-        password_border_width = 0
-        password_font = 'Consolas 11'
-
-        error = 'An error occured. Try again with a whole number greater than 0.'
-
         password_label_1 = tk.Text(frame, width = password_width, height = password_height,
                                    borderwidth = password_border_width, font = password_font)
         password_label_2 = tk.Text(frame, width = password_width, height = password_height,
@@ -139,9 +141,13 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', show_copy_button)
                 password_label.bind('<Button>', hide_copy_button)
-                requested_length = int(input_box.get())
-                password = generate_password(requested_length)
-                show_password(password_label, password, password_labels.index(password_label))
+
+                generate_password(int(input_box.get()))
+
+                global password
+                password_to_be_shown = password
+
+                show_password(password_label, password_to_be_shown, password_labels.index(password_label))
         except ValueError:
             input_box.delete(0, 'end')
             show_password(password_label_1, error, 0)
@@ -173,14 +179,14 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
         label.insert(1.0, text)
         label.place(relx = 0.5, rely = 0.485 + (index / 10), anchor = 'n')
-        label.configure(state = 'disabled')  # Makes the text uneditable.
+        label.config(state = 'disabled')
 
-    def generate_password(requested_length) -> str:
+    def generate_password(requested_length) -> None:
         '''
-        Called by the create_password_labels function,
+        Called by the create_password_labels function
         (upon clicking the done button or the ENTER key),
         this function checks if the requested_length is valid,
-        returns a password if it is,
+        creates a global variable with a secure password if it is,
         raises a value error if it's not.
 
         Parameters
@@ -191,10 +197,51 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         Raises
         ------
         ValueError
-            If the requested length is not an integer greater than 0.
+            If the requested length is not an integer between 6 and 100.
         '''
+        try:
+            if 6 <= requested_length <= 100:
+                generated_password = ''.join(secrets.choice(characters) for _ in range(max(min(int(requested_length), 100), max(int(requested_length), 6))))
 
-        if requested_length > 0:
-            return ''.join(secrets.choice(characters) for _ in range(min(int(requested_length), 100))) # This is where the password itself is generated
-        else:
+                lowercase_letters = []
+                lowercase_letters[:0] = string.ascii_lowercase
+
+                uppercase_letters = []
+                uppercase_letters[:0] = string.ascii_uppercase
+
+                digits = []
+                digits[:0] = string.digits
+
+                punctuation = []
+                punctuation[:0] = string.punctuation
+
+                generate_password_characters = []
+                generate_password_characters[:0] = generated_password
+
+                number_of_lowercase_letters = 0
+                number_of_uppercase_letters = 0
+                number_of_digits = 0
+                number_of_punctuation = 0
+
+                for character in generate_password_characters:
+                    if character in lowercase_letters:
+                        number_of_lowercase_letters += 1
+
+                    if character in uppercase_letters:
+                        number_of_uppercase_letters += 1
+
+                    if character in digits:
+                        number_of_digits += 1
+
+                    if character in punctuation:
+                        number_of_punctuation += 1
+
+                if number_of_lowercase_letters == 0 or number_of_uppercase_letters == 0 or number_of_digits == 0 or number_of_punctuation == 0:
+                    generate_password(requested_length)
+                else:
+                    global password
+                    password = generated_password
+            else:
+                raise ValueError
+        except:
             raise ValueError
