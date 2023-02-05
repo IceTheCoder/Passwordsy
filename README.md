@@ -13,6 +13,12 @@ Run main.py from a terminal.
 ## Usage
 You can use this program to generate a random secure string of 6 to 100 letters, numbers and punctuation marks.
 
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/1.PNG)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/2.PNG)  
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/3.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/4.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/5.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/6.PNG)
 
 You can also use it to discover weaknesses of a password, such as being a commonly used password, having a short length, not containing upper and lower case letters, digits, and punctuation, or containing a repeated character.
 
