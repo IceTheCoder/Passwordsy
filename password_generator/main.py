@@ -7,7 +7,7 @@ import password_strength
 def main() -> None:
     '''
     Called upon starting the program,
-    it generates the window, notebook and frames.
+    it generates the window, notebook, and frames.
     '''
     window = tk.Tk()
 
@@ -81,7 +81,6 @@ def main() -> None:
         password_strength.show_password_strength_frame(password_strength_frame)
 
     window.bind('<Motion>', motion)
-
     window.mainloop()
 
 if __name__ == '__main__':
