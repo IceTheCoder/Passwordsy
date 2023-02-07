@@ -65,12 +65,13 @@ def hide_copy_button(event) -> None:
     try:
         copy.place_forget()
     except:
-        pass
+        return
 
 def copy_text() -> None:
     '''
     Called upon pressing the copy button,
-    this function simulates pressing CTRL and C to copy whatever is selected.
+    this function simulates pressing CTRL and C to copy whatever is selected,
+    and gets rid of the copy button.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('c')
@@ -112,7 +113,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     password_label_4 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
 
-
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
@@ -123,7 +123,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         Parameters
         ----------
         event:
-            Necessary for initiating the function when pressing the ENTER key
+            Necessary for initiating the function when pressing the ENTER key.
 
         Raises
         ------
@@ -134,7 +134,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         try:
             copy.place_forget()
         except:
-            pass
+            return
 
         password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
@@ -149,6 +149,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
                 password_to_be_shown = password
 
                 show_password(password_label, password_to_be_shown, password_labels.index(password_label))
+
         except ValueError:
             input_box.delete(0, 'end')
             show_password(password_label_1, error, 0)
@@ -177,7 +178,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         index:
             The index of the password label being shown is necessary for placing it correctly on the screen.
         '''
-        print(text)
         label.config(state = 'normal')
         label.delete('1.0', 'end')
         label.insert('1.0', text)
@@ -187,7 +187,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     def generate_password(requested_length) -> None:
         '''
         Called by the create_password_labels function
-        (upon clicking the done button or the ENTER key),
+        (upon clicking the done button or pressing the ENTER key),
         this function checks if the requested_length is valid,
         creates a global variable with a secure password if it is,
         raises a value error if it's not.

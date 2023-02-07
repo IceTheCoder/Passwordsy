@@ -61,7 +61,7 @@ def hide_paste_button(event) -> None:
     try:
         paste.place_forget()
     except:
-        pass
+        return
 
 def paste_text() -> None:
     '''
@@ -110,6 +110,9 @@ def show_password_strength_frame(frame) -> None:
     global fourth_label
     fourth_label = tk.Label(frame, font = warning_font, text = '')
 
+    global warnings
+    warnings = [first_label, second_label, third_label, fourth_label]
+
 def check_password_strength(event):
     '''
     Called upon pressing the done button,
@@ -121,23 +124,18 @@ def check_password_strength(event):
     event:
          Necessary for initiating the function as the user types.
     '''
-    first_label.place_forget()
-    second_label.place_forget()
-    third_label.place_forget()
-    fourth_label.place_forget()
-    
+    global warnings
+    for label in warnings:
+        label.place_forget()
+
     def check_if_password_is_common():
         '''
         Called upon pressing the done button,
         this function checks if there's any input,
-        searches if the password is in the 100,000 most used ones if there is,
-        asks the user to input a password if there's not.
+        checks if the input is in the 100,000 most used passwords if there is input,
+        asks the user to input a password if there's no input.
         '''
-        if len(input_box.get()) == 0:
-            first_label.configure(text = 'Please input a password.')
-            first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
-
-        elif modified_common_passwords.count(input_box.get()) > 0:
+        if modified_common_passwords.count(input_box.get()) > 0:
             first_label.configure(text = 'Common: Your passord is common.')
             first_label.place(relx = 0.01, rely = 0.3, anchor = 'w')
 
@@ -149,14 +147,10 @@ def check_password_strength(event):
         '''
         Called upon pressing the done button,
         this function checks if there's any input,
-        categorises the inputted password as very weak, weak, good, or strong depending on its length if there is,
-        asks the user to input a password if there's not.
+        categorises the inputted password as very weak, weak, good, or strong depending on its length if there is input,
+        asks the user to input a password if there's no input.
         '''
-        if len(input_box.get()) == 0:
-            first_label.configure(text = 'Please input a password.')
-            first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
-
-        elif len(input_box.get()) == 1:
+        if len(input_box.get()) == 1:
             second_label.configure(text = 'Very weak length: Your password has only ' + str(len(input_box.get())) + ' character.')
             second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
 
@@ -183,73 +177,68 @@ def check_password_strength(event):
         checks how many of the following the inputted password is missing: 
         lowercase letters, uppercase letters, digits, and punctuation,
         and warns the user about them if there is input,
-        asks the user to input a password if there's not.
+        asks the user to input a password if there's no input.
         '''
+        missing_security_features_list = []
 
-        if len(input_box.get()) == 0:
-            first_label.configure(text = 'Please input a password.')
-            first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
+        # Places each character into a list based on its type
+        lowercase_letters = []
+        lowercase_letters[:0] = string.ascii_lowercase
+
+        uppercase_letters = []
+        uppercase_letters[:0] = string.ascii_uppercase
+
+        digits = []
+        digits[:0] = string.digits
+
+        punctuation = []
+        punctuation[:0] = string.punctuation
+
+        input = []
+        input[:0] = input_box.get()
+
+        number_of_lowercase_letters = 0
+        number_of_uppercase_letters = 0
+        number_of_digits = 0
+        number_of_punctuation = 0
+
+        for character in input:
+            if character in lowercase_letters:
+                number_of_lowercase_letters += 1
+            if character in uppercase_letters:
+                number_of_uppercase_letters += 1
+            if character in digits:
+                number_of_digits += 1
+            if character in punctuation:
+                number_of_punctuation += 1
+
+        if number_of_lowercase_letters == 0:
+            missing_security_features_list.append('lowercase letters')
+        if number_of_uppercase_letters == 0:
+            missing_security_features_list.append('uppercase letters')
+        if number_of_digits == 0:
+            missing_security_features_list.append('digits')
+        if number_of_punctuation == 0:
+            missing_security_features_list.append('punctuation')
+
+        if missing_security_features_list != []:
+            output = ''
+
+            for missing_feature in missing_security_features_list:
+                if len(missing_security_features_list) == 1:
+                    output = str(missing_feature)
+                elif missing_feature != missing_security_features_list[-1]:
+                    output = output + str(missing_feature) + ', '
+                else:
+                    output = output + 'and ' + str(missing_feature)
+            
+            third_label.configure(text = 'Not complex: Your password is missing ' + output + '.')
+            third_label.place(relx = 0.01, rely = 0.5, anchor = 'w')
+
         else:
+            third_label.configure(text = 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctation.')
+            third_label.place(relx = 0.01, rely = 0.5, anchor = 'w')
 
-            missing_security_features_list = []
-    
-            lowercase_letters = []
-            lowercase_letters[:0] = string.ascii_lowercase
-    
-            uppercase_letters = []
-            uppercase_letters[:0] = string.ascii_uppercase
-    
-            digits = []
-            digits[:0] = string.digits
-    
-            punctuation = []
-            punctuation[:0] = string.punctuation
-    
-            input = []
-            input[:0] = input_box.get()
-    
-            number_of_lowercase_letters = 0
-            number_of_uppercase_letters = 0
-            number_of_digits = 0
-            number_of_punctuation = 0
-    
-            for character in input:
-                if character in lowercase_letters:
-                    number_of_lowercase_letters += 1
-                if character in uppercase_letters:
-                    number_of_uppercase_letters += 1
-                if character in digits:
-                    number_of_digits += 1
-                if character in punctuation:
-                    number_of_punctuation += 1
-    
-            if number_of_lowercase_letters == 0:
-                missing_security_features_list.append('lowercase letters')
-            if number_of_uppercase_letters == 0:
-                missing_security_features_list.append('uppercase letters')
-            if number_of_digits == 0:
-                missing_security_features_list.append('digits')
-            if number_of_punctuation == 0:
-                missing_security_features_list.append('punctuation')
-    
-            if missing_security_features_list != []:
-                output = ''
-    
-                for missing_feature in missing_security_features_list:
-                    if len(missing_security_features_list) == 1:
-                        output = str(missing_feature)
-                    elif missing_feature != missing_security_features_list[-1]:
-                        output = output + str(missing_feature) + ', '
-                    else:
-                        output = output + 'and ' + str(missing_feature)
-                
-                third_label.configure(text = 'Not complex: Your password is missing ' + output + '.')
-                third_label.place(relx = 0.01, rely = 0.5, anchor = 'w')
-    
-            else:
-                third_label.configure(text = 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctation.')
-                third_label.place(relx = 0.01, rely = 0.5, anchor = 'w')
-    
     def check_for_patterns_in_password():
         '''
         Called upon pressing the done button,
@@ -275,23 +264,25 @@ def check_password_strength(event):
             fourth_label.configure(text = 'Repeated character(s): Your password contains at least one repeated character.')
             fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
 
-        if input != []:
-            for character in input: # For every character in the input, it checks if there is another character that matches, and shows the repeated pattern warning if there is.
-                count = 0
-                for other_character in input:
-                    if character == other_character:
-                        count += 1
-                if count > 1:
-                    are_there_repeated_characters = True
-                    show_repeated_pattern_warning()
+        for character in input: # For every character in the input, it checks if there is another character that matches, and shows the repeated pattern warning if there is.
+            count = 0
+            for other_character in input:
+                if character == other_character:
+                    count += 1
 
-            if are_there_repeated_characters == False:
-                fourth_label.configure(text = 'No repeated characters: Your password contains no repeated characters.')
-                fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
+            if count > 1:
+                are_there_repeated_characters = True
+                show_repeated_pattern_warning()
 
+        if are_there_repeated_characters == False:
+            fourth_label.configure(text = 'No repeated characters: Your password contains no repeated characters.')
+            fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
 
-
-    check_if_password_is_common()
-    check_password_length()
-    check_password_complexity()
-    check_for_patterns_in_password()
+    if len(input_box.get()) == 0:
+        first_label.configure(text = 'Please input a password.')
+        first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
+    else:
+        check_if_password_is_common()   
+        check_password_length()    
+        check_password_complexity() 
+        check_for_patterns_in_password()
