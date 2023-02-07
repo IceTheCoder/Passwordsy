@@ -103,6 +103,16 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     question = tk.Label(frame, text = 'Number of characters (6 to 100):', font = description_font)
     question.place(relx = 0.5, rely = 0.12, anchor = 'n')
 
+    password_label_1 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+    password_label_2 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+    password_label_3 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+    password_label_4 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+
+
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
@@ -125,15 +135,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             copy.place_forget()
         except:
             pass
-
-        password_label_1 = tk.Text(frame, width = password_width, height = password_height,
-                                   borderwidth = password_border_width, font = password_font)
-        password_label_2 = tk.Text(frame, width = password_width, height = password_height,
-                                   borderwidth = password_border_width, font = password_font)
-        password_label_3 = tk.Text(frame, width = password_width, height = password_height,
-                                   borderwidth = password_border_width, font = password_font)
-        password_label_4 = tk.Text(frame, width = password_width, height = password_height,
-                                   borderwidth = password_border_width, font = password_font)
 
         password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
@@ -176,8 +177,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         index:
             The index of the password label being shown is necessary for placing it correctly on the screen.
         '''
-
-        label.insert(1.0, text)
+        print(text)
+        label.config(state = 'normal')
+        label.delete('1.0', 'end')
+        label.insert('1.0', text)
         label.place(relx = 0.5, rely = 0.485 + (index / 10), anchor = 'n')
         label.config(state = 'disabled')
 
