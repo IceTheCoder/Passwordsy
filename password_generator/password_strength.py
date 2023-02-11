@@ -14,23 +14,6 @@ modified_common_passwords = []
 for line in common_passwords_read:
     modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
 
-def update_mouse_coordinates(x, y) -> None:
-    '''
-    Called by the motion function in main.py,
-    this function sends the current x and y coordinates,
-    relative to the window,
-    to password_strength.py.
-
-    Parameters
-    ----------
-    x: int
-        The x coordinate of the mouse cursor, relative to the window.
-    y: int
-        The y coordinate of the mouse cursor, relative to the window.
-    '''
-    global x_coordinate, y_coordinate
-    x_coordinate, y_coordinate = x, y
-
 def show_paste_button(event) -> None:
     '''
     Called when the user right-clicks on the input box,
@@ -42,26 +25,7 @@ def show_paste_button(event) -> None:
     event:
         Necessary for initiating the function when the user releases a mouse button a password label
     '''
-    global x_coordinate, y_coordinate
-    global paste
-    paste.place(x = x_coordinate - 20, y = y_coordinate - 75)
-    paste.lift()
-
-def hide_paste_button(event) -> None:
-    '''
-    Called when the user left-clicks on the input box,
-    this function attempts to hide the 'paste' button.
-
-    Parameters
-    ----------
-    event:
-        Necessary for initiating the function when the user releases a mouse button a password label
-
-    '''
-    try:
-        paste.place_forget()
-    except:
-        return
+    paste.tk_popup(event.x_root, event.y_root)
 
 def paste_text() -> None:
     '''
@@ -86,7 +50,8 @@ def show_password_strength_frame(frame) -> None:
     '''
 
     global paste
-    paste = tk.Button(frame, text = 'Paste', font = warning_font, command = paste_text)
+    paste = tk.Menu(frame, tearoff = False)
+    paste.add_command(label = 'Paste', command = paste_text)
 
     instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
     instruction_label.place(relx = 0.5, rely = 0, anchor = 'n')
@@ -96,7 +61,6 @@ def show_password_strength_frame(frame) -> None:
     input_box.place(relx = 0.5, rely = 0.15, anchor = 'n')
     input_box.bind('<KeyRelease>', check_password_strength)
     input_box.bind('<Button-3>', show_paste_button)
-    input_box.bind('<Button-1>', hide_paste_button)
 
     global first_label
     first_label = tk.Label(frame, font = warning_font, text = '')

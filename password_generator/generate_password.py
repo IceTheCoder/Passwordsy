@@ -17,22 +17,6 @@ password_font = 'Consolas 11'
 
 error = 'An error occured. Try again with a whole number between 6 and 100.'
 
-def update_mouse_coordinates(x, y) -> None:
-    '''
-    Called by the motion function in main.py,
-    this function sends the current x and y coordinates,
-    relative to the window,
-    to generate_password.py.
-
-    Parameters
-    ----------
-    x: int
-        The x coordinate of the mouse cursor, relative to the window.
-    y: int
-        The y coordinate of the mouse cursor, relative to the window.
-    '''
-    global x_coordinate, y_coordinate
-    x_coordinate, y_coordinate = x, y
 
 def show_copy_button(event) -> None:
     '''
@@ -45,27 +29,7 @@ def show_copy_button(event) -> None:
     event:
         Necessary for initiating the function when the user releases a mouse button a password label
     '''
-    global x_coordinate, y_coordinate
-    global copy
-
-    copy.place(x = x_coordinate - 20, y = y_coordinate - 75)
-    copy.lift()
-
-def hide_copy_button(event) -> None:
-    '''
-    Called when the user clicks on a password label,
-    this function attempts to hide the 'copy' button.
-
-    Parameters
-    ----------
-    event:
-        Necessary for initiating the function when the user releases a mouse button a password label
-
-    '''
-    try:
-        copy.place_forget()
-    except:
-        return
+    copy.tk_popup(event.x_root, event.y_root)
 
 def copy_text() -> None:
     '''
@@ -94,7 +58,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
 
     global copy
-    copy = tk.Button(frame, text = 'Copy', font = description_font, command = copy_text)
+    copy = tk.Menu(frame, tearoff = False)
+    copy.add_command(label = 'Copy', command = copy_text)
     
     frame_title_text = 'Generate password'
 
@@ -141,7 +106,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         try:
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', show_copy_button)
-                password_label.bind('<Button>', hide_copy_button)
 
                 generate_password(int(input_box.get()))
 
