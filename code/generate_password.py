@@ -62,10 +62,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     frame_title_text = 'Generate password'
 
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
-    frame_title.place(relx = 0.5, rely = 0.0, anchor = 'n')
+    frame_title.grid(column = 0, row = 0, columnspan = 2)
 
     question = tk.Label(frame, text = 'Number of characters (6 to 100):', font = description_font)
-    question.place(relx = 0.5, rely = 0.12, anchor = 'n')
+    question.grid(column = 0, row = 1)
 
     password_label_1 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
@@ -77,7 +77,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
                                borderwidth = password_border_width, font = password_font)
 
     lowercase_letters_checkbox = tk.Checkbutton(frame)
-    lowercase_letters_checkbox.place(relx = 0.9, rely = 0.46, anchor = 'n')
+    lowercase_letters_checkbox.grid(column = 1, row = 4)
 
     def create_password_labels(event) -> None:
         '''
@@ -117,10 +117,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
     input_box.bind('<Return>', create_password_labels)
-    input_box.place(relx = 0.5, rely = 0.21, anchor = 'n')
+    input_box.grid(column = 0, row = 2)
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
-    done_btn.place(relx = 0.5, rely = 0.3, anchor = 'n')
+    done_btn.grid(column = 0, row = 3)
 
     def show_password(label, text, index) -> None:
         '''
@@ -141,7 +141,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         label.config(state = 'normal')
         label.delete('1.0', 'end')
         label.insert('1.0', text)
-        label.place(relx = 0.01, rely = 0.5 + (index / 10), anchor = 'w')
+        label.grid(column = 0, row = 4 + index, pady = 10)
         label.config(state = 'disabled')
 
     def generate_password(requested_length) -> None:
