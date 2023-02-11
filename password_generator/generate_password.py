@@ -15,24 +15,8 @@ password_height = 1
 password_border_width = 0
 password_font = 'Consolas 11'
 
-error = 'An error occured. Try again with a whole number between 6 and 100.'
+error = 'An error occurred. Try again with a whole number between 6 and 100.'
 
-def update_mouse_coordinates(x, y) -> None:
-    '''
-    Called by the motion function in main.py,
-    this function sends the current x and y coordinates,
-    relative to the window,
-    to generate_password.py.
-
-    Parameters
-    ----------
-    x: int
-        The x coordinate of the mouse cursor, relative to the window.
-    y: int
-        The y coordinate of the mouse cursor, relative to the window.
-    '''
-    global x_coordinate, y_coordinate
-    x_coordinate, y_coordinate = x, y
 
 def show_copy_button(event) -> None:
     '''
@@ -43,41 +27,19 @@ def show_copy_button(event) -> None:
     Parameters
     ----------
     event:
-        Necessary for initiating the function when the user releases a mouse button a password label
+        Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     '''
-    global x_coordinate, y_coordinate
-    global copy
-
-    copy.place(x = x_coordinate - 20, y = y_coordinate - 75)
-    copy.lift()
-
-def hide_copy_button(event) -> None:
-    '''
-    Called when the user clicks on a password label,
-    this function attempts to hide the 'copy' button.
-
-    Parameters
-    ----------
-    event:
-        Necessary for initiating the function when the user releases a mouse button a password label
-
-    '''
-    try:
-        copy.place_forget()
-    except:
-        return
+    copy.tk_popup(event.x_root, event.y_root - 30)
 
 def copy_text() -> None:
     '''
     Called upon pressing the copy button,
-    this function simulates pressing CTRL and C to copy whatever is selected,
-    and gets rid of the copy button.
+    this function simulates pressing CTRL and C to copy the selected text.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
     keyboard.release('c')
-    copy.place_forget()
 
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
@@ -94,7 +56,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
 
     global copy
-    copy = tk.Button(frame, text = 'Copy', font = description_font, command = copy_text)
+    copy = tk.Menu(frame, tearoff = False)
+    copy.add_command(label = 'Copy', command = copy_text)
     
     frame_title_text = 'Generate password'
 
@@ -116,10 +79,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
-        this function creates the password(s) or error label(s),
-        calls the generate_password function to get a password,
-        and calls the show_password function to show the passwords or the error.
-
+        this function places the password_labels in a list,
+        binds them to the show_copy_button function when releasing a mouse mutton,
+        calls the generate_password function to get the passwords and calls the show_password function to display them,
+        or clears the input_box and calls the show_password function to show an error if the input is invalid.
         Parameters
         ----------
         event:
@@ -131,17 +94,11 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             If an invalid value is placed in the input box.
         '''
 
-        try:
-            copy.place_forget()
-        except:
-            return
-
         password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
         try:
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', show_copy_button)
-                password_label.bind('<Button>', hide_copy_button)
 
                 generate_password(int(input_box.get()))
 
