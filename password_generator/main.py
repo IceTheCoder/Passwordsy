@@ -39,7 +39,7 @@ def main() -> None:
         Attributes
         ----------
         generate_password_frame: ttk.frame
-            The generate password frame
+            The 'generate password' frame
         '''
 
         generate_password_frame = ttk.Frame(notebook, width = 854, height = 350)
@@ -50,7 +50,7 @@ def main() -> None:
 
     class PasswordStrengthFrame:
         '''
-        A class that contains the creation of the "password strength" frame.
+        A class that contains the creation of the 'password strength' frame.
 
         ...
 

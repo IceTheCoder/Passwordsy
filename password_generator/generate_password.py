@@ -15,7 +15,7 @@ password_height = 1
 password_border_width = 0
 password_font = 'Consolas 11'
 
-error = 'An error occured. Try again with a whole number between 6 and 100.'
+error = 'An error occurred. Try again with a whole number between 6 and 100.'
 
 
 def show_copy_button(event) -> None:

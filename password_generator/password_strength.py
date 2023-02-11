@@ -53,7 +53,7 @@ def show_password_strength_frame(frame) -> None:
     paste = tk.Menu(frame, tearoff = False)
     paste.add_command(label = 'Paste', command = paste_text)
 
-    instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
+    instruction_label = tk.Label(frame, text = 'Type your password to check its strength: ', font = title_font)
     instruction_label.place(relx = 0.5, rely = 0, anchor = 'n')
 
     global input_box
@@ -80,8 +80,8 @@ def show_password_strength_frame(frame) -> None:
 def check_password_strength(event):
     '''
     Called upon pressing the done button,
-    this functions hosts all functions neccesary to check:
-    if a password is common, a password's length, a password's complexity, if a password contains repeated patterns.
+    this function hosts all functions necesary to check:
+    if a password is common, a password's length, complexity, and if a password contains repeated patterns.
 
     Parameters
     ----------
@@ -101,16 +101,16 @@ def check_password_strength(event):
         asks the user to input a password if there's no input.
         '''
         if modified_common_passwords.count(input_box.get()) > 0:
-            first_label.configure(text = 'Common: Your passord is common.')
+            first_label.configure(text = 'Common: Your password is common.')
             first_label.place(relx = 0.01, rely = 0.3, anchor = 'w')
 
         elif modified_common_passwords.count(input_box.get()) == 0:
-            first_label.configure(text = 'Not common: Your passord isn\'t common.')
+            first_label.configure(text = 'Not common: Your password isn\'t common.')
             first_label.place(relx = 0.01, rely = 0.3, anchor = 'w')
 
     def check_password_length():
         '''
-        Called by the check_password_strength functoin
+        Called by the check_password_strength function
         (upon pressing the done button),
         this function checks if there's any input,
         categorises the inputted password as very weak, weak, good, or strong depending on its length if there is input,
@@ -148,7 +148,7 @@ def check_password_strength(event):
         '''
         missing_security_features_list = []
 
-        # Places each character into a list based on its type
+        # Places each character into a list based on its type.
         lowercase_letters = []
         lowercase_letters[:0] = string.ascii_lowercase
 
