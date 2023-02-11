@@ -1,5 +1,5 @@
 # Passwordsy
-A program that can generate a secure password of up to 100 characters and check any password's strength. 
+A program that can generate a secure password of up to 100 characters and check for vulnerabilities in a given password. 
 
 ## Getting Started
 ### Prerequisites
@@ -16,15 +16,12 @@ You can use this program to generate a random secure string of 6 to 100 letters,
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/1.PNG)  
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/2.PNG)  
 ![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/3.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/4.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/5.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/6.PNG)
 
 You can also use it to discover weaknesses of a password, such as being a commonly used password, having a short length, not containing upper and lower case letters, digits, and punctuation, or containing a repeated character.
 
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/7.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/8.PNG)
-![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/9.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/4.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/5.PNG)
+![alt text](https://github.com/IceTheDev2/Passwordsy/blob/main/password_generator/screenshots/6.PNG)
 
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first project!  
@@ -36,10 +33,12 @@ This project is licensed under the MIT License. Read LICENSE.txt for more inform
 ## Contact
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
 Reddit: https://www.reddit.com/user/AnEntirePeach
+Youtube: https://www.youtube.com/channel/UCBqVJU4gjeik1RavAsVR6Pg
+E-mail: icethedev2@gmail.com
 
 ## Acknowledgements
 * The [r/Python](https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips and suggestions
-* The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials, such as [this one on keyboard event binding](https://youtu.be/GLnNPjL1U2g) and [this one on cursor positions](https://youtu.be/Z4zePg2M5H8)
+* The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials, such as [this one on keyboard event binding](https://youtu.be/GLnNPjL1U2g), [this one on cursor positions](https://youtu.be/Z4zePg2M5H8), and [this one on Tkinter menus](https://youtu.be/KRuUtNxOb_k)
 * The GitHub contributors to this project, [dwaffle](https://github.com/dwaffle), [christopher-chandler](https://trello.com/c/f72vJsYk/50-https-githubcom-christopher-chandler), and [MartinMerkli](https://github.com/MartinMerkli)
 * The [SecLists repository](https://github.com/danielmiessler/SecLists) of danielmiessler, used here for the 100,000 most common passwords
 * [Exercism](https://exercism.org/) for its large array of exercises
