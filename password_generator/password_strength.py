@@ -25,7 +25,7 @@ def show_paste_button(event) -> None:
     event:
         Necessary for initiating the function when the user releases a mouse button a password label
     '''
-    paste.tk_popup(event.x_root, event.y_root)
+    paste.tk_popup(event.x_root, event.y_root - 30)
 
 def paste_text() -> None:
     '''

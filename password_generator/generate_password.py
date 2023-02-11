@@ -29,7 +29,7 @@ def show_copy_button(event) -> None:
     event:
         Necessary for initiating the function when the user releases a mouse button a password label
     '''
-    copy.tk_popup(event.x_root, event.y_root)
+    copy.tk_popup(event.x_root, event.y_root - 30)
 
 def copy_text() -> None:
     '''
