@@ -23,14 +23,14 @@ def show_paste_button(event) -> None:
     Parameters
     ----------
     event:
-        Necessary for initiating the function when the user releases a mouse button a password label
+        Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     '''
     paste.tk_popup(event.x_root, event.y_root - 30)
 
 def paste_text() -> None:
     '''
     Called upon pressing the paste button,
-    this function simulates pressing CTRL and V to paste whatever was copied.
+    this function simulates pressing CTRL and V to paste the copied text.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
@@ -41,7 +41,7 @@ def paste_text() -> None:
 def show_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
-    this function creates the "password strength" frame.
+    this function creates the contents of the "password strength" frame.
 
     Parameters
     ----------
@@ -94,7 +94,8 @@ def check_password_strength(event):
 
     def check_if_password_is_common():
         '''
-        Called upon pressing the done button,
+        Called by the check_password_strength function
+        (upon pressing the done button),
         this function checks if there's any input,
         checks if the input is in the 100,000 most used passwords if there is input,
         asks the user to input a password if there's no input.
@@ -109,7 +110,8 @@ def check_password_strength(event):
 
     def check_password_length():
         '''
-        Called upon pressing the done button,
+        Called by the check_password_strength functoin
+        (upon pressing the done button),
         this function checks if there's any input,
         categorises the inputted password as very weak, weak, good, or strong depending on its length if there is input,
         asks the user to input a password if there's no input.
@@ -136,7 +138,8 @@ def check_password_strength(event):
 
     def check_password_complexity():
         '''
-        Called upon pressing the done button,
+        Called by the check_password_strength function
+        (upon pressing the done button),
         this function checks if there's any input,
         checks how many of the following the inputted password is missing: 
         lowercase letters, uppercase letters, digits, and punctuation,
@@ -205,7 +208,8 @@ def check_password_strength(event):
 
     def check_for_patterns_in_password():
         '''
-        Called upon pressing the done button,
+        Called by the check_password_strength function
+        (upon pressing the done button),
         this function checks if there's any input,
         checks if there are any repeating characters in the input if there is,
         asks the user to input a password if there's not.
@@ -219,10 +223,9 @@ def check_password_strength(event):
 
         def show_repeated_pattern_warning():
             '''
-            Called upon pressing the done button,
-            this function checks if there's any input,
-            warns the user if there is a repeating pattern if there is input,
-            asks the user to input a password if there's no input.
+            Called by the check_for_patterns_in_password_function
+            (upon pressing the done button),
+            this function warns the user if there are repeated characters in their password.
             '''
 
             fourth_label.configure(text = 'Repeated character(s): Your password contains at least one repeated character.')

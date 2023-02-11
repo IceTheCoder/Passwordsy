@@ -27,21 +27,19 @@ def show_copy_button(event) -> None:
     Parameters
     ----------
     event:
-        Necessary for initiating the function when the user releases a mouse button a password label
+        Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
 
 def copy_text() -> None:
     '''
     Called upon pressing the copy button,
-    this function simulates pressing CTRL and C to copy whatever is selected,
-    and gets rid of the copy button.
+    this function simulates pressing CTRL and C to copy the selected text.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
     keyboard.release('c')
-    copy.place_forget()
 
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
@@ -81,10 +79,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
-        this function creates the password(s) or error label(s),
-        calls the generate_password function to get a password,
-        and calls the show_password function to show the passwords or the error.
-
+        this function places the password_labels in a list,
+        binds them to the show_copy_button function when releasing a mouse mutton,
+        calls the generate_password function to get the passwords and calls the show_password function to display them,
+        or clears the input_box and calls the show_password function to show an error if the input is invalid.
         Parameters
         ----------
         event:
@@ -95,11 +93,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         ValueError
             If an invalid value is placed in the input box.
         '''
-
-        try:
-            copy.place_forget()
-        except:
-            return
 
         password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
