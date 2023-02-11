@@ -76,6 +76,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     password_label_4 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
 
+    lowercase_letters_checkbox = tk.Checkbutton(frame)
+    lowercase_letters_checkbox.place(relx = 0.9, rely = 0.46, anchor = 'n')
+
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
@@ -138,7 +141,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         label.config(state = 'normal')
         label.delete('1.0', 'end')
         label.insert('1.0', text)
-        label.place(relx = 0.5, rely = 0.485 + (index / 10), anchor = 'n')
+        label.place(relx = 0.01, rely = 0.5 + (index / 10), anchor = 'w')
         label.config(state = 'disabled')
 
     def generate_password(requested_length) -> None:

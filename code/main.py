@@ -14,7 +14,7 @@ def main() -> None:
     notebook = ttk.Notebook(window)
     notebook.grid(column = 0, row = 0)
 
-    window_width = 854
+    window_width = 1000
     window_height = 350
     horizontal_resizable_ability = False
     vertical_resizable_ability = False
@@ -42,7 +42,7 @@ def main() -> None:
             The 'generate password' frame
         '''
 
-        generate_password_frame = ttk.Frame(notebook, width = 854, height = 350)
+        generate_password_frame = ttk.Frame(notebook, width = 1000, height = 350)
         generate_password_frame.grid(column = 0, row = 1)
         notebook.add(generate_password_frame, text = 'Generate password')
 
@@ -59,7 +59,7 @@ def main() -> None:
         password_strength_frame: ttk.frame
             The password strength frame
         '''
-        password_strength_frame = ttk.Frame(notebook, width = 854, height = 350)
+        password_strength_frame = ttk.Frame(notebook, width = 1000, height = 350)
         password_strength_frame.grid(column = 0, row = 0)
         notebook.add(password_strength_frame, text = 'Check a password\'s strength')
 
