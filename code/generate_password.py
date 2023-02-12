@@ -17,7 +17,6 @@ password_font = 'Consolas 11'
 
 error = 'An error occurred. Try again with a whole number between 6 and 100.'
 
-
 def show_copy_button(event) -> None:
     '''
     Called when the user releases a mouse button on a password label,
@@ -62,7 +61,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     frame_title_text = 'Generate password'
 
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
-    frame_title.grid(column = 0, row = 1, pady = 10)
+    frame_title.grid(column = 0, row = 1)
 
     question = tk.Label(frame, text = 'Number of characters (6 to 100):', font = description_font)
     question.grid(column = 0, row = 2)
@@ -82,9 +81,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
     for password_label in password_labels:
-        password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10)
+        password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
         password_label.config(state = 'disabled')
-
 
     def create_password_labels(event) -> None:
         '''
@@ -103,7 +101,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         ValueError
             If an invalid value is placed in the input box.
         '''
-
 
         try:
             for password_label in password_labels:
@@ -148,7 +145,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         label.delete('1.0', 'end')
         label.insert('1.0', text)
         label.grid(column = 0, row = 5 + index, pady = 10)
-        label.config(state = 'disabled')
+        label.config(state = 'disabled', bg = '#ffffff')
 
     def generate_password(requested_length) -> None:
         '''

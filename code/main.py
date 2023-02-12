@@ -11,15 +11,13 @@ def main() -> None:
     '''
     window = tk.Tk()
 
-    #notebook = ttk.Notebook(window)
-    #notebook.grid(column = 0, row = 0)
+    notebook = ttk.Notebook(window, width = 1000, height = 300)
+    notebook.grid(column = 0, row = 0)
+    window.grid_columnconfigure(0, weight = 1)
+    window.grid_rowconfigure(0, weight = 1)
 
     app_name = 'Passwordsy'
 
-    window.geometry('1000x320')
-
-    #window.grid_rowconfigure(0, weight = 1)
-    window.grid_columnconfigure(0, weight = 1)
     window.iconphoto(False, tk.PhotoImage(file = 'logo.png'))
     window.title(app_name)
 
@@ -37,11 +35,14 @@ def main() -> None:
             The 'generate password' frame
         '''
 
-        #generate_password_frame = ttk.Frame(notebook, width = 1000, height = 350)
-        #generate_password_frame.grid()
-        #notebook.add(generate_password_frame, text = 'Generate password')
+        generate_password_frame = tk.Frame(window)
+        generate_password_frame.grid(column = 0, row = 0)
+        generate_password_frame.grid_columnconfigure(0, weight = 1)
+        generate_password_frame.grid_rowconfigure(0, weight = 1)
 
-        generate_password.show_generate_password_frame(window, done_btn_image)
+        notebook.add(generate_password_frame, text = 'Generate password')
+
+        generate_password.show_generate_password_frame(generate_password_frame, done_btn_image)
 
     class PasswordStrengthFrame:
         '''
@@ -54,11 +55,21 @@ def main() -> None:
         password_strength_frame: ttk.frame
             The password strength frame
         '''
-        #password_strength_frame = ttk.Frame(notebook, width = 1000, height = 350)
-        #password_strength_frame.grid(column = 0, row = 0)
-        #notebook.add(password_strength_frame, text = 'Check a password\'s strength')
+        password_strength_frame = tk.Frame(notebook)
+        password_strength_frame.grid(column = 0, row = 0)
+        password_strength_frame.grid_columnconfigure(0, weight = 1)
+        password_strength_frame.grid_rowconfigure(0, weight = 1)
+        password_strength_frame.grid_rowconfigure(1, weight = 1)
+        password_strength_frame.grid_rowconfigure(2, weight = 1)
+        password_strength_frame.grid_rowconfigure(3, weight = 1)
+        password_strength_frame.grid_rowconfigure(4, weight = 1)
+        password_strength_frame.grid_rowconfigure(5, weight = 1)
+        password_strength_frame.grid_rowconfigure(6, weight = 1)
 
-        #password_strength.show_password_strength_frame(password_strength_frame)
+
+        notebook.add(password_strength_frame, text = 'Check a password\'s strength')
+
+        password_strength.show_password_strength_frame(password_strength_frame)
 
     window.mainloop()
 

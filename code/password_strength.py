@@ -36,7 +36,6 @@ def paste_text() -> None:
     keyboard.press('v')
     keyboard.release(Key.ctrl_l)
     keyboard.release('v')
-    paste.place_forget()
 
 def show_password_strength_frame(frame) -> None:
     '''
@@ -53,12 +52,12 @@ def show_password_strength_frame(frame) -> None:
     paste = tk.Menu(frame, tearoff = False)
     paste.add_command(label = 'Paste', command = paste_text)
 
-    instruction_label = tk.Label(frame, text = 'Type your password to check its strength: ', font = title_font)
-    instruction_label.place(relx = 0.5, rely = 0, anchor = 'n')
+    instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
+    instruction_label.grid(column = 0, row = 1, sticky = 'n')
 
     global input_box
     input_box = tk.Entry(frame, width = 32, borderwidth = 2)
-    input_box.place(relx = 0.5, rely = 0.15, anchor = 'n')
+    input_box.grid(column = 0, row = 2, sticky = 'n')
     input_box.bind('<KeyRelease>', check_password_strength)
     input_box.bind('<Button-3>', show_paste_button)
 
@@ -77,6 +76,10 @@ def show_password_strength_frame(frame) -> None:
     global warnings
     warnings = [first_label, second_label, third_label, fourth_label]
 
+    for label in warnings:
+        label.grid(column = 0, row = 3 + warnings.index(label))
+
+
 def check_password_strength(event):
     '''
     Called upon pressing the done button,
@@ -90,7 +93,8 @@ def check_password_strength(event):
     '''
     global warnings
     for label in warnings:
-        label.place_forget()
+        label.grid(column = 0, row = 3 + warnings.index(label))
+        label.configure(text = '')
 
     def check_if_password_is_common():
         '''
@@ -102,11 +106,11 @@ def check_password_strength(event):
         '''
         if modified_common_passwords.count(input_box.get()) > 0:
             first_label.configure(text = 'Common: Your password is common.')
-            first_label.place(relx = 0.01, rely = 0.3, anchor = 'w')
+            first_label.grid(column = 0, row = 3, sticky = 'w')
 
         elif modified_common_passwords.count(input_box.get()) == 0:
             first_label.configure(text = 'Not common: Your password isn\'t common.')
-            first_label.place(relx = 0.01, rely = 0.3, anchor = 'w')
+            first_label.grid(column = 0, row = 3, sticky = 'w')
 
     def check_password_length():
         '''
@@ -118,23 +122,23 @@ def check_password_strength(event):
         '''
         if len(input_box.get()) == 1:
             second_label.configure(text = 'Very weak length: Your password has only ' + str(len(input_box.get())) + ' character.')
-            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+            second_label.grid(column = 0, row = 4, sticky = 'w')
 
         elif 0 < len(input_box.get()) <= 7:
             second_label.configure(text = 'Very weak length: Your password has only ' + str(len(input_box.get())) + ' characters.')
-            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+            second_label.grid(column = 0, row = 4, sticky = 'w')
         
         elif 8 <= len(input_box.get()) <= 10:
             second_label.configure(text = 'Weak length: Your password has only ' + str(len(input_box.get())) + ' characters.')
-            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+            second_label.grid(column = 0, row = 4, sticky = 'w')
 
         elif 11 <= len(input_box.get()) <= 13:
             second_label.configure(text = 'Good length: Your password has ' + str(len(input_box.get())) + ' characters.')
-            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+            second_label.grid(column = 0, row = 4, sticky = 'w')
 
         elif 14 <= len(input_box.get()):
             second_label.configure(text = 'Strong length: Your password has ' + str(len(input_box.get())) + ' characters.')
-            second_label.place(relx = 0.01, rely = 0.4, anchor = 'w')
+            second_label.grid(column = 0, row = 4, sticky = 'w')
 
     def check_password_complexity():
         '''
@@ -200,11 +204,11 @@ def check_password_strength(event):
                     output = output + 'and ' + str(missing_feature)
             
             third_label.configure(text = 'Not complex: Your password is missing ' + output + '.')
-            third_label.place(relx = 0.01, rely = 0.5, anchor = 'w')
+            third_label.grid(column = 0, row = 5, sticky = 'w')
 
         else:
             third_label.configure(text = 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctation.')
-            third_label.place(relx = 0.01, rely = 0.5, anchor = 'w')
+            third_label.grid(column = 0, row = 5, sticky = 'w')
 
     def check_for_patterns_in_password():
         '''
@@ -229,7 +233,7 @@ def check_password_strength(event):
             '''
 
             fourth_label.configure(text = 'Repeated character(s): Your password contains at least one repeated character.')
-            fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
+            fourth_label.grid(column = 0, row = 6, sticky = 'w')
 
         for character in input: # For every character in the input, it checks if there is another character that matches, and shows the repeated pattern warning if there is.
             count = 0
@@ -243,11 +247,11 @@ def check_password_strength(event):
 
         if are_there_repeated_characters == False:
             fourth_label.configure(text = 'No repeated characters: Your password contains no repeated characters.')
-            fourth_label.place(relx = 0.01, rely = 0.6, anchor = 'w')
+            fourth_label.grid(column = 0, row = 6, sticky = 'w')
 
     if len(input_box.get()) == 0:
         first_label.configure(text = 'Please input a password.')
-        first_label.place(relx = 0.5, rely = 0.28, anchor = 'n')
+        first_label.grid(column = 0, row = 3, sticky = 'w')
     else:
         check_if_password_is_common()   
         check_password_length()    
