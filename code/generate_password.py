@@ -62,10 +62,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     frame_title_text = 'Generate password'
 
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
-    frame_title.grid(column = 0, row = 0, columnspan = 2)
+    frame_title.grid(column = 0, row = 1, pady = 10)
 
     question = tk.Label(frame, text = 'Number of characters (6 to 100):', font = description_font)
-    question.grid(column = 0, row = 1)
+    question.grid(column = 0, row = 2)
 
     password_label_1 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
@@ -76,8 +76,15 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     password_label_4 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
 
-    lowercase_letters_checkbox = tk.Checkbutton(frame)
-    lowercase_letters_checkbox.grid(column = 1, row = 4)
+    #lowercase_letters_checkbox = tk.Checkbutton(frame)
+    #lowercase_letters_checkbox.grid(column = 1, row = 4)
+
+    password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
+
+    for password_label in password_labels:
+        password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10)
+        password_label.config(state = 'disabled')
+
 
     def create_password_labels(event) -> None:
         '''
@@ -97,7 +104,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             If an invalid value is placed in the input box.
         '''
 
-        password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
         try:
             for password_label in password_labels:
@@ -117,10 +123,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
     input_box.bind('<Return>', create_password_labels)
-    input_box.grid(column = 0, row = 2)
+    input_box.grid(column = 0, row = 3)
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
-    done_btn.grid(column = 0, row = 3)
+    done_btn.grid(column = 0, row = 4)
 
     def show_password(label, text, index) -> None:
         '''
@@ -141,7 +147,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         label.config(state = 'normal')
         label.delete('1.0', 'end')
         label.insert('1.0', text)
-        label.grid(column = 0, row = 4 + index, pady = 10)
+        label.grid(column = 0, row = 5 + index, pady = 10)
         label.config(state = 'disabled')
 
     def generate_password(requested_length) -> None:
