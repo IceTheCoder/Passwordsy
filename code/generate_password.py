@@ -9,14 +9,12 @@ description_font = 'Helvetica 12'
 
 keyboard = Controller()
 
-characters = string.ascii_letters + string.punctuation + string.digits
-
 password_width = 100
 password_height = 1
 password_border_width = 0
 password_font = 'Consolas 11'
 
-error = 'An error occurred. Try again with a whole number between 6 and 100.'
+error = 'An error occurred. Try again with a whole number between 6 and 100 and at least 1 character set.'
 
 def show_copy_button(event) -> None:
     '''
@@ -79,22 +77,26 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     character_sets_label = tk.Label(frame, text = 'Character sets', font = section_font)
     character_sets_label.grid(column = 1, row = 4, columnspan = 2)
 
-    lowercase_letters_checkbox = tk.Checkbutton(frame)
+    lowercase_letters_var = tk.IntVar()
+    lowercase_letters_checkbox = tk.Checkbutton(frame, variable = lowercase_letters_var, offvalue = 0, onvalue = 1)
     lowercase_letters_checkbox.grid(column = 1, row = 5)
     lowercase_letters_text = tk.Label(frame, text = 'Lowercase letters', font = description_font)
     lowercase_letters_text.grid(column = 2, row = 5, sticky = 'w')
 
-    uppercase_letters_checkbox = tk.Checkbutton(frame)
+    uppercase_letters_var = tk.IntVar()
+    uppercase_letters_checkbox = tk.Checkbutton(frame, variable = uppercase_letters_var, offvalue = 0, onvalue = 1)
     uppercase_letters_checkbox.grid(column = 1, row = 6)
     uppercase_letters_text = tk.Label(frame, text = 'Uppercase letters', font = description_font)
     uppercase_letters_text.grid(column = 2, row = 6, sticky = 'w')
 
-    digits_checkbox = tk.Checkbutton(frame)
+    digits_var = tk.IntVar()
+    digits_checkbox = tk.Checkbutton(frame, variable = digits_var, offvalue = 0, onvalue = 1)
     digits_checkbox.grid(column = 1, row = 7)
     digits_text = tk.Label(frame, text = 'Digits', font = description_font)
     digits_text.grid(column = 2, row = 7, sticky = 'w')
 
-    punctuation_checkbox = tk.Checkbutton(frame)
+    punctuation_var = tk.IntVar()
+    punctuation_checkbox = tk.Checkbutton(frame, variable = punctuation_var, offvalue = 0, onvalue = 1)
     punctuation_checkbox.grid(column = 1, row = 8)
     punctuation_text = tk.Label(frame, text = 'Punctuation', font = description_font)
     punctuation_text.grid(column = 2, row = 8, sticky = 'w')
@@ -131,16 +133,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         try:
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', show_copy_button)
-
-                generate_password(int(input_box.get()))
-
-                global password
-                password_to_be_shown = password
-
-                show_password(password_label, password_to_be_shown, password_labels.index(password_label))
-
-        except ValueError:
-            input_box.delete(0, 'end')
+                password = generate_password(int(input_box.get()))
+                show_password(password_label, password, password_labels.index(password_label))
+        except:
             show_password(password_label_1, error, 0)
 
     global input_box
@@ -191,49 +186,54 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         ValueError
             If the requested length is not an integer between 6 and 100.
         '''
-        try:
-            if 6 <= requested_length <= 100:
-                generated_password = ''.join(secrets.choice(characters) for _ in range(max(min(int(requested_length), 100), max(int(requested_length), 6))))
-
+        if 6 <= requested_length <= 100:
+            characters = ''
+            if lowercase_letters_var.get() == 1:
+                characters += string.ascii_lowercase
+            if uppercase_letters_var.get() == 1:
+                characters += string.ascii_uppercase
+            if digits_var.get() == 1:
+                characters += string.digits
+            if punctuation_var.get() == 1:
+                characters += string.punctuation
+        
+            generated_password = ''.join(secrets.choice(characters) for _ in range(max(min(int(requested_length), 100), max(int(requested_length), 6))))
+            generate_password_characters = []
+            generate_password_characters[:0] = generated_password
+            number_of_lowercase_letters = 0
+            number_of_uppercase_letters = 0
+            number_of_digits = 0
+            number_of_punctuation = 0
+            if lowercase_letters_var.get() == 1:
                 lowercase_letters = []
                 lowercase_letters[:0] = string.ascii_lowercase
-
-                uppercase_letters = []
-                uppercase_letters[:0] = string.ascii_uppercase
-
-                digits = []
-                digits[:0] = string.digits
-
-                punctuation = []
-                punctuation[:0] = string.punctuation
-
-                generate_password_characters = []
-                generate_password_characters[:0] = generated_password
-
-                number_of_lowercase_letters = 0
-                number_of_uppercase_letters = 0
-                number_of_digits = 0
-                number_of_punctuation = 0
-
                 for character in generate_password_characters:
                     if character in lowercase_letters:
                         number_of_lowercase_letters += 1
-
+                if number_of_lowercase_letters == 0:
+                    generate_password(requested_length)
+            if uppercase_letters_var.get() == 1:
+                uppercase_letters = []
+                uppercase_letters[:0] = string.ascii_uppercase
+                for character in generate_password_characters:
                     if character in uppercase_letters:
                         number_of_uppercase_letters += 1
-
+                if number_of_uppercase_letters == 0:
+                    generate_password(requested_length)
+            if digits_var.get() == 1:
+                digits = []
+                digits[:0] = string.digits
+                for character in generate_password_characters:
                     if character in digits:
                         number_of_digits += 1
-
+                if number_of_digits == 0:
+                    generate_password(requested_length)
+            if punctuation_var.get() == 1:
+                punctuation = []
+                punctuation[:0] = string.punctuation
+                for character in generate_password_characters:
                     if character in punctuation:
                         number_of_punctuation += 1
-
-                if number_of_lowercase_letters == 0 or number_of_uppercase_letters == 0 or number_of_digits == 0 or number_of_punctuation == 0:
+                if number_of_punctuation == 0:
                     generate_password(requested_length)
-                else:
-                    global password
-                    password = generated_password
-            else:
-                raise ValueError
-        except:
-            raise ValueError
+            return generated_password 
