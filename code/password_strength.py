@@ -251,7 +251,7 @@ def check_password_strength(event):
 
     if len(input_box.get()) == 0:
         first_label.configure(text = 'Please input a password.')
-        first_label.grid(column = 0, row = 3, sticky = 'w')
+        first_label.grid(column = 0, row = 3, sticky = 'n')
     else:
         check_if_password_is_common()   
         check_password_length()    
