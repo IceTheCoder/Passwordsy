@@ -53,11 +53,11 @@ def show_password_strength_frame(frame) -> None:
     paste.add_command(label = 'Paste', command = paste_text)
 
     instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
-    instruction_label.grid(column = 0, row = 1, sticky = 'n')
+    instruction_label.grid(column = 0, row = 1)
 
     global input_box
     input_box = tk.Entry(frame, width = 32, borderwidth = 2)
-    input_box.grid(column = 0, row = 2, sticky = 'n')
+    input_box.grid(column = 0, row = 2)
     input_box.bind('<KeyRelease>', check_password_strength)
     input_box.bind('<Button-3>', show_paste_button)
 
