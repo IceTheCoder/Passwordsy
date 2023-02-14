@@ -193,8 +193,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
                 if 6 <= int(requested_length) <= 100:
                     return no_character_set_error
                 else:
+                    input_box.delete(0, 'end')
                     return double_error
             except:
+                input_box.delete(0, 'end')
                 return double_error
 
         try:
@@ -250,6 +252,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
                 return generated_password 
             else:
+                input_box.delete(0, 'end')
                 return invalid_input_error
         except:
+            input_box.delete(0, 'end')
             return invalid_input_error
