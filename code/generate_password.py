@@ -14,7 +14,9 @@ password_height = 1
 password_border_width = 0
 password_font = 'Consolas 11'
 
-error = 'An error occurred. Try again with a whole number between 6 and 100 and at least 1 character set.'
+invalid_input_error = 'An error occurred. Try again with a whole number between 6 and 100.'
+no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
+double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 6 and 100.'
 
 def show_copy_button(event) -> None:
     '''
@@ -130,13 +132,13 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             If an invalid value is placed in the input box.
         '''
 
-        try:
-            for password_label in password_labels:
-                password_label.bind('<ButtonRelease>', show_copy_button)
-                password = generate_password(int(input_box.get()))
+        for password_label in password_labels:
+            password_label.bind('<ButtonRelease>', show_copy_button)
+            password = generate_password(input_box.get())
+            if password != invalid_input_error and password != no_character_set_error and password != double_error:
                 show_password(password_label, password, password_labels.index(password_label))
-        except:
-            show_password(password_label_1, error, 0)
+        
+        show_password(password_label_1, password, 0)
 
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
@@ -186,54 +188,68 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         ValueError
             If the requested length is not an integer between 6 and 100.
         '''
-        if 6 <= requested_length <= 100:
-            characters = ''
-            if lowercase_letters_var.get() == 1:
-                characters += string.ascii_lowercase
-            if uppercase_letters_var.get() == 1:
-                characters += string.ascii_uppercase
-            if digits_var.get() == 1:
-                characters += string.digits
-            if punctuation_var.get() == 1:
-                characters += string.punctuation
-        
-            generated_password = ''.join(secrets.choice(characters) for _ in range(max(min(int(requested_length), 100), max(int(requested_length), 6))))
-            generate_password_characters = []
-            generate_password_characters[:0] = generated_password
-            number_of_lowercase_letters = 0
-            number_of_uppercase_letters = 0
-            number_of_digits = 0
-            number_of_punctuation = 0
-            if lowercase_letters_var.get() == 1:
-                lowercase_letters = []
-                lowercase_letters[:0] = string.ascii_lowercase
-                for character in generate_password_characters:
-                    if character in lowercase_letters:
-                        number_of_lowercase_letters += 1
-                if number_of_lowercase_letters == 0:
-                    generate_password(requested_length)
-            if uppercase_letters_var.get() == 1:
-                uppercase_letters = []
-                uppercase_letters[:0] = string.ascii_uppercase
-                for character in generate_password_characters:
-                    if character in uppercase_letters:
-                        number_of_uppercase_letters += 1
-                if number_of_uppercase_letters == 0:
-                    generate_password(requested_length)
-            if digits_var.get() == 1:
-                digits = []
-                digits[:0] = string.digits
-                for character in generate_password_characters:
-                    if character in digits:
-                        number_of_digits += 1
-                if number_of_digits == 0:
-                    generate_password(requested_length)
-            if punctuation_var.get() == 1:
-                punctuation = []
-                punctuation[:0] = string.punctuation
-                for character in generate_password_characters:
-                    if character in punctuation:
-                        number_of_punctuation += 1
-                if number_of_punctuation == 0:
-                    generate_password(requested_length)
-            return generated_password 
+        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+            try:
+                if 6 <= int(requested_length) <= 100:
+                    return no_character_set_error
+                else:
+                    return double_error
+            except:
+                return double_error
+
+        try:
+            if 6 <= int(requested_length) <= 100:
+                characters = ''
+                if lowercase_letters_var.get() == 1:
+                    characters += string.ascii_lowercase
+                if uppercase_letters_var.get() == 1:
+                    characters += string.ascii_uppercase
+                if digits_var.get() == 1:
+                    characters += string.digits
+                if punctuation_var.get() == 1:
+                    characters += string.punctuation
+                generated_password = ''.join(secrets.choice(characters) for _ in range(max(min(int(requested_length), 100), max(int(requested_length), 6))))
+                generate_password_characters = []
+                generate_password_characters[:0] = generated_password
+                number_of_lowercase_letters = 0
+                number_of_uppercase_letters = 0
+                number_of_digits = 0
+                number_of_punctuation = 0
+                if lowercase_letters_var.get() == 1:
+                    lowercase_letters = []
+                    lowercase_letters[:0] = string.ascii_lowercase
+                    for character in generate_password_characters:
+                        if character in lowercase_letters:
+                            number_of_lowercase_letters += 1
+                    if number_of_lowercase_letters == 0:
+                        generate_password(requested_length)
+                if uppercase_letters_var.get() == 1:
+                    uppercase_letters = []
+                    uppercase_letters[:0] = string.ascii_uppercase
+                    for character in generate_password_characters:
+                        if character in uppercase_letters:
+                            number_of_uppercase_letters += 1
+                    if number_of_uppercase_letters == 0:
+                        generate_password(requested_length)
+                if digits_var.get() == 1:
+                    digits = []
+                    digits[:0] = string.digits
+                    for character in generate_password_characters:
+                        if character in digits:
+                            number_of_digits += 1
+                    if number_of_digits == 0:
+                        generate_password(requested_length)
+                if punctuation_var.get() == 1:
+                    punctuation = []
+                    punctuation[:0] = string.punctuation
+                    for character in generate_password_characters:
+                        if character in punctuation:
+                            number_of_punctuation += 1
+                    if number_of_punctuation == 0:
+                        generate_password(requested_length)
+
+                return generated_password 
+            else:
+                return invalid_input_error
+        except:
+            return invalid_input_error
