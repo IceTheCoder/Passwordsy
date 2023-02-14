@@ -62,10 +62,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     frame_title_text = 'Generate password'
 
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
-    frame_title.grid(column = 0, row = 1, columnspan = 2, sticky = 'n')
+    frame_title.grid(column = 0, row = 1, columnspan = 2)
 
     question = tk.Label(frame, text = 'Number of characters (6 to 100):', font = description_font)
-    question.grid(column = 0, row = 2, columnspan = 2, sticky = 'n')
+    question.grid(column = 0, row = 2, columnspan = 2)
 
     password_label_1 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
@@ -100,11 +100,11 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     checkboxes_text = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
     for checkbox in checkboxes:
-        checkbox.grid(column = 1, row = 5 + checkboxes.index(checkbox), sticky = 'w', pady = 8)
+        checkbox.grid(column = 1, row = 5 + checkboxes.index(checkbox), pady = 8)
         checkbox.select()
     
     for text in checkboxes_text:
-        text.grid(column = 2, row = 5 + checkboxes_text.index(text), sticky = 'w')
+        text.grid(column = 2, row = 5 + checkboxes_text.index(text))
 
     def create_password_labels(event) -> None:
         '''
@@ -134,10 +134,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
     input_box.bind('<Return>', create_password_labels)
-    input_box.grid(column = 0, row = 3, columnspan = 2, sticky = 'n')
+    input_box.grid(column = 0, row = 3, columnspan = 2)
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
-    done_btn.grid(column = 0, row = 4, columnspan = 2, sticky = 'n')
+    done_btn.grid(column = 0, row = 4, columnspan = 2)
 
     def show_password(label, text, index) -> None:
         '''
