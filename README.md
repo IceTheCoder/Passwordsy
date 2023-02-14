@@ -1,23 +1,25 @@
 # Passwordsy
-A program that can generate a secure password of up to 100 characters and check for vulnerabilities in a given password. 
+A program that can generate a secure password of up to 100 characters (uppercase and lowercase letters, digits, and/or punctuation), and check for vulnerabilities (prevalence, length, complexity, repeated characters) in a given password. 
 
 ## Getting Started
 ### Prerequisites
 You will need to install Python (from the Microsoft Store, for example) to run this program.
 
 ### Installation
-Clone the repository using GitHub Desktop.  
-Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ into the URL field, and select which directory you want to clone the repository in.  
+Clone the repository using GitHub Desktop.
+Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ into the URL field, and select which directory you want to clone the repository in.
 Run main.py from a terminal.
+For the Windows Command Prompt, use cd to change directories and navigate to the folder you cloned the repository in.
+Navigate to the code directory and type 'python main.py'
 
 ## Usage
-You can use this program to generate a random secure string of 6 to 100 letters, numbers and punctuation marks.
+You can use this program to generate a random secure string of 6 to 100 uppercase and lowercase letters, numbers and/or punctuation marks.
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/1.PNG)
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/2.PNG)
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/3.PNG)
 
 
-You can also use it to discover weaknesses of a password, such as being a commonly used password, having a short length, not containing upper and lower case letters, digits, and punctuation, or containing a repeated character.
+You can also use it to discover weaknesses of a password, such as prevalence, length, simplicity, repeating characters.
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/4.PNG)
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/5.PNG)
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/6.PNG)
@@ -31,6 +33,7 @@ You can fork the project to play around with it and create a pull request to sub
 This project is licensed under the MIT License. Read LICENSE.txt for more information.
 
 ## Contact
+Blog: https://icethedev2.github.io/
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
 Reddit: https://www.reddit.com/user/AnEntirePeach
 Youtube: https://www.youtube.com/channel/UCBqVJU4gjeik1RavAsVR6Pg
@@ -42,13 +45,13 @@ E-mail: icethedev2@gmail.com
 * The GitHub contributors to this project, [dwaffle](https://github.com/dwaffle), [christopher-chandler](https://trello.com/c/f72vJsYk/50-https-githubcom-christopher-chandler), and [MartinMerkli](https://github.com/MartinMerkli)
 * The [SecLists repository](https://github.com/danielmiessler/SecLists) of danielmiessler, used here for the 100,000 most common passwords
 * [Exercism](https://exercism.org/) for its large array of exercises
-* Paul Miskew for his [PYTHON 3 TKINTER - GUI ENTRY BIND KEY](https://youtu.be/JThKYGapGzU) video
 * These Stack Overflow questions: https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter, https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python, https://stackoverflow.com/questions/61139160/tkinter-error-tkinter-tclerror-invalid-command-name-frame-entry-python, https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/69425865/tkinter-event-x-y-mouse-position-wrong-value-only-when-mouse-movement-up, https://stackoverflow.com/questions/68615095/how-do-i-find-the-position-of-a-widget-relative-to-the-window-in-tkinter, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/27802270/how-to-stop-a-function, https://stackoverflow.com/questions/3842155/is-there-a-way-to-make-the-tkinter-text-widget-read-only.
+* [This tutorialspoint.com page](https://www.tutorialspoint.com/how-to-delete-tkinter-widgets-from-a-window#:~:text=We%20can%20delete%20widgets%20from,defining%20a%20function%20for%20it.), as well as [this one](https://www.tutorialspoint.com/how-to-get-the-input-from-a-checkbox-in-python-tkinter#:~:text=Let%20us%20suppose%20that%20we,value%20of%20a%20particular%20widget.)
+* Paul Miskew for his [PYTHON 3 TKINTER - GUI ENTRY BIND KEY](https://youtu.be/JThKYGapGzU) video
 * [This simplilearn.com page](https://www.simplilearn.com/tutorials/python-tutorial/python-typeof-function)
 * [This realpython.com page](https://realpython.com/documenting-python-code/#documenting-your-python-code-base-using-docstrings)
 * [This](https://www.youtube.com/watch?v=DCaKj3eIrro) video tutorial of LeMaster Tech on reading from a .txt file in Python
 * [This flexiple.com page](https://flexiple.com/python/python-list-contains/)
-* [This tutorialspoint.com page](https://www.tutorialspoint.com/how-to-delete-tkinter-widgets-from-a-window#:~:text=We%20can%20delete%20widgets%20from,defining%20a%20function%20for%20it.)
 * [This Runestone Academy page](https://runestone.academy/ns/books/published/fopp/SimplePythonData/UpdatingVariables.html#:~:text=In%20Python%20%2B%3D%20is%20used,or%20x%20%3D%20x%20%2B%201%20.)
 * [This geeksforgeeks.org page](https://www.geeksforgeeks.org/append-extend-python/#:~:text=What%20is%20Append%20in%20Python,the%20end%20of%20a%20list.)
 * [This digitalocean.com page](https://www.digitalocean.com/community/tutorials/how-to-use-break-continue-and-pass-statements-when-working-with-loops-in-python-3)
