@@ -1,5 +1,6 @@
 # Passwordsy
 A program that can generate a secure password of up to 100 characters (uppercase and lowercase letters, digits, and/or punctuation), and check for vulnerabilities (prevalence, length, complexity, repeated characters) in a given password. 
+Blog: https://icethedev2.github.io/
 
 ## Getting Started
 ### Prerequisites
@@ -33,7 +34,6 @@ You can fork the project to play around with it and create a pull request to sub
 This project is licensed under the MIT License. Read LICENSE.txt for more information.
 
 ## Contact
-Blog: https://icethedev2.github.io/
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
 Reddit: https://www.reddit.com/user/AnEntirePeach
 Youtube: https://www.youtube.com/channel/UCBqVJU4gjeik1RavAsVR6Pg
