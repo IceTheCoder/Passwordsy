@@ -79,7 +79,6 @@ def show_password_strength_frame(frame) -> None:
     for label in warnings:
         label.grid(column = 0, row = 3 + warnings.index(label))
 
-
 def check_password_strength(event):
     '''
     Called upon pressing the done button,
