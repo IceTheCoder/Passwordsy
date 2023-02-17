@@ -23,6 +23,8 @@ def main() -> None:
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
+    notebook.bind('<<NotebookTabChanged>>', generate_password.select_input_box)
+
     class GeneratePasswordFrame:
         '''
         A class that contains the creation of the "generate password" frame.

@@ -135,7 +135,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
     input_box.bind('<Return>', create_password_labels)
     input_box.grid(column = 0, row = 3, columnspan = 2)
-    input_box.focus()
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
     done_btn.grid(column = 0, row = 4, columnspan = 2)
@@ -209,3 +208,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             password = ''.join(secrets.choice(''.join(character_sets)) for _ in range(int(requested_length)))
             if all(any(char in s for char in password) for s in character_sets):
                 return password
+
+def select_input_box(event):
+    input_box.focus()
