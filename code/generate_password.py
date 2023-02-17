@@ -102,7 +102,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         checkbox.select()
     
     for text in checkboxes_text:
-        text.grid(column = 2, row = 5 + checkboxes_text.index(text))
+        text.grid(column = 2, row = 5 + checkboxes_text.index(text), sticky = 'w')
 
     def create_password_labels(event) -> None:
         '''
