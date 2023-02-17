@@ -173,88 +173,30 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         requested_length: int
             The length requested by the user.
         '''
-        # Checks if no character set has been chosen.
-        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+        
+        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var == 0:
             try:
-                # Checks if the requested_length is a valid integer between 6 and 100.
                 if 6 <= int(requested_length) <= 100:
                     return no_character_set_error
-
-                # A double error is returned if no character set has been chosen AND if the input is not valid.
                 else:
-                    input_box.delete(0, 'end')
                     return double_error
             except:
-                input_box.delete(0, 'end')
                 return double_error
 
-        try:
-            if 6 <= int(requested_length) <= 100:
-                characters = ''
-                if lowercase_letters_var.get() == 1:
-                    characters += string.ascii_lowercase
-                if uppercase_letters_var.get() == 1:
-                    characters += string.ascii_uppercase
-                if digits_var.get() == 1:
-                    characters += string.digits
-                if punctuation_var.get() == 1:
-                    characters += string.punctuation
-
-                generated_password = ''.join(secrets.choice(characters) for _ in range(max(min(int(requested_length), 100), max(int(requested_length), 6))))
-                generate_password_characters = []
-                generate_password_characters[:0] = generated_password
-
-                number_of_lowercase_letters = 0
-                number_of_uppercase_letters = 0
-                number_of_digits = 0
-                number_of_punctuation = 0
-
-                # Checks if the generated_password contains at least 1 character from each permitted character set.
-                if lowercase_letters_var.get() == 1:
-                    lowercase_letters = []
-                    lowercase_letters[:0] = string.ascii_lowercase
-
-                    for character in generate_password_characters:
-                        if character in lowercase_letters:
-                            number_of_lowercase_letters += 1
-                    if number_of_lowercase_letters == 0:
-                        generate_password(requested_length)
-
-                if uppercase_letters_var.get() == 1:
-                    uppercase_letters = []
-                    uppercase_letters[:0] = string.ascii_uppercase
-
-                    for character in generate_password_characters:
-                        if character in uppercase_letters:
-                            number_of_uppercase_letters += 1
-                    if number_of_uppercase_letters == 0:
-                        generate_password(requested_length)
-
-                if digits_var.get() == 1:
-                    digits = []
-                    digits[:0] = string.digits
-
-                    for character in generate_password_characters:
-                        if character in digits:
-                            number_of_digits += 1
-                    if number_of_digits == 0:
-                        generate_password(requested_length)
-
-                if punctuation_var.get() == 1:
-                    punctuation = []
-                    punctuation[:0] = string.punctuation
-
-                    for character in generate_password_characters:
-                        if character in punctuation:
-                            number_of_punctuation += 1
-                    if number_of_punctuation == 0:
-                        generate_password(requested_length)
-
-                return generated_password
-            # An invalid_input_error is returned if the requested_length is can't be converted to an integer between 6 and 100.
-            else:
-                input_box.delete(0, 'end')
-                return invalid_input_error
-        except:
-            input_box.delete(0, 'end')
-            return invalid_input_error
+        # Define all character sets that will be used in the password
+        character_sets = []
+        if lowercase_letters_var.get() == 1:
+            character_sets.append(string.ascii_lowercase)
+        if uppercase_letters_var.get() == 1:
+            character_sets.append(string.ascii_uppercase)
+        if digits_var.get() == 1:
+            character_sets.append(string.digits)
+        if punctuation_var.get() == 1:
+            character_sets.append(string.punctuation)
+            
+        # Keep generating a new password until it includes at least one character from each chosen character set
+        while True:
+            password = ''.join(secrets.choice(''.join(character_sets)) for _ in range(int(requested_length)))
+            if all(any(char in s for char in password) for s in character_sets):
+                return password
+    
