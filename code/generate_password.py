@@ -124,9 +124,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         for password_label in password_labels:
             password_label.bind('<ButtonRelease>', show_copy_button)
             password = generate_password(input_box.get())
-            print('Received password: ' + password)
             if password != invalid_input_error and password != no_character_set_error and password != double_error:
-                print('Password to be shown: ' + password)
                 show_password(password_label, password, password_labels.index(password_label))
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
             else:
@@ -188,8 +186,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
         try:
             if not 4 <= int(requested_length) <= 100:
+                input_box.delete(0, 'end')
                 return invalid_input_error
         except:
+            input_box.delete(0, 'end')
             return invalid_input_error
 
         # Define all character sets that will be used in the password
