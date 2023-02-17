@@ -16,9 +16,9 @@ for line in common_passwords_read:
 
 def show_paste_button(event) -> None:
     '''
-    Called when the user right-clicks on the input box,
-    this function displays a 'paste' button slightly above the mouse cursor,
-    and places it on top of all other widgets.
+    Called when the user right-clicks on the input_box,
+    this function uses the Tkinter module to display a contextual menu containing a 'paste' button on the x and y coordinates of the user's cursor,
+    where the y coordinates are adjusted by 30 pixels.
 
     Parameters
     ----------
@@ -30,7 +30,7 @@ def show_paste_button(event) -> None:
 def paste_text() -> None:
     '''
     Called upon pressing the paste button,
-    this function simulates pressing CTRL and V to paste the copied text.
+    this function uses the keyboard module to simulate pressing CTRL and V to copy the selected text.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
@@ -40,7 +40,9 @@ def paste_text() -> None:
 def show_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
-    this function creates the contents of the "password strength" frame.
+    this function creates the "password strength" frame with a label for instructions, 
+    an entry box for password input, and four warning labels to display the strength of the password. 
+    It also creates a menu for pasting text, which is triggered by a right-click on the input box.
 
     Parameters
     ----------
@@ -82,7 +84,7 @@ def show_password_strength_frame(frame) -> None:
 def check_password_strength(event):
     '''
     Called upon pressing the done button,
-    this function hosts all functions necesary to check:
+    this function hosts all functions necessary to check:
     if a password is common, a password's length, complexity, and if a password contains repeated patterns.
 
     Parameters
@@ -92,16 +94,13 @@ def check_password_strength(event):
     '''
     global warnings
     for label in warnings:
-        label.grid(column = 0, row = 3 + warnings.index(label))
         label.configure(text = '')
 
     def check_if_password_is_common():
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        this function checks if there's any input,
-        checks if the input is in the 100,000 most used passwords if there is input,
-        asks the user to input a password if there's no input.
+        checks if the inputted password is in the 100,000 most used passwords (modified_common_password).
         '''
         if modified_common_passwords.count(input_box.get()) > 0:
             first_label.configure(text = 'Common: Your password is common.')
@@ -115,9 +114,7 @@ def check_password_strength(event):
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        this function checks if there's any input,
-        categorises the inputted password as very weak, weak, good, or strong depending on its length if there is input,
-        asks the user to input a password if there's no input.
+        this function categorises the inputted password as very weak, weak, good, or strong depending on its length.
         '''
         if len(input_box.get()) == 1:
             second_label.configure(text = 'Very weak length: Your password has only ' + str(len(input_box.get())) + ' character.')
@@ -143,11 +140,9 @@ def check_password_strength(event):
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        this function checks if there's any input,
         checks how many of the following the inputted password is missing: 
         lowercase letters, uppercase letters, digits, and punctuation,
-        and warns the user about them if there is input,
-        asks the user to input a password if there's no input.
+        and warns the user about them.
         '''
         missing_security_features_list = []
 
@@ -213,9 +208,7 @@ def check_password_strength(event):
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        this function checks if there's any input,
-        checks if there are any repeating characters in the input if there is,
-        asks the user to input a password if there's not.
+        this function checks if there are any repeating characters in the inputted password.
         '''
 
         global are_there_repeated_characters

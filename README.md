@@ -1,21 +1,21 @@
 # Passwordsy
-A program that can generate a secure password of up to 100 characters (uppercase and lowercase letters, digits, and/or punctuation), and check for vulnerabilities (prevalence, length, complexity, repeated characters) in a given password. 
+A program that can generate a secure password of up to 100 characters (with uppercase and lowercase letters, digits, and/or punctuation), and check for vulnerabilities (prevalence, length, complexity, repeated characters) in a given password. 
 
 Blog: https://icethedev2.github.io/
 
 ## Getting Started
 ### Prerequisites
-You will need to install Python (from the Microsoft Store, for example) to run this program.
+You will need to install Python (from the Microsoft Store, for example) and GitHub Desktop to run this program.
 
 ### Installation
 Clone the repository using GitHub Desktop.
 Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ into the URL field, and select which directory you want to clone the repository in.
 Run main.py from a terminal.
-For the Windows Command Prompt, use cd to change directories and navigate to the folder you cloned the repository in.
+With the Windows Command Prompt, use cd to change directories and navigate to the folder you cloned the repository in.
 Navigate to the code directory and type 'python main.py'
 
 ## Usage
-You can use this program to generate a random secure string of 6 to 100 uppercase and lowercase letters, numbers and/or punctuation marks.
+You can use this program to generate a random secure string of 4 to 100 uppercase and lowercase letters, numbers and/or punctuation marks.
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/1.PNG)
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/2.PNG)
 ![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/3.PNG)
@@ -46,8 +46,9 @@ E-mail: icethedev2@gmail.com
 * The GitHub contributors to this project, [dwaffle](https://github.com/dwaffle), [christopher-chandler](https://trello.com/c/f72vJsYk/50-https-githubcom-christopher-chandler), and [MartinMerkli](https://github.com/MartinMerkli)
 * The [SecLists repository](https://github.com/danielmiessler/SecLists) of danielmiessler, used here for the 100,000 most common passwords
 * [Exercism](https://exercism.org/) for its large array of exercises
+* [ChatGPT](https://chat.openai.com/chat) for helping me solve the most obscure of errors and bugs.
 * These Stack Overflow questions: https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter, https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python, https://stackoverflow.com/questions/61139160/tkinter-error-tkinter-tclerror-invalid-command-name-frame-entry-python, https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/69425865/tkinter-event-x-y-mouse-position-wrong-value-only-when-mouse-movement-up, https://stackoverflow.com/questions/68615095/how-do-i-find-the-position-of-a-widget-relative-to-the-window-in-tkinter, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/27802270/how-to-stop-a-function, https://stackoverflow.com/questions/3842155/is-there-a-way-to-make-the-tkinter-text-widget-read-only.
-* [This tutorialspoint.com page](https://www.tutorialspoint.com/how-to-delete-tkinter-widgets-from-a-window#:~:text=We%20can%20delete%20widgets%20from,defining%20a%20function%20for%20it.), as well as [this one](https://www.tutorialspoint.com/how-to-get-the-input-from-a-checkbox-in-python-tkinter#:~:text=Let%20us%20suppose%20that%20we,value%20of%20a%20particular%20widget.)
+* [This tutorialspoint.com page](https://www.tutorialspoint.com/how-to-delete-tkinter-widgets-from-a-window#:~:text=We%20can%20delete%20widgets%20from,defining%20a%20function%20for%20it.), [this one](https://www.tutorialspoint.com/how-to-get-the-input-from-a-checkbox-in-python-tkinter#:~:text=Let%20us%20suppose%20that%20we,value%20of%20a%20particular%20widget.), and [this one](https://www.tutorialspoint.com/how-can-i-identify-when-a-button-is-released-in-tkinter)
 * Paul Miskew for his [PYTHON 3 TKINTER - GUI ENTRY BIND KEY](https://youtu.be/JThKYGapGzU) video
 * [This simplilearn.com page](https://www.simplilearn.com/tutorials/python-tutorial/python-typeof-function)
 * [This realpython.com page](https://realpython.com/documenting-python-code/#documenting-your-python-code-base-using-docstrings)
@@ -60,5 +61,4 @@ E-mail: icethedev2@gmail.com
 * [security.org](https://www.security.org/how-secure-is-my-password/)
 * [This GitHub Docs page](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/approving-a-pull-request-with-required-reviews)
 * [This video by plus 2 net](https://youtu.be/mSpLnnXeiIc)
-* [This tutorialspoint.com page](https://www.tutorialspoint.com/how-can-i-identify-when-a-button-is-released-in-tkinter)
 * [This video from PyTutorials](https://youtu.be/DTnz8wA6wpw)
