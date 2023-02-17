@@ -21,8 +21,8 @@ double_error = 'An error occurred. Try again with at least 1 character set and a
 def show_copy_button(event) -> None:
     '''
     Called when the user releases a mouse button on a password label,
-    this function displays a 'copy' menu on the x and y coordinates of the user's cursor,
-    with the y coordinates adjusted by 30 pixels.
+    this function uses the Tkinter module to display a contextual menu containing a 'copy' button on the x and y coordinates of the user's cursor,
+    where the y coordinates are adjusted by 30 pixels.
 
     Parameters
     ----------
@@ -34,7 +34,7 @@ def show_copy_button(event) -> None:
 def copy_text() -> None:
     '''
     Called upon pressing the copy button,
-    this function simulates pressing CTRL and C to copy the selected text.
+    this function uses the keyboard module to simulate pressing CTRL and C to copy the selected text.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('c')
@@ -44,8 +44,8 @@ def copy_text() -> None:
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
     Called upon starting the program,
-    this function creates the password generation frame and its contents,
-    and serves as a hub for all other password-generation functions.
+    this function uses the Tkinter module to create A GUI frame to generate passwords with various options for customisations
+    and also serves as a hub for all other password-generation functions.
 
     Parameters
     ----------
@@ -59,9 +59,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     copy = tk.Menu(frame, tearoff = False)
     copy.add_command(label = 'Copy', command = copy_text)
     
-    frame_title_text = 'Generate password'
-
-    frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
+    frame_title = tk.Label(frame, text = 'Generate password', font = title_font)
     frame_title.grid(column = 0, row = 1, columnspan = 2)
 
     question = tk.Label(frame, text = 'Number of characters (4 to 100):', font = description_font)
@@ -109,12 +107,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
-        this function binds each password_label to the show_copy_button function when releasing a mouse button,
-        calls the generate_password function to get the 4 passwords
-        (or an error),
-        and displays them:
-        the 4 passwords on each password_label,
-        or the error on the first password_label
+        this function binds the show_copy_button function to the <ButtonRelease> event of each password label,
+        calls the generate_password function, determines if it returned 4 passwords or an error,
+        and adequately calls the show_password function to display the text. 
         Parameters
         ----------
         event:
@@ -142,8 +137,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     def show_password(label, text) -> None:
         '''
         Called by the create_password_labels function,
-        after password generation or attempted password generation,
-        this function displays the passwords or an error.
+        this function updates the contents of the password_labels,
+        by enabling the label, deleting its current contents, inserting the new text, and then disabling the label again.
 
         Parameters
         ----------
@@ -152,8 +147,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             or the first password label if an error is generated.
         text: str
             Each password or the error.
-        index:
-            The index of the password label being shown is necessary for placing it correctly on the screen.
         '''
         label.config(state = 'normal')
         label.delete('1.0', 'end')
@@ -164,8 +157,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         '''
         Called by the create_password_labels function
         (upon clicking the done button or pressing the ENTER key),
-        this function checks if no character set has been chosen and if the input is valid,
-        and returns a password or an error.
+        this function firstly checks if the input is valid and if at least 1 character set has been chosen
+        (displays an error if not),
+        then generates a password based on the user's requested length and on the chosen character sets.
 
         Parameters
         ----------
@@ -210,4 +204,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
                 return password
 
 def select_input_box(event):
+    '''
+    Called whenever the tab in the app is changed,
+    this function sets the keyboard focus to the input box
+    which allows the user to start typing immediately without having to click on the input box first,
+    '''
     input_box.focus()

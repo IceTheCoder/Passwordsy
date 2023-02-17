@@ -7,7 +7,8 @@ import password_strength
 def main() -> None:
     '''
     Called upon starting the program,
-    it generates the window, notebook, and frames.
+    this function uses the Tkinter module to generate the window, notebook, frames,
+    and a basic configuration.
     '''
     window = tk.Tk()
 
@@ -27,7 +28,8 @@ def main() -> None:
 
     class GeneratePasswordFrame:
         '''
-        A class that contains the creation of the "generate password" frame.
+        A class that creates the "generate password" frame,
+        and adds it to the notebook previously created.
 
         ...
 
@@ -52,8 +54,8 @@ def main() -> None:
 
     class PasswordStrengthFrame:
         '''
-        A class that contains the creation of the 'password strength' frame.
-
+        A class that creates the "password strength" frame,
+        and adds it to the notebook previously created.
         ...
 
         Attributes
