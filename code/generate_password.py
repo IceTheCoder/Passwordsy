@@ -125,21 +125,22 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             password_label.bind('<ButtonRelease>', show_copy_button)
             password = generate_password(input_box.get())
             if password != invalid_input_error and password != no_character_set_error and password != double_error:
-                show_password(password_label, password, password_labels.index(password_label))
+                show_password(password_label, password)
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
             else:
                 password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
-                show_password(password_label_1, password, 0)
+                show_password(password_label_1, password)
 
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
     input_box.bind('<Return>', create_password_labels)
     input_box.grid(column = 0, row = 3, columnspan = 2)
+    input_box.focus()
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
     done_btn.grid(column = 0, row = 4, columnspan = 2)
 
-    def show_password(label, text, index) -> None:
+    def show_password(label, text) -> None:
         '''
         Called by the create_password_labels function,
         after password generation or attempted password generation,
