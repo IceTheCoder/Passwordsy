@@ -29,7 +29,7 @@ def show_paste_button(event) -> None:
 
 def paste_text() -> None:
     '''
-    Called upon pressing the paste  button,
+    Called upon pressing the paste button,
     this function uses the keyboard module to simulate pressing CTRL and V to copy the selected text.
     '''
     keyboard.press(Key.ctrl_l)
@@ -84,7 +84,7 @@ def show_password_strength_frame(frame) -> None:
 def check_password_strength(event):
     '''
     Called upon pressing the done button,
-    this function hosts all functions necesary to check:
+    this function hosts all functions necessary to check:
     if a password is common, a password's length, complexity, and if a password contains repeated patterns.
 
     Parameters
@@ -114,7 +114,7 @@ def check_password_strength(event):
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        this functino categorises the inputted password as very weak, weak, good, or strong depending on its length.
+        this function categorises the inputted password as very weak, weak, good, or strong depending on its length.
         '''
         if len(input_box.get()) == 1:
             second_label.configure(text = 'Very weak length: Your password has only ' + str(len(input_box.get())) + ' character.')

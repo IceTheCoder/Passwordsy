@@ -44,7 +44,7 @@ def copy_text() -> None:
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
     Called upon starting the program,
-    this function uses the Tkinter module to create A GUI frame to generate passwords with various options for customisations
+    this function uses the Tkinter module to create A GUI frame to generate passwords with various options for customisation
     and also serves as a hub for all other password-generation functions.
 
     Parameters
@@ -143,7 +143,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         Parameters
         ----------
         label: tkinter.Text
-            Each individual password label one by one if passwords are generated,
+            Each password label one by one if passwords are generated,
             or the first password label if an error is generated.
         text: str
             Each password or the error.
@@ -157,9 +157,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         '''
         Called by the create_password_labels function
         (upon clicking the done button or pressing the ENTER key),
-        this function firstly checks if the input is valid and if at least 1 character set has been chosen
+        this function first checks if the input is valid and if at least 1 character set has been chosen
         (displays an error if not),
-        then generates a password based on the user's requested length and on the chosen character sets.
+        then generates a password based on the user's requested length and on the selected character sets.
 
         Parameters
         ----------
@@ -205,8 +205,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
 def select_input_box(event):
     '''
-    Called whenever the tab in the app is changed,
-    this function sets the keyboard focus to the input box
-    which allows the user to start typing immediately without having to click on the input box first,
+    Called whenever the tab is changed,
+    this function focuses to the input box,
+    which allows the user to start typing immediately without having to click on the input box first.
     '''
     input_box.focus()
