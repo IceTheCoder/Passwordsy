@@ -71,7 +71,7 @@ def main() -> None:
         password_strength_frame.grid_rowconfigure(6, weight = 1)
 
 
-        notebook.add(password_strength_frame, text = 'Check a password\'s strength')
+        notebook.add(password_strength_frame, text = 'Password strength')
 
         password_strength.show_password_strength_frame(password_strength_frame)
 

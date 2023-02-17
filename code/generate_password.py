@@ -124,12 +124,14 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         for password_label in password_labels:
             password_label.bind('<ButtonRelease>', show_copy_button)
             password = generate_password(input_box.get())
+            print('Received password: ' + password)
             if password != invalid_input_error and password != no_character_set_error and password != double_error:
+                print('Password to be shown: ' + password)
                 show_password(password_label, password, password_labels.index(password_label))
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
-        
-        password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
-        show_password(password_label_1, password, 0)
+            else:
+                password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
+                show_password(password_label_1, password, 0)
 
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
@@ -158,7 +160,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         label.config(state = 'normal')
         label.delete('1.0', 'end')
         label.insert('1.0', text)
-        label.grid(column = 0, row = 5 + index, pady = 10)
         label.config(state = 'disabled', bg = '#ffffff')
 
     def generate_password(requested_length) -> None:
