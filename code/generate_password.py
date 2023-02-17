@@ -64,7 +64,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     frame_title = tk.Label(frame, text = frame_title_text, font = title_font)
     frame_title.grid(column = 0, row = 1, columnspan = 2)
 
-    question = tk.Label(frame, text = 'Number of characters (6 to 100):', font = description_font)
+    question = tk.Label(frame, text = 'Number of characters (4 to 100):', font = description_font)
     question.grid(column = 0, row = 2, columnspan = 2)
 
     password_label_1 = tk.Text(frame, width = password_width, height = password_height,
@@ -173,14 +173,18 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         requested_length: int
             The length requested by the user.
         '''
-        
-        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var == 0:
+
+        print(lowercase_letters_var.get(), uppercase_letters_var.get(), digits_var.get(), punctuation_var.get())
+
+        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
             try:
-                if 6 <= int(requested_length) <= 100:
+                if 4 <= int(requested_length) <= 100:
                     return no_character_set_error
                 else:
+                    input_box.delete(0, 'end')
                     return double_error
             except:
+                input_box.delete(0, 'end')
                 return double_error
 
         # Define all character sets that will be used in the password
@@ -193,10 +197,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             character_sets.append(string.digits)
         if punctuation_var.get() == 1:
             character_sets.append(string.punctuation)
-            
+
         # Keep generating a new password until it includes at least one character from each chosen character set
         while True:
             password = ''.join(secrets.choice(''.join(character_sets)) for _ in range(int(requested_length)))
             if all(any(char in s for char in password) for s in character_sets):
                 return password
-    
