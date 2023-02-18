@@ -170,11 +170,11 @@ def check_password_strength(event):
         for character in input:
             if character in lowercase_letters:
                 number_of_lowercase_letters += 1
-            if character in uppercase_letters:
+            elif character in uppercase_letters:
                 number_of_uppercase_letters += 1
-            if character in digits:
+            elif character in digits:
                 number_of_digits += 1
-            if character in punctuation:
+            elif character in punctuation:
                 number_of_punctuation += 1
 
         if number_of_lowercase_letters == 0:
