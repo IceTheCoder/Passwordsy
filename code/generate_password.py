@@ -1,7 +1,6 @@
-import secrets
-import string
 import tkinter as tk
 from pynput.keyboard import Key, Controller
+import generate_password_logic
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
@@ -118,7 +117,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
         for password_label in password_labels:
             password_label.bind('<ButtonRelease>', show_copy_button)
-            password = generate_password(input_box.get())
+            password = generate_password_logic.generate_password(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
             if password != invalid_input_error and password != no_character_set_error and password != double_error:
                 show_password(password_label, password)
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
@@ -152,56 +151,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         label.delete('1.0', 'end')
         label.insert('1.0', text)
         label.config(state = 'disabled', bg = '#ffffff')
-
-    def generate_password(requested_length) -> None:
-        '''
-        Called by the create_password_labels function
-        (upon clicking the done button or pressing the ENTER key),
-        this function first checks if the input is valid and if at least 1 character set has been chosen
-        (displays an error if not),
-        then generates a password based on the user's requested length and on the selected character sets.
-
-        Parameters
-        ----------
-        requested_length: int
-            The length requested by the user.
-        '''
-
-        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
-            try:
-                if 4 <= int(requested_length) <= 100:
-                    return no_character_set_error
-                else:
-                    input_box.delete(0, 'end')
-                    return double_error
-            except:
-                input_box.delete(0, 'end')
-                return double_error
-
-        try:
-            if not 4 <= int(requested_length) <= 100:
-                input_box.delete(0, 'end')
-                return invalid_input_error
-        except:
-            input_box.delete(0, 'end')
-            return invalid_input_error
-
-        # Define all character sets that will be used in the password
-        character_sets = []
-        if lowercase_letters_var.get() == 1:
-            character_sets.append(string.ascii_lowercase)
-        if uppercase_letters_var.get() == 1:
-            character_sets.append(string.ascii_uppercase)
-        if digits_var.get() == 1:
-            character_sets.append(string.digits)
-        if punctuation_var.get() == 1:
-            character_sets.append(string.punctuation)
-
-        # Keep generating a new password until it includes at least one character from each chosen character set
-        while True:
-            password = ''.join(secrets.choice(''.join(character_sets)) for _ in range(int(requested_length)))
-            if all(any(char in s for char in password) for s in character_sets):
-                return password
 
 def select_input_box(event):
     '''
