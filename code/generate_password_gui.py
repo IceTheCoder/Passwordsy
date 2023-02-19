@@ -117,18 +117,20 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
             Necessary for initiating the function when pressing the ENTER key.
         '''
 
-        for password_label in password_labels:
-            password_label.bind('<ButtonRelease>', show_copy_button)
-            password = generate_password_logic.validate_input(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
-            
-            # Check if an error was NOT returned.
-            if password == None:
-                password = generate_password_logic.generate_password(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
-                show_password(password_label, password)
+        text = generate_password_logic.validate_input(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
+
+        if text == None:
+            for password_label in password_labels:
+                password_label.bind('<ButtonRelease>', show_copy_button)
+
+                # Check if an error was NOT returned.
+                text = generate_password_logic.generate_password(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
+                show_password(password_label, text)
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
-            else:
-                password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
-                show_password(password_label_1, password)
+        else:
+            password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
+            print(text)
+            show_password(password_label_1, text)
 
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
