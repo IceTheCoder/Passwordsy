@@ -14,6 +14,8 @@ def main() -> None:
 
     notebook = ttk.Notebook(window, width = 1000, height = 325)
     notebook.grid(column = 0, row = 0)
+
+    # Center the notebook
     window.grid_columnconfigure(0, weight = 1)
     window.grid_rowconfigure(0, weight = 1)
 
@@ -41,6 +43,8 @@ def main() -> None:
 
         generate_password_frame = tk.Frame(window)
         generate_password_frame.grid(column = 0, row = 0)
+
+        # Expand widgets to take up the entire window
         generate_password_frame.grid_columnconfigure(0, weight = 1)
         generate_password_frame.grid_rowconfigure(0, weight = 1)
         generate_password_frame.grid_rowconfigure(1, weight = 1)
@@ -65,6 +69,8 @@ def main() -> None:
         '''
         password_strength_frame = tk.Frame(notebook)
         password_strength_frame.grid(column = 0, row = 0)
+
+        # Expand widgets to take up the entire window
         password_strength_frame.grid_columnconfigure(0, weight = 1)
         password_strength_frame.grid_rowconfigure(0, weight = 1)
         password_strength_frame.grid_rowconfigure(1, weight = 1)
