@@ -157,7 +157,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         label.insert('1.0', text)
         label.config(state = 'disabled', bg = '#ffffff')
 
-def select_input_box(event):
+def select_input_box(event) -> None:
     '''
     Called whenever the tab is changed,
     this function focuses to the input box,

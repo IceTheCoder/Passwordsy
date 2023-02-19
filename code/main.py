@@ -83,7 +83,7 @@ def main() -> None:
 
         notebook.add(password_strength_frame, text = 'Password strength')
 
-        password_strength_gui.show_password_strength_frame(password_strength_frame)
+        password_strength_gui.create_password_strength_frame(password_strength_frame)
 
     window.mainloop()
 

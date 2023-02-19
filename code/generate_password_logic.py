@@ -1,7 +1,7 @@
 import string
 import secrets
 
-def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error):
+def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
     '''
     Called by the create_password_labels function
     (upon clicking the done button or pressing the ENTER key),
@@ -51,7 +51,7 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
         input_box.delete(0, 'end')
         return invalid_input_error
     
-def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> None:
+def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
     Called by the validate_input function,
     this function generates a password based on the user's requested length and on the selected character sets.

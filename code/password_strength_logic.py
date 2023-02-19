@@ -7,7 +7,7 @@ modified_common_passwords = []
 for line in common_passwords_read:
     modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
 
-def check_password_strength(event, warnings, first_label, inputted_password, second_label, third_label, fourth_label):
+def check_password_strength(event, warnings, first_label, inputted_password, second_label, third_label, fourth_label) -> None:
     '''
     Called upon pressing the done button,
     this function hosts all functions necessary to check:
@@ -24,7 +24,7 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
     input = []
     input[:0] = inputted_password # Adds each character of the input to a list.
 
-    def check_if_password_is_common():
+    def check_if_password_is_common() -> None:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
@@ -38,7 +38,7 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
             first_label.configure(text = 'Not common: Your password isn\'t common.')
             first_label.grid(column = 0, row = 3, sticky = 'w')
 
-    def check_password_length():
+    def check_password_length() -> None:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
@@ -64,7 +64,7 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
             second_label.configure(text = 'Strong length: Your password has ' + str(len(inputted_password)) + ' characters.')
             second_label.grid(column = 0, row = 4, sticky = 'w')
 
-    def check_password_complexity():
+    def check_password_complexity() -> None:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
@@ -129,7 +129,7 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
             third_label.configure(text = 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctation.')
             third_label.grid(column = 0, row = 5, sticky = 'w')
 
-    def check_for_patterns_in_password():
+    def check_for_patterns_in_password() -> None:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
@@ -139,7 +139,7 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
         global are_there_repeated_characters
         are_there_repeated_characters = False
 
-        def show_repeated_pattern_warning():
+        def show_repeated_pattern_warning() -> None:
             '''
             Called by the check_for_patterns_in_password_function
             (upon pressing the done button),

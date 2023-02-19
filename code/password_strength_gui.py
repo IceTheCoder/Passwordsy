@@ -30,7 +30,7 @@ def paste_text() -> None:
     keyboard.release(Key.ctrl_l)
     keyboard.release('v')
 
-def show_password_strength_frame(frame) -> None:
+def create_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
     this function creates the "password strength" frame with a label for instructions, 
