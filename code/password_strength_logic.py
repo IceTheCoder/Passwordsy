@@ -24,7 +24,6 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
     input = []
     input[:0] = inputted_password # Adds each character of the input to a list.
 
-
     def check_if_password_is_common():
         '''
         Called by the check_password_strength function
