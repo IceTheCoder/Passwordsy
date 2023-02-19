@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
-import generate_password
-import password_strength
+import generate_password_gui
+import password_strength_gui
 
 def main() -> None:
     '''
@@ -26,7 +26,7 @@ def main() -> None:
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
-    notebook.bind('<<NotebookTabChanged>>', generate_password.select_input_box)
+    notebook.bind('<<NotebookTabChanged>>', generate_password_gui.select_input_box)
 
     class GeneratePasswordFrame:
         '''
@@ -54,7 +54,7 @@ def main() -> None:
 
         notebook.add(generate_password_frame, text = 'Generate password')
 
-        generate_password.show_generate_password_frame(generate_password_frame, done_btn_image)
+        generate_password_gui.show_generate_password_frame(generate_password_frame, done_btn_image)
 
     class PasswordStrengthFrame:
         '''
@@ -83,7 +83,7 @@ def main() -> None:
 
         notebook.add(password_strength_frame, text = 'Password strength')
 
-        password_strength.show_password_strength_frame(password_strength_frame)
+        password_strength_gui.show_password_strength_frame(password_strength_frame)
 
     window.mainloop()
 

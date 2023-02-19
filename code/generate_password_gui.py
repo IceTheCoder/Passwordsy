@@ -118,6 +118,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         for password_label in password_labels:
             password_label.bind('<ButtonRelease>', show_copy_button)
             password = generate_password_logic.generate_password(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
+            
             if password != invalid_input_error and password != no_character_set_error and password != double_error:
                 show_password(password_label, password)
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
