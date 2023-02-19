@@ -107,8 +107,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
         this function binds the show_copy_button function to the <ButtonRelease> event of each password label,
-        calls the generate_password function, determines if it returned 4 passwords or an error,
-        and adequately calls the show_password function to display the text. 
+        calls the validate_input function in generate_password_logic, 
+        to determine if the input is valid.
+        If it is invalid, an error is shown through show_password,
+        if it is valid, 4 passwords are shown through show_password.
         Parameters
         ----------
         event:
