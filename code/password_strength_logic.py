@@ -16,7 +16,19 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
     Parameters
     ----------
     event:
-         Necessary for initiating the function as the user types.
+        Necessary for initiating the function as the user types.
+    warnings: list
+        A list containing the warning labels.
+    first_label: tkinter.Label()
+        The first warning label.
+    inputted_password: str
+        The password inputted by the user.
+    sceond_label: tkinter.Label()
+        The second warning label.
+    trhird_label: tkinter.Label()
+        The third warning label.
+    fourth_label: tkinter.Label()
+        The fourth warning label.    
     '''
     for label in warnings:
         label.configure(text = '')
