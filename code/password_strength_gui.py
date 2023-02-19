@@ -1,11 +1,15 @@
 import tkinter as tk
+
 from pynput.keyboard import Key, Controller
+
 import password_strength_logic
 
 keyboard = Controller()
 
 title_font = 'Helvetica 24'
 warning_font = 'Helvetica 16'
+
+copy_button_y_offest = 30
 
 def display_paste_button(event) -> None:
     '''
@@ -18,7 +22,7 @@ def display_paste_button(event) -> None:
     event:
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     '''
-    paste.tk_popup(event.x_root, event.y_root - 30)
+    paste.tk_popup(event.x_root, event.y_root - copy_button_y_offest)
 
 def paste_text() -> None:
     '''
