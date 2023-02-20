@@ -1,6 +1,7 @@
 import string
 import secrets
 from pynput.keyboard import Key, Controller
+import time
 
 keyboard = Controller()
 
@@ -112,3 +113,5 @@ def copy_text(input_box) -> None:
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
     keyboard.release('c')
+    #time.sleep(2)
+    #input_box.focus()
