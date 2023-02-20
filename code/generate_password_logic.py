@@ -112,3 +112,4 @@ def copy_text() -> None:
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
     keyboard.release('c')
+    
