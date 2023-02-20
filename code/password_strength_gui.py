@@ -35,7 +35,12 @@ def paste_text() -> None:
     keyboard.release('v')
 
 def display_warnings(event) -> None:
-    password_strength_logic.check_password_strength(None, warnings, first_label, input_box.get(), second_label, third_label, fourth_label)
+    for label in labels:
+        label.configure(text = '')
+
+    warnings_list = password_strength_logic.check_password_strength(None, input_box.get())
+    for index, warning in enumerate(warnings_list):
+        labels[index].configure(text = warning)
 
 def create_password_strength_frame(frame) -> None:
     '''
@@ -75,8 +80,8 @@ def create_password_strength_frame(frame) -> None:
     global fourth_label
     fourth_label = tk.Label(frame, font = warning_font, text = '')
 
-    global warnings
-    warnings = [first_label, second_label, third_label, fourth_label]
+    global labels
+    labels = [first_label, second_label, third_label, fourth_label]
 
-    for label in warnings:
-        label.grid(column = 0, row = 3 + warnings.index(label))
+    for label in labels:
+        label.grid(column = 0, row = 3 + labels.index(label))
