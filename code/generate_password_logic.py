@@ -103,7 +103,7 @@ def show_copy_button(event, copy) -> None:
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
 
-def copy_text() -> None:
+def copy_text(text_labels) -> None:
     '''
     Called upon pressing the copy button,
     this function uses the keyboard module to simulate pressing CTRL and C to copy the selected text.
@@ -112,4 +112,5 @@ def copy_text() -> None:
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
     keyboard.release('c')
-    
+    for label in text_labels:
+        label.focus()

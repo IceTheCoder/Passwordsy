@@ -41,14 +41,13 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
     global copy_button
     copy_button = tk.Menu(frame, tearoff = False)
-    copy_button.add_command(label = 'Copy', command = generate_password_logic.copy_text)
+    copy_button.add_command(label = 'Copy', command = lambda: generate_password_logic.copy_text(password_labels))
     
     frame_title = tk.Label(frame, text = 'Generate password', font = title_font)
     frame_title.grid(column = 0, row = 1, columnspan = 2)
 
     question = tk.Label(frame, text = 'Number of characters (4 to 100):', font = description_font)
     question.grid(column = 0, row = 2, columnspan = 2)
-
 
     character_sets_label = tk.Label(frame, text = 'Character sets', font = section_title_font)
     character_sets_label.grid(column = 1, row = 4, columnspan = 2)
