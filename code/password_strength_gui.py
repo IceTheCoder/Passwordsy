@@ -34,6 +34,9 @@ def paste_text() -> None:
     keyboard.release(Key.ctrl_l)
     keyboard.release('v')
 
+def display_warnings() -> None:
+    password_strength_logic.check_password_strength(None, warnings, first_label, input_box.get(), second_label, third_label, fourth_label)
+
 def create_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
@@ -57,7 +60,7 @@ def create_password_strength_frame(frame) -> None:
     global input_box
     input_box = tk.Entry(frame, width = 32, borderwidth = 2)
     input_box.grid(column = 0, row = 2)
-    input_box.bind('<KeyRelease>', lambda abcdefgh: password_strength_logic.check_password_strength(None, warnings, first_label, input_box.get(), second_label, third_label, fourth_label))
+    input_box.bind('<KeyRelease>', display_warnings)
     input_box.bind('<Button-3>', display_paste_button)
 
     global first_label
