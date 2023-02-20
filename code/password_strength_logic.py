@@ -57,23 +57,23 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
         this function categorises the inputted password as very weak, weak, good, or strong depending on its length.
         '''
         if len(inputted_password) == 1:
-            second_label.configure(text = 'Very weak length: Your password has only ' + str(len(inputted_password)) + ' character.')
+            second_label.configure(text = f'Very weak length: Your password has only {str(len(inputted_password))} character.')
             second_label.grid(column = 0, row = 4, sticky = 'w')
 
         elif 0 < len(inputted_password) <= 7:
-            second_label.configure(text = 'Very weak length: Your password has only ' + str(len(inputted_password)) + ' characters.')
+            second_label.configure(text = f'Very weak length: Your password has only {str(len(inputted_password))} characters.')
             second_label.grid(column = 0, row = 4, sticky = 'w')
         
         elif 8 <= len(inputted_password) <= 10:
-            second_label.configure(text = 'Weak length: Your password has only ' + str(len(inputted_password)) + ' characters.')
+            second_label.configure(text = f'Weak length: Your password has only {str(len(inputted_password))} characters.')
             second_label.grid(column = 0, row = 4, sticky = 'w')
 
         elif 11 <= len(inputted_password) <= 13:
-            second_label.configure(text = 'Good length: Your password has ' + str(len(inputted_password)) + ' characters.')
+            second_label.configure(text = f'Good length: Your password has {str(len(inputted_password))} characters.')
             second_label.grid(column = 0, row = 4, sticky = 'w')
 
         elif 14 <= len(inputted_password):
-            second_label.configure(text = 'Strong length: Your password has ' + str(len(inputted_password)) + ' characters.')
+            second_label.configure(text = f'Strong length: Your password has {str(len(inputted_password))} characters.')
             second_label.grid(column = 0, row = 4, sticky = 'w')
 
     def check_password_complexity() -> None:
@@ -134,7 +134,7 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
                 else:
                     output = output + 'and ' + str(missing_feature)
             
-            third_label.configure(text = 'Not complex: Your password is missing ' + output + '.')
+            third_label.configure(text = f'Not complex: Your password is missing {output}.')
             third_label.grid(column = 0, row = 5, sticky = 'w')
 
         else:
