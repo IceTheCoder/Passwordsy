@@ -1,7 +1,7 @@
 import string
 import secrets
 from pynput.keyboard import Key, Controller
-import time
+import clipboard
 
 keyboard = Controller()
 
@@ -104,7 +104,7 @@ def show_copy_button(event, copy) -> None:
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
 
-def copy_text(input_box) -> None:
+def copy_text(input_box, labels) -> None:
     '''
     Called upon pressing the copy button,
     this function uses the keyboard module to simulate pressing CTRL and C to copy the selected text.
@@ -115,3 +115,9 @@ def copy_text(input_box) -> None:
     keyboard.release('c')
     #time.sleep(2)
     #input_box.focus()
+
+    for label in labels:
+        selected_text = label.selection_get()
+        clipboard.copy(selected_text)
+
+    input_box.focus_set()
