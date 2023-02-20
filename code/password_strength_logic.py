@@ -134,7 +134,7 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
                 else:
                     output = output + 'and ' + str(missing_feature)
             
-            third_label.configure(text = 'Not complex: Your password is missing ' + output + '.')
+            third_label.configure(text = f'Not complex: Your password is missing {output}.')
             third_label.grid(column = 0, row = 5, sticky = 'w')
 
         else:
