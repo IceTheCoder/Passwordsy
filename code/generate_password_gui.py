@@ -40,8 +40,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
     global copy_button
-    copy_button = tk.Menu(frame, tearoff = False)
-    copy_button.add_command(label = 'Copy', command = lambda: generate_password_logic.copy_text(password_labels))
     
     frame_title = tk.Label(frame, text = 'Generate password', font = title_font)
     frame_title.grid(column = 0, row = 1, columnspan = 2)
@@ -113,6 +111,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
     done_btn.grid(column = 0, row = 4, columnspan = 2)
+
+    copy_button = tk.Menu(frame, tearoff = False)
+    copy_button.add_command(label = 'Copy', command = lambda: generate_password_logic.copy_text(input_box))
 
     def show_password(label, text) -> None:
         '''
