@@ -29,6 +29,16 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         The image used for the done button.
     '''
 
+    password_label_1 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+    password_label_2 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+    password_label_3 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+    password_label_4 = tk.Text(frame, width = password_width, height = password_height,
+                               borderwidth = password_border_width, font = password_font)
+    password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
+
     global copy_button
     copy_button = tk.Menu(frame, tearoff = False)
     copy_button.add_command(label = 'Copy', command = generate_password_logic.copy_text)
@@ -39,14 +49,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     question = tk.Label(frame, text = 'Number of characters (4 to 100):', font = description_font)
     question.grid(column = 0, row = 2, columnspan = 2)
 
-    password_label_1 = tk.Text(frame, width = password_width, height = password_height,
-                               borderwidth = password_border_width, font = password_font)
-    password_label_2 = tk.Text(frame, width = password_width, height = password_height,
-                               borderwidth = password_border_width, font = password_font)
-    password_label_3 = tk.Text(frame, width = password_width, height = password_height,
-                               borderwidth = password_border_width, font = password_font)
-    password_label_4 = tk.Text(frame, width = password_width, height = password_height,
-                               borderwidth = password_border_width, font = password_font)
 
     character_sets_label = tk.Label(frame, text = 'Character sets', font = section_title_font)
     character_sets_label.grid(column = 1, row = 4, columnspan = 2)
@@ -67,7 +69,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     punctuation_checkbox = tk.Checkbutton(frame, variable = punctuation_var, offvalue = 0, onvalue = 1)
     punctuation_text = tk.Label(frame, text = 'Punctuation', font = description_font)
 
-    password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
     checkboxes_text = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
