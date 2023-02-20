@@ -1,5 +1,8 @@
 import string
 import secrets
+from pynput.keyboard import Key, Controller
+
+keyboard = Controller()
 
 def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
     '''
@@ -86,3 +89,26 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
         password = ''.join(secrets.choice(''.join(character_sets)) for _ in range(int(requested_password_length)))
         if all(any(char in s for char in password) for s in character_sets):
             return password
+
+def show_copy_button(event, copy) -> None:
+    '''
+    Called when the user releases a mouse button on a password label,
+    this function uses the Tkinter module to display a contextual menu containing a 'copy' button on the x and y coordinates of the user's cursor,
+    where the y coordinates are adjusted by 30 pixels.
+
+    Parameters
+    ----------
+    event:
+        Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+    '''
+    copy.tk_popup(event.x_root, event.y_root - 30)
+
+def copy_text() -> None:
+    '''
+    Called upon pressing the copy button,
+    this function uses the keyboard module to simulate pressing CTRL and C to copy the selected text.
+    '''
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('c')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release('c')

@@ -1,12 +1,10 @@
 import tkinter as tk
-from pynput.keyboard import Key, Controller
 import generate_password_logic
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
 description_font = 'Helvetica 12'
 
-keyboard = Controller()
 
 password_width = 100
 password_height = 1
@@ -16,29 +14,6 @@ password_font = 'Consolas 11'
 invalid_input_error = 'An error occurred. Try again with a whole number between 4 and 100.'
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
-
-def show_copy_button(event) -> None:
-    '''
-    Called when the user releases a mouse button on a password label,
-    this function uses the Tkinter module to display a contextual menu containing a 'copy' button on the x and y coordinates of the user's cursor,
-    where the y coordinates are adjusted by 30 pixels.
-
-    Parameters
-    ----------
-    event:
-        Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
-    '''
-    copy.tk_popup(event.x_root, event.y_root - 30)
-
-def copy_text() -> None:
-    '''
-    Called upon pressing the copy button,
-    this function uses the keyboard module to simulate pressing CTRL and C to copy the selected text.
-    '''
-    keyboard.press(Key.ctrl_l)
-    keyboard.press('c')
-    keyboard.release(Key.ctrl_l)
-    keyboard.release('c')
 
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
@@ -54,9 +29,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         The image used for the done button.
     '''
 
-    global copy
-    copy = tk.Menu(frame, tearoff = False)
-    copy.add_command(label = 'Copy', command = copy_text)
+    global copy_button
+    copy_button = tk.Menu(frame, tearoff = False)
+    copy_button.add_command(label = 'Copy', command = generate_password_logic.copy_text)
     
     frame_title = tk.Label(frame, text = 'Generate password', font = title_font)
     frame_title.grid(column = 0, row = 1, columnspan = 2)
@@ -121,7 +96,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
         if text == None:
             for password_label in password_labels:
-                password_label.bind('<ButtonRelease>', show_copy_button)
+                password_label.bind('<ButtonRelease>', lambda event: generate_password_logic.show_copy_button(event, copy_button))
 
                 # Check if an error was NOT returned.
                 text = generate_password_logic.generate_password(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
@@ -129,7 +104,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
         else:
             password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
-            print(text)
             show_password(password_label_1, text)
 
     global input_box
