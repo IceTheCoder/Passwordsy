@@ -34,7 +34,7 @@ def paste_text() -> None:
     keyboard.release(Key.ctrl_l)
     keyboard.release('v')
 
-def display_warnings() -> None:
+def display_warnings(event) -> None:
     password_strength_logic.check_password_strength(None, warnings, first_label, input_box.get(), second_label, third_label, fourth_label)
 
 def create_password_strength_frame(frame) -> None:

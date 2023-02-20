@@ -179,7 +179,9 @@ def check_password_strength(event, warnings, first_label, inputted_password, sec
         first_label.configure(text = 'Please input a password.')
         first_label.grid(column = 0, row = 3, sticky = 'n')
     else:
-        check_if_password_is_common()   
-        check_password_length()    
-        check_password_complexity() 
-        check_for_patterns_in_password()
+        prevalance_warning = check_if_password_is_common()   
+        length_warning = check_password_length()    
+        complexity_warning = check_password_complexity() 
+        pattern_warning = check_for_patterns_in_password()
+
+        return [prevalance_warning, length_warning, complexity_warning, pattern_warning]
