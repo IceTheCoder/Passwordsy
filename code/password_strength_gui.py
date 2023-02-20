@@ -34,6 +34,14 @@ def paste_text() -> None:
     keyboard.release(Key.ctrl_l)
     keyboard.release('v')
 
+def display_warnings(event) -> None:
+    for label in labels:
+        label.configure(text = '')
+
+    warnings_list = password_strength_logic.check_password_strength(None, input_box.get())
+    for index, warning in enumerate(warnings_list):
+        labels[index].configure(text = warning)
+
 def create_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
@@ -57,7 +65,7 @@ def create_password_strength_frame(frame) -> None:
     global input_box
     input_box = tk.Entry(frame, width = 32, borderwidth = 2)
     input_box.grid(column = 0, row = 2)
-    input_box.bind('<KeyRelease>', lambda abcdefgh: password_strength_logic.check_password_strength(None, warnings, first_label, input_box.get(), second_label, third_label, fourth_label))
+    input_box.bind('<KeyRelease>', display_warnings)
     input_box.bind('<Button-3>', display_paste_button)
 
     global first_label
@@ -72,8 +80,8 @@ def create_password_strength_frame(frame) -> None:
     global fourth_label
     fourth_label = tk.Label(frame, font = warning_font, text = '')
 
-    global warnings
-    warnings = [first_label, second_label, third_label, fourth_label]
+    global labels
+    labels = [first_label, second_label, third_label, fourth_label]
 
-    for label in warnings:
-        label.grid(column = 0, row = 3 + warnings.index(label))
+    for label in labels:
+        label.grid(column = 0, row = 3 + labels.index(label), sticky = 'w')
