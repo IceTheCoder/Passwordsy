@@ -7,7 +7,7 @@ modified_common_passwords = []
 for line in common_passwords_read:
     modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
 
-def check_password_strength(event, warnings, first_label, inputted_password, second_label, third_label, fourth_label) -> None:
+def check_password_strength(event, warnings, first_label, inputted_password, second_label, third_label, fourth_label) -> list:
     '''
     Called upon pressing the done button,
     this function hosts all functions necessary to check:
