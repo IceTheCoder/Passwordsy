@@ -112,5 +112,5 @@ def copy_text(text_labels) -> None:
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
     keyboard.release('c')
-    for label in text_labels:
-        label.focus()
+    #for label in text_labels:
+    #    label.focus()
