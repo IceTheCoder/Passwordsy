@@ -7,7 +7,7 @@ modified_common_passwords = []
 for line in common_passwords_read:
     modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
 
-def check_password_strength(event, inputted_password) -> list:
+def check_password_strength(event, inputted_password, input_password_msg) -> list:
     '''
     Called upon pressing the done button,
     this function hosts all functions necessary to check:
@@ -154,7 +154,7 @@ def check_password_strength(event, inputted_password) -> list:
             return 'No repeated characters: Your password contains no repeated characters.'
 
     if len(inputted_password) == 0:
-        return 'Please input a password.'
+        return input_password_msg
     else:
         prevalance_warning = check_if_password_is_common()   
         length_warning = check_password_length()    

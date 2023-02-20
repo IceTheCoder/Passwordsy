@@ -11,6 +11,8 @@ warning_font = 'Helvetica 16'
 
 copy_button_y_offest = 30
 
+input_password_msg = 'Please input a password.'
+
 def display_paste_button(event) -> None:
     '''
     Called when the user right-clicks on the input_box,
@@ -38,9 +40,13 @@ def display_warnings(event) -> None:
     for label in labels:
         label.configure(text = '')
 
-    warnings_list = password_strength_logic.check_password_strength(None, input_box.get())
-    for index, warning in enumerate(warnings_list):
-        labels[index].configure(text = warning)
+    warnings = password_strength_logic.check_password_strength(None, input_box.get(), input_password_msg)
+
+    if warnings == input_password_msg:
+        first_label.configure(text = warnings)
+    else:
+        for index, warning in enumerate(warnings):
+            labels[index].configure(text = warning)
 
 def create_password_strength_frame(frame) -> None:
     '''
