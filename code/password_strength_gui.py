@@ -36,6 +36,18 @@ def paste_text() -> None:
     keyboard.release('v')
 
 def display_warnings(event) -> None:
+    '''
+    Called as the user types
+    (when they release a key),
+    this function clears all labels,
+    gets a list of warnings through check_password_strength from password_strength_logic.py,
+    and adequate displays them to the user.
+
+    Parameters
+    ----------
+    event:
+        Necessary for initiating the function as the user types.
+    '''
     for label in labels:
         label.configure(text = '')
 
