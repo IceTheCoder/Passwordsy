@@ -9,7 +9,8 @@ import password_strength_gui
 def main():
     '''
     Called upon starting the program,
-    this function uses the Tkinter module to generate the window, notebook, frames,
+    this function uses the Tkinter module to create a window, notebook, 
+    two frames the user can switch between,
     and a basic configuration.
     '''
     window = tk.Tk()
