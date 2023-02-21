@@ -18,7 +18,8 @@ double_error = 'An error occurred. Try again with at least 1 character set and a
 def show_generate_password_frame(frame, done_btn_image) -> None:
     '''
     Called upon starting the program,
-    this function uses the Tkinter module to create a GUI frame to generate passwords with various options for customisation,
+    this function uses the Tkinter module to create a GUI frame to generate passwords with various options for customisation
+    (length and character sets)
     and serves as a hub for all other password generation functions.
 
     Parameters
