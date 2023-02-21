@@ -43,7 +43,6 @@ def main():
         generate_password_frame: ttk.frame
             The 'generate password' frame
         '''
-
         generate_password_frame = tk.Frame(window)
         generate_password_frame.grid(column = 0, row = 0)
 
