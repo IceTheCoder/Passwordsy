@@ -90,4 +90,4 @@ def create_password_strength_frame(frame) -> None:
     labels = [first_label, second_label, third_label, fourth_label]
 
     for label in labels:
-        label.grid(column = 0, row = 3 + labels.index(label), sticky = 'w')
+        label.grid(column = 0, row = 3 + labels.index(label))
