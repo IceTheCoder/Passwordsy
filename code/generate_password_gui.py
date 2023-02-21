@@ -79,24 +79,20 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
-        this function binds the show_copy_button function to the <ButtonRelease> event of each password label,
-        calls the validate_input function in generate_password_logic, 
-        to determine if the input is valid.
-        If it is invalid, an error is shown through show_text,
-        if it is valid, 4 passwords are shown through show_text.
-        
+        this function validates the user input,
+
         Parameters
         ----------
         event:
             Necessary for initiating the function when pressing the ENTER key.
         '''
         text = generate_password_logic.validate_input(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
-
+        
+        # Check if an error is NOT returned.
         if text == None:
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', lambda event: generate_password_logic.show_copy_button(event, copy_button))
 
-                # Check if an error was NOT returned.
                 text = generate_password_logic.generate_password(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
                 show_text(password_label, text)
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
