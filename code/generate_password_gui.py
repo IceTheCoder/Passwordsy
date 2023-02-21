@@ -84,6 +84,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         to determine if the input is valid.
         If it is invalid, an error is shown through show_text,
         if it is valid, 4 passwords are shown through show_text.
+        
         Parameters
         ----------
         event:
