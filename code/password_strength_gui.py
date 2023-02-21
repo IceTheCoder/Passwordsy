@@ -65,7 +65,7 @@ def display_warnings(event) -> None:
 def create_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
-    this function creates the "password strength" frame with a label for instructions, 
+    this function creates the 'password strength' frame with a label for instructions, 
     an entry box for password input, and four warning labels to display the strength of the password. 
     It also creates a menu for pasting text, which is triggered by a right-click on the input box.
 
