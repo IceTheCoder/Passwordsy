@@ -91,7 +91,7 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
 def show_copy_button(event, copy) -> None:
     '''
     Called when the user releases a mouse button on a password label,
-    this function uses the Tkinter module to display a contextual menu containing a 'copy' button on the x and y coordinates of the user's cursor,
+    this function uses the Tkinter module to display a contextual menu containing a 'copy' button for copying the password to the clipboard on the x and y coordinates of the user's cursor,
     where the y coordinates are adjusted by 30 pixels.
 
     Parameters
@@ -99,7 +99,7 @@ def show_copy_button(event, copy) -> None:
     event:
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     copy:
-        The copy button itself
+        The copy button itself.
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
 
