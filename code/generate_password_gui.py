@@ -82,8 +82,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         this function binds the show_copy_button function to the <ButtonRelease> event of each password label,
         calls the validate_input function in generate_password_logic, 
         to determine if the input is valid.
-        If it is invalid, an error is shown through show_password,
-        if it is valid, 4 passwords are shown through show_password.
+        If it is invalid, an error is shown through show_text,
+        if it is valid, 4 passwords are shown through show_text.
         Parameters
         ----------
         event:
@@ -98,11 +98,11 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
 
                 # Check if an error was NOT returned.
                 text = generate_password_logic.generate_password(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
-                show_password(password_label, text)
+                show_text(password_label, text)
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
         else:
             password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
-            show_password(password_label_1, text)
+            show_text(password_label_1, text)
 
     global input_box
     input_box = tk.Entry(frame, width = 10, borderwidth = 2)
@@ -115,7 +115,7 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     copy_button = tk.Menu(frame, tearoff = False)
     copy_button.add_command(label = 'Copy', command = lambda: generate_password_logic.copy_text(input_box, password_labels))
 
-    def show_password(label, text) -> None:
+    def show_text(label, text) -> None:
         '''
         Called by the create_password_labels function,
         this function updates the contents of the password_labels,
