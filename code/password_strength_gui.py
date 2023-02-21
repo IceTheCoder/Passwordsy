@@ -16,7 +16,7 @@ def display_paste_button(event) -> None:
     '''
     Called when the user right-clicks on the input_box,
     this function uses the Tkinter module to display a contextual menu containing a 'paste' button on the x and y coordinates of the user's cursor,
-    where the y coordinates are adjusted by 30 pixels.
+    with the y coordinates adjusted by 30 pixels.
 
     Parameters
     ----------
