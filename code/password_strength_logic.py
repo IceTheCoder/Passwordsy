@@ -130,23 +130,13 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
         Called by the check_password_strength function
         (upon pressing the done button),
         this function checks if there are any repeating characters in the inputted password,
-        and returns an adequate error.
+        and returns an adequate message.
         '''
-        global are_there_repeated_characters
-        are_there_repeated_characters = False
-
-        for character in input: # For every character in the input, it checks if there is another character that matches, and shows the repeated pattern warning if there is.
-            count = 0
-            for other_character in input:
-                if character == other_character:
-                    count += 1
-
-            if count > 1:
-                are_there_repeated_characters = True
+        for character in inputted_password:
+            if inputted_password.count(character) > 1:
                 return 'Repeated character(s): Your password contains at least one repeated character.'
-
-        if are_there_repeated_characters == False:
-            return 'No repeated characters: Your password contains no repeated characters.'
+        
+        return 'No repeated characters: Your password contains no repeated characters.'
 
     if len(inputted_password) == 0:
         return input_password_msg
