@@ -28,7 +28,7 @@ def display_paste_button(event) -> None:
 def paste_text() -> None:
     '''
     Called upon pressing the paste button,
-    this function uses the keyboard module to simulate pressing CTRL and V to paste the selected text.
+    this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
@@ -41,7 +41,7 @@ def display_warnings(event) -> None:
     (when they release a key),
     this function clears all labels,
     gets a list of warnings through check_password_strength from password_strength_logic.py,
-    and adequate displays them to the user.
+    and adequately displays them to the user.
 
     Parameters
     ----------
