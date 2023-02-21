@@ -1,5 +1,4 @@
 import tkinter as tk
-
 from pynput.keyboard import Key, Controller
 
 import password_strength_logic
@@ -11,11 +10,13 @@ warning_font = 'Helvetica 16'
 
 copy_button_y_offest = 30
 
+input_password_msg = 'Please input a password.'
+
 def display_paste_button(event) -> None:
     '''
     Called when the user right-clicks on the input_box,
     this function uses the Tkinter module to display a contextual menu containing a 'paste' button on the x and y coordinates of the user's cursor,
-    where the y coordinates are adjusted by 30 pixels.
+    with the y coordinates adjusted by 30 pixels.
 
     Parameters
     ----------
@@ -27,7 +28,7 @@ def display_paste_button(event) -> None:
 def paste_text() -> None:
     '''
     Called upon pressing the paste button,
-    this function uses the keyboard module to simulate pressing CTRL and V to copy the selected text.
+    this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
@@ -35,17 +36,36 @@ def paste_text() -> None:
     keyboard.release('v')
 
 def display_warnings(event) -> None:
+    '''
+    Called as the user types
+    (when they release a key),
+    this function clears all labels,
+    gets a list of warnings through check_password_strength from password_strength_logic.py,
+    and adequately displays them to the user.
+
+    Parameters
+    ----------
+    event:
+        Necessary for initiating the function as the user types.
+    '''
     for label in labels:
         label.configure(text = '')
 
-    warnings_list = password_strength_logic.check_password_strength(None, input_box.get())
-    for index, warning in enumerate(warnings_list):
-        labels[index].configure(text = warning)
+    warnings = password_strength_logic.check_password_strength(None, input_box.get(), input_password_msg)
+
+    if warnings == input_password_msg:
+        labels[0].configure(text = warnings)
+        labels[0].grid(column = 0, row = 3, sticky = 'n')
+    else:
+        for index, warning in enumerate(warnings):
+            labels[index].configure(text = warning)
+        for label in labels:
+            label.grid(column = 0, row = 3 + labels.index(label), sticky = 'w')
 
 def create_password_strength_frame(frame) -> None:
     '''
     Called upon starting the program,
-    this function creates the "password strength" frame with a label for instructions, 
+    this function creates the 'password strength' frame with a label for instructions, 
     an entry box for password input, and four warning labels to display the strength of the password. 
     It also creates a menu for pasting text, which is triggered by a right-click on the input box.
 
@@ -54,7 +74,6 @@ def create_password_strength_frame(frame) -> None:
     frame: ttk.Frame
         The "password strength" frame
     '''
-
     global paste
     paste = tk.Menu(frame, tearoff = False)
     paste.add_command(label = 'Paste', command = paste_text)
@@ -68,20 +87,16 @@ def create_password_strength_frame(frame) -> None:
     input_box.bind('<KeyRelease>', display_warnings)
     input_box.bind('<Button-3>', display_paste_button)
 
-    global first_label
-    first_label = tk.Label(frame, font = warning_font, text = '')
+    first_label = tk.Label(frame, font = warning_font, text = input_password_msg)
     
-    global second_label
     second_label = tk.Label(frame, font = warning_font, text = '')
 
-    global third_label
     third_label = tk.Label(frame, font = warning_font, text = '')
 
-    global fourth_label
     fourth_label = tk.Label(frame, font = warning_font, text = '')
 
     global labels
     labels = [first_label, second_label, third_label, fourth_label]
 
     for label in labels:
-        label.grid(column = 0, row = 3 + labels.index(label), sticky = 'w')
+        label.grid(column = 0, row = 3 + labels.index(label), sticky = 'n')

@@ -5,32 +5,24 @@ common_passwords_read = common_passwords_file.readlines()
 modified_common_passwords = []
 
 for line in common_passwords_read:
-    modified_common_passwords.append(line.strip()) # Places each of the 100,000 most commonly used passwords into a list
+    modified_common_passwords.append(line.strip()) # Place each of the 100,000 most commonly used passwords into a list
 
-def check_password_strength(event, inputted_password) -> list:
+def check_password_strength(event, inputted_password, input_password_msg) -> list:
     '''
     Called upon pressing the done button,
-    this function hosts all functions necessary to check:
-    if a password is common, a password's length, complexity, and if a password contains repeated patterns.
+    this function hosts defines several functions that check the prevalance, length, complexity and repetitiveness of an inputted password, 
+    and returns appropriate messages. 
+    It then calls these functions and returns a list of messages indicating the results of each check.
 
     Parameters
     ----------
     event:
         Necessary for initiating the function as the user types.
-    warnings: list
-        A list containing the warning labels.
-    first_label: tkinter.Label()
-        The first warning label.
     inputted_password: str
-        The password inputted by the user.
-    sceond_label: tkinter.Label()
-        The second warning label.
-    trhird_label: tkinter.Label()
-        The third warning label.
-    fourth_label: tkinter.Label()
-        The fourth warning label.    
+        The input of the user
+    input_password_msg: str
+        'Please input a password.'
     '''
-
     input = []
     input[:0] = inputted_password # Adds each character of the input to a list.
 
@@ -38,7 +30,9 @@ def check_password_strength(event, inputted_password) -> list:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        checks if the inputted password is in the 100,000 most used passwords (modified_common_password).
+        this function checks if the inputted password is in the 100,000 most used passwords (modified_common_password),
+        and returns an appropiate message.
+        It does this by counting the number of times an inputted_password is found in the SecLists list.
         '''
         if modified_common_passwords.count(inputted_password) > 0:
             return 'Common: Your password is common.'
@@ -50,7 +44,8 @@ def check_password_strength(event, inputted_password) -> list:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        this function categorises the inputted password as very weak, weak, good, or strong depending on its length.
+        this function categorises the inputted password as very weak, weak, good, or strong depending on its length,
+        and returns a suitable message.
         '''
         if len(inputted_password) == 1:
             return f'Very weak length: Your password has only {str(len(inputted_password))} character.'
@@ -71,9 +66,9 @@ def check_password_strength(event, inputted_password) -> list:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        checks how many of the following the inputted password is missing: 
+        this function checks how many of the following the inputted password is missing: 
         lowercase letters, uppercase letters, digits, and punctuation,
-        and warns the user about them.
+        and return an adequate warning about them.
         '''
         missing_security_features_list = []
 
@@ -134,27 +129,17 @@ def check_password_strength(event, inputted_password) -> list:
         '''
         Called by the check_password_strength function
         (upon pressing the done button),
-        this function checks if there are any repeating characters in the inputted password.
+        this function checks if there are any repeating characters in the inputted password,
+        and returns an adequate message.
         '''
-
-        global are_there_repeated_characters
-        are_there_repeated_characters = False
-
-        for character in input: # For every character in the input, it checks if there is another character that matches, and shows the repeated pattern warning if there is.
-            count = 0
-            for other_character in input:
-                if character == other_character:
-                    count += 1
-
-            if count > 1:
-                are_there_repeated_characters = True
+        for character in inputted_password:
+            if inputted_password.count(character) > 1:
                 return 'Repeated character(s): Your password contains at least one repeated character.'
-
-        if are_there_repeated_characters == False:
-            return 'No repeated characters: Your password contains no repeated characters.'
+        
+        return 'No repeated characters: Your password contains no repeated characters.'
 
     if len(inputted_password) == 0:
-        return 'Please input a password.'
+        return input_password_msg
     else:
         prevalance_warning = check_if_password_is_common()   
         length_warning = check_password_length()    

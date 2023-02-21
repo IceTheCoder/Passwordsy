@@ -1,15 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
-
 from PIL import ImageTk, Image
 
 import generate_password_gui
 import password_strength_gui
 
-def main() -> None:
+
+def main():
     '''
     Called upon starting the program,
-    this function uses the Tkinter module to generate the window, notebook, frames,
+    this function uses the Tkinter module to create a window, notebook, 
+    two frames the user can switch between,
     and a basic configuration.
     '''
     window = tk.Tk()
@@ -42,7 +43,6 @@ def main() -> None:
         generate_password_frame: ttk.frame
             The 'generate password' frame
         '''
-
         generate_password_frame = tk.Frame(window)
         generate_password_frame.grid(column = 0, row = 0)
 
