@@ -10,9 +10,9 @@ for line in common_passwords_read:
 def check_password_strength(event, inputted_password, input_password_msg) -> list:
     '''
     Called upon pressing the done button,
-    this function hosts all functions necessary to check:
-    if a password is common, a password's length, complexity, and if a password contains repeated patterns,
-    and returns a list containing all warnings to be displayed to the user.
+    this function hosts defines several functions that check the prevalance, length, complexity and repetitiveness of an inputted password, 
+    and returns appropriate messages. 
+    It then calls these functions and returns a list of messages indicating the results of each check.
 
     Parameters
     ----------
