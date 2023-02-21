@@ -19,7 +19,7 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
         The length requested by the user.
     lowercase_letters_var: tkinter.IntVar()
         The variable used to check if the lowercase letters checkbox has been selected or not.
-    upppercase_letters_var: tkinter.IntVar()
+    uppercase_letters_var: tkinter.IntVar()
         The variable used to check if the upprcase letters checkbox has been selected or not.
     digits_var: tkinter.IntVar()
         The variable used to check if the digits checkbox has been selected or not.
