@@ -6,10 +6,13 @@ import clipboard
 keyboard = Controller()
 
 def adapt_input(requested_password_length):
-    try:
-        return max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
-    except:
+    if requested_password_length == '':
         raise ValueError
+    else:
+        try:
+            return max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
+        except:
+            raise ValueError
 
 def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
     '''
@@ -40,25 +43,36 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
     invalid_input_error: str
         The error used when the input is invalid.
     '''
-    if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
-        try:
-            requested_password_length = abs(requested_password_length)
-            if 4 <= int(requested_password_length) <= 100:
-                return no_character_set_error
-            else:
+    try:
+        adapt_input(requested_password_length)
+        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+            return no_character_set_error
+    except:
+        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+            return double_error
+        else:
+            return invalid_input_error
+
+        
+        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+            try:
+                requested_password_length = abs(requested_password_length)
+                if 4 <= int(requested_password_length) <= 100:
+                    return no_character_set_error
+                else:
+                    input_box.delete(0, 'end')
+                    return double_error
+            except:
                 input_box.delete(0, 'end')
                 return double_error
+
+        try:
+            if not 4 <= int(requested_password_length) <= 100:
+                input_box.delete(0, 'end')
+                return invalid_input_error
         except:
             input_box.delete(0, 'end')
-            return double_error
-
-    try:
-        if not 4 <= int(requested_password_length) <= 100:
-            input_box.delete(0, 'end')
             return invalid_input_error
-    except:
-        input_box.delete(0, 'end')
-        return invalid_input_error
     
 def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''

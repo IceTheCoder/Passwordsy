@@ -88,13 +88,10 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         event:
             Necessary for initiating the function when pressing the ENTER key.
         '''
-        try:
-            text = generate_password_logic.adapt_input(input_box.get())
-        except:
-            text = generate_password_logic.validate_input(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
+        text = generate_password_logic.validate_input(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
 
         # Check if an error is NOT returned.
-        if text != None:
+        if text == None:
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', lambda event: generate_password_logic.show_copy_button(event, copy_button))
 
