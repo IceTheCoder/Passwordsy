@@ -34,7 +34,6 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
     invalid_input_error: str
         The error used when the input is invalid.
     '''
-    
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
         try:
             if 4 <= int(requested_password_length) <= 100:
@@ -72,7 +71,6 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
     punctuation_var: tkinter.IntVar()
         The variable used to check if the punctuation checkbox has been selected or not.
     '''
-
     # Define all character sets that will be used in the password
     character_sets = []
     if lowercase_letters_var.get() == 1:
@@ -111,7 +109,6 @@ def copy_text(input_box, labels) -> None:
     this function copies the selected text,
     and focuses the keyboard on the input_box to deselect the text.
     '''
-
     for label in labels:
         selected_text = label.selection_get()
         clipboard.copy(selected_text)
