@@ -5,6 +5,12 @@ import clipboard
 
 keyboard = Controller()
 
+def adapt_input(requested_password_length):
+    try:
+        return max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
+    except:
+        raise ValueError
+
 def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
     '''
     Called by the create_password_labels function,
@@ -36,6 +42,7 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
     '''
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
         try:
+            requested_password_length = abs(requested_password_length)
             if 4 <= int(requested_password_length) <= 100:
                 return no_character_set_error
             else:
