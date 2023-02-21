@@ -23,7 +23,6 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     input_password_msg: str
         'Please input a password.'
     '''
-
     input = []
     input[:0] = inputted_password # Adds each character of the input to a list.
 
@@ -132,7 +131,6 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
         this function checks if there are any repeating characters in the inputted password,
         and returns an adequate error.
         '''
-
         global are_there_repeated_characters
         are_there_repeated_characters = False
 
