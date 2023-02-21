@@ -28,7 +28,7 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
         The input box used for the length of the password.
     double_error: str
         The error used when no character set has been picked and when the input is invalid.
-    invalid_input_error: tkinter.IntVar()
+    invalid_input_error: str
         The error used when the input is invalid.
     '''
     
