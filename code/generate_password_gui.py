@@ -28,7 +28,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
     '''
-
     password_label_1 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
     password_label_2 = tk.Text(frame, width = password_width, height = password_height,
@@ -89,7 +88,6 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
         event:
             Necessary for initiating the function when pressing the ENTER key.
         '''
-
         text = generate_password_logic.validate_input(input_box.get(), lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
 
         if text == None:
