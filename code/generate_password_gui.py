@@ -79,7 +79,9 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
-        this function validates the user input,
+        this function validates the user input.
+        If it is valid, this function uses the show_text function to display a password,
+        else it uses the same function to display an adequate error given through the validate_input function of generate_password_logic.py
 
         Parameters
         ----------
