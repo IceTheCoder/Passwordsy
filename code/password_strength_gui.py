@@ -54,8 +54,8 @@ def display_warnings(event) -> None:
     warnings = password_strength_logic.check_password_strength(None, input_box.get(), input_password_msg)
 
     if warnings == input_password_msg:
-        first_label.configure(text = warnings)
-        first_label.grid(column = 0, row = 3, sticky = 'n')
+        labels[0].configure(text = warnings)
+        labels[0].grid(column = 0, row = 3, sticky = 'n')
     else:
         for index, warning in enumerate(warnings):
             labels[index].configure(text = warning)
@@ -87,16 +87,12 @@ def create_password_strength_frame(frame) -> None:
     input_box.bind('<KeyRelease>', display_warnings)
     input_box.bind('<Button-3>', display_paste_button)
 
-    global first_label
     first_label = tk.Label(frame, font = warning_font, text = input_password_msg)
     
-    global second_label
     second_label = tk.Label(frame, font = warning_font, text = '')
 
-    global third_label
     third_label = tk.Label(frame, font = warning_font, text = '')
 
-    global fourth_label
     fourth_label = tk.Label(frame, font = warning_font, text = '')
 
     global labels
