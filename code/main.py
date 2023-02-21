@@ -6,7 +6,8 @@ from PIL import ImageTk, Image
 import generate_password_gui
 import password_strength_gui
 
-def main() -> None:
+
+def main():
     '''
     Called upon starting the program,
     this function uses the Tkinter module to generate the window, notebook, frames,
