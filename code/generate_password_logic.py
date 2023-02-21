@@ -8,8 +8,11 @@ keyboard = Controller()
 def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
     '''
     Called by the create_password_labels function,
-    this function determines why a password can't be generated and returns the adequate error.
-    
+    this function checks if a password can be generated.
+    It first checks if the user has chosen any characters sets,
+    then it checks if the user's chosen length is valid,
+    and displays an adequate error.
+
     Parameters
     ----------
     requested_password_length: int
@@ -32,7 +35,6 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
         The error used when the input is invalid.
     '''
     
-    # Determine why a password can't be generated and display the adequate error.
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
         try:
             if 4 <= int(requested_password_length) <= 100:
