@@ -1,5 +1,4 @@
 import tkinter as tk
-
 from pynput.keyboard import Key, Controller
 
 import password_strength_logic

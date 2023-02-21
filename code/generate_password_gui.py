@@ -1,10 +1,10 @@
 import tkinter as tk
+
 import generate_password_logic
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
 description_font = 'Helvetica 12'
-
 
 password_width = 100
 password_height = 1
