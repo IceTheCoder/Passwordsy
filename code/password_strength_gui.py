@@ -28,7 +28,7 @@ def display_paste_button(event) -> None:
 def paste_text() -> None:
     '''
     Called upon pressing the paste button,
-    this function uses the keyboard module to simulate pressing CTRL and V to copy the selected text.
+    this function uses the keyboard module to simulate pressing CTRL and V to paste the selected text.
     '''
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
