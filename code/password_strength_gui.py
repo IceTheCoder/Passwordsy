@@ -44,9 +44,12 @@ def display_warnings(event) -> None:
 
     if warnings == input_password_msg:
         first_label.configure(text = warnings)
+        first_label.grid(column = 0, row = 3, sticky = 'n')
     else:
         for index, warning in enumerate(warnings):
             labels[index].configure(text = warning)
+        for label in labels:
+            label.grid(column = 0, row = 3 + labels.index(label), sticky = 'w')
 
 def create_password_strength_frame(frame) -> None:
     '''
@@ -75,7 +78,7 @@ def create_password_strength_frame(frame) -> None:
     input_box.bind('<Button-3>', display_paste_button)
 
     global first_label
-    first_label = tk.Label(frame, font = warning_font, text = '')
+    first_label = tk.Label(frame, font = warning_font, text = input_password_msg)
     
     global second_label
     second_label = tk.Label(frame, font = warning_font, text = '')
@@ -90,4 +93,4 @@ def create_password_strength_frame(frame) -> None:
     labels = [first_label, second_label, third_label, fourth_label]
 
     for label in labels:
-        label.grid(column = 0, row = 3 + labels.index(label))
+        label.grid(column = 0, row = 3 + labels.index(label), sticky = 'n')
