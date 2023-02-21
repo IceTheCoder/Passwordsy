@@ -57,7 +57,7 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
 def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
     Called by the validate_input function,
-    this function generates a password based on the user's requested length and on the selected character sets.
+    this function returns a password based on the user's requested length and on the selected character sets.
 
     Parameters
     ----------
