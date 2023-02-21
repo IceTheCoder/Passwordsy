@@ -7,11 +7,8 @@ keyboard = Controller()
 
 def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
     '''
-    Called by the create_password_labels function
-    (upon clicking the done button or pressing the ENTER key),
-    this function first checks if the input is valid and if at least 1 character set has been chosen
-    (displays an error if not),
-    and calls the generate_password function to return a password
+    Called by the create_password_labels function,
+    this function determines why a password can't be generated and returns the adequate error.
     
     Parameters
     ----------
@@ -62,11 +59,11 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
 
     Parameters
     ----------
-    requested_length: int
+    requested_password_length: int
         The length requested by the user.
     lowercase_letters_var: tkinter.IntVar()
         The variable used to check if the lowercase letters checkbox has been selected or not.
-    upppercase_letters_var: tkinter.IntVar()
+    uppercase_letters_var: tkinter.IntVar()
         The variable used to check if the upprcase letters checkbox has been selected or not.
     digits_var: tkinter.IntVar()
         The variable used to check if the digits checkbox has been selected or not.
@@ -101,20 +98,17 @@ def show_copy_button(event, copy) -> None:
     ----------
     event:
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+    copy:
+        The copy button itself
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
 
 def copy_text(input_box, labels) -> None:
     '''
     Called upon pressing the copy button,
-    this function uses the keyboard module to simulate pressing CTRL and C to copy the selected text.
+    this function copies the selected text,
+    and focuses the keyboard on the input_box to deselect the text.
     '''
-    keyboard.press(Key.ctrl_l)
-    keyboard.press('c')
-    keyboard.release(Key.ctrl_l)
-    keyboard.release('c')
-    #time.sleep(2)
-    #input_box.focus()
 
     for label in labels:
         selected_text = label.selection_get()
