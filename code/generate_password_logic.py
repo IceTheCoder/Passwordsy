@@ -131,9 +131,9 @@ def show_copy_button(event, copy) -> None:
 
     Parameters
     ----------
-    event:
+    event: tkinter.event
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
-    copy:
+    copy: tkinter.Menu()
         The copy button itself.
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
