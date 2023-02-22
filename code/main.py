@@ -5,7 +5,6 @@ from PIL import ImageTk, Image
 import generate_password_gui
 import password_strength_gui
 
-
 def main():
     '''
     Called upon starting the program,
