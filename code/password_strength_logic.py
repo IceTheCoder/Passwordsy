@@ -128,7 +128,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     def check_for_patterns_in_password() -> None:
         '''
         Called by the check_password_strength function
-        (upon pressing the done button),
+        (as the user types),
         this function checks if there are any repeating characters in the inputted password,
         and returns an adequate message.
         '''
