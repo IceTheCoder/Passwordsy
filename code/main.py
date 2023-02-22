@@ -32,7 +32,7 @@ def main():
 
     class GeneratePasswordFrame:
         '''
-        A class that creates the "generate password" frame,
+        A class that creates the 'generate password' frame,
         and adds it to the notebook previously created.
 
         ...
