@@ -14,46 +14,26 @@ def adapt_input(requested_password_length):
         except:
             raise ValueError
 
-def validate_input(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
-    '''
-    Called by the create_password_labels function,
-    this function checks if a password can be generated.
-    It first checks if the user has chosen any characters sets,
-    then it checks if the user's chosen length is valid,
-    and displays an adequate error.
-
-    Parameters
-    ----------
-    requested_password_length: int
-        The length requested by the user.
-    lowercase_letters_var: tkinter.IntVar()
-        The variable used to check if the lowercase letters checkbox has been selected or not.
-    uppercase_letters_var: tkinter.IntVar()
-        The variable used to check if the upprcase letters checkbox has been selected or not.
-    digits_var: tkinter.IntVar()
-        The variable used to check if the digits checkbox has been selected or not.
-    punctuation_var: tkinter.IntVar()
-        The variable used to check if the punctuation checkbox has been selected or not.
-    no_character_set_error: str
-        The error used when no character set has been picked.
-    input_box: tkinter.Entry()
-        The input box used for the length of the password.
-    double_error: str
-        The error used when no character set has been picked and when the input is invalid.
-    invalid_input_error: str
-        The error used when the input is invalid.
-    '''
-    try:
-        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error, invalid_input_error):
+    if valid_character_set_bool:
+        try:
+            adapt_input(requested_password_length)
+            return ''
+        except:
+            return invalid_input_error
+    else:
+        try:
+            adapt_input(requested_password_length)
             return no_character_set_error
-        else:
-            return invalid_input_error
-    except:
-        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+        except:
             return double_error
-        else:
-            return invalid_input_error
-    
+
+def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
+    if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+        return False
+    else:
+        return True
+
 def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
     Called by the validate_input function,
