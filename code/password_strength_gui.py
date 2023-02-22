@@ -73,7 +73,7 @@ def create_password_strength_frame(frame) -> None:
     Parameters
     ----------
     frame: ttk.Frame
-        The "password strength" frame
+        The 'password strength' frame
     '''
     global paste
     paste = tk.Menu(frame, tearoff = False)
