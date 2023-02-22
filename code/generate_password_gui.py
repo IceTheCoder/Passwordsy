@@ -1,6 +1,6 @@
 import tkinter as tk
 
-import generate_password_logic
+import generate_password_logic as logic
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
@@ -88,7 +88,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         event:
             Necessary for initiating the function when pressing the ENTER key.
         '''
-        text = generate_password_logic.determine_error(generate_password_logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
+        text = logic.determine_error(logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
                                                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
         #try:
@@ -99,13 +99,13 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         # Check if an error is NOT returned.
         if text == '':
             for password_label in password_labels:
-                password_label.bind('<ButtonRelease>', lambda event: generate_password_logic.show_copy_button(event, copy_button))
+                password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_button))
 
-                adapted_input = generate_password_logic.adapt_input(input_box.get())
+                adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
                 input_box.insert(1, adapted_input)
 
-                text = generate_password_logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
+                text = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
                 show_text(password_label, text)
                 password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
         else:
@@ -122,7 +122,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     done_btn.grid(column = 0, row = 4, columnspan = 2)
 
     copy_button = tk.Menu(frame, tearoff = False)
-    copy_button.add_command(label = 'Copy', command = lambda: generate_password_logic.copy_text(input_box, password_labels))
+    copy_button.add_command(label = 'Copy', command = lambda: logic.copy_text(input_box, password_labels))
 
     def show_text(label, text) -> None:
         '''
