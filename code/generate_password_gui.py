@@ -38,8 +38,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     password_label_4 = tk.Text(frame, width = password_width, height = password_height,
                                borderwidth = password_border_width, font = password_font)
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
-
-    global copy_button
     
     frame_title = tk.Label(frame, text = 'Generate password', font = title_font)
     frame_title.grid(column = 0, row = 1, columnspan = 2)
