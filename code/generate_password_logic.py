@@ -1,58 +1,93 @@
 import string
 import secrets
-from pynput.keyboard import Key, Controller
 import clipboard
+from pynput.keyboard import Key, Controller
 
 keyboard = Controller()
 
-def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
+def adapt_input(requested_password_length) -> int:
     '''
-    Called by the create_password_labels function,
-    this function checks if a password can be generated.
-    It first checks if the user has chosen any characters sets,
-    then it checks if the user's chosen length is valid,
-    and displays an adequate error.
+    Called by the create_password_labels function
+    (upon pressing the done button),
+    this function first checks if any input has been given.
+    It raises a ValueError if no input has been given,
+    and if input has been given,
+    it attempts to adapt the input to an integer between 4 and 100.
+    If it succeeds, it returns the adapted input,
+    if it fails, it raises a ValueError.
 
     Parameters
     ----------
-    requested_password_length: int
-        The length requested by the user.
-    lowercase_letters_var: tkinter.IntVar()
-        The variable used to check if the lowercase letters checkbox has been selected or not.
-    uppercase_letters_var: tkinter.IntVar()
-        The variable used to check if the upprcase letters checkbox has been selected or not.
-    digits_var: tkinter.IntVar()
-        The variable used to check if the digits checkbox has been selected or not.
-    punctuation_var: tkinter.IntVar()
-        The variable used to check if the punctuation checkbox has been selected or not.
-    no_character_set_error: str
-        The error used when no character set has been picked.
-    input_box: tkinter.Entry()
-        The input box used for the length of the password.
-    double_error: str
-        The error used when no character set has been picked and when the input is invalid.
-    invalid_input_error: str
-        The error used when the input is invalid.
+    requested_password_length: str
+        The input of the user.
     '''
-    if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+    if requested_password_length == '':
+        raise ValueError
+    else:
         try:
-            if 4 <= int(requested_password_length) <= 100:
-                return no_character_set_error
-            else:
-                input_box.delete(0, 'end')
-                return double_error
+            return max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
         except:
-            input_box.delete(0, 'end')
+            raise ValueError
+
+def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error, invalid_input_error) -> str:
+    '''
+    Called by create_password_labels,
+    (upon pressing the done button)
+    this function retruns what error should be shown to the user:
+    an invalid_input_error if a character set has been chosen, but the input is unadaptable.
+    a no_character_set_error if no character set has been chosen, but the input is adaptable,
+    or a double_error if no character set has been chosen, and the input is unadaptable.
+
+    Parameters
+    ----------
+    valid_character_set_bool: boolean
+        Whether or not at least one character set has been chosen, as determined by validate_character_sets.
+    requested_password_length: str
+        The input_box content.
+    no_character_set_error: str
+        'An error occurred. Try again with at least 1 character set.'
+    double_error: str
+        'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
+    invalid_input_error: str
+        'An error occurred. Try again with a whole number between 4 and 100.'
+    '''
+    
+    if valid_character_set_bool:
+        try:
+            adapt_input(requested_password_length)
+            return ''
+        except:
+            return invalid_input_error
+    else:
+        try:
+            adapt_input(requested_password_length)
+            return no_character_set_error
+        except:
             return double_error
 
-    try:
-        if not 4 <= int(requested_password_length) <= 100:
-            input_box.delete(0, 'end')
-            return invalid_input_error
-    except:
-        input_box.delete(0, 'end')
-        return invalid_input_error
-    
+def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
+    '''
+    Called by the create_password_labels function
+    (upon pressing the done button),
+    this function checks if at least one character set has been chosen by the user,
+    and returns a boolean.
+
+    Parameters
+    ----------
+    lowercase_letters_var: tkinter.IntVar()
+        The variable of the lowercase letters checkbox.
+    uppercase_letters_var: tkinter.IntVar()
+        The variable of the uppercase letters checkbox.
+    digits_var: tkinter.IntVar()
+        The variable of the digits checkbox.
+    punctuation_var: tkinter.IntVar()
+        The variable of the punctuation checkbox.        
+    '''
+    if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
+        return False
+    else:
+        return True
+
 def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
     Called by the validate_input function,
@@ -96,9 +131,9 @@ def show_copy_button(event, copy) -> None:
 
     Parameters
     ----------
-    event:
+    event: tkinter.event
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
-    copy:
+    copy: tkinter.Menu()
         The copy button itself.
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)

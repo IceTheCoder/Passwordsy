@@ -10,7 +10,7 @@ for line in common_passwords_read:
 def check_password_strength(event, inputted_password, input_password_msg) -> list:
     '''
     Called upon pressing the done button,
-    this function hosts defines several functions that check the prevalance, length, complexity and repetitiveness of an inputted password, 
+    this function defines several functions that check the prevalance, length, complexity and repetitiveness of an inputted password, 
     and returns appropriate messages. 
     It then calls these functions and returns a list of messages indicating the results of each check.
 
@@ -29,7 +29,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     def check_if_password_is_common() -> None:
         '''
         Called by the check_password_strength function
-        (upon pressing the done button),
+        (as the user types),
         this function checks if the inputted password is in the 100,000 most used passwords (modified_common_password),
         and returns an appropiate message.
         It does this by counting the number of times an inputted_password is found in the SecLists list.
@@ -43,7 +43,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     def check_password_length() -> None:
         '''
         Called by the check_password_strength function
-        (upon pressing the done button),
+        (as the user types),
         this function categorises the inputted password as very weak, weak, good, or strong depending on its length,
         and returns a suitable message.
         '''
@@ -65,10 +65,10 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     def check_password_complexity() -> None:
         '''
         Called by the check_password_strength function
-        (upon pressing the done button),
+        (as the user types),
         this function checks how many of the following the inputted password is missing: 
         lowercase letters, uppercase letters, digits, and punctuation,
-        and return an adequate warning about them.
+        and returns an adequate warning about them.
         '''
         missing_security_features_list = []
 
@@ -128,7 +128,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     def check_for_patterns_in_password() -> None:
         '''
         Called by the check_password_strength function
-        (upon pressing the done button),
+        (as the user types),
         this function checks if there are any repeating characters in the inputted password,
         and returns an adequate message.
         '''

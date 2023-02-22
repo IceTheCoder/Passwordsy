@@ -5,7 +5,6 @@ from PIL import ImageTk, Image
 import generate_password_gui
 import password_strength_gui
 
-
 def main():
     '''
     Called upon starting the program,
@@ -33,7 +32,7 @@ def main():
 
     class GeneratePasswordFrame:
         '''
-        A class that creates the "generate password" frame,
+        A class that creates the 'generate password' frame,
         and adds it to the notebook previously created.
 
         ...
@@ -46,7 +45,7 @@ def main():
         generate_password_frame = tk.Frame(window)
         generate_password_frame.grid(column = 0, row = 0)
 
-        # Expand widgets to take up the entire window
+        # Expand some widgets' rows and columns to take up the entire window
         generate_password_frame.grid_columnconfigure(0, weight = 1)
         generate_password_frame.grid_rowconfigure(0, weight = 1)
         generate_password_frame.grid_rowconfigure(1, weight = 1)
@@ -56,7 +55,7 @@ def main():
 
         notebook.add(generate_password_frame, text = 'Generate password')
 
-        generate_password_gui.show_generate_password_frame(generate_password_frame, done_btn_image)
+        generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image)
 
     class PasswordStrengthFrame:
         '''

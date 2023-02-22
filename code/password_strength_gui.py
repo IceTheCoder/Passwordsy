@@ -8,9 +8,10 @@ keyboard = Controller()
 title_font = 'Helvetica 24'
 warning_font = 'Helvetica 16'
 
+input_password_msg = 'Please input a password.'
+
 copy_button_y_offest = 30
 
-input_password_msg = 'Please input a password.'
 
 def display_paste_button(event) -> None:
     '''
@@ -20,7 +21,7 @@ def display_paste_button(event) -> None:
 
     Parameters
     ----------
-    event:
+    event: tkinter.event
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     '''
     paste.tk_popup(event.x_root, event.y_root - copy_button_y_offest)
@@ -72,7 +73,7 @@ def create_password_strength_frame(frame) -> None:
     Parameters
     ----------
     frame: ttk.Frame
-        The "password strength" frame
+        The 'password strength' frame
     '''
     global paste
     paste = tk.Menu(frame, tearoff = False)
