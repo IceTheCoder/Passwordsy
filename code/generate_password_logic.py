@@ -1,7 +1,7 @@
 import string
 import secrets
-from pynput.keyboard import Key, Controller
 import clipboard
+from pynput.keyboard import Key, Controller
 
 keyboard = Controller()
 
