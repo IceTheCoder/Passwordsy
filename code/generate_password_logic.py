@@ -30,6 +30,20 @@ def adapt_input(requested_password_length) -> int:
             raise ValueError
 
 def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error, invalid_input_error):
+    '''
+    Called by create_password_labels,
+    this function retruns what error should be shown to the user:
+    an invalid_input_error if a character set has been chosen, but the input is unadaptable.
+    a no_character_set_error if no character set has been chosen, but the input is adaptable,
+    or a double_error if no character set has been chosen, and the input is unadaptable.
+
+    Parameters
+    ----------
+    valid_character_set_bool: boolean
+        Whether or not at least one character set has been chosen, as determined by validate_character_sets
+    requested_password_length
+    '''
+    
     if valid_character_set_bool:
         try:
             adapt_input(requested_password_length)
