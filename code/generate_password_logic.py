@@ -74,13 +74,13 @@ def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits
 
     Parameters
     ----------
-    lowercase_letters_var: tkinter.IntVar
+    lowercase_letters_var: tkinter.IntVar()
         The variable of the lowercase letters checkbox.
-    uppercase_letters_var: tkinter.IntVar
+    uppercase_letters_var: tkinter.IntVar()
         The variable of the uppercase letters checkbox.
-    digits_var: tkinter.IntVar
+    digits_var: tkinter.IntVar()
         The variable of the digits checkbox.
-    punctuation_var: tkinter.IntVar
+    punctuation_var: tkinter.IntVar()
         The variable of the punctuation checkbox.        
     '''
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
