@@ -32,6 +32,7 @@ def adapt_input(requested_password_length) -> int:
 def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error, invalid_input_error):
     '''
     Called by create_password_labels,
+    (upon pressing the done button)
     this function retruns what error should be shown to the user:
     an invalid_input_error if a character set has been chosen, but the input is unadaptable.
     a no_character_set_error if no character set has been chosen, but the input is adaptable,
@@ -66,7 +67,7 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
 
 def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
-    
+    Called by the create_password_labels function
     '''
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
         return False
