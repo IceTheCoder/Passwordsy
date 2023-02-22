@@ -29,7 +29,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     def check_if_password_is_common() -> None:
         '''
         Called by the check_password_strength function
-        (upon pressing the done button),
+        (as the user types),
         this function checks if the inputted password is in the 100,000 most used passwords (modified_common_password),
         and returns an appropiate message.
         It does this by counting the number of times an inputted_password is found in the SecLists list.
