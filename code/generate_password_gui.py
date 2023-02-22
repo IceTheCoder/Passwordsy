@@ -102,6 +102,8 @@ def show_generate_password_frame(frame, done_btn_image) -> None:
                 password_label.bind('<ButtonRelease>', lambda event: generate_password_logic.show_copy_button(event, copy_button))
 
                 adapted_input = generate_password_logic.adapt_input(input_box.get())
+                input_box.delete(0, 'end')
+                input_box.insert(1, adapted_input)
 
                 text = generate_password_logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
                 show_text(password_label, text)
