@@ -14,7 +14,7 @@ def adapt_input(requested_password_length):
         except:
             raise ValueError
 
-def validate_input(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
+def validate_input(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error) -> str:
     '''
     Called by the create_password_labels function,
     this function checks if a password can be generated.
@@ -44,34 +44,14 @@ def validate_input(requested_password_length, lowercase_letters_var, uppercase_l
         The error used when the input is invalid.
     '''
     try:
-        adapt_input(requested_password_length)
         if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
             return no_character_set_error
+        else:
+            return invalid_input_error
     except:
         if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
             return double_error
         else:
-            return invalid_input_error
-
-        
-        if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
-            try:
-                requested_password_length = abs(requested_password_length)
-                if 4 <= int(requested_password_length) <= 100:
-                    return no_character_set_error
-                else:
-                    input_box.delete(0, 'end')
-                    return double_error
-            except:
-                input_box.delete(0, 'end')
-                return double_error
-
-        try:
-            if not 4 <= int(requested_password_length) <= 100:
-                input_box.delete(0, 'end')
-                return invalid_input_error
-        except:
-            input_box.delete(0, 'end')
             return invalid_input_error
     
 def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
