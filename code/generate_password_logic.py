@@ -68,6 +68,20 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
 def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
     Called by the create_password_labels function
+    (upon pressing the done button),
+    this function checks if at least one character set has been chosen by the user,
+    and returns a boolean.
+
+    Parameters
+    ----------
+    lowercase_letters_var: tkinter.IntVar
+        The variable of the lowercase letters checkbox.
+    uppercase_letters_var: tkinter.IntVar
+        The variable of the uppercase letters checkbox.
+    digits_var: tkinter.IntVar
+        The variable of the digits checkbox.
+    punctuation_var: tkinter.IntVar
+        The variable of the punctuation checkbox.        
     '''
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
         return False
