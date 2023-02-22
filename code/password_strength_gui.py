@@ -8,9 +8,10 @@ keyboard = Controller()
 title_font = 'Helvetica 24'
 warning_font = 'Helvetica 16'
 
+input_password_msg = 'Please input a password.'
+
 copy_button_y_offest = 30
 
-input_password_msg = 'Please input a password.'
 
 def display_paste_button(event) -> None:
     '''
