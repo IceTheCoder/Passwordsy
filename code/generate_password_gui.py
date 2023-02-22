@@ -65,14 +65,14 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     punctuation_text = tk.Label(frame, text = 'Punctuation', font = description_font)
 
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
-    checkboxes_text = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
+    checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
     for checkbox in checkboxes:
         checkbox.grid(column = 1, row = 5 + checkboxes.index(checkbox), pady = 8)
         checkbox.select()
     
-    for text in checkboxes_text:
-        text.grid(column = 2, row = 5 + checkboxes_text.index(text), sticky = 'w')
+    for text in checkboxes_text_labels:
+        text.grid(column = 2, row = 5 + checkboxes_text_labels.index(text), sticky = 'w')
 
     def create_password_labels(event) -> None:
         '''
@@ -89,12 +89,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         text = logic.determine_error(logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
                                                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
-        #try:
-        #    adapted_input = generate_password_logic.adapt_input(input_box.get())
-        #except:
-        #    text = generate_password_logic.validate_input(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var, no_character_set_error, input_box, double_error, invalid_input_error)
-
-        # Check if an error is NOT returned.
         if text == '':
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_button))
