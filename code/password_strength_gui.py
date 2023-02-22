@@ -21,7 +21,7 @@ def display_paste_button(event) -> None:
 
     Parameters
     ----------
-    event:
+    event: tkinter.event
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     '''
     paste.tk_popup(event.x_root, event.y_root - copy_button_y_offest)
