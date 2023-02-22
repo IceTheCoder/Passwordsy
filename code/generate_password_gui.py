@@ -77,9 +77,13 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     def create_password_labels(event) -> None:
         '''
         Called upon clicking the done button or pressing the ENTER key,
-        this function validates the user input.
-        If it is valid, this function uses the show_text function to display a password,
-        else it uses the same function to display an adequate error given through the validate_input function of generate_password_logic.py
+        this function calls determine_error and validate_character_sets of generate_password_logic,
+        and then settles whether an error has occurred or not.
+        If an error has occurred, the function displays said error 
+        (obtained through determine_error),
+        and displays it on the screen through show_text.
+        If an error has not occurred, the function calls generate_password of generate_password_logic.py to get 4 passwords,
+        and calls the show_text function to display them to the user.
 
         Parameters
         ----------
@@ -120,7 +124,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         '''
         Called by the create_password_labels function,
         this function updates the contents of the password_labels,
-        by enabling the label, deleting its current contents, inserting the new text, and then disabling the label again.
+        by enabling the label, deleting its current contents, 
+        inserting the new text, and then disabling the label again.
 
         Parameters
         ----------
@@ -138,7 +143,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 def select_input_box(event) -> None:
     '''
     Called whenever the tab is changed,
-    this function focuses to the input box,
+    this function focuses the keyboard to the input box,
     which allows the user to start typing immediately without having to click on the input box first.
     '''
     input_box.focus()
