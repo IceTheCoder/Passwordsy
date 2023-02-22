@@ -55,7 +55,7 @@ def main():
 
         notebook.add(generate_password_frame, text = 'Generate password')
 
-        generate_password_gui.show_generate_password_frame(generate_password_frame, done_btn_image)
+        generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image)
 
     class PasswordStrengthFrame:
         '''
