@@ -15,7 +15,7 @@ invalid_input_error = 'An error occurred. Try again with a whole number between 
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
 
-def show_generate_password_frame(frame, done_btn_image) -> None:
+def create_generate_password_frame(frame, done_btn_image) -> None:
     '''
     Called upon starting the program,
     this function uses the Tkinter module to create a GUI frame to generate passwords with various options for customisation
