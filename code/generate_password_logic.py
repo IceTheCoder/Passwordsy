@@ -40,8 +40,15 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
     Parameters
     ----------
     valid_character_set_bool: boolean
-        Whether or not at least one character set has been chosen, as determined by validate_character_sets
-    requested_password_length
+        Whether or not at least one character set has been chosen, as determined by validate_character_sets.
+    requested_password_length: str
+        The input_box content.
+    no_character_set_error: str
+        'An error occurred. Try again with at least 1 character set.'
+    double_error: str
+        'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
+    invalid_input_error: str
+        'An error occurred. Try again with a whole number between 4 and 100.'
     '''
     
     if valid_character_set_bool:
@@ -58,6 +65,9 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
             return double_error
 
 def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
+    '''
+    
+    '''
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 and punctuation_var.get() == 0:
         return False
     else:
