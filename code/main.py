@@ -45,7 +45,7 @@ def main():
         generate_password_frame = tk.Frame(window)
         generate_password_frame.grid(column = 0, row = 0)
 
-        # Expand widgets to take up the entire window
+        # Expand some widgets' rows and columns to take up the entire window
         generate_password_frame.grid_columnconfigure(0, weight = 1)
         generate_password_frame.grid_rowconfigure(0, weight = 1)
         generate_password_frame.grid_rowconfigure(1, weight = 1)
