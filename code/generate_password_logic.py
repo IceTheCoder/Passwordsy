@@ -5,7 +5,22 @@ from pynput.keyboard import Key, Controller
 
 keyboard = Controller()
 
-def adapt_input(requested_password_length):
+def adapt_input(requested_password_length) -> int:
+    '''
+    Called by the create_password_labels function
+    (upon pressing the done button),
+    this function first checks if any input has been given.
+    It raises a ValueError if no input has been given,
+    and if input has been given,
+    it attempts to adapt the input to an integer between 4 and 100.
+    If it succeeds, it returns the adapted input,
+    if it fails, it raises a ValueError.
+
+    Parameters
+    ----------
+    requested_password_length: str
+        The input of the user.
+    '''
     if requested_password_length == '':
         raise ValueError
     else:
