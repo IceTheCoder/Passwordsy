@@ -68,7 +68,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
         (as the user types),
         this function checks how many of the following the inputted password is missing: 
         lowercase letters, uppercase letters, digits, and punctuation,
-        and return an adequate warning about them.
+        and returns an adequate warning about them.
         '''
         missing_security_features_list = []
 
