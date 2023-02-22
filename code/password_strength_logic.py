@@ -43,7 +43,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     def check_password_length() -> None:
         '''
         Called by the check_password_strength function
-        (upon pressing the done button),
+        (as the user types),
         this function categorises the inputted password as very weak, weak, good, or strong depending on its length,
         and returns a suitable message.
         '''
