@@ -29,7 +29,7 @@ def adapt_input(requested_password_length) -> int:
         except:
             raise ValueError
 
-def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error, invalid_input_error):
+def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error, invalid_input_error) -> str:
     '''
     Called by create_password_labels,
     (upon pressing the done button)
