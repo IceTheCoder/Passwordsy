@@ -19,7 +19,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     '''
     Called upon starting the program,
     this function uses the Tkinter module to create a GUI frame to generate passwords with various options for customisation
-    (length and character sets)
+    (length and character sets),
     and serves as a hub for all other password generation functions.
 
     Parameters
