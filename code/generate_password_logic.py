@@ -5,6 +5,7 @@ from pynput.keyboard import Key, Controller
 
 keyboard = Controller()
 
+
 def adapt_input(requested_password_length) -> int:
     '''
     Called by the create_password_labels function
@@ -28,6 +29,7 @@ def adapt_input(requested_password_length) -> int:
             return max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
         except:
             raise ValueError
+
 
 def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error, invalid_input_error) -> str:
     '''
@@ -65,6 +67,7 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
         except:
             return double_error
 
+
 def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
     Called by the create_password_labels function
@@ -87,6 +90,7 @@ def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits
         return False
     else:
         return True
+
 
 def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
     '''
@@ -123,6 +127,7 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
         if all(any(char in s for char in password) for s in character_sets):
             return password
 
+
 def show_copy_button(event, copy) -> None:
     '''
     Called when the user releases a mouse button on a password label,
@@ -137,6 +142,7 @@ def show_copy_button(event, copy) -> None:
         The copy button itself.
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
+
 
 def copy_text(input_box, labels) -> None:
     '''
