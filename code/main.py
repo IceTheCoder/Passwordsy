@@ -31,7 +31,7 @@ def main():
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
     notebook.bind('<<NotebookTabChanged>>', generate_password_gui.select_input_box)
-    window.bind('<Control-L>', generate_password_logic.hide_copy_button)
+    window.bind('<Control-L>', lambda ab: generate_password_logic.hide_copy_button(None, generate_password_gui.copy_menu))
 
     class GeneratePasswordFrame:
         '''
