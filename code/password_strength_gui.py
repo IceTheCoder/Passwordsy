@@ -26,6 +26,7 @@ def display_paste_button(event) -> None:
     '''
     paste.tk_popup(event.x_root, event.y_root - copy_button_y_offest)
 
+
 def paste_text() -> None:
     '''
     Called upon pressing the paste button,
@@ -35,6 +36,7 @@ def paste_text() -> None:
     keyboard.press('v')
     keyboard.release(Key.ctrl_l)
     keyboard.release('v')
+
 
 def display_warnings(event) -> None:
     '''
@@ -62,6 +64,7 @@ def display_warnings(event) -> None:
             labels[index].configure(text = warning)
         for label in labels:
             label.grid(column = 0, row = 3 + labels.index(label), sticky = 'w')
+
 
 def create_password_strength_frame(frame) -> None:
     '''
