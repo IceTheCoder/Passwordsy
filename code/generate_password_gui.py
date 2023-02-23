@@ -107,6 +107,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_text(password_label, text)
                 password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
         else:
+            for password_label in password_labels:
+                password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_button))
+                
             input_box.delete(0, 'end')
             password_label_1.grid(column=0, row=5, padx=10, pady=10)
             show_text(password_label_1, text)
