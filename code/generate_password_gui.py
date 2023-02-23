@@ -99,7 +99,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
             Necessary for initiating the function when pressing the ENTER key.
         '''
         for password_label in password_labels:
-                password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_menu))
+                password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_menu, window))
 
         text = logic.determine_error(logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
                                                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
@@ -130,8 +130,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
     copy_menu.add_command(label='Copy', command=lambda ab: logic.copy_text(input_box, password_labels))
-    copy_menu.bind('<Key>', lambda event: input_box.focus())
-
+    #lambda event: input_box.focus())
 
     def show_text(label, text) -> None:
         '''
