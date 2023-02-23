@@ -93,7 +93,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         '''
         text = logic.determine_error(logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
                                                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
-
+        
+        # Check if an error was not returned
         if text == '':
             for password_label in password_labels:
                 password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_button))
