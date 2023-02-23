@@ -122,6 +122,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     copy_button = tk.Menu(frame, tearoff=False)
     copy_button.add_command(label='Copy', command=lambda: logic.copy_text(input_box, password_labels))
+    copy_button.bind('<Control_L>', logic.hide_copy_button)
 
     def show_text(label, text) -> None:
         '''
