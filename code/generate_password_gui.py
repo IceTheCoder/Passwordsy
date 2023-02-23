@@ -15,6 +15,7 @@ invalid_input_error = 'An error occurred. Try again with a whole number between 
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
 
+
 def create_generate_password_frame(frame, done_btn_image) -> None:
     '''
     Called upon starting the program,
@@ -39,40 +40,40 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                                borderwidth=password_border_width, font=password_font)
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
     
-    frame_title = tk.Label(frame, text = 'Generate password', font = title_font)
-    frame_title.grid(column = 0, row = 1, columnspan = 2)
+    frame_title = tk.Label(frame, text='Generate password', font=title_font)
+    frame_title.grid(column=0, row=1, columnspan=2)
 
-    question = tk.Label(frame, text = 'Number of characters (4 to 100):', font = description_font)
-    question.grid(column = 0, row = 2, columnspan = 2)
+    question = tk.Label(frame, text='Number of characters (4 to 100):', font=description_font)
+    question.grid(column=0, row=2, columnspan=2)
 
-    character_sets_label = tk.Label(frame, text = 'Character sets', font = section_title_font)
-    character_sets_label.grid(column = 1, row = 4, columnspan = 2)
+    character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
+    character_sets_label.grid(column=1, row=4, columnspan=2)
 
     lowercase_letters_var = tk.IntVar()
-    lowercase_letters_checkbox = tk.Checkbutton(frame, variable = lowercase_letters_var, offvalue = 0, onvalue = 1)
-    lowercase_letters_text = tk.Label(frame, text = 'Lowercase letters', font = description_font)
+    lowercase_letters_checkbox = tk.Checkbutton(frame, variable=lowercase_letters_var, offvalue=0, onvalue=1)
+    lowercase_letters_text = tk.Label(frame, text='Lowercase letters', font=description_font)
 
     uppercase_letters_var = tk.IntVar()
-    uppercase_letters_checkbox = tk.Checkbutton(frame, variable = uppercase_letters_var, offvalue = 0, onvalue = 1)
-    uppercase_letters_text = tk.Label(frame, text = 'Uppercase letters', font = description_font)
+    uppercase_letters_checkbox = tk.Checkbutton(frame, variable=uppercase_letters_var, offvalue=0, onvalue=1)
+    uppercase_letters_text = tk.Label(frame, text='Uppercase letters', font=description_font)
 
     digits_var = tk.IntVar()
-    digits_checkbox = tk.Checkbutton(frame, variable = digits_var, offvalue = 0, onvalue = 1)
-    digits_text = tk.Label(frame, text = 'Digits', font = description_font)
+    digits_checkbox = tk.Checkbutton(frame, variable=digits_var, offvalue=0, onvalue=1)
+    digits_text = tk.Label(frame, text='Digits', font=description_font)
 
     punctuation_var = tk.IntVar()
-    punctuation_checkbox = tk.Checkbutton(frame, variable = punctuation_var, offvalue = 0, onvalue = 1)
-    punctuation_text = tk.Label(frame, text = 'Punctuation', font = description_font)
+    punctuation_checkbox = tk.Checkbutton(frame, variable=punctuation_var, offvalue=0, onvalue=1)
+    punctuation_text = tk.Label(frame, text='Punctuation', font=description_font)
 
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
     for checkbox in checkboxes:
-        checkbox.grid(column = 1, row = 5 + checkboxes.index(checkbox), pady = 8)
+        checkbox.grid(column=1, row=5 + checkboxes.index(checkbox), pady=8)
         checkbox.select()
     
     for text in checkboxes_text_labels:
-        text.grid(column = 2, row = 5 + checkboxes_text_labels.index(text), sticky = 'w')
+        text.grid(column=2, row=5 + checkboxes_text_labels.index(text), sticky='w')
 
     def create_password_labels(event) -> None:
         '''
@@ -103,22 +104,22 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
                 text = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
                 show_text(password_label, text)
-                password_label.grid(column = 0, row = 5 + password_labels.index(password_label), pady = 10, padx = 10)
+                password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
         else:
             input_box.delete(0, 'end')
-            password_label_1.grid(column = 0, row = 5, padx = 10, pady = 10)
+            password_label_1.grid(column=0, row=5, padx=10, pady=10)
             show_text(password_label_1, text)
 
     global input_box
-    input_box = tk.Entry(frame, width = 10, borderwidth = 2)
+    input_box = tk.Entry(frame, width=10, borderwidth=2)
     input_box.bind('<Return>', create_password_labels)
-    input_box.grid(column = 0, row = 3, columnspan = 2)
+    input_box.grid(column=0, row=3, columnspan=2)
 
     done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
-    done_btn.grid(column = 0, row = 4, columnspan = 2)
+    done_btn.grid(column=0, row=4, columnspan=2)
 
     copy_button = tk.Menu(frame, tearoff = False)
-    copy_button.add_command(label = 'Copy', command = lambda: logic.copy_text(input_box, password_labels))
+    copy_button.add_command(label='Copy', command=lambda: logic.copy_text(input_box, password_labels))
 
     def show_text(label, text) -> None:
         '''
@@ -135,10 +136,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         text: str
             Each password or the error.
         '''
-        label.config(state = 'normal')
+        label.config(state='normal')
         label.delete('1.0', 'end')
         label.insert('1.0', text)
-        label.config(state = 'disabled', bg = '#ffffff')
+        label.config(state='disabled', bg='#ffffff')
 
 def select_input_box(event) -> None:
     '''
