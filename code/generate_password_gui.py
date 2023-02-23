@@ -91,14 +91,15 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         event:
             Necessary for initiating the function when pressing the ENTER key.
         '''
+        for password_label in password_labels:
+                password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_button))
+
         text = logic.determine_error(logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
                                                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
-        
+
         # Check if an error was not returned
         if text == '':
             for password_label in password_labels:
-                password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_button))
-
                 adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
                 input_box.insert(1, adapted_input)
@@ -107,9 +108,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_text(password_label, text)
                 password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
         else:
-            for password_label in password_labels:
-                password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_button))
-                
             input_box.delete(0, 'end')
             password_label_1.grid(column=0, row=5, padx=10, pady=10)
             show_text(password_label_1, text)
