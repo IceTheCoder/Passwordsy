@@ -16,7 +16,7 @@ no_character_set_error = 'An error occurred. Try again with at least 1 character
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
 
 
-def create_generate_password_frame(frame, done_btn_image) -> None:
+def create_generate_password_frame(frame, done_btn_image, window) -> None:
     '''
     Called upon starting the program,
     this function uses the Tkinter module to create a GUI frame to generate passwords with various options for customisation
@@ -30,6 +30,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
     '''
+    window.bind('<Control_L>', logic.hide_copy_button)
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
     password_label_2 = tk.Text(frame, width=password_width, height=password_height,
@@ -122,7 +123,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     copy_button = tk.Menu(frame, tearoff=False)
     copy_button.add_command(label='Copy', command=lambda: logic.copy_text(input_box, password_labels))
-    copy_button.bind('<Control_L>', logic.hide_copy_button)
 
     def show_text(label, text) -> None:
         '''
