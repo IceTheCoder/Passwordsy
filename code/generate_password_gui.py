@@ -129,7 +129,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
 
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
-    copy_menu.add_command(label='Copy', command=lambda ab: logic.copy_text(input_box, password_labels))
+    copy_menu.add_command(label='Copy', command=lambda: logic.copy_text(input_box, password_labels))
     #lambda event: input_box.focus())
 
     def show_text(label, text) -> None:
