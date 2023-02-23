@@ -22,6 +22,7 @@ def hide_copy_button(event) -> None:
     # if the pop-up menu has focus, close it
     copy_menu.unpost()
 
+
 def create_generate_password_frame(frame, done_btn_image, window) -> None:
     '''
     Called upon starting the program,
