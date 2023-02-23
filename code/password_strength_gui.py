@@ -57,13 +57,13 @@ def display_warnings(event) -> None:
     warnings = password_strength_logic.check_password_strength(None, input_box.get(), input_password_msg)
 
     if warnings == input_password_msg:
-        labels[0].configure(text = warnings)
-        labels[0].grid(column = 0, row = 3, sticky = 'n')
+        labels[0].configure(text=warnings)
+        labels[0].grid(column=0, row=3, sticky='n')
     else:
         for index, warning in enumerate(warnings):
-            labels[index].configure(text = warning)
+            labels[index].configure(text=warning)
         for label in labels:
-            label.grid(column = 0, row = 3 + labels.index(label), sticky = 'w')
+            label.grid(column=0, row=3 + labels.index(label), sticky='w')
 
 
 def create_password_strength_frame(frame) -> None:
@@ -79,28 +79,28 @@ def create_password_strength_frame(frame) -> None:
         The 'password strength' frame
     '''
     global paste
-    paste = tk.Menu(frame, tearoff = False)
-    paste.add_command(label = 'Paste', command = paste_text)
+    paste = tk.Menu(frame, tearoff=False)
+    paste.add_command(label='Paste', command=paste_text)
 
     instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
-    instruction_label.grid(column = 0, row = 1)
+    instruction_label.grid(column=0, row=1)
 
     global input_box
-    input_box = tk.Entry(frame, width = 32, borderwidth = 2)
-    input_box.grid(column = 0, row = 2)
+    input_box = tk.Entry(frame, width=32, borderwidth=2)
+    input_box.grid(column=0, row=2)
     input_box.bind('<KeyRelease>', display_warnings)
     input_box.bind('<Button-3>', display_paste_button)
 
-    first_label = tk.Label(frame, font = warning_font, text = input_password_msg)
+    first_label = tk.Label(frame, font=warning_font, text=input_password_msg)
     
-    second_label = tk.Label(frame, font = warning_font, text = '')
+    second_label = tk.Label(frame, font=warning_font, text='')
 
-    third_label = tk.Label(frame, font = warning_font, text = '')
+    third_label = tk.Label(frame, font=warning_font, text='')
 
-    fourth_label = tk.Label(frame, font = warning_font, text = '')
+    fourth_label = tk.Label(frame, font=warning_font, text='')
 
     global labels
     labels = [first_label, second_label, third_label, fourth_label]
 
     for label in labels:
-        label.grid(column = 0, row = 3 + labels.index(label), sticky = 'n')
+        label.grid(column=0, row=3 + labels.index(label), sticky='n')
