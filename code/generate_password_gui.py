@@ -14,14 +14,13 @@ password_font = 'Consolas 11'
 invalid_input_error = 'An error occurred. Try again with a whole number between 4 and 100.'
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
+
+
 def hide_copy_button(event) -> None:
     print('Hello, world!')
     # get the widget that currently has focus
     # if the pop-up menu has focus, close it
     copy_menu.unpost()
-
-
-
 
 def create_generate_password_frame(frame, done_btn_image, window) -> None:
     '''
