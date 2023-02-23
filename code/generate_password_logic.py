@@ -128,7 +128,7 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
             return password
 
 
-def show_copy_button(event, copy, window) -> None:
+def show_copy_button(event, copy) -> None:
     '''
     Called when the user releases a mouse button on a password label,
     this function uses the Tkinter module to display a contextual menu containing a 'copy' button for copying the password to the clipboard on the x and y coordinates of the user's cursor,
