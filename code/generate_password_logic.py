@@ -141,7 +141,7 @@ def show_copy_button(event, copy, window) -> None:
     copy: tkinter.Menu()
         The copy button itself.
     '''
-    window.focus()
+    copy.focus()
     copy.tk_popup(event.x_root, event.y_root - 30)
 
 def copy_text(input_box, labels) -> None:
