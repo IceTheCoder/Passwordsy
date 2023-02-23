@@ -117,10 +117,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     input_box.bind('<Return>', create_password_labels)
     input_box.grid(column=0, row=3, columnspan=2)
 
-    done_btn = tk.Button(frame, image = done_btn_image, borderwidth = 0, command = lambda: create_password_labels(None))
+    done_btn = tk.Button(frame, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels(None))
     done_btn.grid(column=0, row=4, columnspan=2)
 
-    copy_button = tk.Menu(frame, tearoff = False)
+    copy_button = tk.Menu(frame, tearoff=False)
     copy_button.add_command(label='Copy', command=lambda: logic.copy_text(input_box, password_labels))
 
     def show_text(label, text) -> None:

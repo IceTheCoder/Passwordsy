@@ -143,6 +143,8 @@ def show_copy_button(event, copy) -> None:
     '''
     copy.tk_popup(event.x_root, event.y_root - 30)
 
+def hide_copy_button(event, copy) -> None:
+    copy.grid_forget()
 
 def copy_text(input_box, labels) -> None:
     '''
