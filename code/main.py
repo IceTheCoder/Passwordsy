@@ -4,6 +4,7 @@ from PIL import ImageTk, Image
 
 import generate_password_gui
 import password_strength_gui
+import generate_password_logic
 
 
 def main():
@@ -30,6 +31,7 @@ def main():
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
     notebook.bind('<<NotebookTabChanged>>', generate_password_gui.select_input_box)
+    window.bind('<Control-L>', generate_password_logic.hide_copy_button)
 
     class GeneratePasswordFrame:
         '''
