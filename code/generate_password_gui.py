@@ -92,7 +92,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
         '''
         for password_label in password_labels:
             password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_menu, window))
-            password_label.bind('<Control_L>', lambda: copy_menu.destroy())
+            password_label.bind('<Control_L>', lambda a: input_box.destroy())
 
         text = logic.determine_error(logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
                                                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
