@@ -142,7 +142,7 @@ def show_copy_button(event, copy, label_to_focus_on) -> None:
         The copy button itself.
     '''
     label_to_focus_on.focus()
-    copy.bind('<KeyRelease>', lambda event: print('Hello, world!'))
+    label_to_focus_on.bind('<KeyRelease>', lambda event: print('Hello, world!'))
     copy.tk_popup(event.x_root, event.y_root - 30)
 
 
