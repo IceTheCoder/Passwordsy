@@ -141,8 +141,6 @@ def show_copy_button(event, copy, label_to_focus_on) -> None:
     copy: tkinter.Menu()
         The copy button itself.
     '''
-    label_to_focus_on.focus()
-    label_to_focus_on.bind('<KeyRelease>', lambda event: print('Hello, world!'))
     copy.tk_popup(event.x_root, event.y_root - 30)
 
 
