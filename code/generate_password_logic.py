@@ -142,7 +142,7 @@ def show_copy_button(event, copy, window) -> None:
         The copy button itself.
     '''
     window.withdraw()
-    window.focus()
+    window.deiconify()
     copy.tk_popup(event.x_root, event.y_root - 30)
 
 
