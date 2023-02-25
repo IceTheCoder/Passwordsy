@@ -18,6 +18,7 @@ double_error = 'An error occurred. Try again with at least 1 character set and a
 global input_box
 global copy_menu
 global passwords
+global show_or_hide_all_button
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -44,7 +45,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                                borderwidth=password_border_width, font=password_font)
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
-    def show_password(index):
+    def show_password(index, button):
         global passwords
         if passwords:
             password_labels[index].configure(state='normal')
@@ -58,16 +59,30 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             password_labels[index].delete('1.0', 'end')
             password_labels[index].insert('1.0', passwords[index])
             password_labels[index].configure(state='disabled')
+        button.configure(text='Hide', command=lambda: hide_password(index, button))
+
+    def hide_password(index, button):
+        button.configure(text='Show', command=lambda: show_password(index, button))
 
     def show_all_passwords():
-        pass
+        global show_or_hide_all_button
+        for index, label in enumerate(password_labels):
+            label.configure(state='normal')
+            label.delete('1.0', 'end')
+            label.insert('1.0', passwords[index])
+            label.configure(state='disabled')
+        show_or_hide_all_button.configure(text='Hide all', command=hide_all_passwords)
 
-    show_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0))
-    show_button_2 = tk.Button(frame, text='Show', command=lambda: show_password(1))
-    show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(2))
-    show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3))
+    def hide_all_passwords():
+        show_or_hide_all_button.configure(text='Show all', command=show_all_passwords)
+
+    global show_or_hide_all_button
+    show_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0, show_button_1))
+    show_button_2 = tk.Button(frame, text='Show', command=lambda: show_password(1, show_button_2))
+    show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(2, show_button_3))
+    show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3, show_button_4))
     show_buttons = [show_button_1, show_button_2, show_button_3, show_button_4]
-    show_all_button = tk.Button(frame, text='Show all', command=show_all_passwords)
+    show_or_hide_all_button = tk.Button(frame, text='Show all', command=show_all_passwords)
 
     copy_button_1 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(0, passwords))
     copy_button_2 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(1, passwords))
@@ -154,7 +169,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_button.grid(row=4 + index, column=1, padx=15)
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=2, padx=15)
-            show_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
+            show_or_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
         else:
             for index, show_button in enumerate(show_buttons):
                 if show_buttons.index(show_button) != 0:
@@ -166,7 +181,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                     copy_button.grid(row=4 + index, column=2, padx=15)
                 else:
                     copy_button.grid_forget()
-            show_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
+            show_or_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
 
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
