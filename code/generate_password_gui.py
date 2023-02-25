@@ -18,6 +18,7 @@ double_error = 'An error occurred. Try again with at least 1 character set and a
 global input_box
 global copy_menu
 global passwords
+passwords = []
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -46,17 +47,30 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     def show_password(index):
         global passwords
-        password_labels[index].configure(state='normal')
-        password_labels[index].delete('1.0', 'end')
-        password_labels[index].insert('1.0', passwords[index])
-        password_labels[index].configure(state='disabled')
+        if passwords:
+            password_labels[index].configure(state='normal')
+            password_labels[index].delete('1.0', 'end')
+            password_labels[index].insert('1.0', passwords[index])
+            password_labels[index].configure(state='disabled')
+        elif index == 0:
+            return
+        else:
+            password_labels[index].configure(state='normal')
+            password_labels[index].delete('1.0', 'end')
+            password_labels[index].insert('1.0', passwords[index])
+            password_labels[index].configure(state='disabled')
 
     show_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0))
     show_button_2 = tk.Button(frame, text='Show', command=lambda: show_password(1))
     show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(2))
     show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3))
-
     show_buttons = [show_button_1, show_button_2, show_button_3, show_button_4]
+
+    copy_button_1 = tk.Button(frame, text='Copy', command=lambda: show_password(0))
+    copy_button_2 = tk.Button(frame, text='Copy', command=lambda: show_password(1))
+    copy_button_3 = tk.Button(frame, text='Copy', command=lambda: show_password(2))
+    copy_button_4 = tk.Button(frame, text='Copy', command=lambda: show_password(3))
+    copy_buttons = [copy_button_1, copy_button_2, copy_button_3, copy_button_4]
 
     frame_title = tk.Label(frame, text='Generate password', font=title_font)
     frame_title.grid(column=0, row=1, columnspan=3)
@@ -65,7 +79,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     question.grid(column=0, row=2, columnspan=3)
 
     character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
-    character_sets_label.grid(column=2, row=5, columnspan=2)
+    character_sets_label.grid(column=3, row=5, columnspan=2)
 
     lowercase_letters_var = tk.IntVar()
     lowercase_letters_checkbox = tk.Checkbutton(frame, variable=lowercase_letters_var, offvalue=0, onvalue=1)
@@ -87,11 +101,11 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
     for checkbox in checkboxes:
-        checkbox.grid(column=2, row=6 + checkboxes.index(checkbox), pady=8)
+        checkbox.grid(column=3, row=6 + checkboxes.index(checkbox), pady=8)
         checkbox.select()
 
     for text_label in checkboxes_text_labels:
-        text_label.grid(column=3, row=6 + checkboxes_text_labels.index(text_label), sticky='w')
+        text_label.grid(column=4, row=6 + checkboxes_text_labels.index(text_label), sticky='w')
 
     def create_password_labels(event) -> None:
         """
@@ -109,15 +123,14 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         event:
             Necessary for initiating the function when pressing the ENTER key.
         """
+        global passwords
+
         for password_label in password_labels:
             password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
 
         message = logic.determine_error(
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
             input_box.get(), no_character_set_error, double_error, invalid_input_error)
-
-        global passwords
-        passwords = []
 
         # Check if an error was not returned
         if message == '':
@@ -138,6 +151,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             for index, show_button in enumerate(show_buttons):
                 show_button.grid(row=6 + index, column=1, padx=15)
 
+            for index, copy_button in enumerate(copy_buttons):
+                copy_button.grid(row=6 + index, column=2, padx=15)
+
         else:
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
@@ -156,7 +172,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
-    copy_menu.add_command(label='Copy', command=lambda: logic.copy_text(input_box, password_labels))
+    copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(input_box, password_labels))
 
     def show_text(label, message) -> None:
         """
