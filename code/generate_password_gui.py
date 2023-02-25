@@ -104,6 +104,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
         # Check if an error was not returned
         if message == '':
             for password_label in password_labels:
+                instruction_label.grid(column=0, row=5, sticky='s')
                 adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
                 input_box.insert(1, str(adapted_input))
@@ -126,7 +127,6 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     done_btn.grid(column=0, row=4, columnspan=2)
 
     instruction_label = tk.Label(frame, text='       Right-click to copy', font=description_font)
-    instruction_label.grid(column=0, row=5, sticky='s')
 
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
