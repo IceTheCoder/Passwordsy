@@ -132,11 +132,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         for password_label in password_labels:
             password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
             password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
-        for index, show_button in enumerate(show_buttons):
-            show_button.grid(row=4 + index, column=1, padx=15)
-        for index, copy_button in enumerate(copy_buttons):
-            copy_button.grid(row=4 + index, column=2, padx=15)
-        show_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
 
         message = logic.determine_error(
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
@@ -155,7 +150,24 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
                 show_text(password_label, '')
                 password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
+            for index, show_button in enumerate(show_buttons):
+                show_button.grid(row=4 + index, column=1, padx=15)
+            for index, copy_button in enumerate(copy_buttons):
+                copy_button.grid(row=4 + index, column=2, padx=15)
+            show_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
         else:
+            for index, show_button in enumerate(show_buttons):
+                if show_buttons.index(show_button) != 0:
+                    show_button.grid(row=4 + index, column=1, padx=15)
+                else:
+                    show_button.grid_forget()
+            for index, copy_button in enumerate(copy_buttons):
+                if copy_buttons.index(copy_button) != 0:
+                    copy_button.grid(row=4 + index, column=2, padx=15)
+                else:
+                    copy_button.grid_forget()
+            show_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
+
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
             password_label_1.grid(column=0, row=4, padx=10, pady=10)
