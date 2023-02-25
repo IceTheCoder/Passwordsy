@@ -108,13 +108,13 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
                 input_box.delete(0, 'end')
                 input_box.insert(1, str(adapted_input))
 
-                message = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var,
-                                                  punctuation_var)
+                message = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var,
+                                                  digits_var, punctuation_var)
                 show_text(password_label, message)
-                password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
+                password_label.grid(column=0, row=6 + password_labels.index(password_label), pady=10, padx=10)
         else:
             input_box.delete(0, 'end')
-            password_label_1.grid(column=0, row=5, padx=10, pady=10)
+            password_label_1.grid(column=0, row=6, padx=10, pady=10)
             show_text(password_label_1, message)
 
     global input_box
@@ -124,6 +124,9 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
 
     done_btn = tk.Button(frame, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels(None))
     done_btn.grid(column=0, row=4, columnspan=2)
+
+    instruction_label = tk.Label(frame, text='Right-click to copy', font=description_font)
+    instruction_label.grid(column=0, row=5)
 
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
