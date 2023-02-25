@@ -160,8 +160,3 @@ def select_input_box(event) -> None:
     which allows the user to start typing immediately without having to click on the input box first.
     """
     input_box.focus()
-
-
-def hide_copy_menu(event) -> None:
-    print('hide_copy_menu function executed.')
-    copy_menu.unpost()

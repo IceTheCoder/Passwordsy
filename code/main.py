@@ -30,63 +30,39 @@ def main():
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
     notebook.bind('<<NotebookTabChanged>>', generate_password_gui.select_input_box)
-    window.bind_all('<Control_L>', lambda event: generate_password_gui.hide_copy_menu(None))
 
-    class GeneratePasswordFrame:
-        """
-        A class that creates the 'generate password' frame,
-        and adds it to the notebook previously created.
+    generate_password_frame = tk.Frame(window)
+    generate_password_frame.grid(column=0, row=0)
 
-        ...
+    # Expand some widgets' rows and columns to take up the entire window
+    generate_password_frame.grid_columnconfigure(0, weight=1)
+    generate_password_frame.grid_rowconfigure(0, weight=1)
+    generate_password_frame.grid_rowconfigure(1, weight=1)
+    generate_password_frame.grid_rowconfigure(2, weight=1)
+    generate_password_frame.grid_rowconfigure(3, weight=1)
+    generate_password_frame.grid_rowconfigure(4, weight=1)
+    generate_password_frame.grid_rowconfigure(5, weight=1)
 
-        Attributes
-        ----------
-        generate_password_frame: ttk.frame
-            The 'generate password' frame
-        """
-        generate_password_frame = tk.Frame(window)
-        generate_password_frame.grid(column=0, row=0)
+    notebook.add(generate_password_frame, text='Generate password')
 
-        # Expand some widgets' rows and columns to take up the entire window
-        generate_password_frame.grid_columnconfigure(0, weight=1)
-        generate_password_frame.grid_rowconfigure(0, weight=1)
-        generate_password_frame.grid_rowconfigure(1, weight=1)
-        generate_password_frame.grid_rowconfigure(2, weight=1)
-        generate_password_frame.grid_rowconfigure(3, weight=1)
-        generate_password_frame.grid_rowconfigure(4, weight=1)
-        generate_password_frame.grid_rowconfigure(5, weight=1)
+    generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image, window)
 
-        notebook.add(generate_password_frame, text='Generate password')
+    password_strength_frame = tk.Frame(notebook)
+    password_strength_frame.grid(column=0, row=0)
 
-        generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image, window)
+    # Expand widgets to take up the entire window
+    password_strength_frame.grid_columnconfigure(0, weight=1)
+    password_strength_frame.grid_rowconfigure(0, weight=1)
+    password_strength_frame.grid_rowconfigure(1, weight=1)
+    password_strength_frame.grid_rowconfigure(2, weight=1)
+    password_strength_frame.grid_rowconfigure(3, weight=1)
+    password_strength_frame.grid_rowconfigure(4, weight=1)
+    password_strength_frame.grid_rowconfigure(5, weight=1)
+    password_strength_frame.grid_rowconfigure(6, weight=1)
 
-    class PasswordStrengthFrame:
-        """
-        A class that creates the "password strength" frame,
-        and adds it to the notebook previously created.
-        ...
+    notebook.add(password_strength_frame, text='Password strength')
 
-        Attributes
-        ----------
-        password_strength_frame: ttk.frame
-            The password strength frame
-        """
-        password_strength_frame = tk.Frame(notebook)
-        password_strength_frame.grid(column=0, row=0)
-
-        # Expand widgets to take up the entire window
-        password_strength_frame.grid_columnconfigure(0, weight=1)
-        password_strength_frame.grid_rowconfigure(0, weight=1)
-        password_strength_frame.grid_rowconfigure(1, weight=1)
-        password_strength_frame.grid_rowconfigure(2, weight=1)
-        password_strength_frame.grid_rowconfigure(3, weight=1)
-        password_strength_frame.grid_rowconfigure(4, weight=1)
-        password_strength_frame.grid_rowconfigure(5, weight=1)
-        password_strength_frame.grid_rowconfigure(6, weight=1)
-
-        notebook.add(password_strength_frame, text='Password strength')
-
-        password_strength_gui.create_password_strength_frame(password_strength_frame)
+    password_strength_gui.create_password_strength_frame(password_strength_frame)
 
     window.mainloop()
 
