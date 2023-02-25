@@ -66,10 +66,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3))
     show_buttons = [show_button_1, show_button_2, show_button_3, show_button_4]
 
-    copy_button_1 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(0, password_labels))
-    copy_button_2 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(1, password_labels))
-    copy_button_3 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(2, password_labels))
-    copy_button_4 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(3, password_labels))
+    copy_button_1 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(0, passwords))
+    copy_button_2 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(1, passwords))
+    copy_button_3 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(2, passwords))
+    copy_button_4 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(3, passwords))
     copy_buttons = [copy_button_1, copy_button_2, copy_button_3, copy_button_4]
 
     frame_title = tk.Label(frame, text='Generate password', font=title_font)
