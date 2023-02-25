@@ -148,7 +148,7 @@ def show_copy_button(event, copy) -> None:
     copy.tk_popup(event.x_root, event.y_root - 30)
 
 
-def copy_text(input_box, labels) -> None:
+def copy_selected_text(input_box, labels) -> None:
     """
     Called upon pressing the copy button,
     this function copies the selected text,
@@ -159,3 +159,7 @@ def copy_text(input_box, labels) -> None:
         clipboard.copy(selected_text)
 
     input_box.focus_set()
+
+
+def copy_password(index, labels):
+    pass
