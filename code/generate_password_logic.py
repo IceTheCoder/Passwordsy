@@ -29,7 +29,7 @@ def adapt_input(requested_password_length) -> int:
             generated_password = max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
             return generated_password
         except ValueError:
-            raise ValueError()
+            raise ValueError
 
 
 def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error,
