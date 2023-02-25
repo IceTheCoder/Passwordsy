@@ -17,6 +17,7 @@ double_error = 'An error occurred. Try again with at least 1 character set and a
 
 global input_box
 global copy_menu
+global passwords
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -44,12 +45,16 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
     def show_password(index):
-        pass
+        global passwords
+        password_labels[index].configure(state='normal')
+        password_labels[index].delete('1.0', 'end')
+        password_labels[index].insert('1.0', passwords[index])
+        password_labels[index].configure(state='disabled')
 
     show_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0))
-    show_button_2 = tk.Button(frame, text='Show', command=lambda: show_password(0))
-    show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(0))
-    show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(0))
+    show_button_2 = tk.Button(frame, text='Show', command=lambda: show_password(1))
+    show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(2))
+    show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3))
 
     show_buttons = [show_button_1, show_button_2, show_button_3, show_button_4]
 
@@ -111,6 +116,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
             input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
+        global passwords
         passwords = []
 
         # Check if an error was not returned
