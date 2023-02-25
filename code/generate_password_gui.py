@@ -76,7 +76,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         checkbox.select()
 
     for text_label in checkboxes_text_labels:
-        text_label.grid(column=2, row=6 + checkboxes_text_labels.index(text), sticky='w')
+        text_label.grid(column=2, row=6 + checkboxes_text_labels.index(text_label), sticky='w')
 
     def create_password_labels(event) -> None:
         """
@@ -101,6 +101,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
             input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
+        passwords = []
+
         # Check if an error was not returned
         if message == '':
             for password_label in password_labels:
@@ -111,6 +113,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
                 message = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var,
                                                   digits_var, punctuation_var)
+                passwords.append(message)
+
                 show_text(password_label, message)
                 password_label.grid(column=0, row=6 + password_labels.index(password_label), pady=10, padx=10)
         else:
