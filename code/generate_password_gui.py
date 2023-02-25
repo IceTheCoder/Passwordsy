@@ -95,7 +95,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
             Necessary for initiating the function when pressing the ENTER key.
         """
         for password_label in password_labels:
-            password_label.bind('<ButtonRelease>', lambda e: logic.show_copy_button(e, copy_menu))
+            password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
 
         message = logic.determine_error(
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
