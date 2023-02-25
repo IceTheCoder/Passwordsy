@@ -50,7 +50,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     question.grid(column=0, row=2, columnspan=2)
 
     character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
-    character_sets_label.grid(column=1, row=4, columnspan=2)
+    character_sets_label.grid(column=1, row=5, columnspan=2)
 
     lowercase_letters_var = tk.IntVar()
     lowercase_letters_checkbox = tk.Checkbutton(frame, variable=lowercase_letters_var, offvalue=0, onvalue=1)
@@ -72,11 +72,11 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
     for checkbox in checkboxes:
-        checkbox.grid(column=1, row=5 + checkboxes.index(checkbox), pady=8)
+        checkbox.grid(column=1, row=6 + checkboxes.index(checkbox), pady=8)
         checkbox.select()
 
     for text in checkboxes_text_labels:
-        text.grid(column=2, row=5 + checkboxes_text_labels.index(text), sticky='w')
+        text.grid(column=2, row=6 + checkboxes_text_labels.index(text), sticky='w')
 
     def create_password_labels(event) -> None:
         """
@@ -125,8 +125,8 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     done_btn = tk.Button(frame, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels(None))
     done_btn.grid(column=0, row=4, columnspan=2)
 
-    instruction_label = tk.Label(frame, text='Right-click to copy', font=description_font)
-    instruction_label.grid(column=0, row=5)
+    instruction_label = tk.Label(frame, text='       Right-click to copy', font=description_font)
+    instruction_label.grid(column=0, row=5, sticky='s')
 
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
