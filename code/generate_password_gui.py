@@ -15,8 +15,12 @@ invalid_input_error = 'An error occurred. Try again with a whole number between 
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
 
+global input_box
+global copy_menu
+
+
 def create_generate_password_frame(frame, done_btn_image, window) -> None:
-    '''
+    """
     Called upon starting the program,
     this function uses the Tkinter module to create a GUI frame to generate passwords with various options for customisation
     (length and character sets),
@@ -28,7 +32,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
         The "generate password" frame upon which the objects of this function will be placed.
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
-    '''
+    """
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
     password_label_2 = tk.Text(frame, width=password_width, height=password_height,
@@ -38,7 +42,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     password_label_4 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
-    
+
     frame_title = tk.Label(frame, text='Generate password', font=title_font)
     frame_title.grid(column=0, row=1, columnspan=2)
 
@@ -70,7 +74,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     for checkbox in checkboxes:
         checkbox.grid(column=1, row=5 + checkboxes.index(checkbox), pady=8)
         checkbox.select()
-    
+
     for text in checkboxes_text_labels:
         text.grid(column=2, row=5 + checkboxes_text_labels.index(text), sticky='w')
 
@@ -93,23 +97,25 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
         for password_label in password_labels:
             password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_menu, window))
 
-        text = logic.determine_error(logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var), 
-                                                input_box.get(), no_character_set_error, double_error, invalid_input_error)
+        message = logic.determine_error(
+            logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
+            input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
         # Check if an error was not returned
-        if text == '':
+        if message == '':
             for password_label in password_labels:
                 adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
                 input_box.insert(1, adapted_input)
 
-                text = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var)
-                show_text(password_label, text)
+                message = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var,
+                                                  punctuation_var)
+                show_text(password_label, message)
                 password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
         else:
             input_box.delete(0, 'end')
             password_label_1.grid(column=0, row=5, padx=10, pady=10)
-            show_text(password_label_1, text)
+            show_text(password_label_1, message)
 
     global input_box
     input_box = tk.Entry(frame, width=10, borderwidth=2)
@@ -122,13 +128,12 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
     copy_menu.add_command(label='Copy', command=lambda: logic.copy_text(input_box, password_labels))
-    #lambda event: input_box.focus())
 
-    def show_text(label, text) -> None:
-        '''
+    def show_text(label, message) -> None:
+        """
         Called by the create_password_labels function,
         this function updates the contents of the password_labels,
-        by enabling the label, deleting its current contents, 
+        by enabling the label, deleting its current contents,
         inserting the new text, and then disabling the label again.
 
         Parameters
@@ -136,22 +141,23 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
         label: tkinter.Text
             Each password label one by one if passwords are generated,
             or the first password label if an error is generated.
-        text: str
+        message: str
             Each password or the error.
-        '''
+        """
         label.config(state='normal')
         label.delete('1.0', 'end')
-        label.insert('1.0', text)
+        label.insert('1.0', message)
         label.config(state='disabled', bg='#ffffff')
 
 
 def select_input_box(event) -> None:
-    '''
+    """
     Called whenever the tab is changed,
     this function focuses the keyboard to the input box,
     which allows the user to start typing immediately without having to click on the input box first.
-    '''
+    """
     input_box.focus()
+
 
 def hide_copy_menu(event) -> None:
     print('hide_copy_menu function executed.')
