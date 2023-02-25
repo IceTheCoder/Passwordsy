@@ -127,12 +127,12 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
             return 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctuation.'
 
     def check_for_patterns_in_password() -> str:
-        '''
+        """
         Called by the check_password_strength function
         (as the user types),
         this function checks if there are any repeating characters in the inputted password,
         and returns an adequate message.
-        '''
+        """
         for character in inputted_password:
             if inputted_password.count(character) > 1:
                 return 'Repeated character(s): Your password contains at least one repeated character.'
@@ -142,9 +142,9 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
     if len(inputted_password) == 0:
         return input_password_msg
     else:
-        prevalance_warning = check_if_password_is_common()   
+        prevalence_warning = check_if_password_is_common()
         length_warning = check_password_length()    
         complexity_warning = check_password_complexity() 
         pattern_warning = check_for_patterns_in_password()
 
-        return [prevalance_warning, length_warning, complexity_warning, pattern_warning]
+        return [prevalence_warning, length_warning, complexity_warning, pattern_warning]
