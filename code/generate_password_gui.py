@@ -51,11 +51,13 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(0))
     show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(0))
 
+    show_buttons = [show_button_1, show_button_2, show_button_3, show_button_4]
+
     frame_title = tk.Label(frame, text='Generate password', font=title_font)
-    frame_title.grid(column=0, row=1, columnspan=2)
+    frame_title.grid(column=0, row=1, columnspan=3)
 
     question = tk.Label(frame, text='Number of characters (4 to 100):', font=description_font)
-    question.grid(column=0, row=2, columnspan=2)
+    question.grid(column=0, row=2, columnspan=3)
 
     character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
     character_sets_label.grid(column=2, row=5, columnspan=2)
@@ -113,8 +115,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
         # Check if an error was not returned
         if message == '':
+            instruction_label.grid(column=0, row=5, sticky='s', columnspan=3)
+
             for password_label in password_labels:
-                instruction_label.grid(column=0, row=5, sticky='s')
                 adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
                 input_box.insert(1, str(adapted_input))
@@ -125,6 +128,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
                 show_text(password_label, '')
                 password_label.grid(column=0, row=6 + password_labels.index(password_label), pady=10, padx=10)
+
+            for index, show_button in enumerate(show_buttons):
+                show_button.grid(row=6 + index, column=1, padx=15)
+
         else:
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
@@ -134,12 +141,12 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     global input_box
     input_box = tk.Entry(frame, width=10, borderwidth=2)
     input_box.bind('<Return>', create_password_labels)
-    input_box.grid(column=0, row=3, columnspan=2)
+    input_box.grid(column=0, row=3, columnspan=3)
 
     done_btn = tk.Button(frame, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels(None))
-    done_btn.grid(column=0, row=4, columnspan=2)
+    done_btn.grid(column=0, row=4, columnspan=3)
 
-    instruction_label = tk.Label(frame, text='       Right-click to copy', font=description_font)
+    instruction_label = tk.Label(frame, text='Right-click to copy', font=description_font)
 
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
