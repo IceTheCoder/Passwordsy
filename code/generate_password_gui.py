@@ -67,7 +67,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(2))
     show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3))
     show_buttons = [show_button_1, show_button_2, show_button_3, show_button_4]
-    #show_all_button = tk.Button(frame, text='Show all', command=show_all_passwords)
+    show_all_button = tk.Button(frame, text='Show all', command=show_all_passwords)
 
     copy_button_1 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(0, passwords))
     copy_button_2 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(1, passwords))
@@ -155,7 +155,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_text(password_label, '')
                 password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
 
-            #show_all_bupritton.grid(row=3, column=2)
+            show_all_button.grid(row=3, column=2)
         else:
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
