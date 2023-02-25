@@ -45,7 +45,7 @@ def main():
 
     notebook.add(generate_password_frame, text='Generate password')
 
-    generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image, window)
+    generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image)
 
     password_strength_frame = tk.Frame(notebook)
     password_strength_frame.grid(column=0, row=0)

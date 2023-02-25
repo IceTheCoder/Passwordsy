@@ -19,7 +19,7 @@ global input_box
 global copy_menu
 
 
-def create_generate_password_frame(frame, done_btn_image, window) -> None:
+def create_generate_password_frame(frame, done_btn_image) -> None:
     """
     Called upon starting the program,
     this function uses the Tkinter module to create a GUI frame to generate passwords with various options for customisation
