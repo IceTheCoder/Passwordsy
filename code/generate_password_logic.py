@@ -1,7 +1,7 @@
 import string
 import secrets
 import clipboard
-from pynput.keyboard import Key, Controller
+from pynput.keyboard import Controller
 
 keyboard = Controller()
 
@@ -107,7 +107,7 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
     lowercase_letters_var: tkinter.IntVar()
         The variable used to check if the lowercase letters checkbox has been selected or not.
     uppercase_letters_var: tkinter.IntVar()
-        The variable used to check if the upprcase letters checkbox has been selected or not.
+        The variable used to check if the uppercase letters checkbox has been selected or not.
     digits_var: tkinter.IntVar()
         The variable used to check if the digits checkbox has been selected or not.
     punctuation_var: tkinter.IntVar()
