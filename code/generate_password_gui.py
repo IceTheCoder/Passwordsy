@@ -79,7 +79,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     question.grid(column=0, row=2, columnspan=3)
 
     character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
-    character_sets_label.grid(column=3, row=4, columnspan=2)
+    character_sets_label.grid(column=3, row=4, columnspan=2, sticky='s')
 
     lowercase_letters_var = tk.IntVar()
     lowercase_letters_checkbox = tk.Checkbutton(frame, variable=lowercase_letters_var, offvalue=0, onvalue=1)
