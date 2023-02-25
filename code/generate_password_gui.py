@@ -136,6 +136,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             show_button.grid(row=5 + index, column=1, padx=15)
         for index, copy_button in enumerate(copy_buttons):
             copy_button.grid(row=5 + index, column=2, padx=15)
+        show_all_button.grid(row=3, column=2)
 
         message = logic.determine_error(
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
@@ -154,8 +155,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
                 show_text(password_label, '')
                 password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
-
-            show_all_button.grid(row=3, column=2)
         else:
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
