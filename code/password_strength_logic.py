@@ -118,10 +118,18 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
             for missing_feature in missing_security_features_list:
                 if len(missing_security_features_list) == 1:
                     output = str(missing_feature)
-                elif missing_feature != missing_security_features_list[-1]:
-                    output = output + str(missing_feature) + ', '
+                elif len(missing_security_features_list) == 2:
+                    if missing_feature != missing_security_features_list[-1]:
+                        output = output + str(missing_feature) + ' and '
+                    else:
+                        output = output + str(missing_feature)
                 else:
-                    output = output + 'and ' + str(missing_feature)
+                    if missing_feature == missing_security_features_list[-2]:
+                        output = output + str(missing_feature) + ', and '
+                    elif missing_feature == missing_security_features_list[-1]:
+                        output = output + str(missing_feature)
+                    else:
+                        output = output + str(missing_feature) + ', '
 
             return f'Not complex: Your password is missing {output}.'
 
