@@ -63,12 +63,12 @@ def display_warnings(event) -> None:
 
     if warnings == input_password_msg:
         labels[0].configure(text=warnings)
-        labels[0].grid(column=0, row=3, sticky='n')
+        labels[0].grid(column=0, row=2, sticky='n')
     else:
         for index, warning in enumerate(warnings):
             labels[index].configure(text=warning)
         for label in labels:
-            label.grid(column=0, row=3 + labels.index(label), sticky='w')
+            label.grid(column=0, row=2 + labels.index(label), sticky='w')
 
 
 def create_password_strength_frame(frame) -> None:
@@ -88,11 +88,11 @@ def create_password_strength_frame(frame) -> None:
     paste.add_command(label='Paste', command=paste_text)
 
     instruction_label = tk.Label(frame, text='Type your password to check its strength', font=title_font)
-    instruction_label.grid(column=0, row=1)
+    instruction_label.grid(column=0, row=0)
 
     global input_box
     input_box = tk.Entry(frame, width=32, borderwidth=2)
-    input_box.grid(column=0, row=2)
+    input_box.grid(column=0, row=1)
     input_box.bind('<KeyRelease>', display_warnings)
     input_box.bind('<Button-3>', display_paste_button)
 
@@ -108,4 +108,4 @@ def create_password_strength_frame(frame) -> None:
     labels = [first_label, second_label, third_label, fourth_label]
 
     for label in labels:
-        label.grid(column=0, row=3 + labels.index(label), sticky='n')
+        label.grid(column=0, row=2 + labels.index(label), sticky='n')
