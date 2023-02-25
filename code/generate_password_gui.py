@@ -46,7 +46,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     def show_password(index):
         global passwords
-        print(passwords)
         if passwords:
             password_labels[index].configure(state='normal')
             password_labels[index].delete('1.0', 'end')
@@ -132,9 +131,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
         for password_label in password_labels:
             password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
-            print(password_label)
             password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
-
         for index, show_button in enumerate(show_buttons):
             show_button.grid(row=5 + index, column=1, padx=15)
         for index, copy_button in enumerate(copy_buttons):
@@ -158,11 +155,11 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_text(password_label, '')
                 password_label.grid(column=0, row=5 + password_labels.index(password_label), pady=10, padx=10)
 
-            #show_all_button.grid(row=3, column=2)
+            #show_all_bupritton.grid(row=3, column=2)
         else:
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
-            password_label_1.grid(column=0, row=6, padx=10, pady=10)
+            password_label_1.grid(column=0, row=5, padx=10, pady=10)
             show_text(password_label_1, message)
 
     global input_box
