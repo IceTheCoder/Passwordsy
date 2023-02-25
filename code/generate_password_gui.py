@@ -115,7 +115,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                                                   digits_var, punctuation_var)
                 passwords.append(message)
 
-                show_text(password_label, message)
+                show_text(password_label, '')
                 password_label.grid(column=0, row=6 + password_labels.index(password_label), pady=10, padx=10)
         else:
             if message == invalid_input_error or message == double_error:
