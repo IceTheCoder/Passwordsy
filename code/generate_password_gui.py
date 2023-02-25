@@ -75,8 +75,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         checkbox.grid(column=1, row=6 + checkboxes.index(checkbox), pady=8)
         checkbox.select()
 
-    for text in checkboxes_text_labels:
-        text.grid(column=2, row=6 + checkboxes_text_labels.index(text), sticky='w')
+    for text_label in checkboxes_text_labels:
+        text_label.grid(column=2, row=6 + checkboxes_text_labels.index(text), sticky='w')
 
     def create_password_labels(event) -> None:
         """
