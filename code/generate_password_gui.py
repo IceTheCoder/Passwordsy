@@ -18,7 +18,6 @@ double_error = 'An error occurred. Try again with at least 1 character set and a
 global input_box
 global copy_menu
 global passwords
-passwords = []
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -47,6 +46,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     def show_password(index):
         global passwords
+        print(passwords)
         if passwords:
             password_labels[index].configure(state='normal')
             password_labels[index].delete('1.0', 'end')
@@ -124,6 +124,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             Necessary for initiating the function when pressing the ENTER key.
         """
         global passwords
+        passwords = []
 
         for password_label in password_labels:
             password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))

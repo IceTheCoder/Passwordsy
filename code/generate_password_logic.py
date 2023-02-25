@@ -162,4 +162,5 @@ def copy_selected_text(input_box, labels) -> None:
 
 
 def copy_password(index, labels):
-    pass
+    text_to_copy = labels[index].cget('text')
+    clipboard.copy(text_to_copy)
