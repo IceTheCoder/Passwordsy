@@ -114,7 +114,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_text(password_label, message)
                 password_label.grid(column=0, row=6 + password_labels.index(password_label), pady=10, padx=10)
         else:
-            input_box.delete(0, 'end')
+            if message == invalid_input_error or message == double_error:
+                input_box.delete(0, 'end')
             password_label_1.grid(column=0, row=6, padx=10, pady=10)
             show_text(password_label_1, message)
 
