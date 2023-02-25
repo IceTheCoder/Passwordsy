@@ -15,7 +15,7 @@ def main():
     """
     window = tk.Tk()
 
-    notebook = ttk.Notebook(window, width=1120, height=350)
+    notebook = ttk.Notebook(window, width=1120, height=320)
     notebook.grid(column=0, row=0)
 
     # Center the notebook
