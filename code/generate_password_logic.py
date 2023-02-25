@@ -69,7 +69,7 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
             return double_error
 
 
-def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> str:
+def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> bool:
     """
     Called by the create_password_labels function
     (upon pressing the done button),

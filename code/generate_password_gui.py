@@ -79,11 +79,11 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
         text.grid(column=2, row=5 + checkboxes_text_labels.index(text), sticky='w')
 
     def create_password_labels(event) -> None:
-        '''
+        """
         Called upon clicking the done button or pressing the ENTER key,
         this function calls determine_error and validate_character_sets of generate_password_logic,
         and then settles whether an error has occurred or not.
-        If an error has occurred, the function displays said error 
+        If an error has occurred, the function displays said error
         (obtained through determine_error),
         and displays it on the screen through show_text.
         If an error has not occurred, the function calls generate_password of generate_password_logic.py to get 4 passwords,
@@ -93,9 +93,9 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
         ----------
         event:
             Necessary for initiating the function when pressing the ENTER key.
-        '''
+        """
         for password_label in password_labels:
-            password_label.bind('<ButtonRelease>', lambda event: logic.show_copy_button(event, copy_menu, window))
+            password_label.bind('<ButtonRelease>', lambda e: logic.show_copy_button(e, copy_menu))
 
         message = logic.determine_error(
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
@@ -106,7 +106,7 @@ def create_generate_password_frame(frame, done_btn_image, window) -> None:
             for password_label in password_labels:
                 adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
-                input_box.insert(1, adapted_input)
+                input_box.insert(1, str(adapted_input))
 
                 message = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var, digits_var,
                                                   punctuation_var)
