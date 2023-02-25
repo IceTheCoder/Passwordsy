@@ -43,6 +43,14 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                                borderwidth=password_border_width, font=password_font)
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
+    def show_password(index):
+        pass
+
+    show_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0))
+    show_button_2 = tk.Button(frame, text='Show', command=lambda: show_password(0))
+    show_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(0))
+    show_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(0))
+
     frame_title = tk.Label(frame, text='Generate password', font=title_font)
     frame_title.grid(column=0, row=1, columnspan=2)
 
