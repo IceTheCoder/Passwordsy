@@ -10,28 +10,33 @@ warning_font = 'Helvetica 16'
 
 input_password_msg = 'Please input a password.'
 
-copy_button_y_offest = 30
+copy_button_y_offset = 30
+
+global paste
+global input_box
+global labels
 
 
 def display_paste_button(event) -> None:
-    '''
+    """
     Called when the user right-clicks on the input_box,
-    this function uses the Tkinter module to display a contextual menu containing a 'paste' button on the x and y coordinates of the user's cursor,
+    this function uses the Tkinter module to display a contextual menu
+    containing a 'paste' button on the x and y coordinates of the user's cursor,
     with the y coordinates adjusted by 30 pixels.
 
     Parameters
     ----------
     event: tkinter.event
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
-    '''
-    paste.tk_popup(event.x_root, event.y_root - copy_button_y_offest)
+    """
+    paste.tk_popup(event.x_root, event.y_root - copy_button_y_offset)
 
 
 def paste_text() -> None:
-    '''
+    """
     Called upon pressing the paste button,
     this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
-    '''
+    """
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
     keyboard.release(Key.ctrl_l)
@@ -39,7 +44,7 @@ def paste_text() -> None:
 
 
 def display_warnings(event) -> None:
-    '''
+    """
     Called as the user types
     (when they release a key),
     this function clears all labels,
@@ -50,9 +55,9 @@ def display_warnings(event) -> None:
     ----------
     event:
         Necessary for initiating the function as the user types.
-    '''
+    """
     for label in labels:
-        label.configure(text = '')
+        label.configure(text='')
 
     warnings = password_strength_logic.check_password_strength(None, input_box.get(), input_password_msg)
 
@@ -67,22 +72,22 @@ def display_warnings(event) -> None:
 
 
 def create_password_strength_frame(frame) -> None:
-    '''
+    """
     Called upon starting the program,
-    this function creates the 'password strength' frame with a label for instructions, 
-    an entry box for password input, and four warning labels to display the strength of the password. 
+    this function creates the 'password strength' frame with a label for instructions,
+    an entry box for password input, and four warning labels to display the strength of the password.
     It also creates a menu for pasting text, which is triggered by a right-click on the input box.
 
     Parameters
     ----------
     frame: ttk.Frame
         The 'password strength' frame
-    '''
+    """
     global paste
     paste = tk.Menu(frame, tearoff=False)
     paste.add_command(label='Paste', command=paste_text)
 
-    instruction_label = tk.Label(frame, text = 'Type your password to check its strength', font = title_font)
+    instruction_label = tk.Label(frame, text='Type your password to check its strength', font=title_font)
     instruction_label.grid(column=0, row=1)
 
     global input_box
@@ -92,7 +97,7 @@ def create_password_strength_frame(frame) -> None:
     input_box.bind('<Button-3>', display_paste_button)
 
     first_label = tk.Label(frame, font=warning_font, text=input_password_msg)
-    
+
     second_label = tk.Label(frame, font=warning_font, text='')
 
     third_label = tk.Label(frame, font=warning_font, text='')

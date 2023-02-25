@@ -8,7 +8,7 @@ for line in common_passwords_read:
     modified_common_passwords.append(line.strip()) # Place each of the 100,000 most commonly used passwords into a list
 
 
-def check_password_strength(event, inputted_password, input_password_msg) -> list:
+def check_password_strength(event, inputted_password, input_password_msg) -> list | str:
     '''
     Called upon pressing the done button,
     this function defines several functions that check the prevalance, length, complexity and repetitiveness of an inputted password, 
@@ -41,7 +41,7 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
         elif modified_common_passwords.count(inputted_password) == 0:
             return 'Not common: Your password isn\'t common.'
 
-    def check_password_length() -> None:
+    def check_password_length() -> str:
         '''
         Called by the check_password_strength function
         (as the user types),
