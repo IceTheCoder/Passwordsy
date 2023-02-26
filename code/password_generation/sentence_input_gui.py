@@ -7,3 +7,8 @@ def create_sentence_input_frame(frame):
 
     input_box = tk.Entry(frame)
     input_box.grid(row=1, column=0)
+
+    def display_password():
+        pass
+
+    input_box.bind('<KeyRelease', display_password)
