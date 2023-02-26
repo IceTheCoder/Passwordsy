@@ -31,6 +31,7 @@ def main():
 
     notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
+    # Create the 'generate password' frame
     generate_password_frame = tk.Frame(window)
     generate_password_frame.grid(column=0, row=0)
 
@@ -47,6 +48,7 @@ def main():
 
     generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image)
 
+    # Create the password strength frame
     password_strength_frame = tk.Frame(notebook)
     password_strength_frame.grid(column=0, row=0)
 
@@ -63,6 +65,8 @@ def main():
     notebook.add(password_strength_frame, text='Password strength')
 
     password_strength_gui.create_password_strength_frame(password_strength_frame)
+
+    # Create the other password generation methods frame
 
     window.mainloop()
 
