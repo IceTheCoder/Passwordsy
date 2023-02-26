@@ -18,15 +18,10 @@ for line in diceware_wordlist_read:
     wordlist[dice_rolls] = word
 
 
-def get_word_from_dice_roll(number):
-    print(wordlist[number])
-    print(number)
-
-
 def roll_dice() -> None:
     dice_roll = ''
     i = 0
     while i < 5:
         dice_roll += str(secrets.choice(numbers))
         i += 1
-    get_word_from_dice_roll(dice_roll)
+    return {dice_roll: wordlist[dice_roll]}
