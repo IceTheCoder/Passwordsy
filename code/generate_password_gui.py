@@ -1,6 +1,7 @@
 import tkinter as tk
 
 import generate_password_logic as logic
+import other_methods_gui as other
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
@@ -136,7 +137,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
-    try_other_methods_button = tk.Button(frame, text='Try other methods...')
+    try_other_methods_button = tk.Button(frame, text='Try other methods...', command=other.create_other_methods_window)
     try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=4)
 
     for checkbox in checkboxes:
