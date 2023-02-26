@@ -1,8 +1,9 @@
 import tkinter as tk
+from tkinter import messagebox
+from PIL import ImageTk, Image
 
 from password_generation import generate_password_logic as logic
 from password_generation import other_methods_gui as other
-from tkinter import messagebox
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
@@ -22,13 +23,14 @@ global copy_menu
 global passwords
 global show_hide_all_button
 passwords = []
+global try_other_methods_btn_image
 
 
-def create_generate_password_frame(frame, done_btn_image, try_other_methods_btn_image) -> None:
+def create_generate_password_frame(frame, done_btn_image) -> None:
     """
     Called upon starting the program,
-    this function uses the Tkinter module to create a GUI frame
-    to generate passwords with various options for customisation
+    this function uses the Tkinter module to create a GUI frame,
+    used to generate passwords with various options for customisation
     (length and character sets),
     and serves as a hub for all other password generation functions.
 
@@ -38,9 +40,9 @@ def create_generate_password_frame(frame, done_btn_image, try_other_methods_btn_
         The "generate password" frame upon which the objects of this function will be placed.
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
-    try_other_methods_btn_image: ImageTk.PhotoImage
-        The image used for the try_other_methods button.
     """
+    global try_other_methods_btn_image
+    try_other_methods_btn_image = ImageTk.PhotoImage(Image.open('try_other_methods_btn.png'))
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
     password_label_2 = tk.Text(frame, width=password_width, height=password_height,
