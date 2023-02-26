@@ -2,6 +2,7 @@ import tkinter as tk
 
 from password_generation import generate_password_logic as logic
 from password_generation import other_methods_gui as other
+from tkinter import messagebox
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
@@ -223,7 +224,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 copy_button.grid(row=4 + index, column=2, padx=15)
             show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
         else:
-            warning_window = tk.Tk()
+            tk.messagebox.showerror('Error', 'error')
         #    for index, show_button in enumerate(show_hide_buttons):
         #        if show_hide_buttons.index(show_button) != 0:
         #            show_button.grid(row=4 + index, column=1, padx=15)
