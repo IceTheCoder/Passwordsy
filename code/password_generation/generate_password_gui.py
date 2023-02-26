@@ -27,6 +27,7 @@ global show_all_btn_image
 global hide_all_btn_image
 global show_btn_image
 global hide_btn_image
+global copy_btn_image
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -61,6 +62,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     global hide_btn_image
     hide_btn_image = ImageTk.PhotoImage(Image.open('textures/hide_btn.png'))
+
+    global copy_btn_image
+    copy_btn_image = ImageTk.PhotoImage(Image.open('textures/copy_btn.png'))
 
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
@@ -157,10 +161,14 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_hide_all_button = tk.Button(frame, image=show_all_btn_image, borderwidth=0,
                                      command=show_all_passwords)
 
-    copy_button_1 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(0, passwords))
-    copy_button_2 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(1, passwords))
-    copy_button_3 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(2, passwords))
-    copy_button_4 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(3, passwords))
+    copy_button_1 = tk.Button(frame, image=copy_btn_image, borderwidth=0,
+                              command=lambda: logic.copy_password(0, passwords))
+    copy_button_2 = tk.Button(frame, image=copy_btn_image, borderwidth=0,
+                              command=lambda: logic.copy_password(1, passwords))
+    copy_button_3 = tk.Button(frame, image=copy_btn_image, borderwidth=0,
+                              command=lambda: logic.copy_password(2, passwords))
+    copy_button_4 = tk.Button(frame, image=copy_btn_image, borderwidth=0,
+                              command=lambda: logic.copy_password(3, passwords))
     copy_buttons = [copy_button_1, copy_button_2, copy_button_3, copy_button_4]
 
     frame_title = tk.Label(frame, text='Generate password', font=title_font)
