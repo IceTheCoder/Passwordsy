@@ -29,6 +29,6 @@ def create_sentence_input_frame(frame):
         to get a password based on the user's sentence,
         and displays it on the screen.
         """
-        logic.produce_password(str(input_box.get()))
+        print(logic.produce_password(str(input_box.get())))
 
     input_box.bind('<KeyRelease>', lambda e: display_password())
