@@ -24,10 +24,10 @@ def main():
 
     app_name = 'Passwordsy'
 
-    root.iconphoto(False, tk.PhotoImage(file='logo.png'))
+    root.iconphoto(False, tk.PhotoImage(file='textures/logo.png'))
     root.title(app_name)
 
-    done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
+    done_btn_image = ImageTk.PhotoImage(Image.open('textures/done_btn.png'))
 
     notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
