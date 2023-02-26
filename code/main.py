@@ -13,26 +13,26 @@ def main():
     two frames the user can switch between,
     and a basic configuration.
     """
-    window = tk.Tk()
+    root = tk.Tk()
 
-    notebook = ttk.Notebook(window, width=1120, height=320)
+    notebook = ttk.Notebook(root, width=1120, height=320)
     notebook.grid(column=0, row=0)
 
     # Center the notebook
-    window.grid_columnconfigure(0, weight=1)
-    window.grid_rowconfigure(0, weight=1)
+    root.grid_columnconfigure(0, weight=1)
+    root.grid_rowconfigure(0, weight=1)
 
     app_name = 'Passwordsy'
 
-    window.iconphoto(False, tk.PhotoImage(file='logo.png'))
-    window.title(app_name)
+    root.iconphoto(False, tk.PhotoImage(file='logo.png'))
+    root.title(app_name)
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
     notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
     # Create the password generation frame
-    generate_password_frame = tk.Frame(window)
+    generate_password_frame = tk.Frame(root)
     generate_password_frame.grid(column=0, row=0)
 
     # Expand some widgets' rows and columns to take up the entire window
@@ -66,7 +66,7 @@ def main():
 
     password_strength_gui.create_password_strength_frame(password_strength_frame)
 
-    window.mainloop()
+    root.mainloop()
 
 
 if __name__ == '__main__':
