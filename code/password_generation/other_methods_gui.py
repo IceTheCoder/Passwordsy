@@ -1,11 +1,15 @@
+
 import tkinter as tk
-from PIL import ImageTk, Image
 
 from password_generation import diceware_gui as diceware
 from password_generation import sentence_input_gui as sentence_input
 
 
 def create_other_methods_window():
+    """
+    Called upon app startup, this function prepares the other methods window for the user,
+    by creating 2 frames: 1 for diceware, and 1 for sentence input.
+    """
     other_methods_window = tk.Toplevel()
 
     window_title = 'Try other methods...'
@@ -26,3 +30,5 @@ def create_other_methods_window():
     other_methods_window.rowconfigure(0, weight=1)
     other_methods_window.columnconfigure(0, weight=1)
     other_methods_window.columnconfigure(1, weight=1)
+
+    other_methods_window.mainloop()
