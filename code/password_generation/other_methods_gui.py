@@ -2,6 +2,7 @@ import tkinter as tk
 from PIL import ImageTk, Image
 
 from password_generation import diceware_gui as diceware
+from password_generation import sentence_input_gui as sentence_input
 
 
 def create_other_methods_window():
@@ -19,7 +20,7 @@ def create_other_methods_window():
     sentence_input_frame.grid(row=0, column=1)
 
     diceware.create_diceware_frame(diceware_frame)
-    
+    sentence_input.create_sentence_input_frame(sentence_input_frame)
 
     # Expand some widgets' rows and columns to take up the entire window
     other_methods_window.rowconfigure(0, weight=1)
