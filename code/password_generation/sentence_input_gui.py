@@ -1,5 +1,7 @@
 import tkinter as tk
 
+import password_generation.sentence_input_logic as logic
+
 
 def create_sentence_input_frame(frame):
     instruction_label = tk.Label(frame, text='Input a sentence')
@@ -11,4 +13,4 @@ def create_sentence_input_frame(frame):
     def display_password():
         pass
 
-    input_box.bind('<KeyRelease', display_password)
+    input_box.bind('<KeyRelease>', display_password)
