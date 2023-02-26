@@ -67,7 +67,6 @@ def main():
 
     password_strength_gui.create_password_strength_frame(password_strength_frame)
 
-
     window.mainloop()
 
 
