@@ -63,7 +63,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         button.configure(text='Hide', command=lambda: hide_password(index, button))
 
     def hide_password(index, button):
-        button.configure(text='Show', command=lambda: show_password(index, button))
         if passwords:
             password_labels[index].configure(state='normal')
             password_labels[index].delete('1.0', 'end')
@@ -74,6 +73,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             password_labels[index].configure(state='normal')
             password_labels[index].delete('1.0', 'end')
             password_labels[index].configure(state='disabled')
+        button.configure(text='Show', command=lambda: show_password(index, button))
 
     def show_all_passwords():
         global show_hide_all_button
@@ -86,7 +86,11 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     def hide_all_passwords():
         global show_hide_all_button
-        show_hide_all_button.configure(text='Show all', command=show_all_passwords)
+        for index, label in enumerate(password_labels):
+            label.configure(state='normal')
+            label.delete('1.0', 'end')
+            label.configure(state='disabled')
+        show_hide_all_button.configure(text='Hide all', command=hide_all_passwords)
 
     global show_hide_all_button
     show_hide_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0, show_hide_button_1))
