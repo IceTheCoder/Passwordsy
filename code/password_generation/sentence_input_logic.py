@@ -1,4 +1,7 @@
 
+import string
+
+
 def produce_password(sentence):
     """
     Called as the user types a sentence to be turned into a password,
@@ -17,7 +20,8 @@ def produce_password(sentence):
 
     for word in split_sentence:
         password += word[0]
+        for letter in word:
+            if letter in string.digits or letter in string.punctuation:
+                password += letter
 
     return password
-
-

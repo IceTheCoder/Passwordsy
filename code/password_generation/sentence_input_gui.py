@@ -22,6 +22,9 @@ def create_sentence_input_frame(frame):
     input_box = tk.Entry(frame)
     input_box.grid(row=1, column=0)
 
+    password_label = tk.Text(frame)
+    password_label.grid(row=2, column=0)
+
     def display_password():
         """
         Called as the user types,
@@ -29,6 +32,9 @@ def create_sentence_input_frame(frame):
         to get a password based on the user's sentence,
         and displays it on the screen.
         """
-        print(logic.produce_password(str(input_box.get())))
+        password_label.configure(state='normal')
+        password_label.delete('1.0', 'end')
+        password_label.insert('1.0', logic.produce_password(str(input_box.get())))
+        password_label.configure(state='disabled')
 
     input_box.bind('<KeyRelease>', lambda e: display_password())
