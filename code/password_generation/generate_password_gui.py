@@ -1,7 +1,7 @@
 import tkinter as tk
 
-import generate_password_logic as logic
-import other_methods_gui as other
+from password_generation import generate_password_logic as logic
+from password_generation import other_methods_gui as other
 
 title_font = 'Helvetica 24'
 section_title_font = 'Helvetica 16'
