@@ -19,6 +19,7 @@ global input_box
 global copy_menu
 global passwords
 global show_hide_all_button
+passwords = []
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -63,6 +64,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         button.configure(text='Hide', command=lambda: hide_password(index, button))
 
     def hide_password(index, button):
+        global passwords
         if passwords:
             password_labels[index].configure(state='normal')
             password_labels[index].delete('1.0', 'end')
@@ -90,7 +92,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             label.configure(state='normal')
             label.delete('1.0', 'end')
             label.configure(state='disabled')
-        show_hide_all_button.configure(text='Hide all', command=hide_all_passwords)
+        show_hide_all_button.configure(text='Show all', command=show_all_passwords)
 
     global show_hide_all_button
     show_hide_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0, show_hide_button_1))
@@ -152,10 +154,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         If an error has not occurred,
         the function calls generate_password of generate_password_logic.py to get 4 passwords,
         and calls the show_text function to display them to the user.
-
         """
         global passwords
-        passwords = []
 
         for password_label in password_labels:
             password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
@@ -167,6 +167,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
         # Check if an error was not returned
         if message == '':
+            passwords = []
             for password_label in password_labels:
                 adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
@@ -200,6 +201,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 input_box.delete(0, 'end')
             password_label_1.grid(column=0, row=4, padx=10, pady=10)
             show_text(password_label_1, message)
+
+        hide_all_passwords()
+        for button in show_hide_buttons:
+            hide_password(show_hide_buttons.index(button), button)
 
     global input_box
     input_box = tk.Entry(frame, width=10, borderwidth=2)
