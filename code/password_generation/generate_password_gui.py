@@ -197,7 +197,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
         for password_label in password_labels:
             password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
-            password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
 
         message = logic.determine_error(
             logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
@@ -207,6 +206,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         if message == '':
             passwords = []
             for password_label in password_labels:
+                password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
                 adapted_input = logic.adapt_input(input_box.get())
                 input_box.delete(0, 'end')
                 input_box.insert(1, str(adapted_input))
