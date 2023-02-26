@@ -22,8 +22,10 @@ global input_box
 global copy_menu
 global passwords
 global show_hide_all_button
-passwords = []
 global try_other_methods_btn_image
+global show_all_btn_image
+global hide_all_btn_image
+
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -41,8 +43,18 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
     """
+    global passwords
+    passwords = []
+
     global try_other_methods_btn_image
-    try_other_methods_btn_image = ImageTk.PhotoImage(Image.open('try_other_methods_btn.png'))
+    try_other_methods_btn_image = ImageTk.PhotoImage(Image.open('textures/try_other_methods_btn.png'))
+
+    global show_all_btn_image
+    show_all_btn_image = ImageTk.PhotoImage(Image.open('textures/show_all_btn.png'))
+
+    global hide_all_btn_image
+    hide_all_btn_image = ImageTk.PhotoImage(Image.open('textures/hide_all_btn.png'))
+
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
     password_label_2 = tk.Text(frame, width=password_width, height=password_height,
@@ -111,7 +123,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         global show_hide_all_button
         for index, label in enumerate(password_labels):
             show_text(label, passwords[index])
-        show_hide_all_button.configure(text='Hide all', command=hide_all_passwords)
+        show_hide_all_button.configure(image=hide_all_btn_image, command=hide_all_passwords)
 
     def hide_all_passwords():
         """
@@ -122,7 +134,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         global show_hide_all_button
         for label in password_labels:
             clear_text_label(label)
-        show_hide_all_button.configure(text='Show all', command=show_all_passwords)
+        show_hide_all_button.configure(image=show_all_btn_image, borderwidth=0,
+                                       command=show_all_passwords)
 
     global show_hide_all_button
     show_hide_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0, show_hide_button_1))
@@ -130,7 +143,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_hide_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(2, show_hide_button_3))
     show_hide_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3, show_hide_button_4))
     show_hide_buttons = [show_hide_button_1, show_hide_button_2, show_hide_button_3, show_hide_button_4]
-    show_hide_all_button = tk.Button(frame, text='Show all', command=show_all_passwords)
+    show_hide_all_button = tk.Button(frame, image=show_all_btn_image, borderwidth=0,
+                                     command=show_all_passwords)
 
     copy_button_1 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(0, passwords))
     copy_button_2 = tk.Button(frame, text='Copy', command=lambda: logic.copy_password(1, passwords))
@@ -166,7 +180,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
-    try_other_methods_button = tk.Button(frame, text='Try other methods...', image=try_other_methods_btn_image,
+    try_other_methods_button = tk.Button(frame, image=try_other_methods_btn_image,
                                          borderwidth=0, command=other.create_other_methods_window)
     try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=4)
 
