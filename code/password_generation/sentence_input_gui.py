@@ -2,5 +2,8 @@ import tkinter as tk
 
 
 def create_sentence_input_frame(frame):
-    label = tk.Label(frame, text='Goodbye, world!')
-    label.pack()
+    instruction_label = tk.Label(frame, text='Input a sentence')
+    instruction_label.grid(row=0, column=0)
+
+    input_box = tk.Entry(frame)
+    input_box.grid(row=1, column=0)
