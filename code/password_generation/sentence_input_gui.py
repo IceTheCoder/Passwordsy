@@ -11,6 +11,6 @@ def create_sentence_input_frame(frame):
     input_box.grid(row=1, column=0)
 
     def display_password():
-        pass
+        logic.produce_password(str(input_box.get()))
 
-    input_box.bind('<KeyRelease>', display_password)
+    input_box.bind('<KeyRelease>', lambda e: display_password())
