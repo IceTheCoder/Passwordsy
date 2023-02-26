@@ -49,11 +49,25 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                                borderwidth=password_border_width, font=password_font)
     password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
 
+    def clear_text_label(label):
+        """
+        Called when the user clicks one of the hide buttons,
+        this function deletes all content of the specific label.
+
+        Parameters
+        ----------
+        label: tk.Text
+            The text label to be cleared.
+        """
+        label.configure(state='normal')
+        label.delete('1.0', 'end')
+        label.configure(state='disabled')
+
     def show_password(index, button) -> None:
         """
         Called when the user clicks one of the 4 show buttons,
-        this function clears the specific password_label,
-        and inserts the generated password inside of it.
+        this function displays the specific password through the show_text function,
+        and changes the specific button to a hide button.
 
         Parameters
         ----------
@@ -63,24 +77,15 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             The button that was clicked.
         """
         global passwords
-        if passwords:
-            password_labels[index].configure(state='normal')
-            password_labels[index].delete('1.0', 'end')
-            password_labels[index].insert('1.0', passwords[index])
-            password_labels[index].configure(state='disabled')
-        elif index == 0:
-            return
-        else:
-            password_labels[index].configure(state='normal')
-            password_labels[index].delete('1.0', 'end')
-            password_labels[index].insert('1.0', passwords[index])
-            password_labels[index].configure(state='disabled')
+        show_text(password_labels[index], passwords[index])
+
         button.configure(text='Hide', command=lambda: hide_password(index, button))
 
     def hide_password(index, button) -> None:
         """
         Called when the user clicks one of the 4 hide buttons,
-        this function clears the specific password_label.
+        this function clears the specific password_label through the clear_text_label function,
+        and changes the specific button to a show_button.
 
         Parameters
         ----------
@@ -89,32 +94,19 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         button: tk.Button
             The button that was clicked.
         """
-        global passwords
-        if passwords:
-            password_labels[index].configure(state='normal')
-            password_labels[index].delete('1.0', 'end')
-            password_labels[index].configure(state='disabled')
-        elif index == 0:
-            return
-        else:
-            password_labels[index].configure(state='normal')
-            password_labels[index].delete('1.0', 'end')
-            password_labels[index].configure(state='disabled')
+        clear_text_label(password_labels[index])
         button.configure(text='Show', command=lambda: show_password(index, button))
 
     def show_all_passwords():
         """
         Called when the user clicks the 'show all' button,
         this function goes through each password_label,
-        clears it,
-        and inserts the specific password inside of it.
+        inserts the specific password inside of it through the show_text function,
+        and changes the button into a hide all button.
         """
         global show_hide_all_button
         for index, label in enumerate(password_labels):
-            label.configure(state='normal')
-            label.delete('1.0', 'end')
-            label.insert('1.0', passwords[index])
-            label.configure(state='disabled')
+            show_text(label, passwords[index])
         show_hide_all_button.configure(text='Hide all', command=hide_all_passwords)
 
     def hide_all_passwords():
@@ -124,10 +116,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         and clears it.
         """
         global show_hide_all_button
-        for index, label in enumerate(password_labels):
-            label.configure(state='normal')
-            label.delete('1.0', 'end')
-            label.configure(state='disabled')
+        for label in password_labels:
+            clear_text_label(label)
         show_hide_all_button.configure(text='Show all', command=show_all_passwords)
 
     global show_hide_all_button
@@ -224,23 +214,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 copy_button.grid(row=4 + index, column=2, padx=15)
             show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
         else:
-            tk.messagebox.showerror('Error', 'error')
-        #    for index, show_button in enumerate(show_hide_buttons):
-        #        if show_hide_buttons.index(show_button) != 0:
-        #            show_button.grid(row=4 + index, column=1, padx=15)
-        #        else:
-        #            show_button.grid_forget()
-        #    for index, copy_button in enumerate(copy_buttons):
-        #        if copy_buttons.index(copy_button) != 0:
-        #            copy_button.grid(row=4 + index, column=2, padx=15)
-        #        else:
-        #            copy_button.grid_forget()
-        #    show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
-#
-        #    if message == invalid_input_error or message == double_error:
-        #        input_box.delete(0, 'end')
-        #    password_label_1.grid(column=0, row=4, padx=10, pady=10)
-        #    show_text(password_label_1, message)
+            tk.messagebox.showerror('Error', message)
+            if message == invalid_input_error or message == double_error:
+                input_box.delete(0, 'end')
 
         hide_all_passwords()
         for button in show_hide_buttons:
@@ -248,7 +224,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     global input_box
     input_box = tk.Entry(frame, width=10, borderwidth=2)
-    input_box.bind('<Return>', create_password_labels)
+    input_box.bind('<Return>', lambda e: create_password_labels())
     input_box.grid(column=0, row=2, columnspan=3)
 
     done_btn = tk.Button(frame, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels())
