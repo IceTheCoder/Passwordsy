@@ -52,7 +52,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         """
         Called when the user clicks one of the 4 show buttons,
         this function clears the specific password_label,
-        and inserts the generated password inside of it
+        and inserts the generated password inside of it.
 
         Parameters
         ----------
@@ -76,17 +76,17 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             password_labels[index].configure(state='disabled')
         button.configure(text='Hide', command=lambda: hide_password(index, button))
 
-    def hide_password(index, button):
+    def hide_password(index, button) -> None:
         """
+        Called when the user clicks one of the 4 hide buttons,
+        this function clears the specific password_label.
 
         Parameters
         ----------
-        index
-        button
-
-        Returns
-        -------
-
+        index: int
+            The number of the button that was clicked.
+        button: tk.Button
+            The button that was clicked.
         """
         global passwords
         if passwords:
@@ -103,7 +103,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     def show_all_passwords():
         """
-
+        Called when the user clicks the 'show all' button,
+        this function goes through each password_label,
+        clears it,
+        and inserts the specific password inside of it.
         """
         global show_hide_all_button
         for index, label in enumerate(password_labels):
@@ -115,7 +118,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     def hide_all_passwords():
         """
-
+        Called when the user clicks the 'hide all' button,
+        this function goes through each password_label,
+        and clears it.
         """
         global show_hide_all_button
         for index, label in enumerate(password_labels):
