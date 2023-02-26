@@ -222,7 +222,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=2, padx=15)
             show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
-        #else:
+        else:
+            warning_window = tk.Tk()
         #    for index, show_button in enumerate(show_hide_buttons):
         #        if show_hide_buttons.index(show_button) != 0:
         #            show_button.grid(row=4 + index, column=1, padx=15)
