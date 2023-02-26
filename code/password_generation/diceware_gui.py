@@ -2,5 +2,5 @@ import tkinter as tk
 
 
 def create_diceware_frame(frame):
-    label = tk.Label(frame, text='Hello, world!')
-    label.pack()
+    roll_dice_button = tk.Button(frame, text='Roll dice')
+    roll_dice_button.grid(row=0,column=0)
