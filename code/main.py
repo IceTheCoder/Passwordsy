@@ -29,15 +29,7 @@ def main():
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
-    def hide_other_methods_tab() -> None:
-        """
-        Called whenever the tab is changed,
-        this function hides the 'try other methods' tab.
-        """
-        notebook.hide(2)
-
     notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
-    notebook.bind('<<NotebookTabChanged>>', lambda e: hide_other_methods_tab())
 
     # Create the password generation frame
     generate_password_frame = tk.Frame(window)
@@ -55,6 +47,7 @@ def main():
     notebook.add(generate_password_frame, text='Generate password')
 
     generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image)
+    generate_password_gui.bring_notebook_and_other_methods_frame(notebook, other_methods_frame)
 
     # Create the password strength frame
     password_strength_frame = tk.Frame(notebook)
@@ -74,11 +67,6 @@ def main():
 
     password_strength_gui.create_password_strength_frame(password_strength_frame)
 
-    # Create the other password generation methods frame
-    other_methods_frame = tk.Frame(window)
-    other_methods_frame.grid(column=0, row=0)
-
-    notebook.add(other_methods_frame, text='Try other methods...')
 
     window.mainloop()
 
