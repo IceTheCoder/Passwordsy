@@ -26,6 +26,7 @@ global try_other_methods_btn_image
 global show_all_btn_image
 global hide_all_btn_image
 global show_btn_image
+global hide_btn_image
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -57,6 +58,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     global show_btn_image
     show_btn_image = ImageTk.PhotoImage(Image.open('textures/show_btn.png'))
+
+    global hide_btn_image
+    hide_btn_image = ImageTk.PhotoImage(Image.open('textures/hide_btn.png'))
 
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
@@ -98,7 +102,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         global passwords
         show_text(password_labels[index], passwords[index])
 
-        button.configure(text='Hide', command=lambda: hide_password(index, button))
+        button.configure(image=hide_btn_image, borderwidth=0, command=lambda: hide_password(index, button))
 
     def hide_password(index, button) -> None:
         """
