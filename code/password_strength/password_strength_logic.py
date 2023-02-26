@@ -1,7 +1,7 @@
 import string
 
 # passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
-common_passwords_file = open('passwords.txt', 'r')
+common_passwords_file = open('password_strength\passwords.txt', 'r')
 common_passwords_read = common_passwords_file.readlines()
 modified_common_passwords = []
 

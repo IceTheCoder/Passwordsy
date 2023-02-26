@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
 
-import generate_password_gui
-import password_strength_gui
+from password_generation import generate_password_gui
+from password_strength import password_strength_gui
 
 
 def main():
