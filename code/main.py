@@ -29,9 +29,13 @@ def main():
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
-    notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
+    def hide_other_methods_tab():
+        notebook.hide(2)
 
-    # Create the 'generate password' frame
+    notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
+    notebook.bind('<<NotebookTabChanged>>', lambda e: hide_other_methods_tab())
+
+    # Create the password generation frame
     generate_password_frame = tk.Frame(window)
     generate_password_frame.grid(column=0, row=0)
 
@@ -67,6 +71,10 @@ def main():
     password_strength_gui.create_password_strength_frame(password_strength_frame)
 
     # Create the other password generation methods frame
+    other_methods_frame = tk.Frame(window)
+    other_methods_frame.grid(column=0, row=0)
+
+    notebook.add(other_methods_frame, text='Try other methods...')
 
     window.mainloop()
 
