@@ -28,6 +28,7 @@ def main():
     root.title(app_name)
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
+    try_other_methods_btn_image = ImageTk.PhotoImage(Image.open('try_other_methods_btn.png'))
 
     notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
@@ -46,7 +47,8 @@ def main():
 
     notebook.add(generate_password_frame, text='Generate password')
 
-    generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image)
+    generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image,
+                                                         try_other_methods_btn_image)
 
     # Create the password strength frame
     password_strength_frame = tk.Frame(notebook)
