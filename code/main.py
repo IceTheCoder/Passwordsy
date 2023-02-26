@@ -29,7 +29,7 @@ def main():
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
-    notebook.bind('<<NotebookTabChanged>>', generate_password_gui.select_input_box)
+    notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
     generate_password_frame = tk.Frame(window)
     generate_password_frame.grid(column=0, row=0)
