@@ -6,10 +6,15 @@ import password_generation.sentence_input_logic as logic
 
 def create_sentence_input_frame(frame):
     """
+    Called upon starting the app,
+    this function prepares the 'input sentence' frame for when
+    the user wants to try other methods of password generation
+    by creating a basic Tkinter configuration, with an instruction, input, and a way to display the produced password.
 
     Parameters
     ----------
-    frame
+    frame: tk.Frame
+        The 'input sentence' frame
     """
     instruction_label = tk.Label(frame, text='Input a sentence')
     instruction_label.grid(row=0, column=0)
