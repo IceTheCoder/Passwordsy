@@ -24,7 +24,10 @@ def create_sentence_input_frame(frame):
 
     def display_password():
         """
-
+        Called as the user types,
+        this function calls the produce_password function of sentence_input_logic.py
+        to get a password based on the user's sentence,
+        and displays it on the screen.
         """
         logic.produce_password(str(input_box.get()))
 
