@@ -222,23 +222,23 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=2, padx=15)
             show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
-        else:
-            for index, show_button in enumerate(show_hide_buttons):
-                if show_hide_buttons.index(show_button) != 0:
-                    show_button.grid(row=4 + index, column=1, padx=15)
-                else:
-                    show_button.grid_forget()
-            for index, copy_button in enumerate(copy_buttons):
-                if copy_buttons.index(copy_button) != 0:
-                    copy_button.grid(row=4 + index, column=2, padx=15)
-                else:
-                    copy_button.grid_forget()
-            show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
-
-            if message == invalid_input_error or message == double_error:
-                input_box.delete(0, 'end')
-            password_label_1.grid(column=0, row=4, padx=10, pady=10)
-            show_text(password_label_1, message)
+        #else:
+        #    for index, show_button in enumerate(show_hide_buttons):
+        #        if show_hide_buttons.index(show_button) != 0:
+        #            show_button.grid(row=4 + index, column=1, padx=15)
+        #        else:
+        #            show_button.grid_forget()
+        #    for index, copy_button in enumerate(copy_buttons):
+        #        if copy_buttons.index(copy_button) != 0:
+        #            copy_button.grid(row=4 + index, column=2, padx=15)
+        #        else:
+        #            copy_button.grid_forget()
+        #    show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
+#
+        #    if message == invalid_input_error or message == double_error:
+        #        input_box.delete(0, 'end')
+        #    password_label_1.grid(column=0, row=4, padx=10, pady=10)
+        #    show_text(password_label_1, message)
 
         hide_all_passwords()
         for button in show_hide_buttons:
