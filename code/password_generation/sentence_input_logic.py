@@ -15,13 +15,25 @@ def produce_password(sentence):
     sentence: str
         The sentence the user is typing.
     """
-    split_sentence = sentence.split(' ')
     password = ''
 
-    for word in split_sentence:
-        password += word[0]
+    split_full_sentence = sentence.split(' ')
+    letters_only_sentence = ''
+
+    for word in sentence:
         for letter in word:
-            if letter in string.digits or letter in string.punctuation:
-                password += letter
+            if letter not in string.digits and letter not in string.punctuation:
+                letters_only_sentence += letter
+
+    split_letters_only_sentence = letters_only_sentence.split(' ')
+
+    for word in split_full_sentence:
+        letter_taken = False
+        for character in word:
+            if character in string.digits or character in string.punctuation:
+                password += character
+            elif not letter_taken:
+                password += character
+                letter_taken = True
 
     return password
