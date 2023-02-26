@@ -136,6 +136,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
+    try_other_methods_button = tk.Button(frame, text='Try other methods...')
+    try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=4)
+
     for checkbox in checkboxes:
         checkbox.grid(column=3, row=4 + checkboxes.index(checkbox), pady=8)
         checkbox.select()
