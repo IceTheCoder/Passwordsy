@@ -12,7 +12,12 @@ def produce_password(sentence):
     sentence: str
         The sentence the user is typing.
     """
-
     split_sentence = sentence.split(' ')
+    password = ''
+
+    for word in split_sentence:
+        password += word[0]
+
+    return password
 
 
