@@ -29,7 +29,11 @@ def main():
 
     done_btn_image = ImageTk.PhotoImage(Image.open('done_btn.png'))
 
-    def hide_other_methods_tab():
+    def hide_other_methods_tab() -> None:
+        """
+        Called whenever the tab is changed,
+        this function hides the 'try other methods' tab.
+        """
         notebook.hide(2)
 
     notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
