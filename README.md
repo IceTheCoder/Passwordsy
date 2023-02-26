@@ -3,6 +3,9 @@ A program that can generate a secure password of up to 100 characters (with uppe
 
 Blog: https://icethedev2.github.io/
 
+## Coming soon...
+- New password generation modes
+
 ## Getting Started
 ### Prerequisites
 You will need to install Python (from the Microsoft Store, for example) and GitHub Desktop to run this program.
