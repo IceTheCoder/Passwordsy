@@ -25,7 +25,7 @@ global show_hide_all_button
 global try_other_methods_btn_image
 global show_all_btn_image
 global hide_all_btn_image
-
+global show_btn_image
 
 
 def create_generate_password_frame(frame, done_btn_image) -> None:
@@ -54,6 +54,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     global hide_all_btn_image
     hide_all_btn_image = ImageTk.PhotoImage(Image.open('textures/hide_all_btn.png'))
+
+    global show_btn_image
+    show_btn_image = ImageTk.PhotoImage(Image.open('textures/show_btn.png'))
 
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
@@ -111,7 +114,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             The button that was clicked.
         """
         clear_text_label(password_labels[index])
-        button.configure(text='Show', command=lambda: show_password(index, button))
+        button.configure(image=show_btn_image, command=lambda: show_password(index, button))
 
     def show_all_passwords():
         """
@@ -138,10 +141,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                                        command=show_all_passwords)
 
     global show_hide_all_button
-    show_hide_button_1 = tk.Button(frame, text='Show', command=lambda: show_password(0, show_hide_button_1))
-    show_hide_button_2 = tk.Button(frame, text='Show', command=lambda: show_password(1, show_hide_button_2))
-    show_hide_button_3 = tk.Button(frame, text='Show', command=lambda: show_password(2, show_hide_button_3))
-    show_hide_button_4 = tk.Button(frame, text='Show', command=lambda: show_password(3, show_hide_button_4))
+    show_hide_button_1 = tk.Button(frame, image=show_btn_image, command=lambda: show_password(0, show_hide_button_1))
+    show_hide_button_2 = tk.Button(frame, image=show_btn_image, command=lambda: show_password(1, show_hide_button_2))
+    show_hide_button_3 = tk.Button(frame, image=show_btn_image, command=lambda: show_password(2, show_hide_button_3))
+    show_hide_button_4 = tk.Button(frame, image=show_btn_image, command=lambda: show_password(3, show_hide_button_4))
     show_hide_buttons = [show_hide_button_1, show_hide_button_2, show_hide_button_3, show_hide_button_4]
     show_hide_all_button = tk.Button(frame, image=show_all_btn_image, borderwidth=0,
                                      command=show_all_passwords)
