@@ -24,7 +24,7 @@ global show_hide_all_button
 passwords = []
 
 
-def create_generate_password_frame(frame, done_btn_image) -> None:
+def create_generate_password_frame(frame, done_btn_image, try_other_methods_btn_image) -> None:
     """
     Called upon starting the program,
     this function uses the Tkinter module to create a GUI frame
@@ -38,6 +38,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         The "generate password" frame upon which the objects of this function will be placed.
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
+    try_other_methods_btn_image: ImageTk.PhotoImage
+        The image used for the try_other_methods button.
     """
     password_label_1 = tk.Text(frame, width=password_width, height=password_height,
                                borderwidth=password_border_width, font=password_font)
@@ -162,7 +164,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
-    try_other_methods_button = tk.Button(frame, text='Try other methods...', command=other.create_other_methods_window)
+    try_other_methods_button = tk.Button(frame, text='Try other methods...', image=try_other_methods_btn_image,
+                                         borderwidth=0, command=other.create_other_methods_window)
     try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=4)
 
     for checkbox in checkboxes:
