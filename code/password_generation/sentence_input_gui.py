@@ -20,7 +20,7 @@ def create_sentence_input_frame(frame):
     instruction_label.grid(row=0, column=0)
 
     input_box = tk.Entry(frame)
-    input_box.grid(row=1, column=0)
+    input_box.grid(row=1, column=0, pady=10)
 
     password_label = tk.Text(frame)
     password_label.grid(row=2, column=0)
