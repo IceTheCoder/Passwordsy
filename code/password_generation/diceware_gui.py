@@ -40,5 +40,6 @@ def create_diceware_frame(frame):
         pair_widget.grid(row=2, column=0)
         pair_widget.configure(state='normal')
         pair_widget.delete('1.0', 'end')
-        pair_widget.insert('1.0', str(pair))
+        (diceroll, word), = pair.items()
+        pair_widget.insert('1.0', str(diceroll))
         pair_widget.configure(state='disabled')
