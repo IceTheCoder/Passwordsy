@@ -1,3 +1,8 @@
+"""
+Called upon opening the other methods' window,
+this module prepares the diceware frame of the window,
+with a set of functions for the GUI part of rolling dice and getting words from the diceware wordlist.
+"""
 import tkinter as tk
 from PIL import ImageTk, Image
 
