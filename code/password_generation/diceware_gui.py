@@ -36,10 +36,18 @@ def create_diceware_frame(frame):
         pair: dict
             Contains the pairs of dice roll numbers and related words according to the dice ware wordlist.
         """
-        pair_widget = tk.Text(frame, width=15, height=2, font=word_font)
-        pair_widget.grid(row=2, column=0)
-        pair_widget.configure(state='normal')
-        pair_widget.delete('1.0', 'end')
         (diceroll, word), = pair.items()
-        pair_widget.insert('1.0', str(diceroll))
-        pair_widget.configure(state='disabled')
+
+        diceroll_widget = tk.Text(frame, font=word_font, height=1, width=len(word))
+        diceroll_widget.grid(row=2, column=0)
+        diceroll_widget.configure(state='normal')
+        diceroll_widget.delete('1.0', 'end')
+        diceroll_widget.insert('1.0', str(diceroll))
+        diceroll_widget.configure(state='disabled')
+
+        word_widget = tk.Text(frame, font=word_font, height=1, width=len(word))
+        word_widget.grid(row=3, column=0)
+        word_widget.configure(state='normal')
+        word_widget.delete('1.0', 'end')
+        word_widget.insert('1.0', str(word))
+        word_widget.configure(state='disabled')
