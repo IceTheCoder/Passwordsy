@@ -110,11 +110,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         global passwords
         show_text(password_labels[index], passwords[index])
 
-        # If there is any content in all labels
-        print(len(password_labels[0].get('1.0', 'end')) == 1)
-        print(len(password_labels[1].get('1.0', 'end')) == 1)
-        print(len(password_labels[2].get('1.0', 'end')) == 1)
-        print(len(password_labels[3].get('1.0', 'end')) == 1)
+        # If there is any content in all labels by checking the length (the length of an empty label is 1)
+        if len(password_labels[0].get('1.0', 'end')) != 1 and len(password_labels[1].get('1.0', 'end')) != 1 and \
+                len(password_labels[2].get('1.0', 'end')) != 1 and len(password_labels[3].get('1.0', 'end')) != 1:
+            show_hide_all_slider.set(1)
 
         button.configure(image=hide_btn_image, borderwidth=0, command=lambda: hide_password(index, button))
 
