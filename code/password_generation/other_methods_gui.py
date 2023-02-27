@@ -7,7 +7,7 @@ from password_generation import diceware_gui as diceware
 from password_generation import sentence_input_gui as sentence_input
 
 
-def create_other_methods_window():
+def create_other_methods_window() -> None:
     """
     Called upon app startup, this function prepares the other methods window for the user,
     by creating 2 frames: 1 for diceware, and 1 for sentence input.
