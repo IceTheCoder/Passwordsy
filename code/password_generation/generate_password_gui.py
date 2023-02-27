@@ -109,7 +109,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         """
         global passwords
         show_text(password_labels[index], passwords[index])
-
         button.configure(image=hide_btn_image, borderwidth=0, command=lambda: hide_password(index, button))
 
     def hide_password(index, button) -> None:
