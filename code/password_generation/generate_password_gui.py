@@ -49,8 +49,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
     """
-    other_methods_window_open = False
-
     global passwords
     passwords = []
 
@@ -229,7 +227,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     try_other_methods_button = tk.Button(frame, image=try_other_methods_btn_image,
                                          borderwidth=0,
-                                         command=lambda: other.create_other_methods_window(other_methods_window_open))
+                                         command=lambda: other.create_other_methods_window())
     try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=4)
 
     for checkbox in checkboxes:
