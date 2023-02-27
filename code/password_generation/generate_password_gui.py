@@ -185,7 +185,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_hide_all_slider = tk.Scale(frame, from_=0, to=1, orient='horizontal',
                                     command=lambda value:
                                     run_function_based_on_slider_value(show_hide_all_slider.get()))
-    show_hide_all_slider.grid(row=3, column=1, columnspan=2)
 
     copy_button_1 = tk.Button(frame, image=copy_btn_image, borderwidth=0,
                               command=lambda: logic.copy_password(0, passwords))
@@ -277,6 +276,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_button.grid(row=4 + index, column=1, padx=15)
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=2, padx=15)
+                show_hide_all_slider.grid(row=3, column=1, columnspan=2)
+
         else:
             tk.messagebox.showerror('Error', message)
             if message == invalid_input_error or message == double_error:
