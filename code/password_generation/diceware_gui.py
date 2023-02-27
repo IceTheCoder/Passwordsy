@@ -24,9 +24,6 @@ def create_diceware_frame(frame):
                                  command=lambda: display_words(logic.roll_dice(int(input_box.get()))))
     roll_dice_button.grid(row=0, column=0)
 
-    input_box = tk.Entry(frame)
-    input_box.grid(row=1, column=0, pady=10)
-
     pair_widget = tk.Text(frame)
     pair_widget.grid(row=2, column=0)
 
