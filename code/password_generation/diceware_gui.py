@@ -45,14 +45,14 @@ def create_diceware_frame(frame):
         (diceroll, word), = pair.items()
 
         diceroll_widget = tk.Text(frame, font=word_font, height=1, width=len(word))
-        diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5), column=-1 + number_of_dicerolls)
+        diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5), column=(-1 + number_of_dicerolls) % 5)
         diceroll_widget.configure(state='normal')
         diceroll_widget.delete('1.0', 'end')
         diceroll_widget.insert('1.0', str(diceroll))
         diceroll_widget.configure(state='disabled')
 
         word_widget = tk.Text(frame, font=word_font, height=1, width=len(word))
-        word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=-1 + number_of_dicerolls)
+        word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=(-1 + number_of_dicerolls) % 5)
         word_widget.configure(state='normal')
         word_widget.delete('1.0', 'end')
         word_widget.insert('1.0', str(word))
