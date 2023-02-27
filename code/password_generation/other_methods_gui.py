@@ -1,4 +1,6 @@
-
+"""
+Called upon app startup, this module prepares the 'Try other methods...' window of the program for the user.
+"""
 import tkinter as tk
 
 from password_generation import diceware_gui as diceware
