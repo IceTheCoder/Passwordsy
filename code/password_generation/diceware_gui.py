@@ -17,12 +17,11 @@ def create_diceware_frame(frame):
     frame: tk.Frame
         The frame upon which the elements of dice ware shall be.
     """
-    print('Hello, wordl!')
     global roll_dice_btn_image
     roll_dice_btn_image = ImageTk.PhotoImage(Image.open('textures/roll_dice_btn.png'))
 
     roll_dice_button = tk.Button(frame, image=roll_dice_btn_image, borderwidth=0,
-                                 command=display_words(logic.roll_dice))
+                                 command=lambda: display_words(logic.roll_dice()))
     roll_dice_button.grid(row=0, column=0)
 
     pair_widget = tk.Text(frame)
