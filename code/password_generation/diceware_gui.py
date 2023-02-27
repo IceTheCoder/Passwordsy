@@ -3,7 +3,6 @@ from PIL import ImageTk, Image
 
 import password_generation.diceware_logic as logic
 
-global roll_dice_btn_image
 global number_of_dicerolls
 
 word_font = 'Helvetica 12'
@@ -23,12 +22,21 @@ def create_diceware_frame(frame):
     global number_of_dicerolls
     number_of_dicerolls = 0
 
-    global roll_dice_btn_image
     roll_dice_btn_image = ImageTk.PhotoImage(Image.open('textures/roll_dice_btn.png'))
 
     roll_dice_button = tk.Button(frame, image=roll_dice_btn_image, borderwidth=0,
                                  command=lambda: display_words(logic.roll_dice()))
     roll_dice_button.grid(row=0, column=0, columnspan=5, pady=10)
+
+    def clear_frame():
+        """
+        This function does nothing.
+        """
+        pass
+
+    clear_btn_image = ImageTk.PhotoImage(Image.open('textures/clear_btn.png'))
+    clear_button = tk.Button(frame, image=clear_btn_image, borderwidth=0, command=clear_frame)
+    clear_button.grid(row=1, column=0, columnspan=5, pady=10)
 
     def display_words(pair):
         """
