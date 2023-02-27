@@ -9,6 +9,9 @@ from PIL import ImageTk, Image
 import password_generation.diceware_logic as logic
 
 global number_of_dicerolls
+global roll_dice_btn_image
+global clear_btn_image
+global output_widgets
 
 word_font = 'Helvetica 12'
 
@@ -24,9 +27,13 @@ def create_diceware_frame(frame):
     frame: tk.Frame
         The frame upon which the elements of dice ware shall be.
     """
+    global output_widgets
+    output_widgets = []
+
     global number_of_dicerolls
     number_of_dicerolls = 0
 
+    global roll_dice_btn_image
     roll_dice_btn_image = ImageTk.PhotoImage(Image.open('textures/roll_dice_btn.png'))
 
     roll_dice_button = tk.Button(frame, image=roll_dice_btn_image, borderwidth=0,
@@ -37,8 +44,16 @@ def create_diceware_frame(frame):
         """
         This function does nothing.
         """
-        pass
+        global output_widgets
+        global number_of_dicerolls
 
+        for widget in output_widgets:
+            widget.destroy()
+
+        output_widgets = []
+        number_of_dicerolls = 0
+
+    global clear_btn_image
     clear_btn_image = ImageTk.PhotoImage(Image.open('textures/clear_btn.png'))
     clear_button = tk.Button(frame, image=clear_btn_image, borderwidth=0, command=clear_frame)
     clear_button.grid(row=1, column=0, columnspan=5, pady=10)
@@ -63,6 +78,7 @@ def create_diceware_frame(frame):
         diceroll_widget.delete('1.0', 'end')
         diceroll_widget.insert('1.0', str(diceroll))
         diceroll_widget.configure(state='disabled')
+        output_widgets.append(diceroll_widget)
 
         word_widget = tk.Text(frame, font=word_font, height=1, width=len(word))
         word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=(-1 + number_of_dicerolls) % 5)
@@ -70,3 +86,4 @@ def create_diceware_frame(frame):
         word_widget.delete('1.0', 'end')
         word_widget.insert('1.0', str(word))
         word_widget.configure(state='disabled')
+        output_widgets.append(word_widget)
