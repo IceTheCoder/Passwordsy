@@ -8,7 +8,7 @@ global roll_dice_btn_image
 
 def create_diceware_frame(frame):
     """
-    Called upon app startup,
+    Called upon loading the pop-up window,
     this function prepares the diceware frame for when the user decides to try other methods of password generations,
     by setting up a Tkinter frame with a button, an entry box, and a text widget.
 
@@ -17,11 +17,12 @@ def create_diceware_frame(frame):
     frame: tk.Frame
         The frame upon which the elements of dice ware shall be.
     """
+    print('Hello, wordl!')
     global roll_dice_btn_image
     roll_dice_btn_image = ImageTk.PhotoImage(Image.open('textures/roll_dice_btn.png'))
 
     roll_dice_button = tk.Button(frame, image=roll_dice_btn_image, borderwidth=0,
-                                 command=lambda: display_words(logic.roll_dice(int(input_box.get()))))
+                                 command=display_words(logic.roll_dice))
     roll_dice_button.grid(row=0, column=0)
 
     pair_widget = tk.Text(frame)

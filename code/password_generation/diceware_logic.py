@@ -18,14 +18,19 @@ for line in diceware_wordlist_read:
     wordlist[dice_rolls] = word
 
 
-def roll_dice(index) -> None:
+def roll_dice() -> None:
+    """
+    Called when the user clicks the 'done button' of the diceware frame,
+    this function returns a random pair of the number formed by 5 dice rolls
+    and the associated word with that number, according to the diceware wordlist.
+    """
     final_pairs = {}
-    while index != 0:
-        dice_roll = ''
-        i = 0
-        while i < 5:
-            dice_roll += str(secrets.choice(numbers))
-            i += 1
-        index -= 1
-        final_pairs[dice_roll] = wordlist[dice_roll]
+    dice_roll = ''
+
+    i = 0
+    while i < 5:
+        dice_roll += str(secrets.choice(numbers))
+        i += 1
+
+    final_pairs[dice_roll] = wordlist[dice_roll]
     return final_pairs
