@@ -131,10 +131,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         inserts the specific password inside of it through the show_text function,
         and changes the button into a hide all button.
         """
-        global show_hide_all_button
         for index, label in enumerate(password_labels):
             show_text(label, passwords[index])
-        show_hide_all_button.configure(image=hide_all_btn_image, command=hide_all_passwords)
 
     def hide_all_passwords():
         """
@@ -142,13 +140,9 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         this function goes through each password_label,
         and clears it.
         """
-        global show_hide_all_button
         for label in password_labels:
             clear_text_label(label)
-        show_hide_all_button.configure(image=show_all_btn_image, borderwidth=0,
-                                       command=show_all_passwords)
 
-    global show_hide_all_button
     show_hide_button_1 = tk.Button(frame, image=show_btn_image, borderwidth=0,
                                    command=lambda: show_password(0, show_hide_button_1))
     show_hide_button_2 = tk.Button(frame, image=show_btn_image, borderwidth=0,
@@ -158,8 +152,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_hide_button_4 = tk.Button(frame, image=show_btn_image, borderwidth=0,
                                    command=lambda: show_password(3, show_hide_button_4))
     show_hide_buttons = [show_hide_button_1, show_hide_button_2, show_hide_button_3, show_hide_button_4]
-    show_hide_all_button = tk.Button(frame, image=show_all_btn_image, borderwidth=0,
-                                     command=show_all_passwords)
 
     copy_button_1 = tk.Button(frame, image=copy_btn_image, borderwidth=0,
                               command=lambda: logic.copy_password(0, passwords))
@@ -250,7 +242,6 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_button.grid(row=4 + index, column=1, padx=15)
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=2, padx=15)
-            show_hide_all_button.grid(row=3, column=1, sticky='s', columnspan=2)
         else:
             tk.messagebox.showerror('Error', message)
             if message == invalid_input_error or message == double_error:
