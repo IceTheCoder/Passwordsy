@@ -41,7 +41,7 @@ def create_other_methods_window() -> None:
             other_methods_window.mainloop()
         else:
             return
-    except Error:
+    except:
         other_methods_window = tk.Toplevel()
         window_title = 'Try other methods...'
 
