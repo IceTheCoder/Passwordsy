@@ -109,6 +109,12 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         """
         global passwords
         show_text(password_labels[index], passwords[index])
+
+        # If there is any content in all labels
+        if password_labels[0].get('1.0', 'end') != '' and password_labels[1].get('1.0', 'end') != '' and \
+                password_labels[2].get('1.0', 'end') != '' and password_labels[3].get('1.0', 'end') != '':
+            show_hide_all_slider.set(1)
+
         button.configure(image=hide_btn_image, borderwidth=0, command=lambda: hide_password(index, button))
 
     def hide_password(index, button) -> None:
