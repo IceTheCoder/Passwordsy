@@ -24,9 +24,6 @@ def create_diceware_frame(frame):
                                  command=lambda: display_words(logic.roll_dice()))
     roll_dice_button.grid(row=0, column=0)
 
-    pair_widget = tk.Text(frame)
-    pair_widget.grid(row=2, column=0)
-
     def display_words(pair):
         """
         Called when the user clicks the 'roll dice' button,
@@ -37,6 +34,8 @@ def create_diceware_frame(frame):
         pair: dict
             Contains the pairs of dice roll numbers and related words according to the dice ware wordlist.
         """
+        pair_widget = tk.Text(frame, width=15, height=2)
+        pair_widget.grid(row=2, column=0)
         pair_widget.configure(state='normal')
         pair_widget.delete('1.0', 'end')
         pair_widget.insert('1.0', str(pair))

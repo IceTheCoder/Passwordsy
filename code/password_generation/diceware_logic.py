@@ -20,7 +20,7 @@ for line in diceware_wordlist_read:
 
 def roll_dice() -> None:
     """
-    Called when the user clicks the 'done button' of the diceware frame,
+    Called when the user clicks the 'dice roll' of the diceware frame,
     this function returns a random pair of the number formed by 5 dice rolls
     and the associated word with that number, according to the diceware wordlist.
     """
