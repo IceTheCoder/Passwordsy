@@ -5,6 +5,8 @@ import password_generation.diceware_logic as logic
 
 global roll_dice_btn_image
 
+word_font = 'Helvetica 12'
+
 
 def create_diceware_frame(frame):
     """
@@ -34,7 +36,7 @@ def create_diceware_frame(frame):
         pair: dict
             Contains the pairs of dice roll numbers and related words according to the dice ware wordlist.
         """
-        pair_widget = tk.Text(frame, width=15, height=2)
+        pair_widget = tk.Text(frame, width=15, height=2, font=word_font)
         pair_widget.grid(row=2, column=0)
         pair_widget.configure(state='normal')
         pair_widget.delete('1.0', 'end')
