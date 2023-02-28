@@ -20,6 +20,7 @@ def create_sentence_input_frame(frame):
         The 'input sentence' frame
     """
     instruction_font = Font(family='Roboto', size=16)
+    warning_font = Font(family='Roboto', size=14)
     word_font = Font(family='Roboto', size=12)
 
     instruction_label = tk.Label(frame, text='Input a sentence', font=instruction_font)
@@ -31,6 +32,10 @@ def create_sentence_input_frame(frame):
     password_label = tk.Text(frame, font=word_font)
     password_label.grid(row=2, column=0)
 
+    warning_label_1 = tk.Label(frame, font=warning_font)
+    warning_label_2 = tk.Label(frame, font=warning_font)
+    warning_labels = [warning_label_1, warning_label_2]
+
     def display_password():
         """
         Called as the user types,
@@ -38,9 +43,15 @@ def create_sentence_input_frame(frame):
         to get a password based on the user's sentence,
         and displays it on the screen.
         """
+        password_output = logic.produce_password(str(input_box.get()))
+
         password_label.configure(state='normal')
         password_label.delete('1.0', 'end')
-        password_label.insert('1.0', logic.produce_password(str(input_box.get())))
+        password_label.insert('1.0', password_output)
         password_label.configure(state='disabled')
+
+        for index, warning in enumerate(logic.check_password_strength(None, password_output)):
+            warning_labels[index].configure(text=warning)
+            warning_labels[index].grid(row=3 + index, column=0)
 
     input_box.bind('<KeyRelease>', lambda e: display_password())
