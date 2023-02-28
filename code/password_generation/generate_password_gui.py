@@ -279,7 +279,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_hide_all_slider.grid(row=3, column=1, columnspan=2)
 
         else:
-            tk.messagebox.showerror('Error', message)
+            messagebox.showerror('Error', message)
             if message == invalid_input_error or message == double_error:
                 input_box.delete(0, 'end')
 

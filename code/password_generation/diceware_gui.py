@@ -4,6 +4,7 @@ this module prepares the diceware frame of the window,
 with a set of functions for the GUI part of rolling dice and getting words from the diceware wordlist.
 """
 import tkinter as tk
+from tkinter import messagebox
 from PIL import ImageTk, Image
 
 import password_generation.diceware_logic as logic
@@ -89,4 +90,4 @@ def create_diceware_frame(frame):
             word_widget.configure(state='disabled')
             output_widgets.append(word_widget)
         else:
-            print('Too many dicerolls')
+            tk.mess
