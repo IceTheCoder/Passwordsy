@@ -39,7 +39,7 @@ def produce_password(sentence):
     return password
 
 
-def check_password_strength(event, inputted_password, input_password_msg) -> list | str:
+def check_password_strength(event, inputted_password) -> list | str:
     """
     Called upon pressing the done button,
     this function defines several functions that check
@@ -53,8 +53,6 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
         Necessary for initiating the function as the user types.
     inputted_password: str
         The input of the user
-    input_password_msg: str
-        'Please input a password.'
     """
     user_input = []
     user_input[:0] = inputted_password  # Adds each character of the input to a list.
@@ -152,10 +150,4 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
         else:
             return 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctuation.'
 
-    if len(inputted_password) == 0:
-        return input_password_msg
-    else:
-        length_warning = check_password_length()
-        complexity_warning = check_password_complexity()
-
-        return [length_warning, complexity_warning]
+    return [check_password_length(), check_password_complexity()]
