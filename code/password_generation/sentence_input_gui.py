@@ -36,6 +36,8 @@ def create_sentence_input_frame(frame):
     warning_label_2 = tk.Label(frame, font=warning_font)
     warning_labels = [warning_label_1, warning_label_2]
 
+    password_label.tag_config('red', foreground='red')
+
     def display_password():
         """
         Called as the user types,
@@ -43,12 +45,12 @@ def create_sentence_input_frame(frame):
         to get a password based on the user's sentence,
         and displays it on the screen.
         """
-        password_output = logic.produce_password(str(input_box.get()))
+        password_output = logic.produce_password(input_box.get())
 
         if password_output != '':
             password_label.configure(state='normal')
             password_label.delete('1.0', 'end')
-            password_label.insert('1.0', password_output)
+            password_label.insert('1.0', input_box.get())
             password_label.configure(state='disabled')
 
             for index, warning in enumerate(logic.check_password_strength(None, password_output)):
@@ -61,4 +63,11 @@ def create_sentence_input_frame(frame):
                 password_label.delete('1.0', 'end')
                 password_label.configure(state='disabled')
 
-    input_box.bind('<KeyRelease>', lambda e: display_password())
+        for character in input_box.get():
+            if character in password_output:
+                password_label.tag_add('red',
+                                       f'1.{str(input_box.get().index(character))}', f'1.{str(input_box.get().index(character) + 1)}')
+
+            print(f'1.{str(input_box.get().index(character) + 1)}')
+
+    input_box.bind('<Return>', lambda e: display_password())
