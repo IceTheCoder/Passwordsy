@@ -29,7 +29,7 @@ def create_sentence_input_frame(frame):
     input_box = tk.Entry(frame)
     input_box.grid(row=1, column=0, pady=10)
 
-    password_label = tk.Text(frame, font=word_font)
+    password_label = tk.Text(frame, font=word_font, width=50, height=1)
     password_label.grid(row=2, column=0)
 
     warning_label_1 = tk.Label(frame, font=warning_font)
