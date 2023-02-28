@@ -1,5 +1,8 @@
-
+"""
+This module contains everything related to the GUI part of generating a password passed on an inputted sentence.
+"""
 import tkinter as tk
+from tkinter.font import Font
 
 import password_generation.sentence_input_logic as logic
 
@@ -16,13 +19,16 @@ def create_sentence_input_frame(frame):
     frame: tk.Frame
         The 'input sentence' frame
     """
-    instruction_label = tk.Label(frame, text='Input a sentence')
+    instruction_font = Font(family='Roboto', size=16)
+    word_font = Font(family='Roboto', size=12)
+
+    instruction_label = tk.Label(frame, text='Input a sentence', font=instruction_font)
     instruction_label.grid(row=0, column=0)
 
     input_box = tk.Entry(frame)
     input_box.grid(row=1, column=0, pady=10)
 
-    password_label = tk.Text(frame)
+    password_label = tk.Text(frame, font=word_font)
     password_label.grid(row=2, column=0)
 
     def display_password():
