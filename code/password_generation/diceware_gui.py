@@ -5,6 +5,7 @@ with a set of functions for the GUI part of rolling dice and getting words from 
 """
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.font import Font
 from PIL import ImageTk, Image
 
 import password_generation.diceware_logic as logic
@@ -13,8 +14,6 @@ global number_of_dicerolls
 global roll_dice_btn_image
 global clear_btn_image
 global output_widgets
-
-word_font = 'Helvetica 12'
 
 
 def create_diceware_frame(frame):
@@ -28,6 +27,8 @@ def create_diceware_frame(frame):
     frame: tk.Frame
         The frame upon which the elements of dice ware shall be.
     """
+    word_font = Font(family='Roboto', size=12)
+
     global output_widgets
     output_widgets = []
 
