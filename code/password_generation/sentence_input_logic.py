@@ -15,28 +15,31 @@ def produce_password(sentence):
     sentence: str
         The sentence the user is typing.
     """
-    password = ''
+    if sentence != '':
+        password = ''
 
-    split_full_sentence = sentence.split(' ')
-    letters_only_sentence = ''
+        split_full_sentence = sentence.split(' ')
+        letters_only_sentence = ''
 
-    for word in sentence:
-        for letter in word:
-            if letter not in string.digits and letter not in string.punctuation:
-                letters_only_sentence += letter
+        for word in sentence:
+            for letter in word:
+                if letter not in string.digits and letter not in string.punctuation:
+                    letters_only_sentence += letter
 
-    split_letters_only_sentence = letters_only_sentence.split(' ')
+        split_letters_only_sentence = letters_only_sentence.split(' ')
 
-    for word in split_full_sentence:
-        letter_taken = False
-        for character in word:
-            if character in string.digits or character in string.punctuation:
-                password += character
-            elif not letter_taken:
-                password += character
-                letter_taken = True
+        for word in split_full_sentence:
+            letter_taken = False
+            for character in word:
+                if character in string.digits or character in string.punctuation:
+                    password += character
+                elif not letter_taken:
+                    password += character
+                    letter_taken = True
 
-    return password
+        return password
+    else:
+        return ''
 
 
 def check_password_strength(event, inputted_password) -> list | str:

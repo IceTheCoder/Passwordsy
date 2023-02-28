@@ -45,13 +45,20 @@ def create_sentence_input_frame(frame):
         """
         password_output = logic.produce_password(str(input_box.get()))
 
-        password_label.configure(state='normal')
-        password_label.delete('1.0', 'end')
-        password_label.insert('1.0', password_output)
-        password_label.configure(state='disabled')
+        if password_output != '':
+            password_label.configure(state='normal')
+            password_label.delete('1.0', 'end')
+            password_label.insert('1.0', password_output)
+            password_label.configure(state='disabled')
 
-        for index, warning in enumerate(logic.check_password_strength(None, password_output)):
-            warning_labels[index].configure(text=warning)
-            warning_labels[index].grid(row=3 + index, column=0)
+            for index, warning in enumerate(logic.check_password_strength(None, password_output)):
+                warning_labels[index].configure(text=warning)
+                warning_labels[index].grid(row=3 + index, column=0)
+        else:
+            for label in warning_labels:
+                label.configure(text='')
+                password_label.configure(state='normal')
+                password_label.delete('1.0', 'end')
+                password_label.configure(state='disabled')
 
     input_box.bind('<KeyRelease>', lambda e: display_password())
