@@ -10,10 +10,6 @@ from PIL import ImageTk, Image
 from password_generation import generate_password_logic as logic
 from password_generation import other_methods_gui as other
 
-title_font = 'Helvetica 24'
-section_title_font = 'Helvetica 16'
-description_font = 'Helvetica 12'
-
 password_width = 100
 password_height = 1
 password_border_width = 0
@@ -50,6 +46,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     done_btn_image: ImageTk.PhotoImage
         The image used for the done button.
     """
+    title_font = Font(family='Roboto', size=24)
+    section_title_font = Font(family='Roboto', size=16)
+    description_font = Font(family='Roboto', size=12)
+
     global passwords
     passwords = []
 
