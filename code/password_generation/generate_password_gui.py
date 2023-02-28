@@ -4,6 +4,7 @@ this module prepares the GUI for password generation
 """
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.font import Font
 from PIL import ImageTk, Image
 
 from password_generation import generate_password_logic as logic
