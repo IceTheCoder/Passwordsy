@@ -1,4 +1,6 @@
-
+"""
+This module deals with the logic part of generating a secure password based on a user's sentence.
+"""
 import string
 
 
@@ -40,7 +42,6 @@ def produce_password(sentence):
         return password
     else:
         return ''
-
 
 def check_password_strength(event, inputted_password) -> list | str:
     """
