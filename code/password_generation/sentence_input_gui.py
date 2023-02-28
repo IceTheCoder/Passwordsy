@@ -3,6 +3,7 @@ This module contains everything related to the GUI part of generating a password
 """
 import tkinter as tk
 from tkinter.font import Font
+import string
 
 import password_generation.sentence_input_logic as logic
 
@@ -47,6 +48,22 @@ def create_sentence_input_frame(frame):
         """
         password_output = logic.produce_password(input_box.get())
 
+        split_full_sentence = input_box.get().split(' ')
+
+        for word in split_full_sentence:
+            letter_taken = False
+            for character in word:
+                if character in string.digits or character in string.punctuation:
+                    password_label.tag_add('red',
+                                           f'1.{str(input_box.get().index(character))}',
+                                           f'1.{str(input_box.get().index(character) + 1)}')
+
+                elif not letter_taken:
+                    password_label.tag_add('red',
+                                           f'1.{str(input_box.get().index(character))}',
+                                           f'1.{str(input_box.get().index(character) + 1)}')
+                    letter_taken = True
+
         if password_output != '':
             password_label.configure(state='normal')
             password_label.delete('1.0', 'end')
@@ -63,11 +80,4 @@ def create_sentence_input_frame(frame):
                 password_label.delete('1.0', 'end')
                 password_label.configure(state='disabled')
 
-        for character in input_box.get():
-            if character in password_output:
-                password_label.tag_add('red',
-                                       f'1.{str(input_box.get().index(character))}', f'1.{str(input_box.get().index(character) + 1)}')
-
-            print(f'1.{str(input_box.get().index(character) + 1)}')
-
-    input_box.bind('<Return>', lambda e: display_password())
+    input_box.bind('<KeyRelease>', lambda e: display_password())
