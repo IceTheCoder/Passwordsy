@@ -90,4 +90,5 @@ def create_diceware_frame(frame):
             word_widget.configure(state='disabled')
             output_widgets.append(word_widget)
         else:
-            tk.mess
+            tk.messagebox.showwarning('Dice roll limit reached',
+                                      'You have reached the maximum limit of 35 dice rolls.')
