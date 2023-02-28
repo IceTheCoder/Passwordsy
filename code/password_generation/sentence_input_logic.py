@@ -65,19 +65,22 @@ def check_password_strength(event, inputted_password) -> list | str:
         and returns a suitable message.
         """
         if len(inputted_password) == 1:
-            return f'Very weak length: Your password has only {str(len(inputted_password))} character.'
+            return f'Your password has only {str(len(inputted_password))} character. You should write a longer sentence.'
 
         elif 0 < len(inputted_password) <= 7:
-            return f'Very weak length: Your password has only {str(len(inputted_password))} characters.'
+            return f'Very weak length: Your password has only {str(len(inputted_password))} characters. You should ' \
+                   f'write a longer sentence.'
 
         elif 8 <= len(inputted_password) <= 10:
-            return f'Weak length: Your password has only {str(len(inputted_password))} characters.'
+            return f'Weak length: Your password has only {str(len(inputted_password))} characters. You should ' \
+                   f'write a longer sentence.'
 
         elif 11 <= len(inputted_password) <= 13:
-            return f'Good length: Your password has {str(len(inputted_password))} characters.'
+            return f'Good length: Your password has {str(len(inputted_password))} characters. You should ' \
+                   f'write a longer sentence.'
 
         elif 14 <= len(inputted_password):
-            return f'Strong length: Your password has {str(len(inputted_password))} characters.'
+            return f'Strong length: Your password has {str(len(inputted_password))} characters'
 
     def check_password_complexity() -> str:
         """
@@ -145,9 +148,11 @@ def check_password_strength(event, inputted_password) -> list | str:
                     else:
                         output = output + str(missing_feature) + ', '
 
-            return f'Not complex: Your password is missing {output}.'
+            return f'You should add {output} to your password.'
 
         else:
-            return 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctuation.'
-
-    return [check_password_length(), check_password_complexity()]
+            return ''
+    if inputted_password is None:
+        return ['', '']
+    else:
+        return [check_password_length(), check_password_complexity()]
