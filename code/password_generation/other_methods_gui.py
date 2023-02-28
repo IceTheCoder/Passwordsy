@@ -1,3 +1,6 @@
+"""
+This module prepares the other_methods_window for the user when they click the 'try other methods...' button.
+"""
 import tkinter as tk
 from tkinter.font import Font
 from password_generation import diceware_gui as diceware
