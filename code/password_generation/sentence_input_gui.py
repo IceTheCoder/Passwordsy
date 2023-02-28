@@ -56,9 +56,11 @@ def create_sentence_input_frame(frame):
             for character in word:
                 if character in string.digits or character in string.punctuation:
                     letters_to_be_coloured[f'1.{str(input_box.get().index(character))}'] = f'1.{str(input_box.get().index(character) + 1)}'
+                    print(letters_to_be_coloured)
                 elif not letter_taken:
                     letters_to_be_coloured[f'1.{str(input_box.get().index(character))}'] = f'1.{str(input_box.get().index(character) + 1)}'
                     letter_taken = True
+                    print(letters_to_be_coloured)
 
         if password_output != '':
             password_label.configure(state='normal')
@@ -78,6 +80,5 @@ def create_sentence_input_frame(frame):
 
         for letter in letters_to_be_coloured:
             password_label.tag_add('red', letter, letters_to_be_coloured[letter])
-            print(letter, letters_to_be_coloured[letter])
 
     input_box.bind('<Return>', lambda e: display_password())
