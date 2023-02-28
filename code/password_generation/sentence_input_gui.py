@@ -52,15 +52,22 @@ def create_sentence_input_frame(frame):
         letters_to_be_coloured = {}
 
         for word in split_full_sentence:
-            letter_taken = False
-            for character in word:
-                if character in string.digits or character in string.punctuation:
-                    letters_to_be_coloured[f'1.{str(input_box.get().index(character))}'] = f'1.{str(input_box.get().index(character) + 1)}'
-                    print(letters_to_be_coloured)
-                elif not letter_taken:
-                    letters_to_be_coloured[f'1.{str(input_box.get().index(character))}'] = f'1.{str(input_box.get().index(character) + 1)}'
-                    letter_taken = True
-                    print(letters_to_be_coloured)
+            start_index = input_box.get().index(word)
+            letters_to_be_coloured[f'1.{start_index}'] = f'1.{start_index + 1}'
+
+        for i in range(len(input_box.get())):
+            character = input_box.get()[i]
+            if character in string.digits + string.punctuation:
+                # Find the start index of the character
+                start_index = i
+                # Iterate over the remaining characters in the sentence to find any additional occurrences
+                for j in range(i + 1, len(input_box.get())):
+                    if input_box.get()[j] == character:
+                        # Add the start and end indices of the character to the dictionary
+                        letters_to_be_coloured[f'1.{start_index}'] = f'1.{j + 1}'
+                # Add the start and end indices of the character to the dictionary for the first occurrence
+                if f'1.{start_index}' not in letters_to_be_coloured:
+                    letters_to_be_coloured[f'1.{start_index}'] = f'1.{start_index + 1}'
 
         if password_output != '':
             password_label.configure(state='normal')
