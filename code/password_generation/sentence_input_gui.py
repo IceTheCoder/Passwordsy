@@ -76,8 +76,8 @@ def create_sentence_input_frame(frame):
                 password_label.delete('1.0', 'end')
                 password_label.configure(state='disabled')
 
-        print(letters_to_be_coloured)
         for letter in letters_to_be_coloured:
-            print(letter)
+            password_label.tag_add('red', letter, letters_to_be_coloured[letter])
+            print(letter, letters_to_be_coloured[letter])
 
     input_box.bind('<Return>', lambda e: display_password())
