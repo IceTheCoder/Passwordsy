@@ -1,12 +1,13 @@
+"""
+This module prepares the password strength for the user upon app startup.
+"""
 import tkinter as tk
+from tkinter.font import Font
 from pynput.keyboard import Key, Controller
 
 from password_strength import password_strength_logic
 
 keyboard = Controller()
-
-title_font = 'Helvetica 24'
-warning_font = 'Helvetica 16'
 
 input_password_msg = 'Please input a password.'
 
@@ -87,6 +88,9 @@ def create_password_strength_frame(frame) -> None:
     frame: ttk.Frame
         The 'password strength' frame
     """
+    title_font = Font(family='Roboto', size=24)
+    warning_font = Font(family='Roboto', size=16)
+
     global paste
     paste = tk.Menu(frame, tearoff=False)
     paste.add_command(label='Paste', command=paste_text)
