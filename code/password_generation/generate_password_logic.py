@@ -1,7 +1,9 @@
+"""This module deals with the logical part of generating secure passwords."""
 import string
 import secrets
 import clipboard
 from pynput.keyboard import Controller
+from tkinter import TclError
 
 keyboard = Controller()
 
@@ -160,7 +162,8 @@ def copy_selected_text(input_box, labels) -> None:
             clipboard.copy(selected_text)
 
         input_box.focus_set()
-    except ValueError:
+    except (ValueError, TclError):
+        print('Hello, world!')
         raise ValueError('Nothing has been selected.')
 
 
