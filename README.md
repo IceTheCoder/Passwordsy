@@ -3,23 +3,12 @@ A program that can generate a secure password of up to 100 characters (with uppe
 
 Blog: https://icethedev2.github.io/
 
-## Coming soon...
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52722054145/in/dateposted-public/" title="23"><img src="https://live.staticflickr.com/65535/52722054145_71f6e09590_c.jpg" width="800" height="269" alt="23"></a>
-- New password generation modes
-- Hiding passwords
-
-
-## Installation
+## Getting started
 To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
-
-Note that the following tutorial might be slightly outdated. For example, modules might be used in the app that have not been written here. 
-
-Use your own judgment when following anything online.
-
 
 ### Prerequisites
 - Git from git-scm.ro
-- Python from python.org
+- Python from python.org (make sure to tick 'Add Python to PATH')
 - The following modules: PIL, Clipboard, Pynput.
 
 Install them through the following commands in the Git Bash terminal:
@@ -32,10 +21,7 @@ python -m pip install pynput
 
 
 ### Installation
-- Find the absolute path to Python on your machine.
 - Open Git Bash
-- Type ‘export PATH=$PATH:/c/path/to/python.exe’ to add Python to the PATH of Git Bash. Replace ‘/c/path/to/python.exe’ with the specific path on your PC
-- Close and reopen Git Bash for the changes to take effect.
 - Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the ‘passwordsy’ folder on Desktop, type ‘cd Desktop/passwordsy/‘ in the terminal.
 - Once you are in the desired folder, type ‘git clone https://github.com/IceTheDev2/Passwordsy.git’.
 - Type ‘cd Passwordsy/code’ to the navigate to the file containing main.py.
