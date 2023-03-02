@@ -163,8 +163,8 @@ def copy_selected_text(input_box, labels) -> None:
 
         input_box.focus_set()
     except (ValueError, TclError):
-        print('Hello, world!')
-        raise ValueError('Nothing has been selected.')
+        # There is no need to warn the user when they try to copy nothing as it does not have any effect on the app
+        pass
 
 
 def copy_password(index, passwords) -> None:
