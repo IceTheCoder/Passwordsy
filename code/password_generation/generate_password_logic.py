@@ -161,7 +161,7 @@ def copy_selected_text(input_box, labels) -> None:
     input_box.focus_set()
 
 
-def copy_password(index, passwords):
+def copy_password(index, passwords) -> None:
     """
     Called when the user clicks on one of the 4 copy button,
     this function adds to the clipboard the needed password
