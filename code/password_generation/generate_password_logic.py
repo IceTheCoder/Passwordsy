@@ -154,11 +154,14 @@ def copy_selected_text(input_box, labels) -> None:
     this function copies the selected text,
     and focuses the keyboard on the input_box to deselect the text.
     """
-    for label in labels:
-        selected_text = label.selection_get()
-        clipboard.copy(selected_text)
+    try:
+        for label in labels:
+            selected_text = str(label.selection_get())
+            clipboard.copy(selected_text)
 
-    input_box.focus_set()
+        input_box.focus_set()
+    except ValueError:
+        raise ValueError('Nothing has been selected.')
 
 
 def copy_password(index, passwords) -> None:
