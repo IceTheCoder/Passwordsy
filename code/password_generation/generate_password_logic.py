@@ -162,5 +162,16 @@ def copy_selected_text(input_box, labels) -> None:
 
 
 def copy_password(index, passwords):
+    """
+    Called when the user clicks on one of the 4 copy button,
+    this function adds to the clipboard the needed password
+
+    Parameters
+    ----------
+    index: int
+        Which password_label has been selected to copy its password.
+    passwords: list
+        The list of generated password.
+    """
     clipboard.copy(passwords[index])
 
