@@ -162,8 +162,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         inserts the specific password inside of it through the show_text function,
         and changes the button into a hide all button.
         """
-        for index, label in enumerate(password_labels):
-            show_text(label, passwords[index])
+        for index, button in enumerate(show_hide_buttons):
+            show_password(index, button)
 
     def hide_all_passwords() -> None:
         """
@@ -171,8 +171,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
         this function goes through each password_label,
         and clears it.
         """
-        for label in password_labels:
-            clear_text_label(label)
+        for index, button in enumerate(show_hide_buttons):
+            hide_password(index, button)
 
     show_hide_button_1 = tk.Button(frame, image=show_btn_image, borderwidth=0,
                                    command=lambda: show_password(0, show_hide_button_1))
