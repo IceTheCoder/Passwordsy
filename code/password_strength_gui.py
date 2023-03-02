@@ -97,7 +97,7 @@ def create_password_strength_frame(frame) -> None:
     global input_box
     input_box = tk.Entry(frame, width=32, borderwidth=2)
     input_box.grid(column=0, row=2)
-    input_box.bind('<KeyRelease>', display_warnings)
+    input_box.bind('<Key>', display_warnings)
     input_box.bind('<Button-3>', display_paste_button)
 
     first_label = tk.Label(frame, font=warning_font, text=input_password_msg)
