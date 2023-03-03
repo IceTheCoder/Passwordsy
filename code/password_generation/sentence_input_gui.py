@@ -20,6 +20,28 @@ def create_sentence_input_frame(frame):
     frame: tk.Frame
         The 'input sentence' frame
     """
+    frame.grid_rowconfigure(0, weight=1)
+    frame.grid_rowconfigure(1, weight=1)
+    frame.grid_rowconfigure(2, weight=1)
+    frame.grid_rowconfigure(3, weight=1)
+    frame.grid_rowconfigure(4, weight=1)
+    frame.grid_rowconfigure(5, weight=1)
+    frame.grid_rowconfigure(6, weight=1)
+    frame.grid_rowconfigure(7, weight=1)
+    frame.grid_rowconfigure(8, weight=1)
+    frame.grid_rowconfigure(9, weight=1)
+    frame.grid_rowconfigure(10, weight=1)
+    frame.grid_rowconfigure(11, weight=1)
+    frame.grid_rowconfigure(12, weight=1)
+    frame.grid_rowconfigure(13, weight=1)
+    frame.grid_rowconfigure(14, weight=1)
+    frame.grid_rowconfigure(15, weight=1)
+    frame.grid_columnconfigure(0, weight=1)
+    frame.grid_columnconfigure(1, weight=1)
+    frame.grid_columnconfigure(2, weight=1)
+    frame.grid_columnconfigure(3, weight=1)
+    frame.grid_columnconfigure(4, weight=1)
+    
     instruction_font = Font(family='Roboto', size=16)
     warning_font = Font(family='Roboto', size=14)
     word_font = Font(family='Roboto', size=12)
