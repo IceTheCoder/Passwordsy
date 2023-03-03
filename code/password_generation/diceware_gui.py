@@ -27,6 +27,8 @@ def create_diceware_frame(frame):
     frame: tk.Frame
         The frame upon which the elements of dice ware shall be.
     """
+    frame.grid_rowconfigure(0, weight=1)
+    frame.grid_rowconfigure(1, weight=1)
     word_font = Font(family='Roboto', size=12)
 
     global output_widgets
