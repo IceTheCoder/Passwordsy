@@ -27,27 +27,27 @@ def create_diceware_frame(frame):
     frame: tk.Frame
         The frame upon which the elements of dice ware shall be.
     """
-    frame.grid_rowconfigure(0, weight=1)
-    frame.grid_rowconfigure(1, weight=1)
-    frame.grid_rowconfigure(2, weight=1)
-    frame.grid_rowconfigure(3, weight=1)
-    frame.grid_rowconfigure(4, weight=1)
-    frame.grid_rowconfigure(5, weight=1)
-    frame.grid_rowconfigure(6, weight=1)
-    frame.grid_rowconfigure(7, weight=1)
-    frame.grid_rowconfigure(8, weight=1)
-    frame.grid_rowconfigure(9, weight=1)
-    frame.grid_rowconfigure(10, weight=1)
-    frame.grid_rowconfigure(11, weight=1)
-    frame.grid_rowconfigure(12, weight=1)
-    frame.grid_rowconfigure(13, weight=1)
-    frame.grid_rowconfigure(14, weight=1)
-    frame.grid_rowconfigure(15, weight=1)
-    frame.grid_columnconfigure(0, weight=1)
-    frame.grid_columnconfigure(1, weight=1)
-    frame.grid_columnconfigure(2, weight=1)
-    frame.grid_columnconfigure(3, weight=1)
-    frame.grid_columnconfigure(4, weight=1)
+    frame.grid_rowconfigure(0, weight=1, uniform='row')
+    frame.grid_rowconfigure(1, weight=1, uniform='row')
+    frame.grid_rowconfigure(2, weight=1, uniform='row')
+    frame.grid_rowconfigure(3, weight=1, uniform='row')
+    frame.grid_rowconfigure(4, weight=1, uniform='row')
+    frame.grid_rowconfigure(5, weight=1, uniform='row')
+    frame.grid_rowconfigure(6, weight=1, uniform='row')
+    frame.grid_rowconfigure(7, weight=1, uniform='row')
+    frame.grid_rowconfigure(8, weight=1, uniform='row')
+    frame.grid_rowconfigure(9, weight=1, uniform='row')
+    frame.grid_rowconfigure(10, weight=1, uniform='row')
+    frame.grid_rowconfigure(11, weight=1, uniform='row')
+    frame.grid_rowconfigure(12, weight=1, uniform='row')
+    frame.grid_rowconfigure(13, weight=1, uniform='row')
+    frame.grid_rowconfigure(14, weight=1, uniform='row')
+    frame.grid_rowconfigure(15, weight=1, uniform='row')
+    frame.grid_columnconfigure(0, weight=1, uniform='column')
+    frame.grid_columnconfigure(1, weight=1, uniform='column')
+    frame.grid_columnconfigure(2, weight=1, uniform='column')
+    frame.grid_columnconfigure(3, weight=1, uniform='column')
+    frame.grid_columnconfigure(4, weight=1, uniform='column')
     word_font = Font(family='Roboto', size=12)
 
     global output_widgets
@@ -61,7 +61,7 @@ def create_diceware_frame(frame):
 
     roll_dice_button = tk.Button(frame, image=roll_dice_btn_image, borderwidth=0,
                                  command=lambda: display_words(logic.roll_dice()))
-    roll_dice_button.grid(row=0, column=0, columnspan=5, pady=10, sticky='n')
+    roll_dice_button.grid(row=0, column=0, columnspan=5, pady=0, sticky='n')
 
     def clear_frame():
         """
@@ -79,7 +79,7 @@ def create_diceware_frame(frame):
     global clear_btn_image
     clear_btn_image = ImageTk.PhotoImage(Image.open('textures/clear_btn.png'))
     clear_button = tk.Button(frame, image=clear_btn_image, borderwidth=0, command=clear_frame)
-    clear_button.grid(row=1, column=0, columnspan=5, pady=10, sticky='n')
+    clear_button.grid(row=1, column=0, columnspan=5, pady=0, sticky='n')
 
     def display_words(pair):
         """
