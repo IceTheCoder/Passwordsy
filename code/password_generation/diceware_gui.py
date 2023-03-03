@@ -42,7 +42,7 @@ def create_diceware_frame(frame):
 
     roll_dice_button = tk.Button(frame, image=roll_dice_btn_image, borderwidth=0,
                                  command=lambda: display_words(logic.roll_dice()))
-    roll_dice_button.grid(row=0, column=0, columnspan=5, pady=10)
+    roll_dice_button.grid(row=0, column=0, columnspan=5, pady=10, sticky='n')
 
     def clear_frame():
         """
@@ -60,7 +60,7 @@ def create_diceware_frame(frame):
     global clear_btn_image
     clear_btn_image = ImageTk.PhotoImage(Image.open('textures/clear_btn.png'))
     clear_button = tk.Button(frame, image=clear_btn_image, borderwidth=0, command=clear_frame)
-    clear_button.grid(row=1, column=0, columnspan=5, pady=10)
+    clear_button.grid(row=1, column=0, columnspan=5, pady=10, sticky='n')
 
     def display_words(pair):
         """
