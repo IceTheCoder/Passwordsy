@@ -105,7 +105,8 @@ def create_diceware_frame(frame):
             output_widgets.append(diceroll_widget)
 
             word_widget = tk.Text(frame, font=word_font, height=1, width=len(word))
-            word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=(-1 + number_of_dicerolls) % 5)
+            word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=(-1 + number_of_dicerolls) % 5,
+                             sticky='n')
             word_widget.configure(state='normal')
             word_widget.delete('1.0', 'end')
             word_widget.insert('1.0', str(word))
