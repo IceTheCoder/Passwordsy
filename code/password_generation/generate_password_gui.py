@@ -185,7 +185,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_hide_buttons = [show_hide_button_1, show_hide_button_2, show_hide_button_3, show_hide_button_4]
     show_hide_all_slider = tk.Scale(frame, from_=0, to=1, orient='horizontal',
                                     command=lambda value:
-                                    run_function_based_on_slider_value(show_hide_all_slider.get()))
+                                    run_function_based_on_slider_value(show_hide_all_slider.get()),
+                                    bd=1, fg='blue', width=20, sliderlength=49, troughcolor='blue', borderwidth=0)
 
     copy_button_1 = tk.Button(frame, image=copy_btn_image, borderwidth=0,
                               command=lambda: logic.copy_password(0, passwords))
