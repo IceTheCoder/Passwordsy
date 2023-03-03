@@ -27,11 +27,10 @@ def create_other_methods_window() -> None:
     other_methods_window.iconphoto(False, tk.PhotoImage(file='textures/logo.png'))
     other_methods_window.title(window_title)
 
-    diceware_frame = tk.LabelFrame(other_methods_window, text='Diceware', font=title_font, width=597, height=481)
+    diceware_frame = tk.LabelFrame(other_methods_window, text='Diceware', font=title_font)
     diceware_frame.grid(row=0, column=0, sticky='nsew')
 
-    sentence_input_frame = tk.LabelFrame(other_methods_window, text='Input a sentence', font=title_font,
-                                         width=597, height=481)
+    sentence_input_frame = tk.LabelFrame(other_methods_window, text='Input a sentence', font=title_font)
     sentence_input_frame.grid(row=0, column=1, sticky='nsew')
 
     diceware.create_diceware_frame(diceware_frame)
