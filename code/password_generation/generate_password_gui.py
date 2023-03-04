@@ -208,7 +208,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     question.grid(column=0, row=1, columnspan=4)
 
     character_sets_label = tk .Label(frame, text='Character sets', font=section_title_font)
-    character_sets_label.grid(column=6, row=3, columnspan=2, sticky='s')
+    character_sets_label.grid(column=5, row=3, columnspan=2, sticky='s')
 
     lowercase_letters_var = tk.IntVar()
     lowercase_letters_checkbox = tk.Checkbutton(frame, variable=lowercase_letters_var, offvalue=0, onvalue=1)
@@ -232,14 +232,14 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     try_other_methods_btn = tk.Button(frame, image=try_other_methods_btn_image,
                                       borderwidth=0,
                                       command=lambda: other.create_other_methods_window())
-    try_other_methods_btn.grid(row=0, column=3, rowspan=3, columnspan=3)
+    try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
     for checkbox in checkboxes:
-        checkbox.grid(column=6, row=4 + checkboxes.index(checkbox), pady=8)
+        checkbox.grid(column=5, row=4 + checkboxes.index(checkbox), pady=8)
         checkbox.select()
 
     for text_label in checkboxes_text_labels:
-        text_label.grid(column=7, row=4 + checkboxes_text_labels.index(text_label), sticky='w')
+        text_label.grid(column=6, row=4 + checkboxes_text_labels.index(text_label), sticky='w')
 
     def create_password_labels() -> None:
         """
@@ -278,12 +278,12 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_text(password_label, '')
                 password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
             for index, button in enumerate(show_hide_buttons):
-                button.grid(row=4 + index, column=2, columnspan=2, padx=15)
+                button.grid(row=4 + index, column=1, columnspan=2, padx=15)
             for index, copy_button in enumerate(copy_buttons):
-                copy_button.grid(row=4 + index, column=4, columnspan=2, padx=15)
-            show_hide_all_slider.grid(row=3, column=3, columnspan=2)
-            hide_label.grid(row=3, column=0)
-            show_label.grid(row=3, column=2)
+                copy_button.grid(row=4 + index, column=3, columnspan=2, padx=15)
+            show_hide_all_slider.grid(row=3, column=2, columnspan=2)
+            hide_label.grid(row=3, column=1)
+            show_label.grid(row=3, column=4)
 
         else:
             messagebox.showerror('Error', message)
