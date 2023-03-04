@@ -207,7 +207,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     question = tk.Label(frame, text='Number of characters (4 to 100):', font=description_font)
     question.grid(column=0, row=1, columnspan=4)
 
-    character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
+    character_sets_label = tk .Label(frame, text='Character sets', font=section_title_font)
     character_sets_label.grid(column=4, row=3, columnspan=2, sticky='s')
 
     lowercase_letters_var = tk.IntVar()
@@ -277,11 +277,11 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
                 show_text(password_label, '')
                 password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
-            for index, show_button in enumerate(show_hide_buttons):
-                show_button.grid(row=4 + index, column=2, padx=15)
+            for index, button in enumerate(show_hide_buttons):
+                button.grid(row=4 + index, column=2, padx=15)
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=3, padx=15)
-            show_hide_all_slider.grid(row=3, column=1, columnspan=3)
+            show_hide_all_slider.grid(row=3, column=2, columnspan=3)
             hide_label.grid(row=3, column=0)
             show_label.grid(row=3, column=2)
 
