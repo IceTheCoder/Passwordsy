@@ -186,7 +186,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     show_hide_all_slider = tk.Scale(frame, from_=0, to=1, orient='horizontal',
                                     command=lambda value:
                                     run_function_based_on_slider_value(show_hide_all_slider.get()),
-                                    bd=1, fg='blue', width=20, sliderlength=49, troughcolor='blue', borderwidth=0)
+                                    bd=1, fg='#F0F0F0', width=20, sliderlength=49, troughcolor='blue', borderwidth=0)
 
     hide_label = tk.Label(frame, text='Hide', font=description_font)
     show_label = tk.Label(frame, text='Show', font=description_font)
