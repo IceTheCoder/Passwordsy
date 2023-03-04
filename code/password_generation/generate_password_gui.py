@@ -282,8 +282,8 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=3, columnspan=2, padx=15)
             show_hide_all_slider.grid(row=3, column=2, columnspan=2)
-            hide_label.grid(row=3, column=1)
-            show_label.grid(row=3, column=4)
+            hide_label.grid(row=3, column=1, sticky='w')
+            show_label.grid(row=3, column=4, sticky='e')
 
         else:
             messagebox.showerror('Error', message)
