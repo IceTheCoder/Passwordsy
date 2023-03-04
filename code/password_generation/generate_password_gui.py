@@ -229,7 +229,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     try_other_methods_button = tk.Button(frame, image=try_other_methods_btn_image,
                                          borderwidth=0,
                                          command=lambda: other.create_other_methods_window())
-    try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=4)
+    try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=2)
 
     for checkbox in checkboxes:
         checkbox.grid(column=3, row=4 + checkboxes.index(checkbox), pady=8)
