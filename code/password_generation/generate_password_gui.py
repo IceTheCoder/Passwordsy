@@ -199,10 +199,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     copy_buttons = [copy_button_1, copy_button_2, copy_button_3, copy_button_4]
 
     frame_title = tk.Label(frame, text='Generate password', font=title_font)
-    frame_title.grid(column=0, row=0, columnspan=3)
+    frame_title.grid(column=0, row=0, columnspan=4)
 
     question = tk.Label(frame, text='Number of characters (4 to 100):', font=description_font)
-    question.grid(column=0, row=1, columnspan=3)
+    question.grid(column=0, row=1, columnspan=4)
 
     character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
     character_sets_label.grid(column=3, row=3, columnspan=2, sticky='s')
@@ -226,10 +226,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
     checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
 
-    try_other_methods_button = tk.Button(frame, image=try_other_methods_btn_image,
-                                         borderwidth=0,
-                                         command=lambda: other.create_other_methods_window())
-    try_other_methods_button.grid(row=0, column=3, rowspan=3, columnspan=2)
+    try_other_methods_btn = tk.Button(frame, image=try_other_methods_btn_image,
+                                      borderwidth=0,
+                                      command=lambda: other.create_other_methods_window())
+    try_other_methods_btn.grid(row=0, column=3, rowspan=3, columnspan=3)
 
     for checkbox in checkboxes:
         checkbox.grid(column=3, row=4 + checkboxes.index(checkbox), pady=8)
@@ -278,7 +278,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
                 show_button.grid(row=4 + index, column=1, padx=15)
             for index, copy_button in enumerate(copy_buttons):
                 copy_button.grid(row=4 + index, column=2, padx=15)
-                show_hide_all_slider.grid(row=3, column=1, columnspan=2)
+                show_hide_all_slider.grid(row=3, column=1, columnspan=3)
 
         else:
             messagebox.showerror('Error', message)
@@ -292,10 +292,10 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     global input_box
     input_box = tk.Entry(frame, width=10, borderwidth=2)
     input_box.bind('<Return>', lambda e: create_password_labels())
-    input_box.grid(column=0, row=2, columnspan=3)
+    input_box.grid(column=0, row=2, columnspan=4)
 
     done_btn = tk.Button(frame, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels())
-    done_btn.grid(column=0, row=3, columnspan=3)
+    done_btn.grid(column=0, row=3, columnspan=4)
 
     global copy_menu
     copy_menu = tk.Menu(frame, tearoff=False)
