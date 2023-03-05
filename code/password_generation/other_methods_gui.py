@@ -17,29 +17,22 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        title_font = Font(family='Roboto', size=24)
+        # title_font = Font(family='Roboto', size=24)
 
-        if self is not None and self.winfo_exists():
-            return
-
-        self = tk.Toplevel()
         self.geometry('1195x520')
-        window_title = 'Try other methods...'
+        self.window_title = 'Try other methods...'
 
         self.iconphoto(False, tk.PhotoImage(file='textures/logo.png'))
-        self.title(window_title)
+        self.title(self.window_title)
 
-        diceware_frame = tk.LabelFrame(self, text='Diceware', font=title_font)
-        diceware_frame.grid(row=0, column=0, sticky='nsew')
+        self.diceware_frame = diceware.DicewareFrame(master=self)
+        self.diceware_frame.grid(row=0, column=0, sticky='nsew')
 
-        sentence_input_frame = tk.LabelFrame(self, text='Input a sentence', font=title_font)
-        sentence_input_frame.grid(row=0, column=1, sticky='nsew')
+        # self.sentence_input_frame = tk.LabelFrame(self, text='Input a sentence', font=title_font)
+        # self.sentence_input_frame.grid(row=0, column=1, sticky='nsew')
 
-        diceware.create_diceware_frame(diceware_frame)
-        sentence_input.create_sentence_input_frame(sentence_input_frame)
+        # self.sentence_input.create_sentence_input_frame(sentence_input_frame)
 
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
-
-
