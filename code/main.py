@@ -31,38 +31,35 @@ class App(customtkinter.CTk):
         notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
         # Create the password generation frame
-        generate_password_frame = generate_password_gui.PasswordGenerationFrame(master=self)
-        generate_password_frame.grid(column=0, row=0)
+        self.generate_password_frame = generate_password_gui.PasswordGenerationFrame(master=self)
+        self.generate_password_frame.grid(column=0, row=0)
 
         # Expand some widgets' rows and columns to take up the entire window
-        generate_password_frame.grid_columnconfigure(0, weight=1)
-        generate_password_frame.grid_rowconfigure(0, weight=1)
-        generate_password_frame.grid_rowconfigure(1, weight=1)
-        generate_password_frame.grid_rowconfigure(2, weight=1)
-        generate_password_frame.grid_rowconfigure(3, weight=1)
-        generate_password_frame.grid_rowconfigure(4, weight=1)
-        generate_password_frame.grid_rowconfigure(5, weight=1)
+        self.generate_password_frame.grid_columnconfigure(0, weight=1)
+        self.generate_password_frame.grid_rowconfigure(0, weight=1)
+        self.generate_password_frame.grid_rowconfigure(1, weight=1)
+        self.generate_password_frame.grid_rowconfigure(2, weight=1)
+        self.generate_password_frame.grid_rowconfigure(3, weight=1)
+        self.generate_password_frame.grid_rowconfigure(4, weight=1)
+        self.generate_password_frame.grid_rowconfigure(5, weight=1)
 
-        notebook.add(generate_password_frame, text='Generate password')
+        notebook.add(self.generate_password_frame, text='Generate password')
 
         # Create the password strength frame
-        password_strength_frame = tk.Frame(notebook)
-        password_strength_frame.grid(column=0, row=0)
+        self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self)
+        self.password_strength_frame.grid(column=0, row=0)
 
         # Expand widgets to take up the entire window
-        password_strength_frame.grid_columnconfigure(0, weight=1)
-        password_strength_frame.grid_rowconfigure(0, weight=1)
-        password_strength_frame.grid_rowconfigure(1, weight=1)
-        password_strength_frame.grid_rowconfigure(2, weight=1)
-        password_strength_frame.grid_rowconfigure(3, weight=1)
-        password_strength_frame.grid_rowconfigure(4, weight=1)
-        password_strength_frame.grid_rowconfigure(5, weight=1)
-        password_strength_frame.grid_rowconfigure(6, weight=1)
+        self.password_strength_frame.grid_columnconfigure(0, weight=1)
+        self.password_strength_frame.grid_rowconfigure(0, weight=1)
+        self.password_strength_frame.grid_rowconfigure(1, weight=1)
+        self.password_strength_frame.grid_rowconfigure(2, weight=1)
+        self.password_strength_frame.grid_rowconfigure(3, weight=1)
+        self.password_strength_frame.grid_rowconfigure(4, weight=1)
+        self.password_strength_frame.grid_rowconfigure(5, weight=1)
+        self.password_strength_frame.grid_rowconfigure(6, weight=1)
 
-        notebook.add(password_strength_frame, text='Password strength')
-
-        password_strength_gui.create_password_strength_frame(password_strength_frame)
-
+        notebook.add(self.password_strength_frame, text='Password strength')
 
 def main():
     """
