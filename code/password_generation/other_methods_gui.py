@@ -8,8 +8,6 @@ import customtkinter
 from password_generation import diceware_gui as diceware
 from password_generation import sentence_input_gui as sentence_input
 
-other_methods_window = None
-
 
 class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
