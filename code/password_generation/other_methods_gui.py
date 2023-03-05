@@ -19,6 +19,8 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         super().__init__(*args, **kwargs)
         # title_font = Font(family='Roboto', size=24)
 
+        self.focus()
+
         self.geometry('1195x520')
         self.window_title = 'Try other methods...'
 

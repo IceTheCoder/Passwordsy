@@ -352,8 +352,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         """
         if self.other_methods_window is None or not self.other_methods_window.winfo_exists():
             self.other_methods_window = other.OtherMethodsWindow(self)
+            self.after(100, self.other_methods_window.focus_set)
         else:
-            self.other_methods_window.focus()
+            self.other_methods_window.focus_set()
 
 
 def select_input_box() -> None:
