@@ -19,6 +19,46 @@ global input_box
 global labels
 
 
+class PasswordStrengthFrame(customtkinter.CTkFrame):
+    """
+    Called upon starting the program,
+    this class creates the 'password strength' frame with a label for instructions,
+    an entry box for password input, and four warning labels to display the strength of the password.
+    It also creates a menu for pasting text, which is triggered by a right-click on the input box.
+    """
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        title_font = Font(family='Roboto', size=24)
+        warning_font = Font(family='Roboto', size=16)
+
+        global paste
+        paste = tk.Menu(self, tearoff=False)
+        paste.add_command(label='Paste', command=paste_text)
+
+        instruction_label = tk.Label(self, text='Type your password to check its strength', font=title_font)
+        instruction_label.grid(column=0, row=0)
+
+        global input_box
+        input_box = tk.Entry(self, width=32, borderwidth=2)
+        input_box.grid(column=0, row=1)
+        input_box.bind('<KeyRelease>', display_warnings)
+        input_box.bind('<Button-3>', display_paste_button)
+
+        first_label = tk.Label(self, font=warning_font, text=input_password_msg)
+
+        second_label = tk.Label(self, font=warning_font, text='')
+
+        third_label = tk.Label(self, font=warning_font, text='')
+
+        fourth_label = tk.Label(self, font=warning_font, text='')
+
+        global labels
+        labels = [first_label, second_label, third_label, fourth_label]
+
+        for label in labels:
+            label.grid(column=0, row=2 + labels.index(label), sticky='n')
+
+
 def display_paste_button(event) -> None:
     """
     Called when the user right-clicks on the input_box,
@@ -71,46 +111,3 @@ def display_warnings(event) -> None:
             labels[index].configure(text=warning)
         for label in labels:
             label.grid(column=0, row=2 + labels.index(label), sticky='w')
-
-
-def create_password_strength_frame(frame) -> None:
-    """
-    Called upon starting the program,
-    this function creates the 'password strength' frame with a label for instructions,
-    an entry box for password input, and four warning labels to display the strength of the password.
-    It also creates a menu for pasting text, which is triggered by a right-click on the input box.
-
-    Parameters
-    ----------
-    frame: ttk.Frame
-        The 'password strength' frame
-    """
-    title_font = Font(family='Roboto', size=24)
-    warning_font = Font(family='Roboto', size=16)
-
-    global paste
-    paste = tk.Menu(frame, tearoff=False)
-    paste.add_command(label='Paste', command=paste_text)
-
-    instruction_label = tk.Label(frame, text='Type your password to check its strength', font=title_font)
-    instruction_label.grid(column=0, row=0)
-
-    global input_box
-    input_box = tk.Entry(frame, width=32, borderwidth=2)
-    input_box.grid(column=0, row=1)
-    input_box.bind('<KeyRelease>', display_warnings)
-    input_box.bind('<Button-3>', display_paste_button)
-
-    first_label = tk.Label(frame, font=warning_font, text=input_password_msg)
-
-    second_label = tk.Label(frame, font=warning_font, text='')
-
-    third_label = tk.Label(frame, font=warning_font, text='')
-
-    fourth_label = tk.Label(frame, font=warning_font, text='')
-
-    global labels
-    labels = [first_label, second_label, third_label, fourth_label]
-
-    for label in labels:
-        label.grid(column=0, row=2 + labels.index(label), sticky='n')
