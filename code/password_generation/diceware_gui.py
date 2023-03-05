@@ -100,7 +100,7 @@ class DicewareFrame(customtkinter.CTkFrame):
                 self.diceroll_widget.delete('1.0', 'end')
                 self.diceroll_widget.insert('1.0', str(diceroll))
                 self.diceroll_widget.configure(state='disabled')
-                output_widgets.append(diceroll_widget)
+                output_widgets.append(self.diceroll_widget)
 
                 self.word_widget = tk.Text(self, font=self.word_font, height=1, width=len(word))
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
@@ -110,7 +110,7 @@ class DicewareFrame(customtkinter.CTkFrame):
                 self.word_widget.delete('1.0', 'end')
                 self.word_widget.insert('1.0', str(word))
                 self.word_widget.configure(state='disabled')
-                output_widgets.append(word_widget)
+                output_widgets.append(self.word_widget)
             else:
                 tk.messagebox.showwarning('Dice roll limit reached',
                                           'You have reached the maximum limit of 35 dice rolls.')
