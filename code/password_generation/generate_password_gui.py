@@ -350,7 +350,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         Called when the user clicks on the 'try other methods' button,
         this function creates a Toplevel window containing other methods of password generation.
         """
-        print('Hello, world!')
         if self.other_methods_window is None or not self.other_methods_window.winfo_exists():
             self.other_methods_window = other.OtherMethodsWindow(self)
         else:
