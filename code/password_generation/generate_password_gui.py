@@ -249,7 +249,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.try_other_methods_btn = tk.Button(self, image=try_other_methods_btn_image,
                                                borderwidth=0,
-                                               command=lambda: self.open_other_methods)
+                                               command=self.open_other_methods)
         self.try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
         for checkbox in self.checkboxes:
@@ -350,7 +350,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         Called when the user clicks on the 'try other methods' button,
         this function creates a Toplevel window containing other methods of password generation.
         """
-        if self.other_methods_window is not None or self.other_methods_window.winfo_exists():
+        print('Hello, world!')
+        if self.other_methods_window is None or not self.other_methods_window.winfo_exists():
             self.other_methods_window = other.OtherMethodsWindow(self)
         else:
             self.other_methods_window.focus()
