@@ -142,7 +142,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         def run_function_based_on_slider_value(value) -> None:
             """
-            Called when the user moves the slider, this function checks what function to run based on the slider's value:
+            Called when the user moves the slider,
+            this function checks what function to run based on the slider's value:
             if it is 0, it runs hide_all_passwords(), if it is 1, it runs show_all_passwords.
 
             Parameters
@@ -186,8 +187,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         show_hide_all_slider = tk.Scale(self, from_=0, to=1, orient='horizontal',
                                         command=lambda value:
                                         run_function_based_on_slider_value(show_hide_all_slider.get()),
-                                        bd=1, fg='#F0F0F0', width=20, sliderlength=49, borderwidth=0, sliderrelief='flat',
-                                        activebackground='blue')
+                                        bd=1, fg='#F0F0F0', width=20, sliderlength=49, borderwidth=0,
+                                        sliderrelief='flat', activebackground='blue')
 
         hide_label = tk.Label(self, text='Hide', font=description_font)
         show_label = tk.Label(self, text='Show', font=description_font)
@@ -260,7 +261,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
 
             message = logic.determine_error(
-                logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var),
+                logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var,
+                                              digits_var, punctuation_var),
                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
             # Check if an error was not returned
@@ -326,6 +328,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             label.delete('1.0', 'end')
             label.insert('1.0', message)
             label.config(state='disabled', bg='#ffffff')
+
 
 def select_input_box() -> None:
     """
