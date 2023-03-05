@@ -4,6 +4,7 @@ This is the main module of Passwordsy.
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
+import customtkinter
 
 from password_generation import generate_password_gui
 from password_strength import password_strength_gui
