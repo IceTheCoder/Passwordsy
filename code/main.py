@@ -1,3 +1,6 @@
+"""
+This is the main module of Passwordsy.
+"""
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
