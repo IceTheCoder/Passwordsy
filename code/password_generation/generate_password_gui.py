@@ -208,7 +208,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
     question = tk.Label(frame, text='Number of characters (4 to 100):', font=description_font)
     question.grid(column=0, row=1, columnspan=4)
 
-    character_sets_label = tk .Label(frame, text='Character sets', font=section_title_font)
+    character_sets_label = tk.Label(frame, text='Character sets', font=section_title_font)
     character_sets_label.grid(column=5, row=3, columnspan=2, sticky='s')
 
     lowercase_letters_var = tk.IntVar()
@@ -232,7 +232,7 @@ def create_generate_password_frame(frame, done_btn_image) -> None:
 
     try_other_methods_btn = tk.Button(frame, image=try_other_methods_btn_image,
                                       borderwidth=0,
-                                      command=lambda: other.create_other_methods_window())
+                                      command=lambda: open_other_methods)
     try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
     for checkbox in checkboxes:
