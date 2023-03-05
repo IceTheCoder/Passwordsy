@@ -61,6 +61,7 @@ class App(customtkinter.CTk):
 
         notebook.add(self.password_strength_frame, text='Password strength')
 
+
 def main():
     """
     Called upon starting the program,
