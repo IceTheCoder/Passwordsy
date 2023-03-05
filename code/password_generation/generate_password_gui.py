@@ -41,6 +41,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
     (length and character sets),
     and serves as a hub for all other password generation functions.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         title_font = Font(family='Roboto', size=24)
@@ -71,15 +72,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         global done_btn_image
         done_btn_image = ImageTk.PhotoImage(Image.open('textures/done_btn.png'))
 
-        password_label_1 = tk.Text(self, width=password_width, height=password_height,
-                                   borderwidth=password_border_width, font=password_font)
-        password_label_2 = tk.Text(self, width=password_width, height=password_height,
-                                   borderwidth=password_border_width, font=password_font)
-        password_label_3 = tk.Text(self, width=password_width, height=password_height,
-                                   borderwidth=password_border_width, font=password_font)
-        password_label_4 = tk.Text(self, width=password_width, height=password_height,
-                                   borderwidth=password_border_width, font=password_font)
-        password_labels = [password_label_1, password_label_2, password_label_3, password_label_4]
+        self.password_label_1 = tk.Text(self, width=password_width, height=password_height,
+                                        borderwidth=password_border_width, font=password_font)
+        self.password_label_2 = tk.Text(self, width=password_width, height=password_height,
+                                        borderwidth=password_border_width, font=password_font)
+        self.password_label_3 = tk.Text(self, width=password_width, height=password_height,
+                                        borderwidth=password_border_width, font=password_font)
+        self.password_label_4 = tk.Text(self, width=password_width, height=password_height,
+                                        borderwidth=password_border_width, font=password_font)
+        self.password_labels = [self.password_label_1, self.password_label_2,
+                                self.password_label_3, self.password_label_4]
 
         def clear_text_label(label):
             """
@@ -109,12 +111,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 The button that was clicked.
             """
             global passwords
-            show_text(password_labels[index], passwords[index])
+            show_text(self.password_labels[index], passwords[index])
 
             # Check if there is any content in all labels by checking the length (the length of an empty label is 1)
-            if len(password_labels[0].get('1.0', 'end')) != 1 and len(password_labels[1].get('1.0', 'end')) != 1 and \
-                    len(password_labels[2].get('1.0', 'end')) != 1 and len(password_labels[3].get('1.0', 'end')) != 1:
-                show_hide_all_slider.set(1)
+            if len(self.password_labels[0].get('1.0', 'end')) != 1 \
+                    and len(self.password_labels[1].get('1.0', 'end')) != 1 \
+                    and len(self.password_labels[2].get('1.0', 'end')) != 1 \
+                    and len(self.password_labels[3].get('1.0', 'end')) != 1:
+                self.show_hide_all_slider.set(1)
 
             button.configure(image=hide_btn_image, borderwidth=0, command=lambda: hide_password(index, button))
 
@@ -131,12 +135,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             button: tk.Button
                 The button that was clicked.
             """
-            clear_text_label(password_labels[index])
+            clear_text_label(self.password_labels[index])
 
             # Check if there is no content in no label by checking the length (the length of an empty label is 1)
-            if len(password_labels[0].get('1.0', 'end')) == 1 and len(password_labels[1].get('1.0', 'end')) == 1 and \
-                    len(password_labels[2].get('1.0', 'end')) == 1 and len(password_labels[3].get('1.0', 'end')) == 1:
-                show_hide_all_slider.set(0)
+            if len(self.password_labels[0].get('1.0', 'end')) == 1 \
+                    and len(self.password_labels[1].get('1.0', 'end')) == 1 \
+                    and len(self.password_labels[2].get('1.0', 'end')) == 1 \
+                    and len(self.password_labels[3].get('1.0', 'end')) == 1:
+                self.show_hide_all_slider.set(0)
 
             button.configure(image=show_btn_image, command=lambda: show_password(index, button))
 
@@ -163,7 +169,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             inserts the specific password inside of it through the show_text function,
             and changes the button into a hide all button.
             """
-            for index, button in enumerate(show_hide_buttons):
+            for index, button in enumerate(self.show_hide_buttons):
                 show_password(index, button)
 
         def hide_all_passwords() -> None:
@@ -172,76 +178,86 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function goes through each password_label,
             and clears it.
             """
-            for index, button in enumerate(show_hide_buttons):
+            for index, button in enumerate(self.show_hide_buttons):
                 hide_password(index, button)
 
-        show_hide_button_1 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                       command=lambda: show_password(0, show_hide_button_1))
-        show_hide_button_2 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                       command=lambda: show_password(1, show_hide_button_2))
-        show_hide_button_3 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                       command=lambda: show_password(2, show_hide_button_3))
-        show_hide_button_4 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                       command=lambda: show_password(3, show_hide_button_4))
-        show_hide_buttons = [show_hide_button_1, show_hide_button_2, show_hide_button_3, show_hide_button_4]
-        show_hide_all_slider = tk.Scale(self, from_=0, to=1, orient='horizontal',
-                                        command=lambda value:
-                                        run_function_based_on_slider_value(show_hide_all_slider.get()),
-                                        bd=1, fg='#F0F0F0', width=20, sliderlength=49, borderwidth=0,
-                                        sliderrelief='flat', activebackground='blue')
+        self.show_hide_button_1 = tk.Button(self, image=show_btn_image, borderwidth=0,
+                                            command=lambda: show_password(0, show_hide_button_1))
+        self.show_hide_button_2 = tk.Button(self, image=show_btn_image, borderwidth=0,
+                                            command=lambda: show_password(1, show_hide_button_2))
+        self.show_hide_button_3 = tk.Button(self, image=show_btn_image, borderwidth=0,
+                                            command=lambda: show_password(2, show_hide_button_3))
+        self.show_hide_button_4 = tk.Button(self, image=show_btn_image, borderwidth=0,
+                                            command=lambda: show_password(3, show_hide_button_4))
+        self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
+                                  self.show_hide_button_3, self.show_hide_button_4]
+        self.show_hide_all_slider = tk.Scale(self, from_=0, to=1, orient='horizontal',
+                                             command=lambda value:
+                                             run_function_based_on_slider_value(self.show_hide_all_slider.get()),
+                                             bd=1, fg='#F0F0F0', width=20, sliderlength=49, borderwidth=0,
+                                             sliderrelief='flat', activebackground='blue')
 
-        hide_label = tk.Label(self, text='Hide', font=description_font)
-        show_label = tk.Label(self, text='Show', font=description_font)
+        self.hide_label = tk.Label(self, text='Hide', font=description_font)
+        self.show_label = tk.Label(self, text='Show', font=description_font)
 
-        copy_button_1 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                  command=lambda: logic.copy_password(0, passwords))
-        copy_button_2 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                  command=lambda: logic.copy_password(1, passwords))
-        copy_button_3 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                  command=lambda: logic.copy_password(2, passwords))
-        copy_button_4 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                  command=lambda: logic.copy_password(3, passwords))
-        copy_buttons = [copy_button_1, copy_button_2, copy_button_3, copy_button_4]
+        self.copy_button_1 = tk.Button(self, image=copy_btn_image, borderwidth=0,
+                                       command=lambda: logic.copy_password(0, passwords))
+        self.copy_button_2 = tk.Button(self, image=copy_btn_image, borderwidth=0,
+                                       command=lambda: logic.copy_password(1, passwords))
+        self.copy_button_3 = tk.Button(self, image=copy_btn_image, borderwidth=0,
+                                       command=lambda: logic.copy_password(2, passwords))
+        self.copy_button_4 = tk.Button(self, image=copy_btn_image, borderwidth=0,
+                                       command=lambda: logic.copy_password(3, passwords))
+        self.copy_buttons = [self.copy_button_1, self.copy_button_2,
+                             self.copy_button_3, self.copy_button_4]
 
-        frame_title = tk.Label(self, text='Generate password', font=title_font)
-        frame_title.grid(column=0, row=0, columnspan=4)
+        self.frame_title = tk.Label(self, text='Generate password', font=title_font)
+        self.frame_title.grid(column=0, row=0, columnspan=4)
 
-        question = tk.Label(self, text='Number of characters (4 to 100):', font=description_font)
-        question.grid(column=0, row=1, columnspan=4)
+        self.question = tk.Label(self, text='Number of characters (4 to 100):', font=description_font)
+        self.question.grid(column=0, row=1, columnspan=4)
 
-        character_sets_label = tk.Label(self, text='Character sets', font=section_title_font)
-        character_sets_label.grid(column=5, row=3, columnspan=2, sticky='s')
+        self.character_sets_label = tk.Label(self, text='Character sets', font=section_title_font)
+        self.character_sets_label.grid(column=5, row=3, columnspan=2, sticky='s')
 
-        lowercase_letters_var = tk.IntVar()
-        lowercase_letters_checkbox = tk.Checkbutton(self, variable=lowercase_letters_var, offvalue=0, onvalue=1)
-        lowercase_letters_text = tk.Label(self, text='Lowercase letters', font=description_font)
+        self.lowercase_letters_var = tk.IntVar()
+        self.lowercase_letters_checkbox = tk.Checkbutton(self, variable=self.lowercase_letters_var,
+                                                         offvalue=0, onvalue=1)
+        self.lowercase_letters_text = tk.Label(self, text='Lowercase letters', font=description_font)
 
-        uppercase_letters_var = tk.IntVar()
-        uppercase_letters_checkbox = tk.Checkbutton(self, variable=uppercase_letters_var, offvalue=0, onvalue=1)
-        uppercase_letters_text = tk.Label(self, text='Uppercase letters', font=description_font)
+        self.uppercase_letters_var = tk.IntVar()
+        self.uppercase_letters_checkbox = tk.Checkbutton(self, variable=self.uppercase_letters_var,
+                                                         offvalue=0, onvalue=1)
+        self.uppercase_letters_text = tk.Label(self, text='Uppercase letters', font=description_font)
 
-        digits_var = tk.IntVar()
-        digits_checkbox = tk.Checkbutton(self, variable=digits_var, offvalue=0, onvalue=1)
-        digits_text = tk.Label(self, text='Digits', font=description_font)
+        self.digits_var = tk.IntVar()
+        self.digits_checkbox = tk.Checkbutton(self, variable=self.digits_var,
+                                              offvalue=0, onvalue=1)
+        self.digits_text = tk.Label(self, text='Digits', font=description_font)
 
-        punctuation_var = tk.IntVar()
-        punctuation_checkbox = tk.Checkbutton(self, variable=punctuation_var, offvalue=0, onvalue=1)
-        punctuation_text = tk.Label(self, text='Punctuation', font=description_font)
+        self.punctuation_var = tk.IntVar()
+        self.punctuation_checkbox = tk.Checkbutton(self, variable=self.punctuation_var,
+                                                   offvalue=0, onvalue=1)
+        self.punctuation_text = tk.Label(self, text='Punctuation', font=description_font)
 
-        checkboxes = [lowercase_letters_checkbox, uppercase_letters_checkbox, digits_checkbox, punctuation_checkbox]
-        checkboxes_text_labels = [lowercase_letters_text, uppercase_letters_text, digits_text, punctuation_text]
+        self.checkboxes = [self.lowercase_letters_checkbox, self. uppercase_letters_checkbox,
+                           self.digits_checkbox, self.punctuation_checkbox]
+        self.checkboxes_text_labels = [self.lowercase_letters_text, self.uppercase_letters_text,
+                                       self.digits_text, self.punctuation_text]
 
-        try_other_methods_btn = tk.Button(self, image=try_other_methods_btn_image,
-                                          borderwidth=0,
-                                          command=lambda: open_other_methods)
-        try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
+        self.other_methods_window = None
 
-        for checkbox in checkboxes:
-            checkbox.grid(column=5, row=4 + checkboxes.index(checkbox), pady=8)
+        self.try_other_methods_btn = tk.Button(self, image=try_other_methods_btn_image,
+                                               borderwidth=0,
+                                               command=lambda: self.open_other_methods)
+        self.try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
+
+        for checkbox in self.checkboxes:
+            checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=8)
             checkbox.select()
 
-        for text_label in checkboxes_text_labels:
-            text_label.grid(column=6, row=4 + checkboxes_text_labels.index(text_label), sticky='w')
+        for text_label in self.checkboxes_text_labels:
+            text_label.grid(column=6, row=4 + self.checkboxes_text_labels.index(text_label), sticky='w')
 
         def create_password_labels() -> None:
             """
@@ -257,36 +273,36 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             """
             global passwords
 
-            for password_label in password_labels:
+            for password_label in self.password_labels:
                 password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
 
             message = logic.determine_error(
-                logic.validate_character_sets(lowercase_letters_var, uppercase_letters_var,
-                                              digits_var, punctuation_var),
+                logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
+                                              self.digits_var, self.punctuation_var),
                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
             # Check if an error was not returned
             if message == '':
                 passwords = []
-                for password_label in password_labels:
-                    password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
+                for password_label in self.password_labels:
+                    password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
                     adapted_input = logic.adapt_input(input_box.get())
                     input_box.delete(0, 'end')
                     input_box.insert(1, str(adapted_input))
 
-                    message = logic.generate_password(adapted_input, lowercase_letters_var, uppercase_letters_var,
-                                                      digits_var, punctuation_var)
+                    message = logic.generate_password(adapted_input, self.lowercase_letters_var,
+                                                      self.uppercase_letters_var, self.digits_var, self.punctuation_var)
                     passwords.append(message)
 
                     show_text(password_label, '')
-                    password_label.grid(column=0, row=4 + password_labels.index(password_label), pady=10, padx=10)
-                for index, button in enumerate(show_hide_buttons):
+                    password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
+                for index, button in enumerate(self.show_hide_buttons):
                     button.grid(row=4 + index, column=1, columnspan=2, padx=15)
-                for index, copy_button in enumerate(copy_buttons):
+                for index, copy_button in enumerate(self.copy_buttons):
                     copy_button.grid(row=4 + index, column=3, columnspan=2, padx=15)
-                show_hide_all_slider.grid(row=3, column=2, columnspan=2)
-                hide_label.grid(row=3, column=1, sticky='w')
-                show_label.grid(row=3, column=4, sticky='e')
+                self.show_hide_all_slider.grid(row=3, column=2, columnspan=2)
+                self.hide_label.grid(row=3, column=1, sticky='w')
+                self.show_label.grid(row=3, column=4, sticky='e')
 
             else:
                 messagebox.showerror('Error', message)
@@ -294,16 +310,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     input_box.delete(0, 'end')
 
             hide_all_passwords()
-            for button in show_hide_buttons:
-                hide_password(show_hide_buttons.index(button), button)
+            for button in self.show_hide_buttons:
+                hide_password(self.show_hide_buttons.index(button), button)
 
         global input_box
         input_box = tk.Entry(self, width=10, borderwidth=2)
         input_box.bind('<Return>', lambda e: create_password_labels())
         input_box.grid(column=0, row=2, columnspan=4)
 
-        done_btn = tk.Button(self, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels())
-        done_btn.grid(column=0, row=3, columnspan=4)
+        self.done_btn = tk.Button(self, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels())
+        self.done_btn.grid(column=0, row=3, columnspan=4)
 
         global copy_menu
         copy_menu = tk.Menu(self, tearoff=False)
@@ -328,6 +344,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             label.delete('1.0', 'end')
             label.insert('1.0', message)
             label.config(state='disabled', bg='#ffffff')
+
+    def open_other_methods(self):
+        """
+        Called when the user clicks on the 'try other methods' button,
+        this function creates a Toplevel window containing other methods of password generation.
+        """
+        if self.other_methods_window is not None or self.other_methods_window.winfo_exists():
+            self.other_methods_window = other.OtherMethodsWindow(self)
+        else:
+            self.other_methods_window.focus()
 
 
 def select_input_box() -> None:
