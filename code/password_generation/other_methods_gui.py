@@ -16,8 +16,6 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.focus()
-
         self.geometry('1195x520')
         self.window_title = 'Try other methods...'
 
