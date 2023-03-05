@@ -11,8 +11,12 @@ from password_strength import password_strength_gui
 
 
 class App(customtkinter.CTk):
+    """
+    This class creates the App itself.
+    """
     def __init__(self):
         super().__init__()
+
         # Center the notebook
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
@@ -24,12 +28,10 @@ class App(customtkinter.CTk):
         notebook = ttk.Notebook(self, width=1120, height=320)
         notebook.grid(column=0, row=0)
 
-        done_btn_image = ImageTk.PhotoImage(Image.open('textures/done_btn.png'))
-
         notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
         # Create the password generation frame
-        generate_password_frame = tk.Frame(self)
+        generate_password_frame = generate_password_gui.PasswordGenerationFrame(master=self)
         generate_password_frame.grid(column=0, row=0)
 
         # Expand some widgets' rows and columns to take up the entire window
@@ -42,8 +44,6 @@ class App(customtkinter.CTk):
         generate_password_frame.grid_rowconfigure(5, weight=1)
 
         notebook.add(generate_password_frame, text='Generate password')
-
-        generate_password_gui.create_generate_password_frame(generate_password_frame, done_btn_image)
 
         # Create the password strength frame
         password_strength_frame = tk.Frame(notebook)
