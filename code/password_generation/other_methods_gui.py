@@ -15,7 +15,6 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # title_font = Font(family='Roboto', size=24)
 
         self.focus()
 
