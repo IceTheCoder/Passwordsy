@@ -9,15 +9,38 @@ Blog: https://icethedev2.github.io/
 - Hiding passwords
 
 
+## Installation
+To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
+
+Note that the following tutorial might be slightly outdated. For example, modules might be used in the app that have not been written here. 
+
+Use your own judgment when following anything online.
+
+
 ### Prerequisites
-You will need to install Python (from the Microsoft Store, for example) and GitHub Desktop to run this program.
+- Git from git-scm.ro
+- Python from python.org
+- The following modules: PIL, Clipboard, Pynput.
+
+Install them through the following commands in the Git Bash terminal:
+
+python -m pip install pillow
+
+python -m pip install clipboard
+
+python -m pip install pynput
+
 
 ### Installation
-Clone the repository using GitHub Desktop.
-Click File > Clone repository, put https://github.com/IceTheDev2/Passwordsy/ into the URL field, and select which directory you want to clone the repository in.
-Run main.py from a terminal.
-With the Windows Command Prompt, use cd to change directories and navigate to the folder you cloned the repository in.
-Navigate to the code directory and type 'python main.py'
+- Find the absolute path to Python on your machine.
+- Open Git Bash
+- Type ‘export PATH=$PATH:/c/path/to/python.exe’ to add Python to the PATH of Git Bash. Replace ‘/c/path/to/python.exe’ with the specific path on your PC
+- Close and reopen Git Bash for the changes to take effect.
+- Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the ‘passwordsy’ folder on Desktop, type ‘cd Desktop/passwordsy/‘ in the terminal.
+- Once you are in the desired folder, type ‘git clone https://github.com/IceTheDev2/Passwordsy.git’.
+- Type ‘cd Passwordsy/code’ to the navigate to the file containing main.py.
+- Type ‘python main.py’ to run the program￼
+
 
 ## Usage
 You can use this program to generate a random secure string of 4 to 100 uppercase and lowercase letters, numbers and/or punctuation marks.
