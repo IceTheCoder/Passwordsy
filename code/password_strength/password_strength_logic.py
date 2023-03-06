@@ -1,3 +1,8 @@
+"""
+This module deals with the logical part of discovering vulnerabilities in a given password.
+"""
+from __future__ import annotations
+
 import string
 
 # passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
@@ -9,7 +14,7 @@ for line in common_passwords_read:
     modified_common_passwords.append(line.strip())  # Place each of the 100,000 most commonly used passwords into a list
 
 
-def check_password_strength(event, inputted_password, input_password_msg) -> list | str:
+def check_password_strength(inputted_password, input_password_msg) -> list | str:
     """
     Called upon pressing the done button,
     this function defines several functions that check
@@ -122,12 +127,12 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
                     if missing_feature != missing_security_features_list[-1]:
                         output = output + str(missing_feature) + ' and '
                     else:
-                        output = output + str(missing_feature)
+                        output += str(missing_feature)
                 else:
                     if missing_feature == missing_security_features_list[-2]:
                         output = output + str(missing_feature) + ', and '
                     elif missing_feature == missing_security_features_list[-1]:
-                        output = output + str(missing_feature)
+                        output += str(missing_feature)
                     else:
                         output = output + str(missing_feature) + ', '
 
