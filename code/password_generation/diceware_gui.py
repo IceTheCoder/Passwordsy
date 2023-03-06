@@ -113,4 +113,4 @@ class DicewareFrame(customtkinter.CTkFrame):
                 output_widgets.append(self.word_widget)
             else:
                 tk.messagebox.showwarning('Dice roll limit reached',
-                                          'You have reached the maximum limit of 35 dice rolls.')
+                                          'You have reached the maximum limit of 35 dice rolls.', parent=master)
