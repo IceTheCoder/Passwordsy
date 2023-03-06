@@ -197,7 +197,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                              bd=1, fg='#F0F0F0', width=20, sliderlength=49, borderwidth=0,
                                              sliderrelief='flat', activebackground='blue')
 
-        self.hide_label = tk.Label(self, text='Hide', font=description_font)
+        self.hide_label = customtkinter.CTkLabel(master=self, text='Hide',
+                                                 font=customtkinter.CTkFont(family='Roboto', size=18))
         self.show_label = tk.Label(self, text='Show', font=description_font)
 
         self.copy_button_1 = tk.Button(self, image=copy_btn_image, borderwidth=0,
