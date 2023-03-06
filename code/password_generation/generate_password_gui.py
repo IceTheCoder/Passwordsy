@@ -44,9 +44,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        title_font = Font(family='Roboto', size=24)
-        section_title_font = Font(family='Roboto', size=16)
-        description_font = Font(family='Roboto', size=12)
+        title_font = customtkinter.CTkFont(family='Roboto', size=36)
+        section_title_font = customtkinter.CTkFont(family='Roboto', size=24)
+        description_font = customtkinter.CTkFont(family='Roboto', size=18)
 
         global passwords
         passwords = []
@@ -199,7 +199,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.hide_label = customtkinter.CTkLabel(master=self, text='Hide',
                                                  font=customtkinter.CTkFont(family='Roboto', size=18))
-        self.show_label = tk.Label(self, text='Show', font=description_font)
+        self.show_label = customtkinter.CTkLabel(master=self, text='Show', font=description_font)
 
         self.copy_button_1 = tk.Button(self, image=copy_btn_image, borderwidth=0,
                                        command=lambda: logic.copy_password(0, passwords))
@@ -212,36 +212,38 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.copy_buttons = [self.copy_button_1, self.copy_button_2,
                              self.copy_button_3, self.copy_button_4]
 
-        self.frame_title = tk.Label(self, text='Generate password', font=title_font)
+        self.frame_title = customtkinter.CTkLabel(master=self, text='Generate password', font=title_font)
         self.frame_title.grid(column=0, row=0, columnspan=4)
 
-        self.question = tk.Label(self, text='Number of characters (4 to 100):', font=description_font)
+        self.question = customtkinter.CTkLabel(master=self, text='Number of characters (4 to 100):',
+                                               font=description_font)
         self.question.grid(column=0, row=1, columnspan=4)
 
-        self.character_sets_label = tk.Label(self, text='Character sets', font=section_title_font)
+        self.character_sets_label = customtkinter.CTkLabel(master=self, text='Character sets', font=section_title_font)
         self.character_sets_label.grid(column=5, row=3, columnspan=2, sticky='s')
 
         self.lowercase_letters_var = tk.IntVar()
         self.lowercase_letters_checkbox = tk.Checkbutton(self, variable=self.lowercase_letters_var,
                                                          offvalue=0, onvalue=1)
-        self.lowercase_letters_text = tk.Label(self, text='Lowercase letters', font=description_font)
+        self.lowercase_letters_text = customtkinter.CTkLabel(master=self, text='Lowercase letters',
+                                                             font=description_font)
 
         self.uppercase_letters_var = tk.IntVar()
         self.uppercase_letters_checkbox = tk.Checkbutton(self, variable=self.uppercase_letters_var,
                                                          offvalue=0, onvalue=1)
-        self.uppercase_letters_text = tk.Label(self, text='Uppercase letters', font=description_font)
+        self.uppercase_letters_text = customtkinter.CTkLabel(self, text='Uppercase letters', font=description_font)
 
         self.digits_var = tk.IntVar()
         self.digits_checkbox = tk.Checkbutton(self, variable=self.digits_var,
                                               offvalue=0, onvalue=1)
-        self.digits_text = tk.Label(self, text='Digits', font=description_font)
+        self.digits_text = customtkinter.CTkLabel(master=self, text='Digits', font=description_font)
 
         self.punctuation_var = tk.IntVar()
         self.punctuation_checkbox = tk.Checkbutton(self, variable=self.punctuation_var,
                                                    offvalue=0, onvalue=1)
-        self.punctuation_text = tk.Label(self, text='Punctuation', font=description_font)
+        self.punctuation_text = customtkinter.CTkLabel(master=self, text='Punctuation', font=description_font)
 
-        self.checkboxes = [self.lowercase_letters_checkbox, self. uppercase_letters_checkbox,
+        self.checkboxes = [self.lowercase_letters_checkbox, self.uppercase_letters_checkbox,
                            self.digits_checkbox, self.punctuation_checkbox]
         self.checkboxes_text_labels = [self.lowercase_letters_text, self.uppercase_letters_text,
                                        self.digits_text, self.punctuation_text]
