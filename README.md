@@ -39,7 +39,7 @@ python -m pip install pynput
 - Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the ‘passwordsy’ folder on Desktop, type ‘cd Desktop/passwordsy/‘ in the terminal.
 - Once you are in the desired folder, type ‘git clone https://github.com/IceTheDev2/Passwordsy.git’.
 - Type ‘cd Passwordsy/code’ to the navigate to the file containing main.py.
-- Type ‘python main.py’ to run the program￼
+- Type ‘python main.py’ to run the program
 
 
 ## Usage
