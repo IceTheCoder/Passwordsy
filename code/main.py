@@ -20,10 +20,10 @@ class App(customtkinter.CTk):
         # Center the notebook
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
+        self.iconbitmap('textures/logo.ico')
 
         app_name = 'Passwordsy'
 
-        self.iconphoto(False, tk.PhotoImage(file='textures/logo.png'))
         self.title(app_name)
         notebook = ttk.Notebook(self, width=1120, height=320)
         notebook.grid(column=0, row=0)

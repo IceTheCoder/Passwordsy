@@ -13,13 +13,14 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
     This class contains the creation of the 'other methods' Toplevel window
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.geometry('1195x520')
         self.window_title = 'Try other methods...'
 
-        self.iconphoto(False, tk.PhotoImage(file='textures/logo.png'))
+        self.iconbitmap('textures/logo.ico')
         self.title(self.window_title)
 
         self.diceware_frame = diceware.DicewareFrame(master=self)
@@ -33,3 +34,11 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
+
+        self.after(200, self.show_icon)
+
+    def show_icon(self):
+        """
+        This function shows the icon of the toplevel window.
+        """
+        self.iconbitmap('textures/logo.ico')
