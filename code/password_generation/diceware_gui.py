@@ -14,7 +14,6 @@ import password_generation.diceware_logic as logic
 global number_of_dicerolls
 global roll_dice_btn_image
 global clear_btn_image
-global output_widgets
 
 
 class DicewareFrame(customtkinter.CTkFrame):
@@ -47,8 +46,7 @@ class DicewareFrame(customtkinter.CTkFrame):
         self.grid_columnconfigure(4, weight=1, uniform='column')
         self.word_font = Font(family='Roboto', size=12)
 
-        global output_widgets
-        output_widgets = []
+        self.output_widgets = []
 
         global number_of_dicerolls
         number_of_dicerolls = 0
@@ -64,14 +62,13 @@ class DicewareFrame(customtkinter.CTkFrame):
             """
             This function does nothing.
             """
-            global output_widgets
             global number_of_dicerolls
 
-            for widget in output_widgets:
+            for widget in self.output_widgets:
                 widget.destroy()
 
-            output_widgets = []
-            self.number_of_dicerolls = 0
+            self.output_widgets = []
+            number_of_dicerolls = 0
 
         global clear_btn_image
         clear_btn_image = ImageTk.PhotoImage(Image.open('textures/clear_btn.png'))
@@ -100,7 +97,7 @@ class DicewareFrame(customtkinter.CTkFrame):
                 self.diceroll_widget.delete('1.0', 'end')
                 self.diceroll_widget.insert('1.0', str(diceroll))
                 self.diceroll_widget.configure(state='disabled')
-                output_widgets.append(self.diceroll_widget)
+                self.output_widgets.append(self.diceroll_widget)
 
                 self.word_widget = tk.Text(self, font=self.word_font, height=1, width=len(word))
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
@@ -110,7 +107,7 @@ class DicewareFrame(customtkinter.CTkFrame):
                 self.word_widget.delete('1.0', 'end')
                 self.word_widget.insert('1.0', str(word))
                 self.word_widget.configure(state='disabled')
-                output_widgets.append(self.word_widget)
+                self.output_widgets.append(self.word_widget)
             else:
                 tk.messagebox.showwarning('Dice roll limit reached',
                                           'You have reached the maximum limit of 35 dice rolls.', parent=master)
