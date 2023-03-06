@@ -28,14 +28,14 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
     """
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        title_font = Font(family='Roboto', size=24)
-        warning_font = Font(family='Roboto', size=16)
+        title_font = customtkinter.CTkFont(family='Roboto', size=36)
+        warning_font = customtkinter.CTkFont(family='Roboto', size=24)
 
         global paste
         paste = tk.Menu(self, tearoff=False)
         paste.add_command(label='Paste', command=paste_text)
 
-        instruction_label = tk.Label(self, text='Type your password to check its strength', font=title_font)
+        instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength', font=title_font)
         instruction_label.grid(column=0, row=0)
 
         global input_box
@@ -44,13 +44,13 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         input_box.bind('<KeyRelease>', display_warnings)
         input_box.bind('<Button-3>', display_paste_button)
 
-        first_label = tk.Label(self, font=warning_font, text=input_password_msg)
+        first_label = customtkinter.CTkLabel(master=self, font=warning_font, text=input_password_msg)
 
-        second_label = tk.Label(self, font=warning_font, text='')
+        second_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
 
-        third_label = tk.Label(self, font=warning_font, text='')
+        third_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
 
-        fourth_label = tk.Label(self, font=warning_font, text='')
+        fourth_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
 
         global labels
         labels = [first_label, second_label, third_label, fourth_label]
@@ -101,7 +101,7 @@ def display_warnings(event) -> None:
     for label in labels:
         label.configure(text='')
 
-    warnings = password_strength_logic.check_password_strength(None, input_box.get(), input_password_msg)
+    warnings = password_strength_logic.check_password_strength(input_box.get(), input_password_msg)
 
     if warnings == input_password_msg:
         labels[0].configure(text=warnings)

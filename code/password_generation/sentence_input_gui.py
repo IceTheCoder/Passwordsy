@@ -31,7 +31,7 @@ def create_sentence_input_frame(frame):
     warning_font = Font(family='Roboto', size=14)
     word_font = Font(family='Roboto', size=12)
 
-    instruction_label = tk.Label(frame, text='Input a sentence', font=instruction_font)
+    instruction_label = customtkinter.CTkLabel(master=frame, text='Input a sentence', font=instruction_font)
     instruction_label.grid(row=0, column=0)
 
     input_box = tk.Entry(frame)
@@ -40,8 +40,8 @@ def create_sentence_input_frame(frame):
     password_label = tk.Text(frame, font=word_font, width=50, height=1)
     password_label.grid(row=2, column=0)
 
-    warning_label_1 = tk.Label(frame, font=warning_font)
-    warning_label_2 = tk.Label(frame, font=warning_font)
+    warning_label_1 = customtkinter.CTkLabel(master=frame, font=warning_font)
+    warning_label_2 = customtkinter.CTkLabel(master=frame, font=warning_font)
     warning_labels = [warning_label_1, warning_label_2]
 
     password_label.tag_config('red', foreground='red')
