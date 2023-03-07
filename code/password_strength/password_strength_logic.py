@@ -24,8 +24,6 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
 
     Parameters
     ----------
-    event:
-        Necessary for initiating the function as the user types.
     inputted_password: str
         The input of the user
     input_password_msg: str
