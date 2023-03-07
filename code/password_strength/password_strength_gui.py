@@ -40,7 +40,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         instruction_label.grid(column=0, row=0)
 
         global input_box
-        input_box = tk.Entry(self, width=32, borderwidth=2)
+        input_box = customtkinter.CTkEntry(self, width=250, corner_radius=8.5)
         input_box.grid(column=0, row=1)
         input_box.bind('<KeyRelease>', display_warnings)
         input_box.bind('<Button-3>', display_paste_button)
