@@ -35,7 +35,8 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         paste = tk.Menu(self, tearoff=False)
         paste.add_command(label='Paste', command=paste_text)
 
-        instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength', font=title_font)
+        instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength',
+                                                   font=title_font)
         instruction_label.grid(column=0, row=0)
 
         global input_box
