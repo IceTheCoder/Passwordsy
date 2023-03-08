@@ -1,3 +1,4 @@
+"""This module deals with the logical part of generating a random secure password from the diceware wordlist."""
 import secrets
 
 numbers = [1, 2, 3, 4, 5, 6]
