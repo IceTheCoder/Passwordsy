@@ -51,26 +51,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         global passwords
         passwords = []
 
-        global try_other_methods_btn_image
-        try_other_methods_btn_image = ImageTk.PhotoImage(Image.open('textures/try_other_methods_btn.png'))
-
-        global show_all_btn_image
-        show_all_btn_image = ImageTk.PhotoImage(Image.open('textures/show_all_btn.png'))
-
-        global hide_all_btn_image
-        hide_all_btn_image = ImageTk.PhotoImage(Image.open('textures/hide_all_btn.png'))
-
-        global show_btn_image
-        show_btn_image = ImageTk.PhotoImage(Image.open('textures/show_btn.png'))
-
-        global hide_btn_image
-        hide_btn_image = ImageTk.PhotoImage(Image.open('textures/hide_btn.png'))
-
-        global copy_btn_image
-        copy_btn_image = ImageTk.PhotoImage(Image.open('textures/copy_btn.png'))
-
-        global done_btn_image
-        done_btn_image = ImageTk.PhotoImage(Image.open('textures/done_btn.png'))
+        button_font = customtkinter.CTkFont(family='Roboto', size=24)
 
         self.password_label_1 = tk.Text(self, width=password_width, height=password_height,
                                         borderwidth=password_border_width, font=password_font)
@@ -120,7 +101,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     and len(self.password_labels[3].get('1.0', 'end')) != 1:
                 self.show_hide_all_slider.set(1)
 
-            button.configure(image=hide_btn_image, borderwidth=0, command=lambda: hide_password(index, button))
+            button.configure(text='HIDE', command=lambda: hide_password(index, button))
 
         def hide_password(index, button) -> None:
             """
@@ -144,7 +125,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     and len(self.password_labels[3].get('1.0', 'end')) == 1:
                 self.show_hide_all_slider.set(0)
 
-            button.configure(image=show_btn_image, command=lambda: show_password(index, button))
+            button.configure(text='SHOW', command=lambda: show_password(index, button))
 
         def run_function_based_on_slider_value(value) -> None:
             """
@@ -181,14 +162,18 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             for index, button in enumerate(self.show_hide_buttons):
                 hide_password(index, button)
 
-        self.show_hide_button_1 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                            command=lambda: show_password(0, show_hide_button_1))
-        self.show_hide_button_2 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                            command=lambda: show_password(1, show_hide_button_2))
-        self.show_hide_button_3 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                            command=lambda: show_password(2, show_hide_button_3))
-        self.show_hide_button_4 = tk.Button(self, image=show_btn_image, borderwidth=0,
-                                            command=lambda: show_password(3, show_hide_button_4))
+        self.show_hide_button_1 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
+                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          command=lambda: show_password(0, show_hide_button_1))
+        self.show_hide_button_2 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
+                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          command=lambda: show_password(0, show_hide_button_2))
+        self.show_hide_button_3 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
+                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          command=lambda: show_password(0, show_hide_button_3))
+        self.show_hide_button_4 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
+                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          command=lambda: show_password(0, show_hide_button_3))
         self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
                                   self.show_hide_button_3, self.show_hide_button_4]
         self.show_hide_all_slider = tk.Scale(self, from_=0, to=1, orient='horizontal',
@@ -201,14 +186,18 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                  font=customtkinter.CTkFont(family='Roboto', size=18))
         self.show_label = customtkinter.CTkLabel(master=self, text='Show', font=description_font)
 
-        self.copy_button_1 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                       command=lambda: logic.copy_password(0, passwords))
-        self.copy_button_2 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                       command=lambda: logic.copy_password(1, passwords))
-        self.copy_button_3 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                       command=lambda: logic.copy_password(2, passwords))
-        self.copy_button_4 = tk.Button(self, image=copy_btn_image, borderwidth=0,
-                                       command=lambda: logic.copy_password(3, passwords))
+        self.copy_button_1 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+                                                     fg_color='blue', border_color='black', hover_color='gray',
+                                                     command=lambda: logic.copy_password(0, passwords))
+        self.copy_button_2 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+                                                     fg_color='blue', border_color='black', hover_color='gray',
+                                                     command=lambda: logic.copy_password(1, passwords))
+        self.copy_button_3 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+                                                     fg_color='blue', border_color='black', hover_color='gray',
+                                                     command=lambda: logic.copy_password(2, passwords))
+        self.copy_button_4 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+                                                     fg_color='blue', border_color='black', hover_color='gray',
+                                                     command=lambda: logic.copy_password(3, passwords))
         self.copy_buttons = [self.copy_button_1, self.copy_button_2,
                              self.copy_button_3, self.copy_button_4]
 
@@ -250,9 +239,10 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.other_methods_window = None
 
-        self.try_other_methods_btn = tk.Button(self, image=try_other_methods_btn_image,
-                                               borderwidth=0,
-                                               command=self.open_other_methods)
+        self.try_other_methods_btn = customtkinter.CTkButton(self, text='Try other methods...',
+                                                             border_width=2, border_color='black', fg_color='blue',
+                                                             hover_color='gray', font=button_font,
+                                                             command=self.open_other_methods)
         self.try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
         for checkbox in self.checkboxes:
@@ -321,7 +311,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         input_box.bind('<Return>', lambda e: create_password_labels())
         input_box.grid(column=0, row=2, columnspan=4)
 
-        self.done_btn = tk.Button(self, image=done_btn_image, borderwidth=0, command=lambda: create_password_labels())
+        self.done_btn = customtkinter.CTkButton(self, text='DONE', font=button_font, border_width=2,
+                                                command=lambda: create_password_labels(),
+                                                border_color='black', fg_color='blue', hover_color='gray')
         self.done_btn.grid(column=0, row=3, columnspan=4)
 
         global copy_menu
