@@ -12,7 +12,6 @@ import customtkinter
 import password_generation.diceware_logic as logic
 
 global number_of_dicerolls
-global roll_dice_btn_image
 global clear_btn_image
 
 
@@ -20,6 +19,7 @@ class DicewareFrame(customtkinter.CTkFrame):
     """
     This class creates the diceware frame.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
@@ -48,14 +48,14 @@ class DicewareFrame(customtkinter.CTkFrame):
 
         self.output_widgets = []
 
+        button_font = customtkinter.CTkFont(family='Roboto', size=24)
+
         global number_of_dicerolls
         number_of_dicerolls = 0
 
-        global roll_dice_btn_image
-        roll_dice_btn_image = ImageTk.PhotoImage(Image.open('textures/roll_dice_btn.png'))
-
-        self.roll_dice_button = tk.Button(self, image=roll_dice_btn_image, borderwidth=0,
-                                          command=lambda: display_words(logic.roll_dice()))
+        self.roll_dice_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='ROLL DICE',
+                                                        font=button_font, fg_color='blue', hover_color='gray',
+                                                        command=lambda: display_words(logic.roll_dice()))
         self.roll_dice_button.grid(row=0, column=0, columnspan=5, pady=0, sticky='n')
 
         def clear_frame():
@@ -72,7 +72,9 @@ class DicewareFrame(customtkinter.CTkFrame):
 
         global clear_btn_image
         clear_btn_image = ImageTk.PhotoImage(Image.open('textures/clear_btn.png'))
-        self.clear_button = tk.Button(self, image=clear_btn_image, borderwidth=0, command=clear_frame)
+        self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='CLEAR',
+                                                    font=button_font, fg_color='blue', hover_color='gray',
+                                                    command=clear_frame)
         self.clear_button.grid(row=1, column=0, columnspan=5, pady=0, sticky='n')
 
         def display_words(pair):
