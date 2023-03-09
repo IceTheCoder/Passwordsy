@@ -212,30 +212,38 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.character_sets_label.grid(column=5, row=3, columnspan=2, sticky='s')
 
         self.lowercase_letters_var = tk.IntVar()
-        self.lowercase_letters_checkbox = tk.Checkbutton(self, variable=self.lowercase_letters_var,
-                                                         offvalue=0, onvalue=1)
-        self.lowercase_letters_text = customtkinter.CTkLabel(master=self, text='Lowercase letters',
-                                                             font=description_font)
+        self.lowercase_letters_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.lowercase_letters_var,
+                                                                    offvalue=0, onvalue=1, text='Lowercase letters',
+                                                                    checkbox_width=20, checkbox_height=20,
+                                                                    fg_color='gray', hover_color='white')
+        # self.lowercase_letters_text = customtkinter.CTkLabel(master=self, text='Lowercase letters',
+        #                                                     font=description_font)
 
         self.uppercase_letters_var = tk.IntVar()
-        self.uppercase_letters_checkbox = tk.Checkbutton(self, variable=self.uppercase_letters_var,
-                                                         offvalue=0, onvalue=1)
-        self.uppercase_letters_text = customtkinter.CTkLabel(self, text='Uppercase letters', font=description_font)
+        self.uppercase_letters_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.uppercase_letters_var,
+                                                                    offvalue=0, onvalue=1, text='Uppercase letters',
+                                                                    checkbox_width=20, checkbox_height=20,
+                                                                    fg_color='gray', hover_color='white')
+        # self.uppercase_letters_text = customtkinter.CTkLabel(self, text='Uppercase letters', font=description_font)
 
         self.digits_var = tk.IntVar()
-        self.digits_checkbox = tk.Checkbutton(self, variable=self.digits_var,
-                                              offvalue=0, onvalue=1)
-        self.digits_text = customtkinter.CTkLabel(master=self, text='Digits', font=description_font)
+        self.digits_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.digits_var,
+                                                         offvalue=0, onvalue=1, text='Digits',
+                                                         checkbox_width=20, checkbox_height=20,
+                                                         fg_color='gray', hover_color='white')
+        # self.digits_text = customtkinter.CTkLabel(master=self, text='Digits', font=description_font)
 
         self.punctuation_var = tk.IntVar()
-        self.punctuation_checkbox = tk.Checkbutton(self, variable=self.punctuation_var,
-                                                   offvalue=0, onvalue=1)
-        self.punctuation_text = customtkinter.CTkLabel(master=self, text='Punctuation', font=description_font)
+        self.punctuation_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.punctuation_var,
+                                                              offvalue=0, onvalue=1, text='Punctuation',
+                                                              checkbox_width=20, checkbox_height=20,
+                                                              fg_color='gray', hover_color='white')
+        # self.punctuation_text = customtkinter.CTkLabel(master=self, text='Punctuation', font=description_font)
 
         self.checkboxes = [self.lowercase_letters_checkbox, self.uppercase_letters_checkbox,
                            self.digits_checkbox, self.punctuation_checkbox]
-        self.checkboxes_text_labels = [self.lowercase_letters_text, self.uppercase_letters_text,
-                                       self.digits_text, self.punctuation_text]
+        # self.checkboxes_text_labels = [self.lowercase_letters_text, self.uppercase_letters_text,
+        #                               self.digits_text, self.punctuation_text]
 
         self.other_methods_window = None
 
@@ -246,11 +254,11 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
         for checkbox in self.checkboxes:
-            checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=8)
+            checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=8, sticky='w')
             checkbox.select()
 
-        for text_label in self.checkboxes_text_labels:
-            text_label.grid(column=6, row=4 + self.checkboxes_text_labels.index(text_label), sticky='w')
+        # for text_label in self.checkboxes_text_labels:
+        #    text_label.grid(column=6, row=4 + self.checkboxes_text_labels.index(text_label), sticky='w')
 
         def create_password_labels() -> None:
             """
