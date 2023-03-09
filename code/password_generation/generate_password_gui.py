@@ -51,7 +51,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         global passwords
         passwords = []
 
-        button_font = customtkinter.CTkFont(family='Roboto', size=24)
+        small_button_font = customtkinter.CTkFont(family='Roboto', size=16)
+        medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
+        large_button_font = customtkinter.CTkFont(family='Roboto', size=36)
 
         self.password_label_1 = tk.Text(self, width=password_width, height=password_height,
                                         borderwidth=password_border_width, font=password_font)
@@ -163,16 +165,20 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 hide_password(index, button)
 
         self.show_hide_button_1 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          hover_color='gray', border_color='black',
+                                                          font=small_button_font,
                                                           command=lambda: show_password(0, show_hide_button_1))
         self.show_hide_button_2 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          hover_color='gray', border_color='black',
+                                                          font=small_button_font,
                                                           command=lambda: show_password(0, show_hide_button_2))
         self.show_hide_button_3 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          hover_color='gray', border_color='black',
+                                                          font=small_button_font,
                                                           command=lambda: show_password(0, show_hide_button_3))
         self.show_hide_button_4 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black', font=button_font,
+                                                          hover_color='gray', border_color='black',
+                                                          font=small_button_font,
                                                           command=lambda: show_password(0, show_hide_button_3))
         self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
                                   self.show_hide_button_3, self.show_hide_button_4]
@@ -186,16 +192,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                  font=customtkinter.CTkFont(family='Roboto', size=18))
         self.show_label = customtkinter.CTkLabel(master=self, text='Show', font=description_font)
 
-        self.copy_button_1 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+        self.copy_button_1 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(0, passwords))
-        self.copy_button_2 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+        self.copy_button_2 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(1, passwords))
-        self.copy_button_3 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+        self.copy_button_3 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(2, passwords))
-        self.copy_button_4 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=button_font,
+        self.copy_button_4 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(3, passwords))
         self.copy_buttons = [self.copy_button_1, self.copy_button_2,
@@ -216,49 +222,39 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                                     offvalue=0, onvalue=1, text='Lowercase letters',
                                                                     checkbox_width=20, checkbox_height=20,
                                                                     fg_color='gray', hover_color='white')
-        # self.lowercase_letters_text = customtkinter.CTkLabel(master=self, text='Lowercase letters',
-        #                                                     font=description_font)
 
         self.uppercase_letters_var = tk.IntVar()
         self.uppercase_letters_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.uppercase_letters_var,
                                                                     offvalue=0, onvalue=1, text='Uppercase letters',
                                                                     checkbox_width=20, checkbox_height=20,
                                                                     fg_color='gray', hover_color='white')
-        # self.uppercase_letters_text = customtkinter.CTkLabel(self, text='Uppercase letters', font=description_font)
 
         self.digits_var = tk.IntVar()
         self.digits_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.digits_var,
                                                          offvalue=0, onvalue=1, text='Digits',
                                                          checkbox_width=20, checkbox_height=20,
                                                          fg_color='gray', hover_color='white')
-        # self.digits_text = customtkinter.CTkLabel(master=self, text='Digits', font=description_font)
 
         self.punctuation_var = tk.IntVar()
         self.punctuation_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.punctuation_var,
                                                               offvalue=0, onvalue=1, text='Punctuation',
                                                               checkbox_width=20, checkbox_height=20,
                                                               fg_color='gray', hover_color='white')
-        # self.punctuation_text = customtkinter.CTkLabel(master=self, text='Punctuation', font=description_font)
 
         self.checkboxes = [self.lowercase_letters_checkbox, self.uppercase_letters_checkbox,
                            self.digits_checkbox, self.punctuation_checkbox]
-        # self.checkboxes_text_labels = [self.lowercase_letters_text, self.uppercase_letters_text,
-        #                               self.digits_text, self.punctuation_text]
 
         self.other_methods_window = None
 
         self.try_other_methods_btn = customtkinter.CTkButton(self, text='Try other methods...',
                                                              border_width=2, border_color='black', fg_color='blue',
-                                                             hover_color='gray', font=button_font,
+                                                             hover_color='gray', font=medium_button_font,
                                                              command=self.open_other_methods)
         self.try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
         for checkbox in self.checkboxes:
             checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=8, sticky='w')
             checkbox.select()
-
-        # for text_label in self.checkboxes_text_labels:
-        #    text_label.grid(column=6, row=4 + self.checkboxes_text_labels.index(text_label), sticky='w')
 
         def create_password_labels() -> None:
             """
@@ -319,7 +315,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         input_box.bind('<Return>', lambda e: create_password_labels())
         input_box.grid(column=0, row=2, columnspan=4)
 
-        self.done_btn = customtkinter.CTkButton(self, text='DONE', font=button_font, border_width=2,
+        self.done_btn = customtkinter.CTkButton(self, text='DONE', font=large_button_font, border_width=2,
                                                 command=lambda: create_password_labels(),
                                                 border_color='black', fg_color='blue', hover_color='gray')
         self.done_btn.grid(column=0, row=3, columnspan=4)
