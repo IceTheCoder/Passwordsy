@@ -166,19 +166,19 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.show_hide_button_1 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
                                                           hover_color='gray', border_color='black',
-                                                          font=small_button_font,
+                                                          font=small_button_font, width=75,
                                                           command=lambda: show_password(0, show_hide_button_1))
         self.show_hide_button_2 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
                                                           hover_color='gray', border_color='black',
-                                                          font=small_button_font,
+                                                          font=small_button_font, width=75,
                                                           command=lambda: show_password(0, show_hide_button_2))
         self.show_hide_button_3 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
                                                           hover_color='gray', border_color='black',
-                                                          font=small_button_font,
+                                                          font=small_button_font, width=75,
                                                           command=lambda: show_password(0, show_hide_button_3))
         self.show_hide_button_4 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
                                                           hover_color='gray', border_color='black',
-                                                          font=small_button_font,
+                                                          font=small_button_font, width=75,
                                                           command=lambda: show_password(0, show_hide_button_3))
         self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
                                   self.show_hide_button_3, self.show_hide_button_4]
@@ -193,15 +193,19 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.show_label = customtkinter.CTkLabel(master=self, text='Show', font=description_font)
 
         self.copy_button_1 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
+                                                     width=75,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(0, passwords))
         self.copy_button_2 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
+                                                     width=75,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(1, passwords))
         self.copy_button_3 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
+                                                     width=75,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(2, passwords))
         self.copy_button_4 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
+                                                     width=75,
                                                      fg_color='blue', border_color='black', hover_color='gray',
                                                      command=lambda: logic.copy_password(3, passwords))
         self.copy_buttons = [self.copy_button_1, self.copy_button_2,
