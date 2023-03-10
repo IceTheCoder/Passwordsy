@@ -44,7 +44,7 @@ class DicewareFrame(customtkinter.CTkFrame):
         self.grid_columnconfigure(2, weight=1, uniform='column')
         self.grid_columnconfigure(3, weight=1, uniform='column')
         self.grid_columnconfigure(4, weight=1, uniform='column')
-        self.word_font = Font(family='Roboto', size=12)
+        self.word_font = customtkinter.CTkFont(family='Roboto', size=12)
 
         self.output_widgets = []
 
@@ -92,7 +92,7 @@ class DicewareFrame(customtkinter.CTkFrame):
                 number_of_dicerolls += 1
                 (diceroll, word), = pair.items()
 
-                self.diceroll_widget = tk.Text(self, font=self.word_font, height=1, width=len(word))
+                self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1, width=len(word))
                 self.diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5),
                                           column=(-1 + number_of_dicerolls) % 5)
                 self.diceroll_widget.configure(state='normal')
@@ -101,7 +101,7 @@ class DicewareFrame(customtkinter.CTkFrame):
                 self.diceroll_widget.configure(state='disabled')
                 self.output_widgets.append(self.diceroll_widget)
 
-                self.word_widget = tk.Text(self, font=self.word_font, height=1, width=len(word))
+                self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1, width=len(word))
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
                                       column=(-1 + number_of_dicerolls) % 5,
                                       sticky='n')
