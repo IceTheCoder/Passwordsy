@@ -92,19 +92,21 @@ class DicewareFrame(customtkinter.CTkFrame):
                 number_of_dicerolls += 1
                 (diceroll, word), = pair.items()
 
-                self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1, width=len(word))
+                self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font,
+                                                                height=1)
                 self.diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5),
-                                          column=(-1 + number_of_dicerolls) % 5)
+                                          column=(-1 + number_of_dicerolls) % 5, padx=10)
                 self.diceroll_widget.configure(state='normal')
                 self.diceroll_widget.delete('1.0', 'end')
                 self.diceroll_widget.insert('1.0', str(diceroll))
                 self.diceroll_widget.configure(state='disabled')
                 self.output_widgets.append(self.diceroll_widget)
 
-                self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1, width=len(word))
+                self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font,
+                                                            height=1)
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
                                       column=(-1 + number_of_dicerolls) % 5,
-                                      sticky='n')
+                                      sticky='n', pady=(0, 10), padx=10)
                 self.word_widget.configure(state='normal')
                 self.word_widget.delete('1.0', 'end')
                 self.word_widget.insert('1.0', str(word))
