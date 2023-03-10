@@ -17,7 +17,7 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.geometry('1195x520')
+        self.geometry('1100x520')
         self.window_title = 'Try other methods...'
 
         self.iconbitmap('textures/logo.ico')
