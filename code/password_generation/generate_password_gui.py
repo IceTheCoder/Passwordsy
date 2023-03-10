@@ -11,10 +11,6 @@ import customtkinter
 from password_generation import generate_password_logic as logic
 from password_generation import other_methods_gui as other
 
-password_width = 100
-password_height = 1
-password_border_width = 0
-password_font = 'Consolas 11'
 
 invalid_input_error = 'An error occurred. Try again with a whole number between 4 and 100.'
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
@@ -54,15 +50,20 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         small_button_font = customtkinter.CTkFont(family='Roboto', size=16)
         medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
         large_button_font = customtkinter.CTkFont(family='Roboto', size=36)
+        password_font = customtkinter.CTkFont(family='Consolas', size=11)
 
-        self.password_label_1 = tk.Text(self, width=password_width, height=password_height,
-                                        borderwidth=password_border_width, font=password_font)
-        self.password_label_2 = tk.Text(self, width=password_width, height=password_height,
-                                        borderwidth=password_border_width, font=password_font)
-        self.password_label_3 = tk.Text(self, width=password_width, height=password_height,
-                                        borderwidth=password_border_width, font=password_font)
-        self.password_label_4 = tk.Text(self, width=password_width, height=password_height,
-                                        borderwidth=password_border_width, font=password_font)
+        password_width = 750
+        password_height = 30
+        password_border_width = 0
+
+        self.password_label_1 = customtkinter.CTkTextbox(self, width=password_width, height=password_height,
+                                                         border_width=password_border_width, font=password_font)
+        self.password_label_2 = customtkinter.CTkTextbox(self, width=password_width, height=password_height,
+                                                         border_width=password_border_width, font=password_font)
+        self.password_label_3 = customtkinter.CTkTextbox(self, width=password_width, height=password_height,
+                                                         border_width=password_border_width, font=password_font)
+        self.password_label_4 = customtkinter.CTkTextbox(self, width=password_width, height=password_height,
+                                                         border_width=password_border_width, font=password_font)
         self.password_labels = [self.password_label_1, self.password_label_2,
                                 self.password_label_3, self.password_label_4]
 
@@ -343,10 +344,10 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             message: str
                 Each password or the error.
             """
-            label.config(state='normal')
+            label.configure(state='normal')
             label.delete('1.0', 'end')
             label.insert('1.0', message)
-            label.config(state='disabled', bg='#ffffff')
+            label.configure(state='disabled')#, bg='#ffffff')
 
     def open_other_methods(self):
         """
