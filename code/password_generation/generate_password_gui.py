@@ -36,7 +36,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
     (length and character sets),
     and serves as a hub for all other password generation functions.
     """
-
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)

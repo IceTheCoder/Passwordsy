@@ -16,7 +16,7 @@ class TabView(customtkinter.CTkTabview):
     """
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.configure(width=1100, height=1000)
+        self.configure(width=1100, height=420)
 
         # Create the 2 tabs
         self.add('Generate password')
@@ -34,6 +34,8 @@ class TabView(customtkinter.CTkTabview):
         self.generate_password_frame.grid_rowconfigure(3, weight=1)
         self.generate_password_frame.grid_rowconfigure(4, weight=1)
         self.generate_password_frame.grid_rowconfigure(5, weight=1)
+        self.generate_password_frame.grid_rowconfigure(6, weight=1)
+        self.generate_password_frame.grid_rowconfigure(7, weight=1)
 
         # Create the password strength frame
         self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab('Password strength'))
@@ -62,7 +64,7 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
         self.iconbitmap('textures/logo.ico')
-        self.geometry('1200x400')
+        self.geometry('1200x420')
 
         app_name = 'Passwordsy'
         self.title(app_name)
