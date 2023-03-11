@@ -25,7 +25,7 @@ class App(customtkinter.CTk):
         app_name = 'Passwordsy'
 
         self.title(app_name)
-        notebook = ttk.Notebook(self, width=1120, height=320)
+        notebook = ttk.Notebook(self, width=1120, height=375)
         notebook.grid(column=0, row=0)
 
         notebook.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
