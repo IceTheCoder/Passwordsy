@@ -117,10 +117,15 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                           'You have reached the maximum limit of 35 dice rolls.', parent=self)
 
         self.after(200, self.show_icon)
-    def close_second_window():
-        self.destroy()
-        first_window.deiconify()
-    second_window.protocol("WM_DELETE_WINDOW", close_second_window)
+
+        def close_second_window():
+            """
+            This function destroys the window when it is closed.
+            """
+            self.destroy()
+            self.master.deiconify()
+
+        self.protocol("WM_DELETE_WINDOW", close_second_window)
 
     def show_icon(self):
         """
