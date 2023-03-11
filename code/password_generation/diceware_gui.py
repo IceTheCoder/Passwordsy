@@ -19,9 +19,11 @@ class DicewareToplevel(customtkinter.CTkToplevel):
     """
     This class creates the diceware toplevel.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.geometry('1100x650')
+        self.iconbitmap('textures/logo.ico')
 
         self.grid_rowconfigure(0, weight=1, uniform='row')
         self.grid_rowconfigure(1, weight=1, uniform='row')
@@ -112,4 +114,16 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.output_widgets.append(self.word_widget)
             else:
                 tk.messagebox.showwarning('Dice roll limit reached',
-                                          'You have reached the maximum limit of 35 dice rolls.', parent=master)
+                                          'You have reached the maximum limit of 35 dice rolls.', parent=self)
+
+        self.after(200, self.show_icon)
+    def close_second_window():
+        self.destroy()
+        first_window.deiconify()
+    second_window.protocol("WM_DELETE_WINDOW", close_second_window)
+
+    def show_icon(self):
+        """
+        This function shows the icon of the toplevel window.
+        """
+        self.iconbitmap('textures/logo.ico')
