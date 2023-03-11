@@ -58,6 +58,8 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
 
         self.diceware_window = None
 
+        self.sentence_input_window = None
+
     def open_diceware(self):
         """
         Called when the user clicks on the 'From the diceware' button,
@@ -74,7 +76,11 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         Called when the user clicks on the 'From a sentence' button,
         this function opens the sentence input Toplevel window.
         """
-        pass
+        self.withdraw()
+        if self.sentence_input_window is None or not self.sentence_input_window.winfo_exists():
+            self.sentence_input_window = sentence_input.SentenceInputToplevel(self)
+        else:
+            self.sentence_input_window.focus()
 
     def show_icon(self):
         """

@@ -270,8 +270,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             """
             global passwords
 
-            for password_label in self.password_labels:
-                password_label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
+            for label in self.password_labels:
+                label.bind('<Button-3>', lambda e: logic.show_copy_button(e, copy_menu))
 
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
@@ -281,8 +281,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             # Check if an error was not returned
             if message == '':
                 passwords = []
-                for password_label in self.password_labels:
-                    password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
+                for label in self.password_labels:
+                    label.grid(column=0, row=4 + self.password_labels.index(label), pady=10, padx=10)
                     adapted_input = logic.adapt_input(input_box.get())
                     input_box.delete(0, 'end')
                     input_box.insert(1, str(adapted_input))
@@ -291,8 +291,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                       self.uppercase_letters_var, self.digits_var, self.punctuation_var)
                     passwords.append(message)
 
-                    show_text(password_label, '')
-                    password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
+                    show_text(label, '')
+                    label.grid(column=0, row=4 + self.password_labels.index(label), pady=10, padx=10)
                 for index, button in enumerate(self.show_hide_buttons):
                     button.grid(row=4 + index, column=1, columnspan=2, padx=15)
                 for index, copy_button in enumerate(self.copy_buttons):
@@ -352,8 +352,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         if self.other_methods_window is None or not self.other_methods_window.winfo_exists():
             self.other_methods_window = other.OtherMethodsWindow(self)
             self.after(100, self.other_methods_window.focus_set)
-        else:
-            self.other_methods_window.focus_set()
 
 
 def select_input_box() -> None:
