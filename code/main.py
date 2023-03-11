@@ -16,6 +16,7 @@ class TabView(customtkinter.CTkTabview):
     """
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        self.configure(width=1200, height=600)
 
         # Create the 2 tabs
         self.add('Generate password')
@@ -61,6 +62,7 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
         self.iconbitmap('textures/logo.ico')
+        self.geometry('1200x600')
 
         app_name = 'Passwordsy'
         self.title(app_name)
