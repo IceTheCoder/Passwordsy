@@ -301,8 +301,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 for index, copy_button in enumerate(self.copy_buttons):
                     copy_button.grid(row=4 + index, column=3, columnspan=2, padx=15)
                 self.show_hide_all_slider.grid(row=3, column=2, columnspan=2)
-                self.hide_label.grid(row=3, column=1, sticky='w')
-                self.show_label.grid(row=3, column=4, sticky='e')
+                self.hide_label.grid(row=3, column=1, sticky='e')
+                self.show_label.grid(row=3, column=4, sticky='w')
 
             else:
                 messagebox.showerror('Error', message)
