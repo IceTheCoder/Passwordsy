@@ -18,6 +18,8 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
 
+        self.deiconify()
+
         self.window_title = 'Try other methods...'
 
         self.iconbitmap('textures/logo.ico')
@@ -65,7 +67,7 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         if self.diceware_window is None or not self.diceware_window.winfo_exists():
             self.diceware_window = diceware.DicewareToplevel(self)
         else:
-            self.diceware_window.focus()  # if window exists focus it
+            self.diceware_window.focus()
 
     def open_sentence_input(self):
         """
