@@ -61,11 +61,11 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         Called when the user clicks on the 'From the diceware' button,
         this function opens the diceware Toplevel window.
         """
+        self.withdraw()
         if self.diceware_window is None or not self.diceware_window.winfo_exists():
-            self.diceware_window = diceware.DicewareToplevel(self)  # create window if its None or destroyed
+            self.diceware_window = diceware.DicewareToplevel(self)
         else:
             self.diceware_window.focus()  # if window exists focus it
-        self.withdraw()
 
     def open_sentence_input(self):
         """
