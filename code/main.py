@@ -14,6 +14,7 @@ class TabView(customtkinter.CTkTabview):
     """
     This class creates the tabview of the app.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
@@ -48,17 +49,17 @@ class TabView(customtkinter.CTkTabview):
         self.password_strength_frame.grid_rowconfigure(6, weight=1)
 
 
-
 class App(customtkinter.CTk):
     """
     This class creates the app itself.
     """
+
     def __init__(self):
         super().__init__()
 
         # Center the notebook
-        #self.grid_columnconfigure(0, weight=1)
-        #self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(0, weight=1)
         self.iconbitmap('textures/logo.ico')
 
         app_name = 'Passwordsy'
@@ -66,7 +67,7 @@ class App(customtkinter.CTk):
 
         self.tab_view = TabView(master=self)
         self.tab_view.grid(column=0, row=0)
-        #self.tab_view.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
+        # self.tab_view.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
 
 def main():
