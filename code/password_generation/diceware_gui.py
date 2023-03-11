@@ -70,8 +70,6 @@ class DicewareFrame(customtkinter.CTkFrame):
             self.output_widgets = []
             number_of_dicerolls = 0
 
-        global clear_btn_image
-        clear_btn_image = ImageTk.PhotoImage(Image.open('textures/clear_btn.png'))
         self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='CLEAR',
                                                     font=button_font, fg_color='blue', hover_color='gray',
                                                     command=clear_frame)
