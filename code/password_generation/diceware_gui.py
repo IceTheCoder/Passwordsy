@@ -15,13 +15,13 @@ global number_of_dicerolls
 global clear_btn_image
 
 
-class DicewareFrame(customtkinter.CTkFrame):
+class DicewareToplevel(customtkinter.CTkToplevel):
     """
-    This class creates the diceware frame.
+    This class creates the diceware toplevel.
     """
-
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        self.geometry('1100x650')
 
         self.grid_rowconfigure(0, weight=1, uniform='row')
         self.grid_rowconfigure(1, weight=1, uniform='row')
