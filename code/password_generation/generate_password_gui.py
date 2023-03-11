@@ -19,14 +19,6 @@ global input_box
 global copy_menu
 global passwords
 global show_hide_all_button
-global try_other_methods_btn_image
-global show_all_btn_image
-global hide_all_btn_image
-global show_btn_image
-global hide_btn_image
-global copy_btn_image
-global done_btn_image
-
 
 class PasswordGenerationFrame(customtkinter.CTkFrame):
     """
