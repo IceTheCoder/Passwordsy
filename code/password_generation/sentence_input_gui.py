@@ -21,6 +21,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         by creating a basic Tkinter configuration, with an instruction, input,
         and a way to display the produced password.
         """
+        self.geometry('690x280')
+
         self.grid_rowconfigure(0, weight=1, uniform='row')
         self.grid_rowconfigure(1, weight=1, uniform='row')
         self.grid_rowconfigure(2, weight=1, uniform='row')
