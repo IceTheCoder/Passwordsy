@@ -66,6 +66,12 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.password_labels = [self.password_label_1, self.password_label_2,
                                 self.password_label_3, self.password_label_4]
 
+        for password_label in self.password_labels:
+            password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
+
+        for password_label in self.password_labels:
+            password_label.grid_remove()
+
         def clear_text_label(label):
             """
             Called when the user clicks one of the hide buttons,
