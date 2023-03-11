@@ -16,7 +16,7 @@ class TabView(customtkinter.CTkTabview):
     """
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.configure(width=1100, height=400)
+        self.configure(width=1100, height=1000)
 
         # Create the 2 tabs
         self.add('Generate password')
@@ -38,7 +38,7 @@ class TabView(customtkinter.CTkTabview):
         # Create the password strength frame
         self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab('Password strength'))
         self.password_strength_frame.pack(fill='both', expand=1)
-        
+
         # Expand widgets to take up the entire window
         self.password_strength_frame.grid_columnconfigure(0, weight=1)
         self.password_strength_frame.grid_rowconfigure(0, weight=1)
