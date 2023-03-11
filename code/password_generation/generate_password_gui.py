@@ -50,7 +50,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         small_button_font = customtkinter.CTkFont(family='Roboto', size=16)
         medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
         large_button_font = customtkinter.CTkFont(family='Roboto', size=36)
-        password_font = customtkinter.CTkFont(family='Consolas', size=11)
+        password_font = customtkinter.CTkFont(family='Consolas', size=14)
 
         password_width = 750
         password_height = 30
