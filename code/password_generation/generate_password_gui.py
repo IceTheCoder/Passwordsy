@@ -11,7 +11,6 @@ import customtkinter
 from password_generation import generate_password_logic as logic
 from password_generation import other_methods_gui as other
 
-
 invalid_input_error = 'An error occurred. Try again with a whole number between 4 and 100.'
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
@@ -183,11 +182,10 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                           command=lambda: show_password(0, show_hide_button_3))
         self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
                                   self.show_hide_button_3, self.show_hide_button_4]
-        self.show_hide_all_slider = tk.Scale(self, from_=0, to=1, orient='horizontal',
-                                             command=lambda value:
-                                             run_function_based_on_slider_value(self.show_hide_all_slider.get()),
-                                             bd=1, fg='#F0F0F0', width=20, sliderlength=49, borderwidth=0,
-                                             sliderrelief='flat', activebackground='blue')
+        self.show_hide_all_slider = customtkinter.CTkSlider(master=self, from_=0, to=1,
+                                                            command=run_function_based_on_slider_value,
+                                                            width=50, height=25, number_of_steps=1, fg_color='#D3D3D3',
+                                                            progress_color='#D3D3D3', button_color='blue')
 
         self.hide_label = customtkinter.CTkLabel(master=self, text='Hide',
                                                  font=customtkinter.CTkFont(family='Roboto', size=18))
@@ -347,7 +345,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             label.configure(state='normal')
             label.delete('1.0', 'end')
             label.insert('1.0', message)
-            label.configure(state='disabled')#, bg='#ffffff')
+            label.configure(state='disabled')  # , bg='#ffffff')
 
     def open_other_methods(self):
         """
