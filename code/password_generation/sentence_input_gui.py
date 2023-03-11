@@ -12,6 +12,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
     """
     This class creates the sentence input toplevel
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         """
@@ -34,7 +35,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         self.warning_font = customtkinter.CTkFont(family='Roboto', size=20)
         self.word_font = customtkinter.CTkFont(family='Roboto', size=14)
 
-        self.instruction_label = customtkinter.CTkLabel(master=self, text='Input a sentence', font=self.instruction_font)
+        self.instruction_label = customtkinter.CTkLabel(master=self, text='Input a sentence',
+                                                        font=self.instruction_font)
         self.instruction_label.grid(row=0, column=0)
 
         self.input_box = customtkinter.CTkEntry(self, width=500, corner_radius=8.5)
@@ -99,3 +101,12 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                 self.password_label.tag_add('red', letter, letters_to_be_coloured[letter])
 
         self.input_box.bind('<Return>', lambda e: display_password())
+
+        def close_second_window():
+            """
+            This function destroys the window when it is closed.
+            """
+            self.destroy()
+            self.master.deiconify()
+
+        self.protocol("WM_DELETE_WINDOW", close_second_window)
