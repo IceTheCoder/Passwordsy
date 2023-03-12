@@ -22,7 +22,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         by creating a basic Tkinter configuration, with an instruction, input,
         and a way to display the produced password.
         """
-        self.geometry('690x280')
+        self.geometry('830x280')
 
         self.grid_rowconfigure(0, weight=1, uniform='row')
         self.grid_rowconfigure(1, weight=1, uniform='row')
@@ -39,10 +39,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                                                         font=self.instruction_font)
         self.instruction_label.grid(row=0, column=0)
 
-        self.input_box = customtkinter.CTkEntry(self, width=500, corner_radius=8.5)
+        self.input_box = customtkinter.CTkEntry(self, width=700, corner_radius=8.5)
         self.input_box.grid(row=1, column=0)
 
-        self.password_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50)
+        self.password_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50, wrap='word')
         self.password_label.grid(row=2, column=0)
 
         self.warning_label_1 = customtkinter.CTkLabel(master=self, font=self.warning_font)
