@@ -60,9 +60,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                         command=lambda: display_words(logic.roll_dice()))
         self.roll_dice_button.grid(row=0, column=0, columnspan=5, pady=0, sticky='n')
 
-        def clear_frame():
+        def clear_window():
             """
-            This function does nothing.
+            This function clears the window of any output widgets.
             """
             global number_of_dicerolls
 
@@ -74,7 +74,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
         self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='CLEAR',
                                                     font=button_font, fg_color='blue', hover_color='gray',
-                                                    command=clear_frame)
+                                                    command=clear_window)
         self.clear_button.grid(row=1, column=0, columnspan=5, pady=0, sticky='n')
 
         def display_words(pair):
@@ -92,29 +92,31 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 number_of_dicerolls += 1
                 (diceroll, word), = pair.items()
 
-                self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font,
-                                                                height=1)
+                self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1)
                 self.diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5),
-                                          column=(-1 + number_of_dicerolls) % 5, padx=10)
+                                          column=(-1 + number_of_dicerolls) % 5,
+                                          pady=(5, 0), padx=10)
                 self.diceroll_widget.configure(state='normal')
                 self.diceroll_widget.delete('1.0', 'end')
                 self.diceroll_widget.insert('1.0', str(diceroll))
                 self.diceroll_widget.configure(state='disabled')
                 self.output_widgets.append(self.diceroll_widget)
 
-                self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font,
-                                                            height=1)
+                self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1)
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
                                       column=(-1 + number_of_dicerolls) % 5,
-                                      sticky='n', pady=(0, 10), padx=10)
+                                      sticky='n', pady=(0, 5), padx=10)
                 self.word_widget.configure(state='normal')
                 self.word_widget.delete('1.0', 'end')
                 self.word_widget.insert('1.0', str(word))
                 self.word_widget.configure(state='disabled')
                 self.output_widgets.append(self.word_widget)
             else:
-                tk.messagebox.showwarning('Dice roll limit reached',
-                                          'You have reached the maximum limit of 35 dice rolls.', parent=self)
+                answer = tk.messagebox.askquestion('Dice roll limit reached',
+                                                   'You have reached the maximum limit of 35 dice rolls. Do you want '
+                                                   'to clear the screen?', parent=self)
+                if answer == 'yes':
+                    clear_window()
 
         self.after(200, self.show_icon)
 
