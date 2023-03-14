@@ -24,6 +24,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         super().__init__(master, **kwargs)
         self.geometry('1100x650')
         self.iconbitmap('textures/logo.ico')
+        self.title('Diceware')
 
         self.grid_rowconfigure(0, weight=1, uniform='row')
         self.grid_rowconfigure(1, weight=1, uniform='row')
