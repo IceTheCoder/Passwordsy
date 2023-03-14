@@ -256,7 +256,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=8, sticky='w')
             checkbox.select()
 
-        def show_copy_button(event) -> None:
+        def show_copy_menu(event, password_labels=self.password_labels) -> None:
             """
             Called when the user releases a mouse button on a password label,
             this function uses the Tkinter module to display a contextual menu containing a 'copy' button
@@ -267,10 +267,21 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             ----------
             event: tkinter.event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+            password_labels: list
+                List of password labels
             """
             global copy_menu
             print('Hello, world!')
             copy_menu.tk_popup(event.x_root, event.y_root - 30)
+
+            for label in password_labels:
+                label.tag_bind('copy_tag', '<Button-3>', show_copy_menu)
+
+            # Unbind the tag for all password labels except for the one that was clicked
+            event.widget.tag_unbind('copy_tag', '<Button-3>')
+            for label in password_labels:
+                if label != event.widget:
+                    label.tag_unbind('copy_tag', '<Button-3>')
 
         def create_password_labels() -> None:
             """
@@ -287,7 +298,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             global passwords
 
             for label in self.password_labels:
-                label.bind('<Button-3>', show_copy_button)
+                label.unbind('<Button-3>')
+                label.bind('<Button-3>', show_copy_menu)
 
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
