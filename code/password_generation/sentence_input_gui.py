@@ -2,6 +2,7 @@
 This module contains everything related to the GUI part of generating a password passed on an inputted sentence.
 """
 import tkinter as tk
+from PIL import ImageTk, Image
 import customtkinter
 import string
 
@@ -24,7 +25,12 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         """
         self.geometry('830x280')
         self.title('Sentence input')
-        self.iconbitmap('textures/logo.ico')
+        # Load the icon image
+        icon_image = Image.open('textures/logo.ico')
+        icon_photo = ImageTk.PhotoImage(icon_image)
+
+        # Set the icon photo
+        self.wm_iconphoto(False, icon_photo)
 
         self.grid_rowconfigure(0, weight=1, uniform='row')
         self.grid_rowconfigure(1, weight=1, uniform='row')
@@ -113,10 +119,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
 
         self.protocol("WM_DELETE_WINDOW", close_second_window)
 
-        self.after(200, self.show_icon)
-
-    def show_icon(self):
-        """
-        This function shows the icon of the toplevel window.
-        """
-        self.iconbitmap('textures/logo.ico')
+   #    self.after(200, self.show_icon)
+#   #def show_icon(self):
+   #    """
+   #    This function shows the icon of the toplevel window.
+   #    """
+   #    self.wm_iconbitmap('textures/logo.ico')
+#
