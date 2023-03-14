@@ -60,6 +60,24 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                         command=lambda: display_words(logic.roll_dice()))
         self.roll_dice_button.grid(row=0, column=0, columnspan=5, pady=0, sticky='n')
 
+        self.copy_menu = tk.Menu(self, tearoff=False)
+        self.copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(input_box, self.password_labels))
+
+        def show_copy_menu(event) -> None:
+            """
+            Called when the user releases a mouse button on a password label,
+            this function uses the Tkinter module to display a contextual menu containing a 'copy' button
+            for copying the password to the clipboard on the x and y coordinates of the user's cursor,
+            where the y coordinates are adjusted by 30 pixels.
+
+            Parameters
+            ----------
+            event: tkinter.event
+                Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+            """
+            print('Hello, world!')
+            self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
+
         def clear_window():
             """
             This function clears the window of any output widgets.
@@ -100,6 +118,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.diceroll_widget.delete('1.0', 'end')
                 self.diceroll_widget.insert('1.0', str(diceroll))
                 self.diceroll_widget.configure(state='disabled')
+                self.diceroll_widget.bind('<Button-3>', show_copy_menu)
                 self.output_widgets.append(self.diceroll_widget)
 
                 self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1)
@@ -110,6 +129,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.word_widget.delete('1.0', 'end')
                 self.word_widget.insert('1.0', str(word))
                 self.word_widget.configure(state='disabled')
+                self.word_widget.bind('<Button-3>', show_copy_menu)
+
                 self.output_widgets.append(self.word_widget)
             else:
                 answer = tk.messagebox.askquestion('Dice roll limit reached',
