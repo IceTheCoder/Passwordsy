@@ -61,7 +61,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.roll_dice_button.grid(row=0, column=0, columnspan=5, pady=0, sticky='n')
 
         self.copy_menu = tk.Menu(self, tearoff=False)
-        self.copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(input_box, self.password_labels))
+        self.copy_menu.add_command(label='Copy',
+                                   command=lambda: logic.copy_selected_text(input_box, self.password_labels))
 
         def show_copy_menu(event) -> None:
             """
