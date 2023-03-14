@@ -35,3 +35,18 @@ def roll_dice() -> None:
 
     final_pairs[dice_roll] = wordlist[dice_roll]
     return final_pairs
+
+
+def copy_selected_text(labels) -> None:
+    """
+    Called upon pressing the copy button,
+    this function copies the selected text,
+    and focuses the keyboard on the input_box to deselect the text.
+    """
+    try:
+        for label in labels:
+            selected_text = str(label.selection_get())
+            clipboard.copy(selected_text)
+    except (ValueError, TclError):
+        # There is no need to warn the user when they try to copy nothing as it does not have any effect on the app
+        pass
