@@ -219,26 +219,24 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.lowercase_letters_var = tk.IntVar()
         self.lowercase_letters_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.lowercase_letters_var,
-                                                                    offvalue=0, onvalue=1, text='Lowercase letters',
-                                                                    checkbox_width=20, checkbox_height=20,
-                                                                    fg_color='gray', hover_color='white')
+                                                                    text='Lowercase letters', checkbox_width=20,
+                                                                    checkbox_height=20, fg_color='gray',
+                                                                    hover_color='white')
 
         self.uppercase_letters_var = tk.IntVar()
         self.uppercase_letters_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.uppercase_letters_var,
-                                                                    offvalue=0, onvalue=1, text='Uppercase letters',
-                                                                    checkbox_width=20, checkbox_height=20,
-                                                                    fg_color='gray', hover_color='white')
+                                                                    text='Uppercase letters', checkbox_width=20,
+                                                                    checkbox_height=20, fg_color='gray',
+                                                                    hover_color='white')
 
         self.digits_var = tk.IntVar()
-        self.digits_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.digits_var,
-                                                         offvalue=0, onvalue=1, text='Digits',
-                                                         checkbox_width=20, checkbox_height=20,
-                                                         fg_color='gray', hover_color='white')
+        self.digits_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.digits_var, text='Digits',
+                                                         checkbox_width=20, checkbox_height=20, fg_color='gray',
+                                                         hover_color='white')
 
         self.punctuation_var = tk.IntVar()
         self.punctuation_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.punctuation_var,
-                                                              offvalue=0, onvalue=1, text='Punctuation',
-                                                              checkbox_width=20, checkbox_height=20,
+                                                              text='Punctuation', checkbox_width=20, checkbox_height=20,
                                                               fg_color='gray', hover_color='white')
 
         self.checkboxes = [self.lowercase_letters_checkbox, self.uppercase_letters_checkbox,
