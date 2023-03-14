@@ -62,7 +62,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
         self.copy_menu = tk.Menu(self, tearoff=False)
         self.copy_menu.add_command(label='Copy',
-                                   command=lambda: logic.copy_selected_text(input_box, self.password_labels))
+                                   command=lambda: logic.copy_selected_text(self.output_widgets))
 
         def show_copy_menu(event) -> None:
             """
