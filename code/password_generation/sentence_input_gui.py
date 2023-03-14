@@ -23,6 +23,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         and a way to display the produced password.
         """
         self.geometry('830x280')
+        self.title('Sentence input')
+        self.iconbitmap('textures/logo.ico')
 
         self.grid_rowconfigure(0, weight=1, uniform='row')
         self.grid_rowconfigure(1, weight=1, uniform='row')
@@ -110,3 +112,11 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             self.master.deiconify()
 
         self.protocol("WM_DELETE_WINDOW", close_second_window)
+
+        self.after(200, self.show_icon)
+
+    def show_icon(self):
+        """
+        This function shows the icon of the toplevel window.
+        """
+        self.iconbitmap('textures/logo.ico')
