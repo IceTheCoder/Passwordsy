@@ -1,5 +1,7 @@
 """This module deals with the logical part of generating a random secure password from the diceware wordlist."""
 import secrets
+import clipboard
+from tkinter import TclError
 
 numbers = [1, 2, 3, 4, 5, 6]
 
