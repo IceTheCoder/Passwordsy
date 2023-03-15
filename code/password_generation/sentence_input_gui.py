@@ -78,12 +78,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                 else:
                     char_dict[i] = char
 
-            print(char_dict)
-
             first_letter_taken = False
             for key, value in char_dict.items():
-                print(key, value)
-                print(first_letter_taken)
                 if value in string.punctuation or value in string.digits:
                     letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
                 elif value == 'space':
