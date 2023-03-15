@@ -43,6 +43,7 @@ def produce_password(sentence):
     else:
         return ''
 
+
 def check_password_strength(event, inputted_password) -> list | str:
     """
     Called upon pressing the done button,
@@ -156,6 +157,7 @@ def check_password_strength(event, inputted_password) -> list | str:
 
         else:
             return ''
+
     if inputted_password is None:
         return ['', '']
     else:
