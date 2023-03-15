@@ -66,47 +66,34 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             to get a password based on the user's sentence,
             and displays it on the screen.
             """
-            password_output = logic.produce_password(self.input_box.get())
-
-            split_full_sentence = self.input_box.get().split(' ')
+            char_dict = {}
             letters_to_be_coloured = {}
 
-            for word in split_full_sentence:
-                start_index = self.input_box.get().index(word)
-                letters_to_be_coloured[f'1.{start_index}'] = f'1.{start_index + 1}'
+            self.password_label.delete('1.0', 'end')
+            self.password_label.insert('1.0', self.input_box.get())
 
-            for i in range(len(self.input_box.get())):
-                character = self.input_box.get()[i]
-                if character in string.digits + string.punctuation:
-                    # Find the start index of the character
-                    start_index = i
-                    # Iterate over the remaining characters in the sentence to find any additional occurrences
-                    for j in range(i + 1, len(self.input_box.get())):
-                        if self.input_box.get()[j] == character:
-                            # Add the start and end indices of the character to the dictionary
-                            letters_to_be_coloured[f'1.{start_index}'] = f'1.{j + 1}'
-                    # Add the start and end indices of the character to the dictionary for the first occurrence
-                    if f'1.{start_index}' not in letters_to_be_coloured:
-                        letters_to_be_coloured[f'1.{start_index}'] = f'1.{start_index + 1}'
+            for i, char in enumerate(self.input_box.get()):
+                if char.isspace():
+                    char_dict[i] = "space"
+                else:
+                    char_dict[i] = char
 
-            if password_output != '':
-                self.password_label.configure(state='normal')
-                self.password_label.delete('1.0', 'end')
-                self.password_label.insert('1.0', self.input_box.get())
-                self.password_label.configure(state='disabled')
+            print(char_dict)
 
-                for index, warning in enumerate(logic.check_password_strength(None, password_output)):
-                    self.warning_labels[index].configure(text=warning)
-                    self.warning_labels[index].grid(row=3 + index, column=0, padx=10)
-            else:
-                for label in self.warning_labels:
-                    label.configure(text='')
-                    self.password_label.configure(state='normal')
-                    self.password_label.delete('1.0', 'end')
-                    self.password_label.configure(state='disabled')
+            first_letter_taken = False
+            for key, value in char_dict.items():
+                print(key, value)
+                print(first_letter_taken)
+                if value in string.punctuation or value in string.digits:
+                    letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
+                elif value == 'space':
+                    first_letter_taken = False
+                elif not first_letter_taken:
+                    letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
+                    first_letter_taken = True
 
-            for letter in letters_to_be_coloured:
-                self.password_label.tag_add('red', letter, letters_to_be_coloured[letter])
+            for key, value in letters_to_be_coloured.items():
+                self.password_label.tag_add('red', key, value)
 
         self.input_box.bind('<Return>', lambda e: display_password())
 
