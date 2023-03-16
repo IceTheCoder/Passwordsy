@@ -22,7 +22,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.geometry('1100x650')
+        self.minsize(1100, 650)
         self.iconbitmap('textures/logo.ico')
         self.title('Diceware')
 
