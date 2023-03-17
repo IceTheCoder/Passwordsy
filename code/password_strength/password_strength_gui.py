@@ -33,7 +33,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
 
         global paste
         paste = tk.Menu(self, tearoff=False)
-        paste.add_command(label='Paste', command=paste_text)
+        paste.add_command(label='Paste', command=logic.paste_text)
 
         instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength',
                                                    font=title_font)
@@ -73,17 +73,6 @@ def display_paste_button(event) -> None:
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     """
     paste.tk_popup(event.x_root, event.y_root - copy_button_y_offset)
-
-
-def paste_text() -> None:
-    """
-    Called upon pressing the paste button,
-    this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
-    """
-    keyboard.press(Key.ctrl_l)
-    keyboard.press('v')
-    keyboard.release(Key.ctrl_l)
-    keyboard.release('v')
 
 
 def display_warnings(event) -> None:

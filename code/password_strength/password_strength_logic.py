@@ -161,3 +161,14 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
         pattern_warning = check_for_patterns_in_password()
 
         return [prevalence_warning, length_warning, complexity_warning, pattern_warning]
+
+
+def paste_text() -> None:
+    """
+    Called upon pressing the paste button,
+    this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
+    """
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('v')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release('v')
