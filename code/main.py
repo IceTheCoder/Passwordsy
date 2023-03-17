@@ -2,6 +2,7 @@
 This is the main module of Passwordsy.
 """
 import tkinter as tk
+from abc import ABC
 from tkinter import ttk
 from PIL import ImageTk, Image
 import customtkinter
@@ -10,7 +11,7 @@ from password_generation import generate_password_gui
 from password_strength import password_strength_gui
 
 
-class TabView(customtkinter.CTkTabview):
+class TabView(customtkinter.CTkTabview, ABC):
     """
     This class creates the tabview of the app.
     """
@@ -71,7 +72,6 @@ class App(customtkinter.CTk):
 
         self.tab_view = TabView(master=self)
         self.tab_view.grid(column=0, row=0)
-        # self.tab_view.bind('<<NotebookTabChanged>>', lambda e: generate_password_gui.select_input_box())
 
 
 def main():
