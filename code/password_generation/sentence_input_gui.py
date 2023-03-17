@@ -58,7 +58,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
 
         self.password_label.tag_config('red', foreground='red')
 
-        def highlight_sentence():
+        def highlight_sentence(event):
             """
             Called as the user types,
             this function calls the produce_password function of sentence_input_logic.py
@@ -66,7 +66,6 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             and displays it on the screen.
             """
             char_dict = {}
-            letters_to_be_coloured = {}
 
             self.password_label.delete('1.0', 'end')
             self.password_label.insert('1.0', self.input_box.get())
@@ -77,17 +76,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                 else:
                     char_dict[i] = char
 
-            first_letter_taken = False
-            for key, value in char_dict.items():
-                if value in string.punctuation or value in string.digits:
-                    letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
-                elif value == 'space':
-                    first_letter_taken = False
-                elif not first_letter_taken:
-                    letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
-                    first_letter_taken = True
-
-            for key, value in letters_to_be_coloured.items():
+            for key, value in logic.produce_password(char_dict).items():
                 self.password_label.tag_add('red', key, value)
 
         self.input_box.bind('<Return>', highlight_sentence)
