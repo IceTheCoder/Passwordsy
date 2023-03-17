@@ -6,7 +6,7 @@ from tkinter.font import Font
 import customtkinter
 from pynput.keyboard import Key, Controller
 
-from password_strength import password_strength_logic
+from password_strength import password_strength_logic as logic
 
 keyboard = Controller()
 
@@ -40,7 +40,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         instruction_label.grid(column=0, row=0)
 
         global input_box
-        input_box = customtkinter.CTkEntry(self, width=250, corner_radius=8.5)
+        input_box = customtkinter.CTkEntry(self, width=250, corner_radius=8)
         input_box.grid(column=0, row=1)
         input_box.bind('<KeyRelease>', display_warnings)
         input_box.bind('<Button-3>', display_paste_button)
@@ -91,7 +91,7 @@ def display_warnings(event) -> None:
     for label in labels:
         label.configure(text='')
 
-    warnings = password_strength_logic.check_password_strength(input_box.get(), input_password_msg)
+    warnings = logic.check_password_strength(input_box.get(), input_password_msg)
 
     if warnings == input_password_msg:
         labels[0].configure(text=warnings)
