@@ -130,7 +130,7 @@ def produce_password(char_dict):
     starting letters of every word and any digits or punctuation
     """
     letters_to_be_coloured = {}
-    
+
     first_letter_taken = False
     for key, value in char_dict.items():
         if value in string.punctuation or value in string.digits:
