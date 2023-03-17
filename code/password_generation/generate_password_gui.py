@@ -72,7 +72,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             Parameters
             ----------
-            label: tk.Text
+            label: CTkTextbox
                 The text label to be cleared.
             """
             label.configure(state='normal')
@@ -96,6 +96,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             show_text(self.password_labels[index], passwords[index])
 
             # Check if there is any content in all labels by checking the length (the length of an empty label is 1)
+            # If there is, change the slider accordingly
             if len(self.password_labels[0].get('1.0', 'end')) != 1 \
                     and len(self.password_labels[1].get('1.0', 'end')) != 1 \
                     and len(self.password_labels[2].get('1.0', 'end')) != 1 \
@@ -360,7 +361,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             Parameters
             ----------
-            label: tkinter.Text
+            label: CTkTextbox
                 Each password label one by one if passwords are generated,
                 or the first password label if an error is generated.
             message: str
@@ -369,7 +370,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             label.configure(state='normal')
             label.delete('1.0', 'end')
             label.insert('1.0', message)
-            label.configure(state='disabled')  # , bg='#ffffff')
+            label.configure(state='disabled')
 
     def open_other_methods(self):
         """
