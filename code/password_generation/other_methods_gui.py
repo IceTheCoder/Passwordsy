@@ -46,14 +46,6 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
 
-        # self.diceware_frame = diceware.DicewareFrame(master=self)
-        # self.diceware_frame.grid(row=0, column=0, sticky='nsew')
-
-        # self.sentence_input_frame = tk.LabelFrame(self, text='Input a sentence', font=title_font)
-        # self.sentence_input_frame.grid(row=0, column=1, sticky='nsew')
-
-        # self.sentence_input.create_sentence_input_frame(sentence_input_frame)
-
         self.after(200, self.show_icon)
 
         self.diceware_window = None
