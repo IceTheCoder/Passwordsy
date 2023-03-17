@@ -20,6 +20,7 @@ global copy_menu
 global passwords
 global show_hide_all_button
 
+
 class PasswordGenerationFrame(customtkinter.CTkFrame):
     """
     Called upon starting the program,
@@ -28,6 +29,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
     (length and character sets),
     and serves as a hub for all other password generation functions.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
@@ -179,8 +181,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                           command=lambda: show_password(0, show_hide_button_3))
         self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
                                   self.show_hide_button_3, self.show_hide_button_4]
-        self.show_hide_all_slider = customtkinter.CTkSlider(master=self, from_=0, to=1,
-                                                            command=run_function_based_on_slider_value,
+        self.show_hide_all_slider = customtkinter.CTkSlider(master=self, command=run_function_based_on_slider_value,
                                                             width=50, height=25, number_of_steps=1, fg_color='#D3D3D3',
                                                             progress_color='#D3D3D3', button_color='blue')
 
