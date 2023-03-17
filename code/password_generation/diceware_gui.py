@@ -17,7 +17,7 @@ global clear_btn_image
 
 class DicewareToplevel(customtkinter.CTkToplevel):
     """
-    This class creates the diceware toplevel.
+    This class creates the diceware toplevel window and its contents.
     """
 
     def __init__(self, master, **kwargs):
