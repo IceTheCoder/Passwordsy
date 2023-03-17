@@ -13,7 +13,6 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
     """
     This class creates the sentence input toplevel
     """
-
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         """
@@ -47,7 +46,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                                                         font=self.instruction_font)
         self.instruction_label.grid(row=0, column=0)
 
-        self.input_box = customtkinter.CTkEntry(self, width=700, corner_radius=8.5)
+        self.input_box = customtkinter.CTkEntry(self, width=700, corner_radius=8)
         self.input_box.grid(row=1, column=0)
 
         self.password_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50, wrap='word')
@@ -59,7 +58,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
 
         self.password_label.tag_config('red', foreground='red')
 
-        def display_password():
+        def highlight_sentence():
             """
             Called as the user types,
             this function calls the produce_password function of sentence_input_logic.py
@@ -91,7 +90,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             for key, value in letters_to_be_coloured.items():
                 self.password_label.tag_add('red', key, value)
 
-        self.input_box.bind('<Return>', lambda e: display_password())
+        self.input_box.bind('<Return>', highlight_sentence)
 
         def close_second_window():
             """
@@ -101,11 +100,3 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             self.master.deiconify()
 
         self.protocol("WM_DELETE_WINDOW", close_second_window)
-
-   #    self.after(200, self.show_icon)
-#   #def show_icon(self):
-   #    """
-   #    This function shows the icon of the toplevel window.
-   #    """
-   #    self.wm_iconbitmap('textures/logo.ico')
-#
