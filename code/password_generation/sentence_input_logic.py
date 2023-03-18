@@ -6,7 +6,7 @@ from __future__ import annotations
 import string
 
 
-def check_password_strength(event, inputted_password) -> list | str:
+def check_password_strength(inputted_password) -> list | str:
     """
     Called upon pressing the done button,
     this function defines several functions that check
@@ -16,8 +16,6 @@ def check_password_strength(event, inputted_password) -> list | str:
 
     Parameters
     ----------
-    event:
-        Necessary for initiating the function as the user types.
     inputted_password: str
         The input of the user
     """
