@@ -29,14 +29,10 @@ class TabView(customtkinter.CTkTabview, ABC):
 
         # Expand some widgets' rows and columns to take up the entire window
         self.generate_password_frame.grid_columnconfigure(0, weight=1)
-        self.generate_password_frame.grid_rowconfigure(0, weight=1)
+        i = 0
+        while i <= 7:
+            self.generate_password_frame.grid_rowconfigure(i, weight=1)
         self.generate_password_frame.grid_rowconfigure(1, weight=1)
-        self.generate_password_frame.grid_rowconfigure(2, weight=1)
-        self.generate_password_frame.grid_rowconfigure(3, weight=1)
-        self.generate_password_frame.grid_rowconfigure(4, weight=1)
-        self.generate_password_frame.grid_rowconfigure(5, weight=1)
-        self.generate_password_frame.grid_rowconfigure(6, weight=1)
-        self.generate_password_frame.grid_rowconfigure(7, weight=1)
 
         # Create the password strength frame
         self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab('Password strength'))
@@ -44,13 +40,10 @@ class TabView(customtkinter.CTkTabview, ABC):
 
         # Expand widgets to take up the entire window
         self.password_strength_frame.grid_columnconfigure(0, weight=1)
-        self.password_strength_frame.grid_rowconfigure(0, weight=1)
-        self.password_strength_frame.grid_rowconfigure(1, weight=1)
-        self.password_strength_frame.grid_rowconfigure(2, weight=1)
-        self.password_strength_frame.grid_rowconfigure(3, weight=1)
-        self.password_strength_frame.grid_rowconfigure(4, weight=1)
-        self.password_strength_frame.grid_rowconfigure(5, weight=1)
-        self.password_strength_frame.grid_rowconfigure(6, weight=1)
+        i = 0
+        while i <= 6:
+            self.password_strength_frame.grid_rowconfigure(i, weight=1)
+            i += 1
 
 
 class App(customtkinter.CTk):

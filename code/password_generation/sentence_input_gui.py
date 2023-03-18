@@ -33,6 +33,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         i = 0
         while i <= 4:
             self.grid_rowconfigure(i, weight=1, uniform='row')
+            i += 1
         self.grid_columnconfigure(0, weight=1, uniform='column')
 
         self.instruction_font = customtkinter.CTkFont(family='Roboto', size=24)
