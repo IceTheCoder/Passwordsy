@@ -1,6 +1,8 @@
 """
 This module deals with the logic part of generating a secure password based on a user's sentence.
 """
+from __future__ import annotations
+
 import string
 
 
@@ -113,7 +115,7 @@ def check_password_strength(event, inputted_password) -> list | str:
                     else:
                         output = output + str(missing_feature) + ', '
 
-            return f'You should add {output} to your password.'
+            return f'You should add {output} to your sentence.'
 
         else:
             return ''
@@ -124,21 +126,24 @@ def check_password_strength(event, inputted_password) -> list | str:
         return [check_password_length(), check_password_complexity()]
 
 
-def produce_password(char_dict):
+def produce_password(char_dict) -> list:
     """
     This function gets the characters that are needed to be highlighted:
     starting letters of every word and any digits or punctuation
     """
     letters_to_be_coloured = {}
+    password = ''
 
     first_letter_taken = False
     for key, value in char_dict.items():
         if value in string.punctuation or value in string.digits:
             letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
+            password += value
         elif value == 'space':
             first_letter_taken = False
         elif not first_letter_taken:
             letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
+            password += value
             first_letter_taken = True
 
-    return letters_to_be_coloured
+    return [letters_to_be_coloured, password]
