@@ -26,31 +26,17 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.iconbitmap('textures/logo.ico')
         self.title('Diceware')
 
+        # Give a weight to rows 0 to 15
         i = 0
         while i <= 15:
             self.grid_rowconfigure(i, weight=1, uniform='row')
             i += 1
-        #self.grid_rowconfigure(1, weight=1, uniform='row')
-        #self.grid_rowconfigure(2, weight=1, uniform='row')
-        #self.grid_rowconfigure(3, weight=1, uniform='row')
-        #self.grid_rowconfigure(4, weight=1, uniform='row')
-        #self.grid_rowconfigure(5, weight=1, uniform='row')
-        #self.grid_rowconfigure(6, weight=1, uniform='row')
-        #self.grid_rowconfigure(7, weight=1, uniform='row')
-        #self.grid_rowconfigure(8, weight=1, uniform='row')
-        #self.grid_rowconfigure(9, weight=1, uniform='row')
-        #self.grid_rowconfigure(10, weight=1, uniform='row')
-        #self.grid_rowconfigure(11, weight=1, uniform='row')
-        #self.grid_rowconfigure(12, weight=1, uniform='row')
-        #self.grid_rowconfigure(13, weight=1, uniform='row')
-        #self.grid_rowconfigure(14, weight=1, uniform='row')
-        #self.grid_rowconfigure(15, weight=1, uniform='row')
 
-        self.grid_columnconfigure(0, weight=1, uniform='column')
-        self.grid_columnconfigure(1, weight=1, uniform='column')
-        self.grid_columnconfigure(2, weight=1, uniform='column')
-        self.grid_columnconfigure(3, weight=1, uniform='column')
-        self.grid_columnconfigure(4, weight=1, uniform='column')
+        # Give a weight to columns 0 to 4
+        i = 0
+        while i <= 4:
+            self.grid_columnconfigure(i, weight=1, uniform='column')
+
         self.word_font = customtkinter.CTkFont(family='Roboto', size=12)
 
         self.output_widgets = []
