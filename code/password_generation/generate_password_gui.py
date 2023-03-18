@@ -336,7 +336,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 hide_password(self.show_hide_buttons.index(button), button)
 
         global input_box
-        input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8.5)
+        input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
         input_box.bind('<Return>', lambda e: create_password_labels())
         input_box.grid(column=0, row=2, columnspan=4)
 
