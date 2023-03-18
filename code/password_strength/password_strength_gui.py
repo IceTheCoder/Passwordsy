@@ -4,11 +4,8 @@ This module prepares the password strength for the user upon app startup.
 import tkinter as tk
 from tkinter.font import Font
 import customtkinter
-from pynput.keyboard import Key, Controller
 
 from password_strength import password_strength_logic as logic
-
-keyboard = Controller()
 
 input_password_msg = 'Please input a password.'
 
