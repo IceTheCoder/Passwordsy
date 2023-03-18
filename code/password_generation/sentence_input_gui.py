@@ -76,7 +76,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             for key, value in characters_to_be_highlighted:
                 self.password_label.tag_add('red', key, value)
 
-            display_warnings(logic.check_password_strength(None, password))
+            display_warnings(logic.check_password_strength(password))
 
         def display_warnings(warnings):
             """
