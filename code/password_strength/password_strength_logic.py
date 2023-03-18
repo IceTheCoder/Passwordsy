@@ -4,6 +4,9 @@ This module deals with the logical part of discovering vulnerabilities in a give
 from __future__ import annotations
 
 import string
+from pynput.keyboard import Key, Controller
+
+keyboard = Controller()
 
 # passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
 common_passwords_file = open('password_strength\passwords.txt', 'r')
