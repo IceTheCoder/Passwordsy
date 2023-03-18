@@ -74,6 +74,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                 self.password_label.tag_add('red', key, value)
 
         self.input_box.bind('<Return>', highlight_sentence)
+        self.withdraw()
+        self.after(200, self.show_icon)
 
         def close_second_window():
             """
@@ -83,3 +85,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             self.master.deiconify()
 
         self.protocol("WM_DELETE_WINDOW", close_second_window)
+
+    def show_icon(self):
+        """
+        This function shows the icon of the toplevel window.
+        """
+        self.deiconify()
+        self.iconbitmap('textures/logo.ico')
