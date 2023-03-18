@@ -26,16 +26,13 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         self.title('Sentence input')
         # Load the icon image
         icon_image = Image.open('textures/logo.ico')
-        icon_photo = ImageTk.PhotoImage(icon_image)
 
         # Set the icon photo
-        self.wm_iconphoto(False, icon_photo)
+        self.wm_iconphoto(False, icon_image)
 
-        self.grid_rowconfigure(0, weight=1, uniform='row')
-        self.grid_rowconfigure(1, weight=1, uniform='row')
-        self.grid_rowconfigure(2, weight=1, uniform='row')
-        self.grid_rowconfigure(3, weight=1, uniform='row')
-        self.grid_rowconfigure(4, weight=1, uniform='row')
+        i = 0
+        while i <= 4:
+            self.grid_rowconfigure(i, weight=1, uniform='row')
         self.grid_columnconfigure(0, weight=1, uniform='column')
 
         self.instruction_font = customtkinter.CTkFont(family='Roboto', size=24)
@@ -70,11 +67,11 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             self.password_label.delete('1.0', 'end')
             self.password_label.insert('1.0', self.input_box.get())
 
-            for i, char in enumerate(self.input_box.get()):
+            for index, char in enumerate(self.input_box.get()):
                 if char.isspace():
-                    char_dict[i] = "space"
+                    char_dict[index] = "space"
                 else:
-                    char_dict[i] = char
+                    char_dict[index] = char
 
             for key, value in logic.produce_password(char_dict).items():
                 self.password_label.tag_add('red', key, value)
