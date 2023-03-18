@@ -32,7 +32,9 @@ class TabView(customtkinter.CTkTabview, ABC):
         i = 0
         while i <= 7:
             self.generate_password_frame.grid_rowconfigure(i, weight=1)
+            i += 1
         self.generate_password_frame.grid_rowconfigure(1, weight=1)
+        print('Hello, world!')
 
         # Create the password strength frame
         self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab('Password strength'))
