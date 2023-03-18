@@ -24,11 +24,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         """
         self.geometry('830x280')
         self.title('Sentence input')
-        # Load the icon image
-        icon_image = Image.open('textures/logo.ico')
-
-        # Set the icon photo
-        self.wm_iconphoto(False, icon_image)
+        self.iconbitmap('textures/logo.ico')
 
         i = 0
         while i <= 4:
