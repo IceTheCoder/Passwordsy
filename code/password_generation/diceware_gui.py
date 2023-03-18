@@ -132,6 +132,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 if answer == 'yes':
                     clear_window()
 
+        self.withdraw()
         self.after(200, self.show_icon)
 
         def close_second_window():
@@ -147,4 +148,5 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         """
         This function shows the icon of the toplevel window.
         """
+        self.deiconify()
         self.iconbitmap('textures/logo.ico')
