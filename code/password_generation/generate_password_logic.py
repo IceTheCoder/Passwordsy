@@ -163,4 +163,3 @@ def copy_password(index, passwords) -> None:
         The list of generated password.
     """
     clipboard.copy(passwords[index])
-
