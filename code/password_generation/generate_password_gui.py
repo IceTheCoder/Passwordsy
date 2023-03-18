@@ -89,7 +89,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             ----------
             index: int
                 The number of the button that was clicked.
-            button: tk.Button
+            button: CTkButton
                 The button that was clicked.
             """
             global passwords
@@ -115,7 +115,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             ----------
             index: int
                 The number of the button that was clicked.
-            button: tk.Button
+            button: CTKButton
                 The button that was clicked.
             """
             clear_text_label(self.password_labels[index])
@@ -256,7 +256,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=8, sticky='w')
             checkbox.select()
 
-        def show_copy_menu(event, password_labels=self.password_labels) -> None:
+        def show_copy_menu(event) -> None:
             """
             Called when the user releases a mouse button on a password label,
             this function uses the Tkinter module to display a contextual menu containing a 'copy' button
@@ -267,19 +267,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             ----------
             event: tkinter.event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
-            password_labels: list
-                List of password labels
             """
             global copy_menu
-            print('Hello, world!')
             copy_menu.tk_popup(event.x_root, event.y_root - 30)
 
-            for label in password_labels:
+            for label in self.password_labels:
                 label.tag_bind('copy_tag', '<Button-3>', show_copy_menu)
 
             # Unbind the tag for all password labels except for the one that was clicked
             event.widget.tag_unbind('copy_tag', '<Button-3>')
-            for label in password_labels:
+            for label in self.password_labels:
                 if label != event.widget:
                     label.tag_unbind('copy_tag', '<Button-3>')
 
