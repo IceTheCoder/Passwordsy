@@ -22,7 +22,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         by creating a basic Tkinter configuration, with an instruction, input,
         and a way to display the produced password.
         """
-        self.geometry('830x280')
+        self.geometry('900x280')
         self.title('Sentence input')
         self.iconbitmap('textures/logo.ico')
 
@@ -84,9 +84,9 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             this function displays the adequate warnings/tips for the user to get a more secure password.
             """
             self.warning_label_1.configure(text=warnings[0])
-            self.warning_label_1.grid(row=3, column=0)
+            self.warning_label_1.grid(row=3, column=0, sticky='w', padx=10)
             self.warning_label_2.configure(text=warnings[1])
-            self.warning_label_2.grid(row=4, column=0)
+            self.warning_label_2.grid(row=4, column=0, sticky='w', padx=10)
 
         self.input_box.bind('<Return>', highlight_sentence)
         self.withdraw()
