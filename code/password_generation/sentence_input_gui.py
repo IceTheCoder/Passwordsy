@@ -70,8 +70,23 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                 else:
                     char_dict[index] = char
 
-            for key, value in logic.produce_password(char_dict).items():
+            characters_to_be_highlighted = logic.produce_password(char_dict)[0].items()
+            password = logic.produce_password(char_dict)[1]
+
+            for key, value in characters_to_be_highlighted:
                 self.password_label.tag_add('red', key, value)
+
+            display_warnings(logic.check_password_strength(None, password))
+
+        def display_warnings(warnings):
+            """
+            Called as the user types,
+            this function displays the adequate warnings/tips for the user to get a more secure password.
+            """
+            self.warning_label_1.configure(text=warnings[0])
+            self.warning_label_1.grid(row=3, column=0)
+            self.warning_label_2.configure(text=warnings[1])
+            self.warning_label_2.grid(row=4, column=0)
 
         self.input_box.bind('<Return>', highlight_sentence)
         self.withdraw()
