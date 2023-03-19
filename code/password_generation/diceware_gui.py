@@ -34,7 +34,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
         # Give a weight to columns 0 to 8
         i = 0
-        while i <= 8:
+        while i <= 9:
             self.grid_columnconfigure(i, weight=1)#, uniform='column')
             i += 1
 
