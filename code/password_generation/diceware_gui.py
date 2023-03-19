@@ -124,6 +124,15 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.word_widget.configure(state='disabled')
                 self.word_widget.bind('<Button-3>', show_copy_menu)
 
+                self.var = tk.IntVar()
+                self.checkbox = customtkinter.CTkCheckBox(master=self,
+                                                          variable=self.var, text='',
+                                                          checkbox_width=20,
+                                                          checkbox_height=20, fg_color='gray',
+                                                          hover_color='white')
+                self.outpust_widgets.append(self.checkbox)
+
+                self.checkbox.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=column_to_be_placed_in + 1)
                 self.output_widgets.append(self.word_widget)
             else:
                 answer = tk.messagebox.askquestion('Dice roll limit reached',
