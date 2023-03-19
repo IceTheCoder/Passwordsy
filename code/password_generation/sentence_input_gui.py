@@ -35,15 +35,16 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         self.instruction_font = customtkinter.CTkFont(family='Roboto', size=24)
         self.warning_font = customtkinter.CTkFont(family='Roboto', size=20)
         self.word_font = customtkinter.CTkFont(family='Roboto', size=14)
+        self.password_font = customtkinter.CTkFont(family='Consolas', size=18)
 
         self.instruction_label = customtkinter.CTkLabel(master=self, text='Input a sentence',
                                                         font=self.instruction_font)
         self.instruction_label.place(relx=0.5, rely=0.075, anchor='center')
 
-        self.input_box = customtkinter.CTkEntry(self, width=700, corner_radius=8)
+        self.input_box = customtkinter.CTkEntry(self, width=700, corner_radius=8, font=self.word_font)
         self.input_box.place(relx=0.5, rely=0.2, anchor='center')
 
-        self.password_label = customtkinter.CTkTextbox(self, state='disabled', height=25)
+        self.password_label = customtkinter.CTkTextbox(self, state='disabled', height=25, font=self.password_font)
         self.password_label.place(relx=0.5, rely=0.35, anchor='center')
 
         self.sentence_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50, wrap='word')
