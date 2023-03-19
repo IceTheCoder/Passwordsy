@@ -50,7 +50,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.roll_dice_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='ROLL DICE',
                                                         font=button_font, fg_color='blue', hover_color='gray',
                                                         command=lambda: display_words(logic.roll_dice()))
-        self.roll_dice_button.grid(row=0, column=0, columnspan=5, pady=0, sticky='n')
+        self.roll_dice_button.grid(row=0, column=0, columnspan=10, pady=0, sticky='n')
 
         self.copy_menu = tk.Menu(self, tearoff=False)
         self.copy_menu.add_command(label='Copy',
@@ -85,7 +85,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='CLEAR',
                                                     font=button_font, fg_color='blue', hover_color='gray',
                                                     command=clear_window)
-        self.clear_button.grid(row=1, column=0, columnspan=5, pady=0, sticky='n')
+        self.clear_button.grid(row=1, column=0, columnspan=10, pady=0, sticky='n')
 
         def display_words(pair):
             """
