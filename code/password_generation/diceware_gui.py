@@ -99,7 +99,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             global number_of_dicerolls
             if number_of_dicerolls < 35:
-                column_to_be_placed_in = number_of_dicerolls % 5
+                column_to_be_placed_in = (number_of_dicerolls % 5) * 2
                 number_of_dicerolls += 1
                 (diceroll, word), = pair.items()
 
