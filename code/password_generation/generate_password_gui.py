@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Called upon app startup,
 this module prepares the GUI for password generation
@@ -42,7 +43,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
         large_button_font = customtkinter.CTkFont(family='Roboto', size=36)
         password_font = customtkinter.CTkFont(family='Consolas', size=14)
-        input_font = customtkinter.CTkFont(family='Roboto', size=14)
+        input_font = customtkinter.CTkFont(family="DejaVu Sans", size=14)
 
         password_width = 750
         password_height = 30
