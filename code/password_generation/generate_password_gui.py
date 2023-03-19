@@ -29,7 +29,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
     (length and character sets),
     and serves as a hub for all other password generation functions.
     """
-
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
@@ -43,6 +42,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
         large_button_font = customtkinter.CTkFont(family='Roboto', size=36)
         password_font = customtkinter.CTkFont(family='Consolas', size=14)
+        input_font = customtkinter.CTkFont(family='Roboto', size=14)
 
         password_width = 750
         password_height = 30
@@ -342,7 +342,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 hide_password(self.show_hide_buttons.index(button), button)
 
         global input_box
-        input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8, encoding='utf-8')
+        input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8, font=input_font)
         input_box.bind('<Return>', lambda e: create_password_labels())
         input_box.grid(column=0, row=2, columnspan=4)
 
