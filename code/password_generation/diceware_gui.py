@@ -104,7 +104,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
                 self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1)
                 self.diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5),
-                                          column=(-1 + number_of_dicerolls) % 5,
+                                          column=((-1 + number_of_dicerolls) % 5) * 2,
                                           pady=(5, 0), padx=10)
                 self.diceroll_widget.configure(state='normal')
                 self.diceroll_widget.delete('1.0', 'end')
@@ -115,7 +115,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
                 self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1)
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
-                                      column=(-1 + number_of_dicerolls) % 5,
+                                      column=((-1 + number_of_dicerolls) % 5) * 2,
                                       sticky='n', pady=(0, 5), padx=10)
                 self.word_widget.configure(state='normal')
                 self.word_widget.delete('1.0', 'end')
