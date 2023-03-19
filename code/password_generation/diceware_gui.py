@@ -68,7 +68,6 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             event: tkinter.event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
             """
-            print('Hello, world!')
             self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
 
         def clear_window():

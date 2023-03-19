@@ -44,17 +44,39 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         self.input_box = customtkinter.CTkEntry(self, width=700, corner_radius=8, font=self.word_font)
         self.input_box.place(relx=0.5, rely=0.2, anchor='center')
 
+        def show_copy_menu(event) -> None:
+            """
+            Called when the user releases a mouse button on a password label,
+            this function uses the Tkinter module to display a contextual menu containing a 'copy' button
+            for copying the password to the clipboard on the x and y coordinates of the user's cursor,
+            where the y coordinates are adjusted by 30 pixels.
+
+            Parameters
+            ----------
+            event: tkinter.event
+                Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+            """
+            self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
+
         self.password_label = customtkinter.CTkTextbox(self, state='disabled', height=25, font=self.password_font)
         self.password_label.place(relx=0.5, rely=0.35, anchor='center')
+        self.password_label.bind('<Button-3>', show_copy_menu)
 
         self.sentence_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50, wrap='word')
         self.sentence_label.place(relx=0.5, rely=0.55, anchor='center')
+        self.sentence_label.bind('<Button-3>', show_copy_menu)
+
+        self.text_labels = [self.password_label, self.sentence_label]
 
         self.warning_label_1 = customtkinter.CTkLabel(master=self, font=self.warning_font)
         self.warning_label_2 = customtkinter.CTkLabel(master=self, font=self.warning_font)
         self.warning_labels = [self.warning_label_1, self.warning_label_2]
 
         self.sentence_label.tag_config('red', foreground='red')
+
+        self.copy_menu = tk.Menu(self, tearoff=False)
+        self.copy_menu.add_command(label='Copy',
+                                   command=lambda: logic.copy_selected_text(self.text_labels))
 
         def highlight_sentence(event):
             """
