@@ -4,6 +4,8 @@ This module deals with the logic part of generating a secure password based on a
 from __future__ import annotations
 
 import string
+import clipboard
+from tkinter import TclError
 
 
 def check_password_strength(inputted_password) -> list | str:
@@ -145,3 +147,18 @@ def produce_password(char_dict) -> list:
             first_letter_taken = True
 
     return [letters_to_be_coloured, password]
+
+
+def copy_selected_text(labels) -> None:
+    """
+    Called upon pressing the copy button,
+    this function copies the selected text,
+    and focuses the keyboard on the input_box to deselect the text.
+    """
+    try:
+        for label in labels:
+            selected_text = str(label.selection_get())
+            clipboard.copy(selected_text)
+    except (ValueError, TclError):
+        # There is no need to warn the user when they try to copy nothing as it does not have any effect on the app
+        pass
