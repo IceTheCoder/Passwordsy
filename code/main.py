@@ -19,6 +19,8 @@ class TabView(customtkinter.CTkTabview, ABC):
         super().__init__(master, **kwargs)
         self.configure(width=1100, height=420)
 
+        #self.configure(encodings='utf-8')
+
         # Create the 2 tabs
         self.add('Generate password')
         self.add('Password strength')
