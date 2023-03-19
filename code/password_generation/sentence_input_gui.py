@@ -38,13 +38,16 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
 
         self.instruction_label = customtkinter.CTkLabel(master=self, text='Input a sentence',
                                                         font=self.instruction_font)
-        self.instruction_label.grid(row=0, column=0)
+        self.instruction_label.place()
 
         self.input_box = customtkinter.CTkEntry(self, width=700, corner_radius=8)
-        self.input_box.grid(row=1, column=0)
+        self.input_box.grid(row=1, column=0, sticky='n', pady=0)
+
+        self.password_label = customtkinter.CTkTextbox(self, state='disabled', height=25)
+        self.password_label.grid(row=2, column=0, sticky='n', pady=0)
 
         self.sentence_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50, wrap='word')
-        self.sentence_label.grid(row=3, column=0)
+        self.sentence_label.grid(row=3, column=0, sticky='n', pady=0)
 
         self.warning_label_1 = customtkinter.CTkLabel(master=self, font=self.warning_font)
         self.warning_label_2 = customtkinter.CTkLabel(master=self, font=self.warning_font)
@@ -77,6 +80,16 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
                 self.sentence_label.tag_add('red', key, value)
 
             display_warnings(logic.check_password_strength(password))
+            show_password(password)
+
+        def show_password(password):
+            """
+            This function shows the password generated from a sentence.
+            """
+            self.password_label.configure(state='normal')
+            self.password_label.delete('1.0', 'end')
+            self.password_label.insert('1.0', password)
+            self.password_label.configure(state='disabled')
 
         def display_warnings(warnings):
             """
