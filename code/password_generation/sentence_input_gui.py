@@ -22,7 +22,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         by creating a basic Tkinter configuration, with an instruction, input,
         and a way to display the produced password.
         """
-        self.geometry('900x280')
+        self.geometry('900x350')
         self.title('Sentence input')
         self.iconbitmap('textures/logo.ico')
 
