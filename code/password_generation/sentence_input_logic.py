@@ -113,10 +113,10 @@ def check_password_strength(inputted_password) -> list | str:
                     else:
                         output = output + str(missing_feature) + ', '
 
-            return f'You should add {output} to your sentence.'
+            return f'Simple password: You should add {output} to your sentence.'
 
         else:
-            return ''
+            return 'Complex password: Your sentence contains upper and lowercase letters, digits, and punctuation.'
 
     if inputted_password is None:
         return ['', '']
