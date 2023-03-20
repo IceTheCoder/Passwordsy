@@ -31,10 +31,10 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             self.grid_rowconfigure(i, weight=1, uniform='row')
             i += 1
 
-        # Give a weight to columns 0 to 8
+        # Give a weight to columns 0 to 9
         i = 0
         while i <= 9:
-            self.grid_columnconfigure(i, weight=1)#, uniform='column')
+            self.grid_columnconfigure(i, weight=1, uniform='column')
             i += 1
 
         self.word_font = customtkinter.CTkFont(family='Roboto', size=12)
