@@ -19,7 +19,6 @@ class DicewareToplevel(customtkinter.CTkToplevel):
     """
     This class creates the diceware toplevel window and its contents.
     """
-
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.minsize(1100, 650)
