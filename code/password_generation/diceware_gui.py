@@ -32,10 +32,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             i += 1
 
         # Give a weight to columns 0 to 9
-        i = 0
-        while i <= 9:
-            self.grid_columnconfigure(i, weight=1, uniform='column')
-            i += 1
+        self.grid_columnconfigure((0, 2, 4, 6, 8), weight=1, uniform="a")
+        self.grid_columnconfigure((1, 3, 5, 7, 9), uniform="b")
 
         self.word_font = customtkinter.CTkFont(family='Roboto', size=12)
 
@@ -127,7 +125,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.var = tk.IntVar()
                 self.checkbox = customtkinter.CTkCheckBox(master=self,
                                                           variable=self.var, text='',
-                                                          checkbox_width=20,
+                                                          checkbox_width=20, width=0,
                                                           checkbox_height=20, fg_color='gray',
                                                           hover_color='white')
                 self.checkbox.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=column_to_be_placed_in + 1,
