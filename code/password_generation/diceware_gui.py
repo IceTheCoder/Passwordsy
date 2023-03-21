@@ -134,7 +134,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                           text='',
                                                           checkbox_width=20, width=0,
                                                           checkbox_height=20, fg_color='gray',
-                                                          hover_color='white')
+                                                          hover_color=('grey', 'white'))
                 self.checkbox.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=column_to_be_placed_in + 1,
                                    sticky='w')
                 self.output_widgets.append(self.checkbox)
