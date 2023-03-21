@@ -19,6 +19,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
     """
     This class creates the diceware toplevel window and its contents.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.minsize(1100, 650)
@@ -138,16 +139,10 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 if answer == 'yes':
                     clear_window()
 
-        def copy_selections():
-            """
-            This function will copy the selected text boxes to the clipboard.
-            """
-            pass
-
-        self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='COPY SELECTIONS',
-                                                    font=button_font, fg_color='blue', hover_color='gray',
-                                                    command=clear_window)
-        self.clear_button.grid(row=16, column=0, columnspan=10, pady=10, sticky='n')
+        self.copy_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='COPY SELECTIONS',
+                                                   font=button_font, fg_color='blue', hover_color='gray',
+                                                   command=logic.copy_selections)
+        self.copy_button.grid(row=16, column=0, columnspan=10, pady=10, sticky='n')
 
         self.withdraw()
         self.after(200, self.show_icon)

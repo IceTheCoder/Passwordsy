@@ -52,3 +52,10 @@ def copy_selected_text(labels) -> None:
     except (ValueError, TclError):
         # There is no need to warn the user when they try to copy nothing as it does not have any effect on the app
         pass
+
+
+def copy_selections():
+    """
+    This function will copy the selected text boxes to the clipboard.
+    """
+    pass
