@@ -147,7 +147,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='COPY SELECTIONS',
                                                     font=button_font, fg_color='blue', hover_color='gray',
                                                     command=clear_window)
-        self.clear_button.grid(row=1, column=0, columnspan=10, pady=0, sticky='n')
+        self.clear_button.grid(row=16, column=0, columnspan=10, pady=10, sticky='n')
 
         self.withdraw()
         self.after(200, self.show_icon)
