@@ -54,8 +54,18 @@ def copy_selected_text(labels) -> None:
         pass
 
 
-def copy_selections():
+def copy_selections(checkboxes_text_boxes) -> None:
     """
     This function will copy the selected text boxes to the clipboard.
     """
     pass
+    # Define an empty string
+    text_to_be_copied = ''
+    # Go through them
+    for key, value in checkboxes_text_boxes.items():
+        if value.get() == 1:
+            text_to_be_copied += key.get('1.0', 'end')
+            # Add the text to a string
+    print(text_to_be_copied)
+    # Copy the final string to the clipboard
+
