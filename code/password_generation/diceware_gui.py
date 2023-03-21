@@ -13,6 +13,7 @@ import password_generation.diceware_logic as logic
 
 global number_of_dicerolls
 global clear_btn_image
+global checkboxes_text_boxes
 
 
 class DicewareToplevel(customtkinter.CTkToplevel):
@@ -25,6 +26,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.minsize(1100, 650)
         self.iconbitmap('textures/logo.ico')
         self.title('Diceware')
+
+        global checkboxes_text_boxes
+        checkboxes_text_boxes = {}
 
         # Give a weight to rows 0 to 15
         i = 0
@@ -79,6 +83,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
             self.output_widgets = []
             number_of_dicerolls = 0
+            global checkboxes_text_boxes
+            checkboxes_text_boxes = {}
 
         self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='CLEAR',
                                                     font=button_font, fg_color='blue', hover_color='gray',
@@ -96,6 +102,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 Contains the pairs of dice roll numbers and related words according to the dice ware wordlist.
             """
             global number_of_dicerolls
+            global checkboxes_text_boxes
             if number_of_dicerolls < 35:
                 column_to_be_placed_in = (number_of_dicerolls % 5) * 2
                 number_of_dicerolls += 1
@@ -123,15 +130,15 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.word_widget.bind('<Button-3>', show_copy_menu)
                 self.output_widgets.append(self.word_widget)
 
-                self.var = tk.IntVar()
                 self.checkbox = customtkinter.CTkCheckBox(master=self,
-                                                          variable=self.var, text='',
+                                                          text='',
                                                           checkbox_width=20, width=0,
                                                           checkbox_height=20, fg_color='gray',
                                                           hover_color='white')
                 self.checkbox.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=column_to_be_placed_in + 1,
                                    sticky='w')
                 self.output_widgets.append(self.checkbox)
+                checkboxes_text_boxes[self.word_widget] = self.checkbox
             else:
                 answer = tk.messagebox.askquestion('Dice roll limit reached',
                                                    'You have reached the maximum limit of 35 dice rolls. Do you want '
@@ -141,7 +148,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
         self.copy_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='COPY SELECTIONS',
                                                    font=button_font, fg_color='blue', hover_color='gray',
-                                                   command=logic.copy_selections)
+                                                   command=lambda: logic.copy_selections(checkboxes_text_boxes))
         self.copy_button.grid(row=16, column=0, columnspan=10, pady=10, sticky='n')
 
         self.withdraw()
