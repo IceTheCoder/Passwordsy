@@ -13,12 +13,11 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
     This class contains the creation of the 'other methods' Toplevel window
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
-
-        self.deiconify()
 
         self.window_title = 'Try other methods...'
 
@@ -46,14 +45,18 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
 
-        self.after(200, self.show_icon)
-
         self.diceware_window = None
-
         self.sentence_input_window = None
 
         self.withdraw()
         self.after(200, self.show_icon)
+
+    def show_icon(self):
+        """
+        This function shows the icon of the toplevel window.
+        """
+        self.deiconify()
+        self.iconbitmap('textures/logo.ico')
 
     def open_diceware(self):
         """
@@ -76,10 +79,3 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
             self.sentence_input_window = sentence_input.SentenceInputToplevel(self)
         else:
             self.sentence_input_window.focus()
-
-    def show_icon(self):
-        """
-        This function shows the icon of the toplevel window.
-        """
-        self.deiconify()
-        self.iconbitmap('textures/logo.ico')
