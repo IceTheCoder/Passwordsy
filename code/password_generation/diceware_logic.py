@@ -65,4 +65,3 @@ def copy_selections(checkboxes_text_boxes) -> None:
     # Get rid of line-breaks and spaces
     text_to_be_copied = text_to_be_copied.replace("\n", "").replace(" ", "")
     clipboard.copy(text_to_be_copied)
-
