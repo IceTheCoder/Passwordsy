@@ -34,10 +34,22 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
                                                   font=self.title_font)
         self.frame_title.grid(column=0, row=0, columnspan=3)
 
+        self.info_menu = tk.Menu(self, tearoff=False)
+        self.info_menu.add_command(label='[Wikipedia](https://en.wikipedia.org/wiki/Diceware)Diceware is a system for secure password generation, \n'
+                                         'through which 5 dice are rolled to form a 5-digit number, \n'
+                                         'which is then used to look up for a word in a cryptographic list.')
+
+        def pop_up_info(event):
+            """
+            Called when the user hovers over the question mark,
+            this function displays the info menu.
+            """
+            self.info_menu.tk_popup(event.x_root, event.y_root - 30)
+
         self.question_mark = customtkinter.CTkLabel(master=self, text='❓', font=self.title_font)
         self.question_mark.grid(column=0, row=1, sticky='e', padx=10)
-        self.question_mark.bind('<Enter>', lambda e: customtkinter.CTkLabel(master=self, text='Hello, world!').grid(row=3, column=0))
-        self.question_mark.bind('<Leave>', lambda e: customtkinter.CTkLabel(master=self, text='Goodbye, world!').grid(row=4, column=0))
+        self.question_mark.bind('<Enter>', pop_up_info)
+        self.question_mark.bind('<Leave>', )
 
         self.diceware_btn = customtkinter.CTkButton(self,
                                                     text='From the diceware wordlist',
