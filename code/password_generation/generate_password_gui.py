@@ -473,6 +473,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             label.configure(state='normal')
             label.delete('1.0', 'end')
             label.insert('1.0', message)
+            # https://stackoverflow.com/questions/3842155/is-there-a-way-to-make-the-tkinter-text-widget-read-only
             label.configure(state='disabled')
 
     def open_other_methods(self):
