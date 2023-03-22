@@ -12,10 +12,17 @@ from password_generation import sentence_input_gui as sentence_input
 class CreateToolTip:
     """
     This class creates a tooltip for a given widget and text.
+
+    tk_ToolTip_class101.py
+    gives a Tkinter widget a tooltip as the mouse is above the widget
+    tested with Python27 and Python34  by  vegaseat  09sep2014
+    www.daniweb.com/programming/software-development/code/484591/a-tooltip-class-for-tkinter
+
+    Modified to include a delay time by Victor Zaccardo, 25mar16
     """
     # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
     def __init__(self, widget, text='widget info'):
-        self.waittime = 500  # miliseconds
+        self.waittime = 500  # milliseconds
         self.wraplength = 180  # pixels
         self.widget = widget
         self.text = text
@@ -26,13 +33,24 @@ class CreateToolTip:
         self.tw = None
 
     def enter(self, event=None):
+        """
+        Called when the user hovers over the given widget,
+        this function shows the tooltip.
+        """
         self.schedule()
 
     def leave(self, event=None):
+        """
+        Called when the user moves out of the given widget,
+        this function shows the tooltip.
+        """
         self.unschedule()
         self.hidetip()
 
     def schedule(self):
+        """
+        This function
+        """
         self.unschedule()
         self.id = self.widget.after(self.waittime, self.showtip)
 
@@ -91,7 +109,7 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.question_mark = customtkinter.CTkLabel(master=self, text='❓', font=self.title_font)
         self.question_mark.grid(column=0, row=1, sticky='e', padx=10)
         self.question_mark_ttp = CreateToolTip(self.question_mark, 'Roll 5 dice to form a 5-digit number '
-                                                                   'that will be matched to a word on a list')
+                                                                   'that will be matched to a word on a list.')
 
         self.diceware_btn = customtkinter.CTkButton(self,
                                                     text='From the diceware wordlist',
