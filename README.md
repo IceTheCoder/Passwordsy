@@ -50,8 +50,11 @@ This project is licensed under the MIT License. Read LICENSE.txt for more inform
 
 ## Contact
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
+
 Reddit: https://www.reddit.com/user/AnEntirePeach
+
 Youtube: https://www.youtube.com/channel/UCBqVJU4gjeik1RavAsVR6Pg
+
 E-mail: icethedev2@gmail.com
 
 ## Acknowledgements
@@ -61,7 +64,7 @@ E-mail: icethedev2@gmail.com
 * The [SecLists repository](https://github.com/danielmiessler/SecLists) of danielmiessler, used here for the 100,000 most common passwords
 * [Exercism](https://exercism.org/) for its large array of exercises
 * [ChatGPT](https://chat.openai.com/chat) for helping me solve the most obscure of errors and bugs.
-* These Stack Overflow questions: https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter, https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python, https://stackoverflow.com/questions/61139160/tkinter-error-tkinter-tclerror-invalid-command-name-frame-entry-python, https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/69425865/tkinter-event-x-y-mouse-position-wrong-value-only-when-mouse-movement-up, https://stackoverflow.com/questions/68615095/how-do-i-find-the-position-of-a-widget-relative-to-the-window-in-tkinter, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/27802270/how-to-stop-a-function, https://stackoverflow.com/questions/3842155/is-there-a-way-to-make-the-tkinter-text-widget-read-only.
+* These Stack Overflow questions: https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter, https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python, https://stackoverflow.com/questions/61139160/tkinter-error-tkinter-tclerror-invalid-command-name-frame-entry-python, https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind, https://stackoverflow.com/questions/69425865/tkinter-event-x-y-mouse-position-wrong-value-only-when-mouse-movement-up, https://stackoverflow.com/questions/68615095/how-do-i-find-the-position-of-a-widget-relative-to-the-window-in-tkinter, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/45393923/python-tkinter-key-binding-to-all-subsequent-widgets, https://stackoverflow.com/questions/27802270/how-to-stop-a-function, https://stackoverflow.com/questions/3842155/is-there-a-way-to-make-the-tkinter-text-widget-read-only, https://stackoverflow.com/questions/20251161/tkinter-tclerror-image-pyimage3-doesnt-exist.
 * [This tutorialspoint.com page](https://www.tutorialspoint.com/how-to-delete-tkinter-widgets-from-a-window#:~:text=We%20can%20delete%20widgets%20from,defining%20a%20function%20for%20it.), [this one](https://www.tutorialspoint.com/how-to-get-the-input-from-a-checkbox-in-python-tkinter#:~:text=Let%20us%20suppose%20that%20we,value%20of%20a%20particular%20widget.), and [this one](https://www.tutorialspoint.com/how-can-i-identify-when-a-button-is-released-in-tkinter)
 * Paul Miskew for his [PYTHON 3 TKINTER - GUI ENTRY BIND KEY](https://youtu.be/JThKYGapGzU) video
 * [This simplilearn.com page](https://www.simplilearn.com/tutorials/python-tutorial/python-typeof-function)
