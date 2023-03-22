@@ -13,7 +13,7 @@ class CreateToolTip:
     """
     This class creates a tooltip for a given widget and text.
     """
-
+    # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
     def __init__(self, widget, text='widget info'):
         self.waittime = 500  # miliseconds
         self.wraplength = 180  # pixels

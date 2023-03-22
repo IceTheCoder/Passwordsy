@@ -9,6 +9,7 @@ from pynput.keyboard import Key, Controller
 keyboard = Controller()
 
 # passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
+# https://www.youtube.com/watch?v=DCaKj3eIrro
 common_passwords_file = open('password_strength\passwords.txt', 'r')
 common_passwords_read = common_passwords_file.readlines()
 modified_common_passwords = []
@@ -171,6 +172,7 @@ def paste_text() -> None:
     Called upon pressing the paste button,
     this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
     """
+    # https://youtu.be/DTnz8wA6wpw
     keyboard.press(Key.ctrl_l)
     keyboard.press('v')
     keyboard.release(Key.ctrl_l)
