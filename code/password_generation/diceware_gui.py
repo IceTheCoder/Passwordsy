@@ -46,6 +46,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             i += 1
 
         # Give a weight to columns 0 to 9
+        # https://stackoverflow.com/questions/75792555/why-is-there-extra-space-after-the-last-column-in-a-tkinter-application
+        # That question helped me out a TON!
         self.grid_columnconfigure((0, 2, 4, 6, 8), weight=1, uniform="a")
         self.grid_columnconfigure((1, 3, 5, 7, 9), uniform="b")
 
