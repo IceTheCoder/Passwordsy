@@ -1,7 +1,9 @@
 """
-Called upon opening the other methods' window,
+Called upon opening startup,
 this module prepares the diceware frame of the window,
-with a set of functions for the GUI part of rolling dice and getting words from the diceware wordlist.
+with a set of functions for the graphical part of rolling dice,
+getting a password from the diceware wordlist,
+and selecting certain words to copy.
 """
 import tkinter as tk
 from tkinter import messagebox
@@ -14,7 +16,6 @@ import password_generation.diceware_logic as logic
 global number_of_dicerolls
 global clear_btn_image
 global checkboxes_text_boxes
-
 
 class DicewareToplevel(customtkinter.CTkToplevel):
     """
