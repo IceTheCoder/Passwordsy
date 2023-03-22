@@ -52,7 +52,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.title_font = customtkinter.CTkFont(family=self.gui_font_name, size=36)
         self.section_title_font = customtkinter.CTkFont(family=self.gui_font_name, size=24)
         self.description_font = customtkinter.CTkFont(family=self.gui_font_name, size=18)
-        
+
         self.small_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=16)
         self.medium_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=24)
         self.large_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=36)
