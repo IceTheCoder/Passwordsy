@@ -433,7 +433,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         global input_box
         input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
-        input_box.bind('<Return>', lambda e: create_password_labels())  # https://www.youtube.com/watch?v=GLnNPjL1U2g
+        input_box.bind('<Return>', create_password_labels)  # https://www.youtube.com/watch?v=GLnNPjL1U2g
 
         input_box.grid(column=0, row=2, columnspan=4)
 
