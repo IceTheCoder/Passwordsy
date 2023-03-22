@@ -16,8 +16,13 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
-        title_font = customtkinter.CTkFont(family='Roboto', size=36)
+        self.button_border_width = 2
+        self.button_fg_color = 'blue'
+        self.button_hover_color = 'gray'
+        self.button_border_color = 'black'
+
+        self.medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
+        self.title_font = customtkinter.CTkFont(family='Roboto', size=36)
 
         self.window_title = 'Try other methods...'
 
@@ -25,19 +30,28 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.geometry('800x300')
         self.title(self.window_title)
 
-        self.frame_title = customtkinter.CTkLabel(master=self, text='How would you like to generate a password?',
-                                                  font=title_font)
+        self.frame_title = customtkinter.CTkLabel(master=self, text='How to generate a password?',
+                                                  font=self.title_font)
         self.frame_title.grid(column=0, row=0, columnspan=2)
 
-        self.diceware_btn = customtkinter.CTkButton(self, text='From the diceware wordlist', command=self.open_diceware,
-                                                    font=medium_button_font, border_width=2,
-                                                    border_color='black', fg_color='blue', hover_color='gray')
+        self.diceware_btn = customtkinter.CTkButton(self,
+                                                    text='From the diceware wordlist',
+                                                    command=self.open_diceware,
+                                                    font=self.medium_button_font,
+                                                    border_width=self.button_border_width,
+                                                    border_color=self.button_border_color,
+                                                    fg_color=self.button_fg_color,
+                                                    hover_color=self.button_hover_color)
         self.diceware_btn.grid(row=1, column=0)
 
-        self.sentence_input_btn = customtkinter.CTkButton(self, text='From a sentence',
+        self.sentence_input_btn = customtkinter.CTkButton(self,
+                                                          text='From a sentence',
                                                           command=self.open_sentence_input,
-                                                          font=medium_button_font, border_width=2,
-                                                          border_color='black', fg_color='blue', hover_color='gray')
+                                                          font=self.medium_button_font,
+                                                          border_width=self.button_border_width,
+                                                          border_color=self.button_border_color,
+                                                          fg_color=self.button_fg_color,
+                                                          hover_color=self.button_hover_color)
         self.sentence_input_btn.grid(row=1, column=1)
 
         self.grid_rowconfigure(0, weight=1)
