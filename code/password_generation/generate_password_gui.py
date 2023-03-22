@@ -446,6 +446,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.done_btn.grid(column=0, row=3, columnspan=4)
 
         global copy_menu
+        # https://youtu.be/KRuUtNxOb_k
         copy_menu = tk.Menu(self, tearoff=False)
         copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(input_box, self.password_labels))
 
