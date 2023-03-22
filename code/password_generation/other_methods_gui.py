@@ -23,16 +23,19 @@ class CreateToolTip:
     """
 
     def open_link(self, url):
+        """
+        This function opens a given link through the webbrowser library.
+        """
         webbrowser.open_new(url)
 
     # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
     def __init__(self, widget, text='widget info'):
+        self.button_hover_color = None
         self.waittime = 500  # milliseconds
         self.wraplength = 180  # pixels
         self.widget = widget
         self.text = text
         self.widget.bind("<Enter>", self.enter)
-        self.widget.bind("<Leave>", self.leave)
         self.widget.bind("<ButtonPress>", self.leave)
         self.id = None
         self.tw = None
@@ -75,6 +78,11 @@ class CreateToolTip:
         creates a label within it,
         and removes any other window decorations.
         """
+        button_border_width = 2
+        button_fg_color = 'blue'
+        button_hover_color = 'gray'
+        button_border_color = 'black'
+
         x = y = 0
         x, y, cx, cy = self.widget.bbox("insert")
         x += self.widget.winfo_rootx() + 25
@@ -89,6 +97,12 @@ class CreateToolTip:
         label.insert('1.0', self.text)
         label.configure(state='disabled')
         label.pack(ipadx=1)
+
+        btn = customtkinter.CTkButton(self.tw, border_width=button_border_width, fg_color=button_fg_color,
+                                      hover_color=button_hover_color, border_color=button_border_color,
+                                      text='Wikipedia', width=50,
+                                      command=lambda: self.open_link('https://en.wikipedia.org/wiki/Diceware'))
+        btn.pack(ipadx=1)
 
     def hidetip(self):
         """
