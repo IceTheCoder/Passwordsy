@@ -49,7 +49,8 @@ class CreateToolTip:
 
     def schedule(self):
         """
-        This function
+        This function cancels any previously shown tooltips,
+        and defines a unique ID for a new tooltip.
         """
         self.unschedule()
         self.id = self.widget.after(self.waittime, self.showtip)
