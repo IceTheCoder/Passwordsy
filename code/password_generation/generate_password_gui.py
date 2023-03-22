@@ -128,6 +128,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     and len(self.password_labels[3].get('1.0', 'end')) != 1:
                 self.show_hide_all_slider.set(1)
 
+            # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
             button.configure(text='HIDE', command=lambda: hide_password(index, button))
 
         def hide_password(index, button) -> None:
@@ -425,6 +426,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 # https://youtu.be/S3AaSwpb5GE
                 messagebox.showerror(error_title, message)
                 if message == invalid_input_error or message == double_error:
+                    # https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter
                     input_box.delete(0, 'end')
 
             hide_all_passwords()
