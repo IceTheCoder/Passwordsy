@@ -27,14 +27,14 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.window_title = 'Try other methods...'
 
         self.iconbitmap('textures/logo.ico')
-        self.geometry('600x200')
+        self.geometry('700x250')
         self.title(self.window_title)
 
         self.frame_title = customtkinter.CTkLabel(master=self, text='How to generate a password?',
                                                   font=self.title_font)
         self.frame_title.grid(column=0, row=0, columnspan=2)
 
-        self.question_mark = customtkinter.CTkLabel(master=self, text='?', font=self.title_font)
+        self.question_mark = customtkinter.CTkLabel(master=self, text='ⓘ', font=self.title_font)
         self.question_mark.grid(column=0, row=1, sticky='s')
 
         self.diceware_btn = customtkinter.CTkButton(self,
