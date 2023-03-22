@@ -32,17 +32,20 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
     """
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        title_font = customtkinter.CTkFont(family='Roboto', size=36)
-        section_title_font = customtkinter.CTkFont(family='Roboto', size=24)
-        description_font = customtkinter.CTkFont(family='Roboto', size=18)
+        self.gui_font_name = 'Roboto'
+        self.password_font_name = 'Consolas'
+
+        title_font = customtkinter.CTkFont(family=self.gui_font_name, size=36)
+        section_title_font = customtkinter.CTkFont(family=self.gui_font_name, size=24)
+        description_font = customtkinter.CTkFont(family=self.gui_font_name, size=18)
 
         global passwords
         passwords = []
 
-        small_button_font = customtkinter.CTkFont(family='Roboto', size=16)
-        medium_button_font = customtkinter.CTkFont(family='Roboto', size=24)
-        large_button_font = customtkinter.CTkFont(family='Roboto', size=36)
-        password_font = customtkinter.CTkFont(family='Consolas', size=14)
+        small_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=16)
+        medium_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=24)
+        large_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=36)
+        password_font = customtkinter.CTkFont(family=self.password_font_name, size=14)
 
         password_width = 750
         password_height = 30
@@ -164,47 +167,86 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             for index, button in enumerate(self.show_hide_buttons):
                 hide_password(index, button)
 
-        self.show_hide_button_1 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black',
-                                                          font=small_button_font, width=75,
+        self.show_button_text = 'SHOW'
+        self.button_border_width = 2
+        self.button_fg_color = 'blue'
+        self.button_hover_color = 'gray'
+        self.button_border_color = 'black'
+        self.small_button_width = 75
+        self.copy_button_text = 'COPY'
+
+        self.show_hide_button_1 = customtkinter.CTkButton(self, text=self.show_button_text,
+                                                          border_width=self.button_border_width,
+                                                          fg_color=self.button_fg_color,
+                                                          hover_color=self.button_hover_color,
+                                                          border_color=self.button_border_color,
+                                                          font=small_button_font, width=self.small_button_width,
                                                           command=lambda: show_password(0, show_hide_button_1))
-        self.show_hide_button_2 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black',
-                                                          font=small_button_font, width=75,
+
+        self.show_hide_button_2 = customtkinter.CTkButton(self, text=self.show_button_text,
+                                                          border_width=self.button_border_width,
+                                                          fg_color=self.button_fg_color,
+                                                          hover_color=self.button_hover_color,
+                                                          border_color=self.button_border_color,
+                                                          font=small_button_font, width=self.small_button_width,
                                                           command=lambda: show_password(0, show_hide_button_2))
-        self.show_hide_button_3 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black',
-                                                          font=small_button_font, width=75,
+
+        self.show_hide_button_3 = customtkinter.CTkButton(self, text=self.show_button_text,
+                                                          border_width=self.button_border_width,
+                                                          fg_color=self.button_fg_color,
+                                                          hover_color=self.button_hover_color,
+                                                          border_color=self.button_border_color,
+                                                          font=small_button_font, width=self.small_button_width,
                                                           command=lambda: show_password(0, show_hide_button_3))
-        self.show_hide_button_4 = customtkinter.CTkButton(self, text='SHOW', border_width=2, fg_color='blue',
-                                                          hover_color='gray', border_color='black',
-                                                          font=small_button_font, width=75,
+
+        self.show_hide_button_4 = customtkinter.CTkButton(self, text=self.show_button_text,
+                                                          border_width=self.button_border_width,
+                                                          fg_color=self.button_fg_color,
+                                                          hover_color=self.button_hover_color,
+                                                          border_color=self.button_border_color,
+                                                          font=small_button_font, width=self.small_button_width,
                                                           command=lambda: show_password(0, show_hide_button_3))
+
         self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
                                   self.show_hide_button_3, self.show_hide_button_4]
+
         self.show_hide_all_slider = customtkinter.CTkSlider(master=self, command=run_function_based_on_slider_value,
                                                             width=50, height=25, number_of_steps=1, fg_color='#D3D3D3',
                                                             progress_color='#D3D3D3', button_color='blue')
 
-        self.hide_label = customtkinter.CTkLabel(master=self, text='Hide',
-                                                 font=customtkinter.CTkFont(family='Roboto', size=18))
+        self.hide_label = customtkinter.CTkLabel(master=self, text='Hide', font=description_font)
         self.show_label = customtkinter.CTkLabel(master=self, text='Show', font=description_font)
 
-        self.copy_button_1 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
-                                                     width=75,
-                                                     fg_color='blue', border_color='black', hover_color='gray',
+        self.copy_button_1 = customtkinter.CTkButton(self, text=self.copy_button_text,
+                                                     border_width=self.button_border_width, font=small_button_font,
+                                                     width=self.small_button_width,
+                                                     fg_color=self.button_fg_color,
+                                                     border_color=self.button_border_color,
+                                                     hover_color='gray',
                                                      command=lambda: logic.copy_password(0, passwords))
-        self.copy_button_2 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
+
+        self.copy_button_2 = customtkinter.CTkButton(self, text=self.copy_button_text,
+                                                     border_width=self.button_border_width, font=small_button_font,
                                                      width=75,
-                                                     fg_color='blue', border_color='black', hover_color='gray',
+                                                     fg_color=self.button_fg_color,
+                                                     border_color=self.button_border_color,
+                                                     hover_color='gray',
                                                      command=lambda: logic.copy_password(1, passwords))
-        self.copy_button_3 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
+
+        self.copy_button_3 = customtkinter.CTkButton(self, text=self.copy_button_text,
+                                                     border_width=self.button_border_width, font=small_button_font,
                                                      width=75,
-                                                     fg_color='blue', border_color='black', hover_color='gray',
+                                                     fg_color=self.button_fg_color,
+                                                     border_color=self.button_border_color,
+                                                     hover_color='gray',
                                                      command=lambda: logic.copy_password(2, passwords))
-        self.copy_button_4 = customtkinter.CTkButton(self, text='COPY', border_width=2, font=small_button_font,
-                                                     width=75,
-                                                     fg_color='blue', border_color='black', hover_color='gray',
+
+        self.copy_button_4 = customtkinter.CTkButton(self, text=self.copy_button_text,
+                                                     border_width=self.button_border_width, font=small_button_font,
+                                                     width=self.small_button_width,
+                                                     fg_color=self.button_fg_color,
+                                                     border_color=self.button_border_color,
+                                                     hover_color='gray',
                                                      command=lambda: logic.copy_password(3, passwords))
         self.copy_buttons = [self.copy_button_1, self.copy_button_2,
                              self.copy_button_3, self.copy_button_4]
@@ -346,7 +388,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         input_box.bind('<Return>', lambda e: create_password_labels())
         input_box.grid(column=0, row=2, columnspan=4)
 
-        self.done_btn = customtkinter.CTkButton(self, text='DONE', font=large_button_font, border_width=2,
+        self.done_btn = customtkinter.CTkButton(self, text='DONE', font=large_button_font, border_width=self.button_border_width,
                                                 command=lambda: create_password_labels(),
                                                 border_color='black', fg_color='blue', hover_color='gray')
         self.done_btn.grid(column=0, row=3, columnspan=4)
