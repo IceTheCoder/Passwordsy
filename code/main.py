@@ -53,7 +53,6 @@ class App(customtkinter.CTk):
     """
     This class creates the app itself.
     """
-
     def __init__(self):
         super().__init__()
 
