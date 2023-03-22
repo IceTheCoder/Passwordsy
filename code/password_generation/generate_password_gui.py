@@ -415,12 +415,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 self.show_label.grid(row=3, column=4, sticky='w')
 
             else:
+                error_title = ''
                 if message == invalid_input_error:
                     error_title = 'Invalid input'
                 elif message == no_character_set_error:
                     error_title = 'No character set'
                 elif message == double_error:
                     error_title = 'Invalid input and no character set'
+                # https://youtu.be/S3AaSwpb5GE
                 messagebox.showerror(error_title, message)
                 if message == invalid_input_error or message == double_error:
                     input_box.delete(0, 'end')
