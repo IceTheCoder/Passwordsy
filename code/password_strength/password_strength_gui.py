@@ -39,6 +39,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         global input_box
         input_box = customtkinter.CTkEntry(self, width=250, corner_radius=8)
         input_box.grid(column=0, row=1)
+        # https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind
         input_box.bind('<KeyRelease>', display_warnings)
         input_box.bind('<Button-3>', display_paste_button)
 
