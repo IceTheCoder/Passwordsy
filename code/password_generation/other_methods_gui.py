@@ -20,6 +20,7 @@ class CreateToolTip:
 
     Modified to include a delay time by Victor Zaccardo, 25mar16
     """
+
     # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
     def __init__(self, widget, text='widget info'):
         self.waittime = 500  # milliseconds
@@ -56,27 +57,39 @@ class CreateToolTip:
         self.id = self.widget.after(self.waittime, self.showtip)
 
     def unschedule(self):
+        """
+        This function cancels any previously shown tooltips.
+        """
         id = self.id
         self.id = None
         if id:
             self.widget.after_cancel(id)
 
     def showtip(self, event=None):
+        """
+        This function creates a toplevel at the user's cursor's coordinates,
+        creates a label within it,
+        and removes any other window decorations.
+        """
         x = y = 0
         x, y, cx, cy = self.widget.bbox("insert")
         x += self.widget.winfo_rootx() + 25
         y += self.widget.winfo_rooty() + 20
         # creates a toplevel window
-        self.tw = tk.Toplevel(self.widget)
+        self.tw = customtkinter.CTkToplevel(self.widget, fg_color=('white', '#474747'))
         # Leaves only the label and removes the app window
         self.tw.wm_overrideredirect(True)
         self.tw.wm_geometry("+%d+%d" % (x, y))
-        label = tk.Label(self.tw, text=self.text, justify='left',
-                         background="#ffffff", relief='solid', borderwidth=1,
-                         wraplength=self.wraplength)
+        label = customtkinter.CTkTextbox(self.tw, corner_radius=2, border_width=2, wrap='word',
+                                         font=customtkinter.CTkFont(family='Roboto', size=14))
+        label.insert('1.0', self.text)
+        label.configure(state='disabled')
         label.pack(ipadx=1)
 
     def hidetip(self):
+        """
+        This function destroys the toplevel.
+        """
         tw = self.tw
         self.tw = None
         if tw:
@@ -87,6 +100,7 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
     This class contains the creation of the 'other methods' Toplevel window
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.button_border_width = 2
