@@ -21,7 +21,7 @@ for line in diceware_wordlist_read:
     wordlist[dice_rolls] = word
 
 
-def roll_dice() -> None:
+def roll_dice() -> dict:
     """
     Called when the user clicks the 'dice roll' of the diceware frame,
     this function returns a random pair of the number formed by 5 dice rolls
