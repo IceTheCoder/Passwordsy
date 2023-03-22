@@ -80,7 +80,7 @@ class CreateToolTip:
         # Leaves only the label and removes the app window
         self.tw.wm_overrideredirect(True)
         self.tw.wm_geometry("+%d+%d" % (x, y))
-        label = customtkinter.CTkTextbox(self.tw, corner_radius=2, border_width=2, wrap='word',
+        label = customtkinter.CTkTextbox(self.tw, corner_radius=2, border_width=2, height=65, width=190, wrap='word',
                                          font=customtkinter.CTkFont(family='Roboto', size=14))
         label.insert('1.0', self.text)
         label.configure(state='disabled')
