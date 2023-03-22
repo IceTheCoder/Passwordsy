@@ -4,6 +4,7 @@ This module prepares the other_methods_window for the user when they click the '
 import tkinter as tk
 from tkinter.font import Font
 import customtkinter
+import webbrowser
 
 from password_generation import diceware_gui as diceware
 from password_generation import sentence_input_gui as sentence_input
@@ -20,6 +21,9 @@ class CreateToolTip:
 
     Modified to include a delay time by Victor Zaccardo, 25mar16
     """
+
+    def open_link(self, url):
+        webbrowser.open_new(url)
 
     # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
     def __init__(self, widget, text='widget info'):
