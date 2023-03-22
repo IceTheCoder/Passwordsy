@@ -357,7 +357,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
             """
             global copy_menu
-            copy_menu.tk_popup(event.x_root, event.y_root - 30)
+            copy_menu.tk_popup(event.x_root, event.y_root - 30) # https://youtu.be/Z4zePg2M5H8
 
             for label in self.password_labels:
                 label.tag_bind('copy_tag', '<Button-3>', show_copy_menu)
@@ -431,7 +431,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         global input_box
         input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
-        input_box.bind('<Return>', lambda e: create_password_labels())
+        input_box.bind('<Return>', lambda e: create_password_labels())  # https://www.youtube.com/watch?v=GLnNPjL1U2g
+
         input_box.grid(column=0, row=2, columnspan=4)
 
         self.done_btn = customtkinter.CTkButton(self,
