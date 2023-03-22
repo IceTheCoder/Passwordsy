@@ -42,22 +42,24 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.small_button_width = 75
         self.copy_button_text = 'COPY'
         self.title_columnspan = 2
+        self.checkbox_size = 20
+        self.checkbox_fg_color = 'grey'
+        self.checkbox_hover_color = ('grey', 'white')
+        self.password_width = 750
+        self.password_height = 30
+        self.password_border_width = 0
 
         self.title_font = customtkinter.CTkFont(family=self.gui_font_name, size=36)
         self.section_title_font = customtkinter.CTkFont(family=self.gui_font_name, size=24)
         self.description_font = customtkinter.CTkFont(family=self.gui_font_name, size=18)
-
-        global passwords
-        passwords = []
-
+        
         self.small_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=16)
         self.medium_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=24)
         self.large_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=36)
         self.password_font = customtkinter.CTkFont(family=self.password_font_name, size=14)
 
-        self.password_width = 750
-        self.password_height = 30
-        self.password_border_width = 0
+        global passwords
+        passwords = []
 
         self.password_label_1 = customtkinter.CTkTextbox(self,
                                                          width=self.password_width,
@@ -287,30 +289,45 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                font=self.description_font)
         self.question.grid(column=0, row=1, columnspan=self.title_columnspan)
 
-        self.character_sets_label = customtkinter.CTkLabel(master=self, text='Character sets', font=self.section_title_font)
+        self.character_sets_label = customtkinter.CTkLabel(master=self, text='Character sets',
+                                                           font=self.section_title_font)
         self.character_sets_label.grid(column=5, row=3, columnspan=2, sticky='s')
 
         self.lowercase_letters_var = tk.IntVar()
-        self.lowercase_letters_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.lowercase_letters_var,
-                                                                    text='Lowercase letters', checkbox_width=20,
-                                                                    checkbox_height=20, fg_color='gray',
-                                                                    hover_color=('grey', 'white'))
+        self.lowercase_letters_checkbox = customtkinter.CTkCheckBox(master=self,
+                                                                    variable=self.lowercase_letters_var,
+                                                                    text='Lowercase letters',
+                                                                    checkbox_width=self.checkbox_size,
+                                                                    checkbox_height=self.checkbox_size,
+                                                                    fg_color=self.checkbox_fg_color,
+                                                                    hover_color=self.checkbox_hover_color)
 
         self.uppercase_letters_var = tk.IntVar()
-        self.uppercase_letters_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.uppercase_letters_var,
-                                                                    text='Uppercase letters', checkbox_width=20,
-                                                                    checkbox_height=20, fg_color='gray',
-                                                                    hover_color=('grey', 'white'))
+        self.uppercase_letters_checkbox = customtkinter.CTkCheckBox(master=self,
+                                                                    variable=self.uppercase_letters_var,
+                                                                    text='Uppercase letters',
+                                                                    checkbox_width=self.checkbox_size,
+                                                                    checkbox_height=self.checkbox_size,
+                                                                    fg_color=self.checkbox_fg_color,
+                                                                    hover_color=self.checkbox_hover_color)
 
         self.digits_var = tk.IntVar()
-        self.digits_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.digits_var, text='Digits',
-                                                         checkbox_width=20, checkbox_height=20, fg_color='gray',
-                                                         hover_color=('grey', 'white'))
+        self.digits_checkbox = customtkinter.CTkCheckBox(master=self,
+                                                         variable=self.digits_var,
+                                                         text='Digits',
+                                                         checkbox_width=self.checkbox_size,
+                                                         checkbox_height=self.checkbox_size,
+                                                         fg_color=self.checkbox_fg_color,
+                                                         hover_color=self.checkbox_hover_color)
 
         self.punctuation_var = tk.IntVar()
-        self.punctuation_checkbox = customtkinter.CTkCheckBox(master=self, variable=self.punctuation_var,
-                                                              text='Punctuation', checkbox_width=20, checkbox_height=20,
-                                                              fg_color='gray', hover_color=('grey', 'white'))
+        self.punctuation_checkbox = customtkinter.CTkCheckBox(master=self,
+                                                              variable=self.punctuation_var,
+                                                              text='Punctuation',
+                                                              checkbox_width=self.checkbox_size,
+                                                              checkbox_height=self.checkbox_size,
+                                                              fg_color=self.checkbox_fg_color,
+                                                              hover_color=self.checkbox_hover_color)
 
         self.checkboxes = [self.lowercase_letters_checkbox, self.uppercase_letters_checkbox,
                            self.digits_checkbox, self.punctuation_checkbox]
@@ -422,9 +439,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                 font=self.large_button_font,
                                                 border_width=self.button_border_width,
                                                 command=lambda: create_password_labels(),
-                                                border_color='black',
-                                                fg_color='blue',
-                                                hover_color='gray')
+                                                border_color=self.button_border_color,
+                                                fg_color=self.button_fg_color,
+                                                hover_color=self.button_hover_color)
         self.done_btn.grid(column=0, row=3, columnspan=4)
 
         global copy_menu
