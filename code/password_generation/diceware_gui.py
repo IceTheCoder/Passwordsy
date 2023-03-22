@@ -100,7 +100,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                     border_color=self.button_border_colour, text='CLEAR',
                                                     font=self.button_font, fg_color=self.button_fg_color,
                                                     hover_color=self.button_hover_color,
-                                                    command=self.clear_window)
+                                                    command=clear_window)
         self.clear_button.grid(row=1, column=0, columnspan=self.button_columnspan, sticky='n')
 
         def insert_text(textbox, text):
