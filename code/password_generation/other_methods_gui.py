@@ -36,6 +36,8 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
 
         self.question_mark = customtkinter.CTkLabel(master=self, text='❓', font=self.title_font)
         self.question_mark.grid(column=0, row=1, sticky='e', padx=10)
+        self.question_mark.bind('<Enter>', lambda e: customtkinter.CTkLabel(master=self, text='Hello, world!').grid(row=3, column=0))
+        self.question_mark.bind('<Leave>', lambda e: customtkinter.CTkLabel(master=self, text='Goodbye, world!').grid(row=4, column=0))
 
         self.diceware_btn = customtkinter.CTkButton(self,
                                                     text='From the diceware wordlist',
