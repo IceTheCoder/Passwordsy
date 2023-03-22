@@ -17,15 +17,24 @@ global number_of_dicerolls
 global clear_btn_image
 global checkboxes_text_boxes
 
+
 class DicewareToplevel(customtkinter.CTkToplevel):
     """
     This class creates the diceware toplevel window and its contents.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.minsize(1100, 650)
         self.iconbitmap('textures/logo.ico')
         self.title('Diceware')
+
+        self.font_name = 'Roboto'
+        self.button_border_width = 2
+        self.button_border_colour = 'black'
+        self.button_fg_color = 'blue'
+        self.button_hover_color = 'gray'
+        self.button_columnspan = 10
 
         global checkboxes_text_boxes
         checkboxes_text_boxes = {}
@@ -40,19 +49,20 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.grid_columnconfigure((0, 2, 4, 6, 8), weight=1, uniform="a")
         self.grid_columnconfigure((1, 3, 5, 7, 9), uniform="b")
 
-        self.word_font = customtkinter.CTkFont(family='Roboto', size=12)
+        self.word_font = customtkinter.CTkFont(family=self.font_name, size=12)
+        self.button_font = customtkinter.CTkFont(family=self.font_name, size=24)
 
         self.output_widgets = []
-
-        button_font = customtkinter.CTkFont(family='Roboto', size=24)
 
         global number_of_dicerolls
         number_of_dicerolls = 0
 
-        self.roll_dice_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='ROLL DICE',
-                                                        font=button_font, fg_color='blue', hover_color='gray',
+        self.roll_dice_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
+                                                        border_color=self.button_border_colour, text='ROLL DICE',
+                                                        font=self.button_font, fg_color=self.button_fg_color,
+                                                        hover_color=self.button_hover_color,
                                                         command=lambda: display_words(logic.roll_dice()))
-        self.roll_dice_button.grid(row=0, column=0, columnspan=10, pady=0, sticky='n')
+        self.roll_dice_button.grid(row=0, column=0, columnspan=self.button_columnspan, sticky='n')
 
         self.copy_menu = tk.Menu(self, tearoff=False)
         self.copy_menu.add_command(label='Copy',
@@ -86,10 +96,24 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             global checkboxes_text_boxes
             checkboxes_text_boxes = {}
 
-        self.clear_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='CLEAR',
-                                                    font=button_font, fg_color='blue', hover_color='gray',
-                                                    command=clear_window)
-        self.clear_button.grid(row=1, column=0, columnspan=10, pady=0, sticky='n')
+        self.clear_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
+                                                    border_color=self.button_border_colour, text='CLEAR',
+                                                    font=self.button_font, fg_color=self.button_fg_color,
+                                                    hover_color=self.button_hover_color,
+                                                    command=self.clear_window)
+        self.clear_button.grid(row=1, column=0, columnspan=self.button_columnspan, sticky='n')
+
+        def insert_text(textbox, text):
+            """
+            Called when the user 'rolls the dice' from the display_words function,
+            this function aims to take a customtkinter Textbox,
+            insert text into it, and bind it to show a copy pop-up menu when the user right-clicks.
+            """
+            textbox.configure(state='normal')
+            textbox.delete('1.0', 'end')
+            textbox.insert('1.0', text)
+            textbox.configure(state='disabled')
+            textbox.bind('<Button-3>', show_copy_menu)
 
         def display_words(pair):
             """
@@ -103,31 +127,27 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             global number_of_dicerolls
             global checkboxes_text_boxes
+
+            text_height = 1
+            text_padx = 10
+
             if number_of_dicerolls < 35:
                 column_to_be_placed_in = (number_of_dicerolls % 5) * 2
                 number_of_dicerolls += 1
                 (diceroll, word), = pair.items()
 
-                self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1)
+                self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=text_height)
                 self.diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5),
                                           column=column_to_be_placed_in,
-                                          pady=(5, 0), padx=10)
-                self.diceroll_widget.configure(state='normal')
-                self.diceroll_widget.delete('1.0', 'end')
-                self.diceroll_widget.insert('1.0', str(diceroll))
-                self.diceroll_widget.configure(state='disabled')
-                self.diceroll_widget.bind('<Button-3>', show_copy_menu)
+                                          pady=(5, 0), padx=text_padx)
+                insert_text(self.diceroll_widget, str(diceroll))
                 self.output_widgets.append(self.diceroll_widget)
 
-                self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=1)
+                self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=text_height)
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
                                       column=column_to_be_placed_in,
-                                      sticky='n', pady=(0, 5), padx=10)
-                self.word_widget.configure(state='normal')
-                self.word_widget.delete('1.0', 'end')
-                self.word_widget.insert('1.0', str(word))
-                self.word_widget.configure(state='disabled')
-                self.word_widget.bind('<Button-3>', show_copy_menu)
+                                      pady=(0, 5), padx=text_padx)
+                insert_text(self.word_widget, word)
                 self.output_widgets.append(self.word_widget)
 
                 self.checkbox = customtkinter.CTkCheckBox(master=self,
@@ -146,10 +166,12 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 if answer == 'yes':
                     clear_window()
 
-        self.copy_button = customtkinter.CTkButton(self, border_width=2, border_color='black', text='COPY SELECTIONS',
-                                                   font=button_font, fg_color='blue', hover_color='gray',
+        self.copy_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
+                                                   border_color=self.button_border_colour, text='COPY SELECTIONS',
+                                                   font=self.button_font, fg_color=self.button_fg_color,
+                                                   hover_color=self.button_hover_color,
                                                    command=lambda: logic.copy_selections(checkboxes_text_boxes))
-        self.copy_button.grid(row=16, column=0, columnspan=10, pady=10, sticky='n')
+        self.copy_button.grid(row=16, column=0, columnspan=self.button_columnspan, pady=10, sticky='n')
 
         self.withdraw()
         self.after(200, self.show_icon)
