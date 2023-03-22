@@ -27,15 +27,15 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.window_title = 'Try other methods...'
 
         self.iconbitmap('textures/logo.ico')
-        self.geometry('800x300')
+        self.geometry('600x200')
         self.title(self.window_title)
 
         self.frame_title = customtkinter.CTkLabel(master=self, text='How to generate a password?',
                                                   font=self.title_font)
         self.frame_title.grid(column=0, row=0, columnspan=2)
 
-        self.question_mark = customtkinter.CTkLabel(master=self, text='?')
-        self.question_mark.grid(column=0, row=1)
+        self.question_mark = customtkinter.CTkLabel(master=self, text='?', font=self.title_font)
+        self.question_mark.grid(column=0, row=1, sticky='s')
 
         self.diceware_btn = customtkinter.CTkButton(self,
                                                     text='From the diceware wordlist',
@@ -45,7 +45,7 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
                                                     border_color=self.button_border_color,
                                                     fg_color=self.button_fg_color,
                                                     hover_color=self.button_hover_color)
-        self.diceware_btn.grid(row=2, column=0)
+        self.diceware_btn.grid(row=2, column=0, pady=10, sticky='n')
 
         self.sentence_input_btn = customtkinter.CTkButton(self,
                                                           text='From a sentence',
@@ -55,10 +55,11 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
                                                           border_color=self.button_border_color,
                                                           fg_color=self.button_fg_color,
                                                           hover_color=self.button_hover_color)
-        self.sentence_input_btn.grid(row=2, column=1)
+        self.sentence_input_btn.grid(row=2, column=1, pady=10, sticky='n')
 
         self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(2, weight=1)
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
 
