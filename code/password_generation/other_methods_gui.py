@@ -9,11 +9,65 @@ from password_generation import diceware_gui as diceware
 from password_generation import sentence_input_gui as sentence_input
 
 
+class CreateToolTip:
+    """
+    This class creates a tooltip for a given widget and text.
+    """
+
+    def __init__(self, widget, text='widget info'):
+        self.waittime = 500  # miliseconds
+        self.wraplength = 180  # pixels
+        self.widget = widget
+        self.text = text
+        self.widget.bind("<Enter>", self.enter)
+        self.widget.bind("<Leave>", self.leave)
+        self.widget.bind("<ButtonPress>", self.leave)
+        self.id = None
+        self.tw = None
+
+    def enter(self, event=None):
+        self.schedule()
+
+    def leave(self, event=None):
+        self.unschedule()
+        self.hidetip()
+
+    def schedule(self):
+        self.unschedule()
+        self.id = self.widget.after(self.waittime, self.showtip)
+
+    def unschedule(self):
+        id = self.id
+        self.id = None
+        if id:
+            self.widget.after_cancel(id)
+
+    def showtip(self, event=None):
+        x = y = 0
+        x, y, cx, cy = self.widget.bbox("insert")
+        x += self.widget.winfo_rootx() + 25
+        y += self.widget.winfo_rooty() + 20
+        # creates a toplevel window
+        self.tw = tk.Toplevel(self.widget)
+        # Leaves only the label and removes the app window
+        self.tw.wm_overrideredirect(True)
+        self.tw.wm_geometry("+%d+%d" % (x, y))
+        label = tk.Label(self.tw, text=self.text, justify='left',
+                         background="#ffffff", relief='solid', borderwidth=1,
+                         wraplength=self.wraplength)
+        label.pack(ipadx=1)
+
+    def hidetip(self):
+        tw = self.tw
+        self.tw = None
+        if tw:
+            tw.destroy()
+
+
 class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
     This class contains the creation of the 'other methods' Toplevel window
     """
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.button_border_width = 2
@@ -34,22 +88,10 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
                                                   font=self.title_font)
         self.frame_title.grid(column=0, row=0, columnspan=3)
 
-        self.info_menu = tk.Menu(self, tearoff=False)
-        self.info_menu.add_command(label='[Wikipedia](https://en.wikipedia.org/wiki/Diceware)Diceware is a system for secure password generation, \n'
-                                         'through which 5 dice are rolled to form a 5-digit number, \n'
-                                         'which is then used to look up for a word in a cryptographic list.')
-
-        def pop_up_info(event):
-            """
-            Called when the user hovers over the question mark,
-            this function displays the info menu.
-            """
-            self.info_menu.tk_popup(event.x_root, event.y_root - 30)
-
         self.question_mark = customtkinter.CTkLabel(master=self, text='❓', font=self.title_font)
         self.question_mark.grid(column=0, row=1, sticky='e', padx=10)
-        self.question_mark.bind('<Enter>', pop_up_info)
-        self.question_mark.bind('<Leave>', )
+        self.question_mark_ttp = CreateToolTip(self.question_mark, 'Roll 5 dice to form a 5-digit number '
+                                                                   'that will be matched to a word on a list')
 
         self.diceware_btn = customtkinter.CTkButton(self,
                                                     text='From the diceware wordlist',
