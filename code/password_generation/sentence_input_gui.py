@@ -72,6 +72,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         self.warning_label_2 = customtkinter.CTkLabel(master=self, font=self.warning_font)
         self.warning_labels = [self.warning_label_1, self.warning_label_2]
 
+        # https://www.tutorialspoint.com/how-to-change-the-color-of-certain-words-in-a-tkinter-text-widget
         self.sentence_label.tag_config('red', foreground='red')
 
         self.copy_menu = tk.Menu(self, tearoff=False)
