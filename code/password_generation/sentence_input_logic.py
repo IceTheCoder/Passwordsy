@@ -32,19 +32,20 @@ def check_password_strength(inputted_password) -> list | str:
         and returns a suitable message.
         """
         if len(inputted_password) == 1:
-            return f'Your password has only {str(len(inputted_password))} character. You should write a longer sentence.'
+            return f'Your password has only {str(len(inputted_password))} character. ' \
+                   f'You should write a longer sentence.'
 
         elif 0 < len(inputted_password) <= 7:
-            return f'Very weak length: Your password has only {str(len(inputted_password))} characters. You should ' \
-                   f'write a longer sentence.'
+            return f'Very weak length: Your password has only {str(len(inputted_password))} characters. ' \
+                   f'You should write a longer sentence.'
 
         elif 8 <= len(inputted_password) <= 10:
-            return f'Weak length: Your password has only {str(len(inputted_password))} characters. You should ' \
-                   f'write a longer sentence.'
+            return f'Weak length: Your password has only {str(len(inputted_password))} characters. ' \
+                   f' should write a longer sentence.'
 
         elif 11 <= len(inputted_password) <= 13:
-            return f'Good length: Your password has {str(len(inputted_password))} characters. You should ' \
-                   f'write a longer sentence.'
+            return f'Good length: Your password has {str(len(inputted_password))} characters. ' \
+                   f'You could write a longer sentence.'
 
         elif 14 <= len(inputted_password):
             return f'Strong length: Your password has {str(len(inputted_password))} characters'
