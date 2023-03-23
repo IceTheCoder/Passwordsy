@@ -195,6 +195,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             global widget_text_dict
             for widget, text in widget_text_dict.items():
+                print(text)
                 widget.configure(state='normal')
                 widget.insert('0.0', text)
                 widget.configure(state='disabled')
