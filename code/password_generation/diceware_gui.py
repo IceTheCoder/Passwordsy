@@ -17,6 +17,7 @@ global number_of_dicerolls
 global clear_btn_image
 global checkboxes_text_boxes
 global widget_text_dict
+widget_text_dict = {}
 
 
 class DicewareToplevel(customtkinter.CTkToplevel):
@@ -92,6 +93,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             This function clears the window of any output widgets.
             """
+            global widget_text_dict
+            widget_text_dict = {}
+
             global number_of_dicerolls
 
             for widget in self.output_widgets:
@@ -99,6 +103,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
             self.output_widgets = []
             number_of_dicerolls = 0
+
             global checkboxes_text_boxes
             checkboxes_text_boxes = {}
 
@@ -202,7 +207,6 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             this function hides all passwords.
             """
             global widget_text_dict
-            widget_text_dict = {}
             for widget in self.text_widgets:
                 widget.configure(state='normal')
                 widget_text_dict[widget] = widget.get('1.0', 'end')
