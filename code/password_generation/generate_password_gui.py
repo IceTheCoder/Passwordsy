@@ -131,6 +131,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
             button.configure(text='HIDE', command=lambda: hide_password(index, button))
 
+            self.password_labels[index].bind('<Button-3>', show_copy_menu)
+
         def hide_password(index, button) -> None:
             """
             Called when the user clicks one of the 4 hide buttons,
@@ -154,6 +156,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 self.show_hide_all_slider.set(0)
 
             button.configure(text='SHOW', command=lambda: show_password(index, button))
+            self.password_labels[index].unbind('<Button-3>')
 
         def run_function_based_on_slider_value(value) -> None:
             """
@@ -386,7 +389,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             for label in self.password_labels:
                 label.unbind('<Button-3>')
-                label.bind('<Button-3>', show_copy_menu)
 
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
