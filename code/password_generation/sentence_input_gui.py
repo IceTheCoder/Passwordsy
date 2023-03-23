@@ -125,7 +125,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             self.warning_label_2.configure(text=warnings[1])
             self.warning_label_2.place(relx=0.5, rely=0.9, anchor='center')
 
-        self.input_box.bind('<Return>', highlight_sentence)
+        self.input_box.bind('<Key>', highlight_sentence)
+        self.input_box.bind('<KeyRelease>', highlight_sentence)
         self.withdraw()
         self.after(200, self.show_icon)
 
