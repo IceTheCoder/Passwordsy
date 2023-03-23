@@ -16,6 +16,7 @@ import password_generation.diceware_logic as logic
 global number_of_dicerolls
 global clear_btn_image
 global checkboxes_text_boxes
+global widget_text_dict
 
 
 class DicewareToplevel(customtkinter.CTkToplevel):
@@ -36,6 +37,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.button_hover_color = 'gray'
         self.button_columnspan = 10
 
+        self.password_state = 'shown'
+
         global checkboxes_text_boxes
         checkboxes_text_boxes = {}
 
@@ -55,6 +58,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.button_font = customtkinter.CTkFont(family=self.font_name, size=24)
 
         self.output_widgets = []
+        self.text_widgets = []
 
         global number_of_dicerolls
         number_of_dicerolls = 0
@@ -144,6 +148,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                           pady=(5, 0), padx=text_padx)
                 insert_text(self.diceroll_widget, str(diceroll))
                 self.output_widgets.append(self.diceroll_widget)
+                self.text_widgets.append(self.diceroll_widget)
 
                 self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=text_height)
                 self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
@@ -151,6 +156,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                       pady=(0, 5), padx=text_padx)
                 insert_text(self.word_widget, word)
                 self.output_widgets.append(self.word_widget)
+                self.text_widgets.append(self.word_widget)
 
                 self.checkbox = customtkinter.CTkCheckBox(master=self,
                                                           text='',
@@ -161,6 +167,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                    sticky='w')
                 self.output_widgets.append(self.checkbox)
                 checkboxes_text_boxes[self.word_widget] = self.checkbox
+                if self.password_state == 'hidden':
+                    hide_passwords()
             else:
                 answer = tk.messagebox.askquestion('Dice roll limit reached',
                                                    'You have reached the maximum limit of 35 dice rolls. Do you want '
@@ -174,6 +182,41 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                    hover_color=self.button_hover_color,
                                                    command=lambda: logic.copy_selections(checkboxes_text_boxes))
         self.copy_button.grid(row=16, column=0, columnspan=self.button_columnspan, pady=10, sticky='n')
+
+        def show_passwords() -> None:
+            """
+            Called when the user clicks the show button,
+            this function shows all passwords.
+            """
+            global widget_text_dict
+            for widget, text in widget_text_dict.items():
+                widget.configure(state='normal')
+                widget.insert('0.0', text)
+                widget.configure(state='disabled')
+            self.password_state = 'shown'
+            self.hide_show_button.configure(text='HIDE PASSWORDS', command=hide_passwords)
+
+        def hide_passwords() -> None:
+            """
+            Called when the user clicks the hide button,
+            this function hides all passwords.
+            """
+            global widget_text_dict
+            widget_text_dict = {}
+            for widget in self.text_widgets:
+                widget.configure(state='normal')
+                widget_text_dict[widget] = widget.get('1.0', 'end')
+                widget.delete('0.0', 'end')
+                widget.configure(state='disabled')
+            self.password_state = 'hidden'
+            self.hide_show_button.configure(text='SHOW PASSWORDS', command=show_passwords)
+
+        self.hide_show_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
+                                                        border_color=self.button_border_colour, text='HIDE PASSWORDS',
+                                                        font=self.button_font, fg_color=self.button_fg_color,
+                                                        hover_color=self.button_hover_color,
+                                                        command=hide_passwords)
+        self.hide_show_button.grid(row=17, column=0, columnspan=self.button_columnspan, pady=10, sticky='n')
 
         self.withdraw()
         self.after(200, self.show_icon)
