@@ -58,7 +58,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             """
             self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
 
-        self.password_label = customtkinter.CTkTextbox(self, state='disabled', height=25, font=self.password_font)
+        self.password_label = customtkinter.CTkTextbox(self, state='disabled', height=25, width=500,
+                                                       font=self.password_font)
         self.password_label.place(relx=0.5, rely=0.35, anchor='center')
         self.password_label.bind('<Button-3>', show_copy_menu)
 
