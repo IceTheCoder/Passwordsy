@@ -39,7 +39,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.button_fg_color = 'blue'
         self.button_hover_color = 'gray'
         self.button_border_color = 'black'
-        self.small_button_width = 75
+        self.small_button_width = 60
         self.copy_button_text = 'COPY'
         self.title_columnspan = 2
         self.checkbox_size = 20
@@ -254,7 +254,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                      text=self.copy_button_text,
                                                      border_width=self.button_border_width,
                                                      font=self.small_button_font,
-                                                     width=75,
+                                                     width=self.small_button_width,
                                                      fg_color=self.button_fg_color,
                                                      border_color=self.button_border_color,
                                                      hover_color=self.button_hover_color,
@@ -264,7 +264,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                      text=self.copy_button_text,
                                                      border_width=self.button_border_width,
                                                      font=self.small_button_font,
-                                                     width=75,
+                                                     width=self.small_button_width,
                                                      fg_color=self.button_fg_color,
                                                      border_color=self.button_border_color,
                                                      hover_color=self.button_hover_color,
