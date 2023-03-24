@@ -30,6 +30,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
     (length and character sets),
     and serves as a hub for all other password generation functions.
     """
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.gui_font_name = 'Roboto'
@@ -45,7 +46,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.checkbox_size = 20
         self.checkbox_fg_color = 'grey'
         self.checkbox_hover_color = ('grey', 'white')
-        self.password_width = 750
+        self.password_width = 816
         self.password_height = 30
         self.password_border_width = 0
 
@@ -368,9 +369,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             """
             global passwords
 
-            for label in self.password_labels:
-                label.destroy()
-
             self.password_label_1 = customtkinter.CTkTextbox(self,
                                                              width=self.password_width,
                                                              height=self.password_height,
@@ -391,6 +389,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                              height=self.password_height,
                                                              border_width=self.password_border_width,
                                                              font=self.password_font)
+
+            for label in self.password_labels:
+                label.destroy()
 
             self.password_labels = [self.password_label_1, self.password_label_2,
                                     self.password_label_3, self.password_label_4]
