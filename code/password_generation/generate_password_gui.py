@@ -325,6 +325,38 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                              command=self.open_other_methods)
         self.try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
+        self.password_label_1 = customtkinter.CTkTextbox(self,
+                                                         width=self.password_width,
+                                                         height=self.password_height,
+                                                         border_width=self.password_border_width,
+                                                         font=self.password_font)
+        self.password_label_2 = customtkinter.CTkTextbox(self,
+                                                         width=self.password_width,
+                                                         height=self.password_height,
+                                                         border_width=self.password_border_width,
+                                                         font=self.password_font)
+        self.password_label_3 = customtkinter.CTkTextbox(self,
+                                                         width=self.password_width,
+                                                         height=self.password_height,
+                                                         border_width=self.password_border_width,
+                                                         font=self.password_font)
+        self.password_label_4 = customtkinter.CTkTextbox(self,
+                                                         width=self.password_width,
+                                                         height=self.password_height,
+                                                         border_width=self.password_border_width,
+                                                         font=self.password_font)
+
+        self.password_labels = [self.password_label_1, self.password_label_2,
+                                self.password_label_3, self.password_label_4]
+
+        for label in self.password_labels:
+            label.grid(column=0, row=4 + self.password_labels.index(label), pady=10, padx=10)
+
+        for index, button in enumerate(self.show_hide_buttons):
+            button.grid(row=4 + index, column=1, columnspan=2, padx=15)
+        for index, copy_button in enumerate(self.copy_buttons):
+            copy_button.grid(row=4 + index, column=3, columnspan=2, padx=15)
+
         for checkbox in self.checkboxes:
             checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=0, sticky='w')
             checkbox.select()
@@ -369,43 +401,44 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             """
             global passwords
 
-            self.password_label_1 = customtkinter.CTkTextbox(self,
-                                                             width=self.password_width,
-                                                             height=self.password_height,
-                                                             border_width=self.password_border_width,
-                                                             font=self.password_font)
-            self.password_label_2 = customtkinter.CTkTextbox(self,
-                                                             width=self.password_width,
-                                                             height=self.password_height,
-                                                             border_width=self.password_border_width,
-                                                             font=self.password_font)
-            self.password_label_3 = customtkinter.CTkTextbox(self,
-                                                             width=self.password_width,
-                                                             height=self.password_height,
-                                                             border_width=self.password_border_width,
-                                                             font=self.password_font)
-            self.password_label_4 = customtkinter.CTkTextbox(self,
-                                                             width=self.password_width,
-                                                             height=self.password_height,
-                                                             border_width=self.password_border_width,
-                                                             font=self.password_font)
-
-            for label in self.password_labels:
-                label.destroy()
-
-            self.password_labels = [self.password_label_1, self.password_label_2,
-                                    self.password_label_3, self.password_label_4]
-
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
                                               self.digits_var, self.punctuation_var),
                 input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
+            for p_label in self.password_labels:
+                p_label.grid(column=0, row=4 + self.password_labels.index(p_label), pady=10, padx=10)
+
             # Check if an error was not returned
             if message == '':
+                self.password_label_1 = customtkinter.CTkTextbox(self,
+                                                                 width=self.password_width,
+                                                                 height=self.password_height,
+                                                                 border_width=self.password_border_width,
+                                                                 font=self.password_font)
+                self.password_label_2 = customtkinter.CTkTextbox(self,
+                                                                 width=self.password_width,
+                                                                 height=self.password_height,
+                                                                 border_width=self.password_border_width,
+                                                                 font=self.password_font)
+                self.password_label_3 = customtkinter.CTkTextbox(self,
+                                                                 width=self.password_width,
+                                                                 height=self.password_height,
+                                                                 border_width=self.password_border_width,
+                                                                 font=self.password_font)
+                self.password_label_4 = customtkinter.CTkTextbox(self,
+                                                                 width=self.password_width,
+                                                                 height=self.password_height,
+                                                                 border_width=self.password_border_width,
+                                                                 font=self.password_font)
+                for p_label in self.password_labels:
+                    p_label.destroy()
+
+                self.password_labels = [self.password_label_1, self.password_label_2,
+                                        self.password_label_3, self.password_label_4]
+
                 passwords = []
-                for label in self.password_labels:
-                    label.grid(column=0, row=4 + self.password_labels.index(label), pady=10, padx=10)
+                for p_label in self.password_labels:
                     adapted_input = logic.adapt_input(input_box.get())
                     input_box.delete(0, 'end')
                     input_box.insert(1, str(adapted_input))
@@ -414,16 +447,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                       self.uppercase_letters_var, self.digits_var, self.punctuation_var)
                     passwords.append(message)
 
-                    show_text(label, '')
-                    label.grid(column=0, row=4 + self.password_labels.index(label), pady=10, padx=10)
-                for index, button in enumerate(self.show_hide_buttons):
-                    button.grid(row=4 + index, column=1, columnspan=2, padx=15)
-                for index, copy_button in enumerate(self.copy_buttons):
-                    copy_button.grid(row=4 + index, column=3, columnspan=2, padx=15)
+                    show_text(p_label, '')
+                    p_label.grid(column=0, row=4 + self.password_labels.index(p_label), pady=10, padx=10)
+                for i, show_hide_button in enumerate(self.show_hide_buttons):
+                    show_hide_button.grid(row=4 + i, column=1, columnspan=2, padx=15)
+                for i, btn in enumerate(self.copy_buttons):
+                    btn.grid(row=4 + i, column=3, columnspan=2, padx=15)
                 self.show_hide_all_slider.grid(row=3, column=2, columnspan=2)
                 self.hide_label.grid(row=3, column=1, sticky='e')
                 self.show_label.grid(row=3, column=4, sticky='w')
-
+                hide_all_passwords()
             else:
                 error_title = ''
                 if message == invalid_input_error:
@@ -438,9 +471,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     # https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter
                     input_box.delete(0, 'end')
 
-            hide_all_passwords()
-            for button in self.show_hide_buttons:
-                hide_password(self.show_hide_buttons.index(button), button)
+            for show_hide_button in self.show_hide_buttons:
+                hide_password(self.show_hide_buttons.index(show_hide_button), show_hide_button)
 
         global input_box
         input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
