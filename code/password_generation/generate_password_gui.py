@@ -71,19 +71,19 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         for password_label in self.password_labels:
             password_label.grid_remove()
 
-        def clear_text_label(label):
+        def clear_text_label(textbox):
             """
             Called when the user clicks one of the hide buttons,
             this function deletes all content of the specific label.
 
             Parameters
             ----------
-            label: CTkTextbox
+            textbox: CTkTextbox
                 The text label to be cleared.
             """
-            label.configure(state='normal')
-            label.delete('1.0', 'end')
-            label.configure(state='disabled')
+            textbox.configure(state='normal')
+            textbox.delete('1.0', 'end')
+            textbox.configure(state='disabled')
 
         def show_password(indicator, btn) -> None:
             """
@@ -224,6 +224,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.show_hide_all_slider = customtkinter.CTkSlider(master=self, command=run_function_based_on_slider_value,
                                                             width=63, height=25, number_of_steps=1, fg_color='#D3D3D3',
                                                             progress_color='#D3D3D3', button_color='blue')
+        self.show_hide_all_slider.set(0)
 
         self.hide_label = customtkinter.CTkLabel(master=self, text='Hide', font=self.description_font)
         self.show_label = customtkinter.CTkLabel(master=self, text='Show', font=self.description_font)
@@ -461,9 +462,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     show_hide_button.grid(row=4 + i, column=1, columnspan=2, padx=15)
                 for i, btn in enumerate(self.copy_buttons):
                     btn.grid(row=4 + i, column=3, columnspan=2, padx=15)
-                #self.show_hide_all_slider.grid(row=3, column=2, columnspan=2)
-                #self.hide_label.grid(row=3, column=1, padx=5)
-                #self.show_label.grid(row=3, column=4, padx=5)
                 hide_all_passwords()
             else:
                 error_title = ''
