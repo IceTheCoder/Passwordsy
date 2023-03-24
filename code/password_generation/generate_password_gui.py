@@ -367,7 +367,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             for label in self.password_labels:
                 label.tag_bind('copy_tag', '<Button-3>', show_copy_menu)
 
-            # Unbind the tag for all password labels except for the one that was clicked
+            # Unbind the tag for all password labels except for the one that was clicked to prevent multiple instances
+            # of the copy menu.
             event.widget.tag_unbind('copy_tag', '<Button-3>')
             for label in self.password_labels:
                 if label != event.widget:
