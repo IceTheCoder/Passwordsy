@@ -61,7 +61,7 @@ def copy_selections(checkboxes_text_boxes) -> None:
     text_to_be_copied = ''
     for key, value in checkboxes_text_boxes.items():
         if value.get() == 1:
-            text_to_be_copied += key.get('1.0', 'end')
+            text_to_be_copied += key
     # Get rid of line-breaks and spaces
     text_to_be_copied = text_to_be_copied.replace("\n", "").replace(" ", "")
     clipboard.copy(text_to_be_copied)
