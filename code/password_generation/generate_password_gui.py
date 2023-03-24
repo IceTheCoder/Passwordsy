@@ -377,15 +377,15 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             # https://stackoverflow.com/questions/69425865/tkinter-event-x-y-mouse-position-wrong-value-only-when-mouse-movement-up
             copy_menu.tk_popup(event.x_root, event.y_root - 30)  # https://youtu.be/Z4zePg2M5H8
 
-            for label in self.password_labels:
-                label.tag_bind('copy_tag', '<Button-3>', show_copy_menu)
+            for pass_label in self.password_labels:
+                pass_label.tag_bind('copy_tag', '<Button-3>', show_copy_menu)
 
             # Unbind the tag for all password labels except for the one that was clicked to prevent multiple instances
             # of the copy menu.
             event.widget.tag_unbind('copy_tag', '<Button-3>')
-            for label in self.password_labels:
-                if label != event.widget:
-                    label.tag_unbind('copy_tag', '<Button-3>')
+            for pass_label in self.password_labels:
+                if pass_label != event.widget:
+                    pass_label.tag_unbind('copy_tag', '<Button-3>')
 
         def create_password_labels() -> None:
             """
@@ -470,9 +470,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 if message == invalid_input_error or message == double_error:
                     # https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter
                     input_box.delete(0, 'end')
-
-            for show_hide_button in self.show_hide_buttons:
-                hide_password(self.show_hide_buttons.index(show_hide_button), show_hide_button)
 
         global input_box
         input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
