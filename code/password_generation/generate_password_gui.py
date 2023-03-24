@@ -58,31 +58,10 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.large_button_font = customtkinter.CTkFont(family=self.gui_font_name, size=36)
         self.password_font = customtkinter.CTkFont(family=self.password_font_name, size=14)
 
+        self.password_labels = []
+
         global passwords
         passwords = []
-
-        self.password_label_1 = customtkinter.CTkTextbox(self,
-                                                         width=self.password_width,
-                                                         height=self.password_height,
-                                                         border_width=self.password_border_width,
-                                                         font=self.password_font)
-        self.password_label_2 = customtkinter.CTkTextbox(self,
-                                                         width=self.password_width,
-                                                         height=self.password_height,
-                                                         border_width=self.password_border_width,
-                                                         font=self.password_font)
-        self.password_label_3 = customtkinter.CTkTextbox(self,
-                                                         width=self.password_width,
-                                                         height=self.password_height,
-                                                         border_width=self.password_border_width,
-                                                         font=self.password_font)
-        self.password_label_4 = customtkinter.CTkTextbox(self,
-                                                         width=self.password_width,
-                                                         height=self.password_height,
-                                                         border_width=self.password_border_width,
-                                                         font=self.password_font)
-        self.password_labels = [self.password_label_1, self.password_label_2,
-                                self.password_label_3, self.password_label_4]
 
         for password_label in self.password_labels:
             password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
@@ -389,7 +368,31 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             global passwords
 
             for label in self.password_labels:
-                label.unbind('<Button-3>')
+                label.destroy()
+
+            self.password_label_1 = customtkinter.CTkTextbox(self,
+                                                             width=self.password_width,
+                                                             height=self.password_height,
+                                                             border_width=self.password_border_width,
+                                                             font=self.password_font)
+            self.password_label_2 = customtkinter.CTkTextbox(self,
+                                                             width=self.password_width,
+                                                             height=self.password_height,
+                                                             border_width=self.password_border_width,
+                                                             font=self.password_font)
+            self.password_label_3 = customtkinter.CTkTextbox(self,
+                                                             width=self.password_width,
+                                                             height=self.password_height,
+                                                             border_width=self.password_border_width,
+                                                             font=self.password_font)
+            self.password_label_4 = customtkinter.CTkTextbox(self,
+                                                             width=self.password_width,
+                                                             height=self.password_height,
+                                                             border_width=self.password_border_width,
+                                                             font=self.password_font)
+
+            self.password_labels = [self.password_label_1, self.password_label_2,
+                                    self.password_label_3, self.password_label_4]
 
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
