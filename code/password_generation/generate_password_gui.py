@@ -8,6 +8,7 @@ from tkinter import messagebox
 from tkinter.font import Font
 from PIL import ImageTk, Image
 import customtkinter
+from tkinter import TclError
 
 from password_generation import generate_password_logic as logic
 from password_generation import other_methods_gui as other
@@ -99,20 +100,21 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             """
             # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
             btn.configure(text='HIDE', command=lambda: hide_password(indicator, btn))
-
-            self.password_labels[indicator].unbind('<Button-3>')
             global passwords
-            show_text(self.password_labels[indicator], passwords[indicator])
 
-            # Check if there is any content in all labels by checking the length (the length of an empty label is 1)
-            # If there is, change the slider accordingly
-            if len(self.password_labels[0].get('1.0', 'end')) != 1 \
-                    and len(self.password_labels[1].get('1.0', 'end')) != 1 \
-                    and len(self.password_labels[2].get('1.0', 'end')) != 1 \
-                    and len(self.password_labels[3].get('1.0', 'end')) != 1:
-                self.show_hide_all_slider.set(1)
+            if len(passwords) == 4:
+                self.password_labels[indicator].unbind('<Button-3>')
+                show_text(self.password_labels[indicator], passwords[indicator])
 
-            self.password_labels[indicator].bind('<Button-3>', show_copy_menu)
+                # Check if there is any content in all labels by checking the length (the length of an empty label is 1)
+                # If there is, change the slider accordingly
+                if len(self.password_labels[0].get('1.0', 'end')) != 1 \
+                        and len(self.password_labels[1].get('1.0', 'end')) != 1 \
+                        and len(self.password_labels[2].get('1.0', 'end')) != 1 \
+                        and len(self.password_labels[3].get('1.0', 'end')) != 1:
+                    self.show_hide_all_slider.set(1)
+
+                self.password_labels[indicator].bind('<Button-3>', show_copy_menu)
 
         def hide_password(indicator, btn) -> None:
             """
@@ -129,9 +131,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             """
             btn.configure(text='SHOW', command=lambda: show_password(indicator, btn))
 
-            clear_text_label(self.password_labels[indicator])
+            if len(passwords) == 4:
+                clear_text_label(self.password_labels[indicator])
 
-            try:
                 # Check if there is no content in no label by checking the length (the length of an empty label is 1)
                 if len(self.password_labels[0].get('1.0', 'end')) == 1 \
                         and len(self.password_labels[1].get('1.0', 'end')) == 1 \
@@ -140,10 +142,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     self.show_hide_all_slider.set(0)
 
                 self.password_labels[indicator].unbind('<Button-3>')
-
-            except (ValueError, TclError):
-                # There is no need to warn the user when they try to show/hide un-generated passwords.
-                pass
 
         def run_function_based_on_slider_value(value) -> None:
             """
