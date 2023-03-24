@@ -96,6 +96,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             button: CTkButton
                 The button that was clicked.
             """
+            self.password_labels[index].unbind('<Button-3>')
             global passwords
             show_text(self.password_labels[index], passwords[index])
 
@@ -110,7 +111,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
             button.configure(text='HIDE', command=lambda: hide_password(index, button))
 
-            #self.password_labels[index].bind('<Button-3>', show_copy_menu)
+            self.password_labels[index].bind('<Button-3>', show_copy_menu)
 
         def hide_password(index, button) -> None:
             """
