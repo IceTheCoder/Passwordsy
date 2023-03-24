@@ -107,6 +107,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             global checkboxes_text
             checkboxes_text = {}
 
+            self.password_state = 'shown'
+            self.hide_show_button.configure(text='HIDE PASSWORDS', command=hide_passwords)
+
         self.clear_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
                                                     border_color=self.button_border_colour, text='CLEAR',
                                                     font=self.button_font, fg_color=self.button_fg_color,
