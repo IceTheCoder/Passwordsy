@@ -120,11 +120,14 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             this function aims to take a customtkinter Textbox,
             insert text into it, and bind it to show a copy pop-up menu when the user right-clicks.
             """
+            global widget_text_dict
+
             textbox.configure(state='normal')
             textbox.delete('1.0', 'end')
             textbox.insert('1.0', text)
             textbox.configure(state='disabled')
             textbox.bind('<Button-3>', show_copy_menu)
+            widget_text_dict[textbox] = text
 
         def display_words(pair):
             """
@@ -194,10 +197,11 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             this function shows all passwords.
             """
             global widget_text_dict
-            for widget, text in widget_text_dict.items():
-                widget.configure(state='normal')
-                widget.insert('0.0', text)
-                widget.configure(state='disabled')
+            if widget_text_dict != {}:
+                for widget, text in widget_text_dict.items():
+                    widget.configure(state='normal')
+                    widget.insert('0.0', text)
+                    widget.configure(state='disabled')
             self.password_state = 'shown'
             self.hide_show_button.configure(text='HIDE PASSWORDS', command=hide_passwords)
 
@@ -207,12 +211,14 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             this function hides all passwords.
             """
             global widget_text_dict
-            for widget in self.text_widgets:
-                widget.configure(state='normal')
-                if widget.get('1.0', 'end') != '\n':
-                    widget_text_dict[widget] = widget.get('1.0', 'end')
-                widget.delete('0.0', 'end')
-                widget.configure(state='disabled')
+
+            if widget_text_dict != {}:
+                for widget in self.text_widgets:
+                    widget.configure(state='normal')
+                    if widget.get('1.0', 'end') != '\n':
+                        widget_text_dict[widget] = widget.get('1.0', 'end')
+                    widget.delete('0.0', 'end')
+                    widget.configure(state='disabled')
             self.password_state = 'hidden'
             self.hide_show_button.configure(text='SHOW PASSWORDS', command=show_passwords)
 
