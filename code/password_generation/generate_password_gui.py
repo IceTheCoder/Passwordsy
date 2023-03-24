@@ -326,7 +326,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.try_other_methods_btn.grid(row=0, column=2, rowspan=3, columnspan=6)
 
         for checkbox in self.checkboxes:
-            checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=8, sticky='w')
+            checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=0, sticky='w')
             checkbox.select()
 
         def show_copy_menu(event) -> None:
