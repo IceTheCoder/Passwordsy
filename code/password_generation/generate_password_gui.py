@@ -84,7 +84,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             label.delete('1.0', 'end')
             label.configure(state='disabled')
 
-        def show_password(index, button) -> None:
+        def show_password(indicator, btn) -> None:
             """
             Called when the user clicks one of the 4 show buttons,
             this function displays the specific password through the show_text function,
@@ -92,14 +92,17 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             Parameters
             ----------
-            index: int
+            indicator: int
                 The number of the button that was clicked.
-            button: CTkButton
+            btn: CTkButton
                 The button that was clicked.
             """
-            self.password_labels[index].unbind('<Button-3>')
+            # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
+            btn.configure(text='HIDE', command=lambda: hide_password(indicator, btn))
+
+            self.password_labels[indicator].unbind('<Button-3>')
             global passwords
-            show_text(self.password_labels[index], passwords[index])
+            show_text(self.password_labels[indicator], passwords[indicator])
 
             # Check if there is any content in all labels by checking the length (the length of an empty label is 1)
             # If there is, change the slider accordingly
@@ -109,12 +112,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     and len(self.password_labels[3].get('1.0', 'end')) != 1:
                 self.show_hide_all_slider.set(1)
 
-            # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
-            button.configure(text='HIDE', command=lambda: hide_password(index, button))
+            self.password_labels[indicator].bind('<Button-3>', show_copy_menu)
 
-            self.password_labels[index].bind('<Button-3>', show_copy_menu)
-
-        def hide_password(index, button) -> None:
+        def hide_password(indicator, btn) -> None:
             """
             Called when the user clicks one of the 4 hide buttons,
             this function clears the specific password_label through the clear_text_label function,
@@ -122,22 +122,28 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             Parameters
             ----------
-            index: int
+            indicator: int
                 The number of the button that was clicked.
-            button: CTKButton
+            btn: CTKButton
                 The button that was clicked.
             """
-            clear_text_label(self.password_labels[index])
+            btn.configure(text='SHOW', command=lambda: show_password(indicator, btn))
 
-            # Check if there is no content in no label by checking the length (the length of an empty label is 1)
-            if len(self.password_labels[0].get('1.0', 'end')) == 1 \
-                    and len(self.password_labels[1].get('1.0', 'end')) == 1 \
-                    and len(self.password_labels[2].get('1.0', 'end')) == 1 \
-                    and len(self.password_labels[3].get('1.0', 'end')) == 1:
-                self.show_hide_all_slider.set(0)
+            clear_text_label(self.password_labels[indicator])
 
-            button.configure(text='SHOW', command=lambda: show_password(index, button))
-            self.password_labels[index].unbind('<Button-3>')
+            try:
+                # Check if there is no content in no label by checking the length (the length of an empty label is 1)
+                if len(self.password_labels[0].get('1.0', 'end')) == 1 \
+                        and len(self.password_labels[1].get('1.0', 'end')) == 1 \
+                        and len(self.password_labels[2].get('1.0', 'end')) == 1 \
+                        and len(self.password_labels[3].get('1.0', 'end')) == 1:
+                    self.show_hide_all_slider.set(0)
+
+                self.password_labels[indicator].unbind('<Button-3>')
+
+            except (ValueError, TclError):
+                # There is no need to warn the user when they try to show/hide un-generated passwords.
+                pass
 
         def run_function_based_on_slider_value(value) -> None:
             """
@@ -162,8 +168,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             inserts the specific password inside of it through the show_text function,
             and changes the button into a hide all button.
             """
-            for index, button in enumerate(self.show_hide_buttons):
-                show_password(index, button)
+            for indicator, btn in enumerate(self.show_hide_buttons):
+                show_password(indicator, btn)
 
         def hide_all_passwords() -> None:
             """
@@ -171,8 +177,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function goes through each password_label,
             and clears it.
             """
-            for index, button in enumerate(self.show_hide_buttons):
-                hide_password(index, button)
+            for indicator, btn in enumerate(self.show_hide_buttons):
+                hide_password(indicator, btn)
 
         self.show_hide_button_1 = customtkinter.CTkButton(self,
                                                           text=self.show_button_text,
@@ -218,7 +224,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                   self.show_hide_button_3, self.show_hide_button_4]
 
         self.show_hide_all_slider = customtkinter.CTkSlider(master=self, command=run_function_based_on_slider_value,
-                                                            width=50, height=25, number_of_steps=1, fg_color='#D3D3D3',
+                                                            width=63, height=25, number_of_steps=1, fg_color='#D3D3D3',
                                                             progress_color='#D3D3D3', button_color='blue')
 
         self.hide_label = customtkinter.CTkLabel(master=self, text='Hide', font=self.description_font)
@@ -349,6 +355,10 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.password_labels = [self.password_label_1, self.password_label_2,
                                 self.password_label_3, self.password_label_4]
 
+        self.show_hide_all_slider.grid(row=3, column=2, columnspan=2)
+        self.hide_label.grid(row=3, column=1, padx=5)
+        self.show_label.grid(row=3, column=4, padx=5)
+
         for label in self.password_labels:
             label.grid(column=0, row=4 + self.password_labels.index(label), pady=10, padx=10)
 
@@ -453,9 +463,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     show_hide_button.grid(row=4 + i, column=1, columnspan=2, padx=15)
                 for i, btn in enumerate(self.copy_buttons):
                     btn.grid(row=4 + i, column=3, columnspan=2, padx=15)
-                self.show_hide_all_slider.grid(row=3, column=2, columnspan=2)
-                self.hide_label.grid(row=3, column=1, sticky='e')
-                self.show_label.grid(row=3, column=4, sticky='w')
+                #self.show_hide_all_slider.grid(row=3, column=2, columnspan=2)
+                #self.hide_label.grid(row=3, column=1, padx=5)
+                #self.show_label.grid(row=3, column=4, padx=5)
                 hide_all_passwords()
             else:
                 error_title = ''
