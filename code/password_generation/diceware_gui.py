@@ -20,6 +20,13 @@ global widget_text_dict
 widget_text_dict = {}
 
 
+def resize(root, event=None):
+    """
+    This function aims to reduce resizing lag.
+    """
+    root.update_idletasks()
+
+
 class DicewareToplevel(customtkinter.CTkToplevel):
     """
     This class creates the diceware toplevel window and its contents.
@@ -31,6 +38,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.minsize(1237, 738)
         self.iconbitmap('textures/logo.ico')
         self.title('Diceware')
+
+        self.bind('<Configure>', lambda e: resize(self))
 
         self.font_name = 'Roboto'
         self.button_border_width = 2
