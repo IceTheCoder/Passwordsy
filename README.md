@@ -16,7 +16,7 @@ To use Passwordsy, you must get the program itself on your machine. To do this, 
 You will need to install Python (from the Microsoft Store, for example) and GitHub Desktop to run this program.
 
 - Git from git-scm.com.
-- Python from python.org
+- Python from python.org (make sure to tick 'Add python to PATH').
 - The following modules: PIL, Clipboard, Pynput. Install them through the following commands in the Git Bash terminal:
 
 python -m pip install pillow
@@ -26,10 +26,8 @@ python -m pip install clipboard
 python -m pip install pynput
 
 ### Installation
-- Find the absolute path to Python on your machine.
+- Find the absolute path to Python on your machine (it could be C:\Users\Cristi\AppData\Local\Programs\Python\Python311 on Windows, for example).
 - Open Git Bash.
-- Type ‘export PATH=$PATH:/c/path/to/python.exe’ to add Python to the PATH of Git Bash. Replace ‘/c/path/to/python.exe’ with the specific path on your PC.
-- Close and reopen Git Bash for the changes to take effect.
 - Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the ‘passwordsy’ folder on Desktop, type ‘cd Desktop/passwordsy/‘ in the - terminal.
 - Once you are in the desired folder, type ‘git clone https://github.com/IceTheDev2/Passwordsy.git’.
 - Type ‘cd Passwordsy/code’ to the navigate to the file containing main.py.
