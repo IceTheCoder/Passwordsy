@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Called upon app startup,
 this module prepares the GUI for password generation
