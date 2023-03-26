@@ -10,6 +10,8 @@ import customtkinter
 from password_generation import generate_password_gui
 from password_strength import password_strength_gui
 
+global root
+
 
 class TabView(customtkinter.CTkTabview, ABC):
     """
@@ -56,6 +58,14 @@ class TabView(customtkinter.CTkTabview, ABC):
             i += 1
 
 
+def resize(event):
+    """
+    This function aims to reduce resizing lag.
+    """
+    global root
+    root.update_idletasks()
+
+
 class App(customtkinter.CTk):
     """
     This class creates the app itself.
@@ -75,6 +85,8 @@ class App(customtkinter.CTk):
         self.tab_view = TabView(master=self)
         self.tab_view.grid(column=0, row=0)
 
+        self.bind('<Configure>', resize)
+
 
 def main():
     """
@@ -83,6 +95,7 @@ def main():
     two frames the user can switch between,
     and a basic configuration.
     """
+    global root
     root = App()
     root.mainloop()
 
