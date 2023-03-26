@@ -65,11 +65,11 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         global passwords
         passwords = []
 
-        for password_label in self.password_labels:
-            password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
-
-        for password_label in self.password_labels:
-            password_label.grid_remove()
+        #for password_label in self.password_labels:
+        #    password_label.grid(column=0, row=4 + self.password_labels.index(password_label), pady=10, padx=10)
+#
+        #for password_label in self.password_labels:
+        #    password_label.grid_remove()
 
         def clear_text_label(textbox):
             """
