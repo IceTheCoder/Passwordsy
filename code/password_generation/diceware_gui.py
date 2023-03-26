@@ -134,7 +134,6 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             textbox.configure(state='disabled')
             textbox.bind('<Button-3>', show_copy_menu)
             widget_text_dict[textbox] = text
-            self.password_state = 'shown'
 
         def display_words(pair):
             """
