@@ -90,6 +90,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
 
+        self.shown_passwords_text = 'PASSWORDS ARE: SHOWN'
+
         def clear_window():
             """
             This function clears the window of any output widgets.
@@ -109,7 +111,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             checkboxes_text = {}
 
             self.password_state = 'shown'
-            self.hide_show_button.configure(text='HIDE PASSWORDS', command=hide_passwords)
+            self.hide_show_button.configure(text=self.shown_passwords_text, command=hide_passwords)
 
         self.clear_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
                                                     border_color=self.button_border_colour, text='CLEAR',
@@ -208,7 +210,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                     widget.insert('0.0', text)
                     widget.configure(state='disabled')
             self.password_state = 'shown'
-            self.hide_show_button.configure(text='HIDE PASSWORDS', command=hide_passwords)
+            self.hide_show_button.configure(text=self.shown_passwords_text, command=hide_passwords)
 
         def hide_passwords() -> None:
             """
@@ -224,10 +226,11 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 widget.delete('0.0', 'end')
                 widget.configure(state='disabled')
             self.password_state = 'hidden'
-            self.hide_show_button.configure(text='SHOW PASSWORDS', command=show_passwords)
+            self.hide_show_button.configure(text='PASSWORDS ARE: HIDDEN', command=show_passwords)
 
         self.hide_show_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
-                                                        border_color=self.button_border_colour, text='HIDE PASSWORDS',
+                                                        border_color=self.button_border_colour,
+                                                        text=self.shown_passwords_text,
                                                         font=self.button_font, fg_color=self.button_fg_color,
                                                         hover_color=self.button_hover_color,
                                                         command=hide_passwords)
