@@ -27,8 +27,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        # 1237 is the exact minimum width necessary to fit all diceroll widgets.
-        self.minsize(1237, 650)
+        # 1237 and 738 are the exact minimum width and height necessary to fit all diceroll widgets.
+        self.minsize(1237, 738)
         self.iconbitmap('textures/logo.ico')
         self.title('Diceware')
 
