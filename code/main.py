@@ -42,6 +42,7 @@ class TabView(customtkinter.CTkTabview, ABC):
         self.generate_password_frame.grid_rowconfigure(8, weight=1)
         # To prevent lag
         self.generate_password_frame.grid_propagate(False)
+
         # Create the password strength frame
         self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab('Password strength'))
         self.password_strength_frame.pack(fill='both', expand=1)
