@@ -6,6 +6,9 @@ Blog: https://icethedev2.github.io/
 ## Getting started
 To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
 
+## Getting started
+To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
+
 ### Prerequisites
 - Git from git-scm.ro
 - Python from python.org (make sure to tick 'Add Python to PATH')
@@ -20,13 +23,22 @@ python -m pip install clipboard
 python -m pip install pynput
 
 
+- Git from git-scm.com.
+- Python from python.org
+- The following modules: PIL, Clipboard, Pynput. Install them through the following commands in the Git Bash terminal:
+
+python -m pip install pillow
+
+python -m pip install clipboard
+
+python -m pip install pynput
+
 ### Installation
 - Open Git Bash
 - Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the ‘passwordsy’ folder on Desktop, type ‘cd Desktop/passwordsy/‘ in the terminal.
 - Once you are in the desired folder, type ‘git clone https://github.com/IceTheDev2/Passwordsy.git’.
 - Type ‘cd Passwordsy/code’ to the navigate to the file containing main.py.
 - Type ‘python main.py’ to run the program
-
 
 ## Usage
 You can use this program to generate a random secure string of 4 to 100 uppercase and lowercase letters, numbers and/or punctuation marks.
