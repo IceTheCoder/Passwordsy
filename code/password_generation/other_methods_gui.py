@@ -10,6 +10,13 @@ from password_generation import diceware_gui as diceware
 from password_generation import sentence_input_gui as sentence_input
 
 
+def open_link(url):
+    """
+    This function opens a given link through the webbrowser library.
+    """
+    webbrowser.open_new(url)
+
+
 class CreateToolTip:
     """
     This class creates a tooltip for a given widget and text.
@@ -22,12 +29,6 @@ class CreateToolTip:
     Modified to include a delay time by Victor Zaccardo, 25mar16
     """
 
-    def open_link(self, url):
-        """
-        This function opens a given link through the webbrowser library.
-        """
-        webbrowser.open_new(url)
-
     # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
     def __init__(self, widget, text='widget info'):
         self.button_hover_color = None
@@ -36,7 +37,7 @@ class CreateToolTip:
         self.widget = widget
         self.text = text
         self.widget.bind("<Enter>", self.enter)
-        self.widget.bind("<ButtonPress>", self.leave)
+        self.widget.winfo_toplevel().bind("<ButtonPress>", self.leave)
         self.id = None
         self.tw = None
 
@@ -67,10 +68,10 @@ class CreateToolTip:
         """
         This function cancels any previously shown tooltips.
         """
-        id = self.id
+        identification = self.id
         self.id = None
-        if id:
-            self.widget.after_cancel(id)
+        if identification:
+            self.widget.after_cancel(identification)
 
     def showtip(self, event=None):
         """
@@ -101,7 +102,7 @@ class CreateToolTip:
         btn = customtkinter.CTkButton(self.tw, border_width=button_border_width, fg_color=button_fg_color,
                                       hover_color=button_hover_color, border_color=button_border_color,
                                       text='Wikipedia', width=50,
-                                      command=lambda: self.open_link('https://en.wikipedia.org/wiki/Diceware'))
+                                      command=lambda: open_link('https://en.wikipedia.org/wiki/Diceware'))
         btn.pack(ipadx=1)
 
     def hidetip(self):
@@ -118,7 +119,6 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     """
     This class contains the creation of the 'other methods' Toplevel window
     """
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.button_border_width = 2
