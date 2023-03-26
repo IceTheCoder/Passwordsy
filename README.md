@@ -17,13 +17,15 @@ You will need to install Python (from the Microsoft Store, for example) and GitH
 
 - Git from git-scm.com.
 - Python from python.org (make sure to tick 'Add python to PATH').
-- The following modules: PIL, Clipboard, Pynput. Install them through the following commands in the Git Bash terminal:
+- The following modules: PIL, customtkinter, clipboard, pynput Install them through the following commands in the Git Bash terminal:
 
-python -m pip install pillow
+pip install pillow
 
-python -m pip install clipboard
+pip install customtkinter
 
-python -m pip install pynput
+pip install clipboard
+
+pip install pynput
 
 ### Installation
 - Find the absolute path to Python on your machine (it could be C:\Users\Cristi\AppData\Local\Programs\Python\Python311 on Windows, for example).
