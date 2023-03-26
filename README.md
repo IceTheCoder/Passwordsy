@@ -24,7 +24,7 @@ python -m pip install pynput
 
 
 - Git from git-scm.com.
-- Python from python.org
+- Python from python.org (make sure to tick 'Add python to PATH').
 - The following modules: PIL, Clipboard, Pynput. Install them through the following commands in the Git Bash terminal:
 
 python -m pip install pillow
