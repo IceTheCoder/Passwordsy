@@ -43,7 +43,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         self.button_border_color = 'black'
         self.small_button_width = 60
         self.copy_button_text = 'COPY'
-        self.title_columnspan = 2
+        self.title_columnspan = 5
         self.checkbox_size = 20
         self.checkbox_fg_color = 'grey'
         self.checkbox_hover_color = ('grey', 'white')
@@ -481,7 +481,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
         input_box.bind('<Return>', create_password_labels)  # https://www.youtube.com/watch?v=GLnNPjL1U2g
 
-        input_box.grid(column=0, row=2, columnspan=4)
+        input_box.grid(column=0, row=2, columnspan=self.title_columnspan)
 
         self.done_btn = customtkinter.CTkButton(self,
                                                 text='DONE',
@@ -491,14 +491,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                 border_color=self.button_border_color,
                                                 fg_color=self.button_fg_color,
                                                 hover_color=self.button_hover_color)
-        self.done_btn.grid(column=0, row=3, columnspan=4)
+        self.done_btn.grid(column=0, row=3, columnspan=self.title_columnspan)
 
         global copy_menu
         # https://youtu.be/KRuUtNxOb_k
         copy_menu = tk.Menu(self, tearoff=False)
         copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(input_box, self.password_labels))
 
-        def show_text(label, message) -> None:
+        def show_text(textbox, message) -> None:
             """
             Called by the create_password_labels function,
             this function updates the contents of the password_labels,
@@ -507,17 +507,17 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             Parameters
             ----------
-            label: CTkTextbox
+            textbox: CTkTextbox
                 Each password label one by one if passwords are generated,
                 or the first password label if an error is generated.
             message: str
                 Each password or the error.
             """
-            label.configure(state='normal')
-            label.delete('1.0', 'end')
-            label.insert('1.0', message)
+            textbox.configure(state='normal')
+            textbox.delete('1.0', 'end')
+            textbox.insert('1.0', message)
             # https://stackoverflow.com/questions/3842155/is-there-a-way-to-make-the-tkinter-text-widget-read-only
-            label.configure(state='disabled')
+            textbox.configure(state='disabled')
 
     def open_other_methods(self):
         """
