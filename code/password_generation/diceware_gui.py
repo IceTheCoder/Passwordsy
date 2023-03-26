@@ -55,6 +55,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         # Give a weight to columns 0 to 9
         self.grid_columnconfigure((0, 2, 4, 6, 8), weight=1, uniform="a")
         self.grid_columnconfigure((1, 3, 5, 7, 9), uniform="b")
+        # To prevent lag
+        self.grid_propagate(False)
 
         self.word_font = customtkinter.CTkFont(family=self.font_name, size=12)
         self.button_font = customtkinter.CTkFont(family=self.font_name, size=24)
