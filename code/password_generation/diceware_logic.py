@@ -3,22 +3,9 @@ import secrets
 import clipboard
 from tkinter import TclError
 
+from password_generation.wordlist import wordlist as wordlist
+
 numbers = [1, 2, 3, 4, 5, 6]
-
-# The wordlist is from https://github.com/ulif/diceware
-diceware_wordlist = open('password_generation\wordlist_en_eff.txt', 'r')
-diceware_wordlist_read = diceware_wordlist.readlines()
-wordlist = {}
-
-# Make a 'wordlist' dictionary, where the key is the dice roll numbers, and the value is the specific word.
-for line in diceware_wordlist_read:
-    # Split the line into a list of dice roll numbers and the corresponding word
-    line_parts = line.strip().split('\t')
-    dice_rolls = line_parts[0]
-    word = line_parts[1]
-
-    # Add the dice roll numbers and word to the dictionary
-    wordlist[dice_rolls] = word
 
 
 def roll_dice() -> dict:
