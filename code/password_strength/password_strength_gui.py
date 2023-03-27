@@ -86,10 +86,6 @@ def display_warnings(event) -> None:
     event:
         Necessary for initiating the function as the user types.
     """
-    global input_box
-    input_box_width = max(min(len(input_box.get()) * 2, 64), 32)
-    input_box.configure(width=input_box_width)
-
     for label in labels:
         label.configure(text='')
 

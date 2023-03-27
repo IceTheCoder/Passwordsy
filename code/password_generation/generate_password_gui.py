@@ -178,7 +178,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                           hover_color=self.button_hover_color,
                                                           font=self.small_button_font,
                                                           width=self.small_button_width,
-                                                          command=lambda: show_password(0, show_hide_button_1))
+                                                          command=lambda: show_password(0, self.show_hide_button_1))
 
         self.show_hide_button_2 = customtkinter.CTkButton(self,
                                                           text=self.show_button_text,
@@ -188,7 +188,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                           hover_color=self.button_hover_color,
                                                           font=self.small_button_font,
                                                           width=self.small_button_width,
-                                                          command=lambda: show_password(0, show_hide_button_2))
+                                                          command=lambda: show_password(0, self.show_hide_button_2))
 
         self.show_hide_button_3 = customtkinter.CTkButton(self,
                                                           text=self.show_button_text,
@@ -198,7 +198,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                           hover_color=self.button_hover_color,
                                                           font=self.small_button_font,
                                                           width=self.small_button_width,
-                                                          command=lambda: show_password(0, show_hide_button_3))
+                                                          command=lambda: show_password(0, self.show_hide_button_3))
 
         self.show_hide_button_4 = customtkinter.CTkButton(self,
                                                           text=self.show_button_text,
@@ -208,7 +208,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                           hover_color=self.button_hover_color,
                                                           font=self.small_button_font,
                                                           width=self.small_button_width,
-                                                          command=lambda: show_password(0, show_hide_button_3))
+                                                          command=lambda: show_password(0, self.show_hide_button_3))
 
         self.show_hide_buttons = [self.show_hide_button_1, self.show_hide_button_2,
                                   self.show_hide_button_3, self.show_hide_button_4]
