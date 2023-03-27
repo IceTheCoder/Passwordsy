@@ -63,7 +63,8 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         self.password_label.place(relx=0.5, rely=0.35, anchor='center')
         self.password_label.bind('<Button-3>', show_copy_menu)
 
-        self.sentence_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50, wrap='word')
+        self.sentence_label = customtkinter.CTkTextbox(self, font=self.word_font, width=500, height=50, wrap='word',
+                                                       state='disabled')
         self.sentence_label.place(relx=0.5, rely=0.55, anchor='center')
         self.sentence_label.bind('<Button-3>', show_copy_menu)
 
@@ -89,6 +90,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             """
             char_dict = {}
 
+            self.sentence_label.configure(state='normal')
             self.sentence_label.delete('1.0', 'end')
             self.sentence_label.insert('1.0', self.input_box.get())
 
@@ -106,6 +108,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
 
             display_warnings(logic.check_password_strength(password))
             show_password(password)
+            self.sentence_label.configure(state='disabled')
 
         def show_password(password):
             """
