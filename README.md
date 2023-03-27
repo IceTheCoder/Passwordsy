@@ -3,12 +3,6 @@ A program that can generate a secure password of up to 100 characters (with uppe
 
 Blog: https://icethedev2.github.io/
 
-## Coming soon...
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52722054145/in/dateposted-public/" title="23"><img src="https://live.staticflickr.com/65535/52722054145_71f6e09590_c.jpg" width="800" height="269" alt="23"></a>
-- New password generation modes, including diceware
-- Hiding passwords
-
-
 ## Getting started
 To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
 
