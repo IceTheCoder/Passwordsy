@@ -6,9 +6,6 @@ Blog: https://icethedev2.github.io/
 ## Getting started
 To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
 
-## Getting started
-To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
-
 ### Prerequisites
 - Git from git-scm.ro
 - Python from python.org (make sure to tick 'Add Python to PATH')
