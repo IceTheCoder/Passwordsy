@@ -52,18 +52,18 @@ pip install pynput
 - Type ‘python main.py’ to run the program
 
 ## Usage
-You can use this program to generate a random secure string of 4 to 100 uppercase and lowercase letters, numbers and/or punctuation marks.
-![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/1.PNG)
-![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/2.PNG)
-![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/3.PNG)
+### Generate 4 secure strings of 4 to 100 characters, with custom character sets
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775455345/in/dateposted-public/" title="46"><img src="https://live.staticflickr.com/65535/52775455345_dbc840fa34_o.png"></a>
 
+### Check a given password's strength and provide tips to improve its security
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775046031/in/dateposted-public/" title="47"><img src="https://live.staticflickr.com/65535/52775046031_b94f4b19fb_o.png">
 
-You can also use it to discover weaknesses of a password, such as prevalence, length, simplicity, repeating characters.
-![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/4.PNG)
-![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/5.PNG)
-![alt_text](https://github.com/IceTheDev2/Passwordsy/blob/main/code/screenshots/6.PNG)
+### Get up to 35 copyable words and their paired numbers from the diceware wordlist
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775063281/in/dateposted-public/" title="48"><img src="https://live.staticflickr.com/65535/52775063281_c4485569e6_o.png"></a>
 
-
+### Generate a memorable password from a given sentence and provide tips to improve it
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775549023/in/dateposted-public/" title="49"><img src="https://live.staticflickr.com/65535/52775549023_9458605963_o.png" width="902" height="332" alt="49"/></a>
+  
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first project!  
 You can fork the project to play around with it and create a pull request to submit your suggestions. You can also open an issue to tell me about any problems my code might have.
