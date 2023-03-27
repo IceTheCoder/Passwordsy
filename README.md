@@ -73,7 +73,7 @@ E-mail: icethedev2@gmail.com
 * [u/modernknight87](https://www.reddit.com/user/modernknight87/) for suggesting 'The user input a sentence of their own choosing, takes the first letter of every word, and any numbers or symbols, and combines those as the produced password'.
 * The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials, such as: [this one on keyboard event binding](https://youtu.be/GLnNPjL1U2g), [this one on cursor positions](https://youtu.be/Z4zePg2M5H8), [this one on Tkinter menus](https://youtu.be/KRuUtNxOb_k), [this one on message boxes](https://youtu.be/S3AaSwpb5GE).
 * The [SecLists repository](https://github.com/danielmiessler/SecLists) of danielmiessler, used here for the 100,000 most common passwords.
-* The [diceware repository](https://github.com/ulif/diceware) of ulif, used here to generate for a unique password-generation mode.
+* The [Diceware-Password-Generator repository](https://github.com/sameera-madushan/Diceware-Password-Generator) of sameera-madushan, used here to generate for a unique password-generation mode.
 * The [CustomTkinter repository](https://github.com/TomSchimansky/CustomTkinter) of Tom Schimansky, used here for the UI overhaul.
 * [Exercism](https://exercism.org/) for its large array of exercises
 * [ChatGPT](https://chat.openai.com/chat) for helping me solve the most obscure of errors and bugs.
