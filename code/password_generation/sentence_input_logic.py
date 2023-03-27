@@ -1,15 +1,14 @@
+"""
+This module deals with the logic part of generating a secure password based on a user's sentence.
+"""
+from __future__ import annotations
+
 import string
-
-# passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
-common_passwords_file = open('passwords.txt', 'r')
-common_passwords_read = common_passwords_file.readlines()
-modified_common_passwords = []
-
-for line in common_passwords_read:
-    modified_common_passwords.append(line.strip())  # Place each of the 100,000 most commonly used passwords into a list
+import clipboard
+from tkinter import TclError
 
 
-def check_password_strength(event, inputted_password, input_password_msg) -> list | str:
+def check_password_strength(inputted_password) -> list | str:
     """
     Called upon pressing the done button,
     this function defines several functions that check
@@ -19,29 +18,11 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
 
     Parameters
     ----------
-    event:
-        Necessary for initiating the function as the user types.
     inputted_password: str
         The input of the user
-    input_password_msg: str
-        'Please input a password.'
     """
     user_input = []
     user_input[:0] = inputted_password  # Adds each character of the input to a list.
-
-    def check_if_password_is_common() -> str:
-        """
-        Called by the check_password_strength function
-        (as the user types),
-        this function checks if the inputted password is in the 100,000 most used passwords (modified_common_password),
-        and returns an appropriate message.
-        It does this by counting the number of times an inputted_password is found in the SecLists list.
-        """
-        if modified_common_passwords.count(inputted_password) > 0:
-            return 'Common: Your password is common.'
-
-        elif modified_common_passwords.count(inputted_password) == 0:
-            return 'Not common: Your password isn\'t common.'
 
     def check_password_length() -> str:
         """
@@ -51,19 +32,23 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
         and returns a suitable message.
         """
         if len(inputted_password) == 1:
-            return f'Very weak length: Your password has only {str(len(inputted_password))} character.'
+            return f'Your password has only {str(len(inputted_password))} character. ' \
+                   f'You should write a longer sentence.'
 
         elif 0 < len(inputted_password) <= 7:
-            return f'Very weak length: Your password has only {str(len(inputted_password))} characters.'
+            return f'Very weak length: Your password has only {str(len(inputted_password))} characters. ' \
+                   f'You should write a longer sentence.'
 
         elif 8 <= len(inputted_password) <= 10:
-            return f'Weak length: Your password has only {str(len(inputted_password))} characters.'
+            return f'Weak length: Your password has only {str(len(inputted_password))} characters. ' \
+                   f' should write a longer sentence.'
 
         elif 11 <= len(inputted_password) <= 13:
-            return f'Good length: Your password has {str(len(inputted_password))} characters.'
+            return f'Good length: Your password has {str(len(inputted_password))} characters. ' \
+                   f'You could write a longer sentence.'
 
         elif 14 <= len(inputted_password):
-            return f'Strong length: Your password has {str(len(inputted_password))} characters.'
+            return f'Strong length: Your password has {str(len(inputted_password))} characters'
 
     def check_password_complexity() -> str:
         """
@@ -122,39 +107,59 @@ def check_password_strength(event, inputted_password, input_password_msg) -> lis
                     if missing_feature != missing_security_features_list[-1]:
                         output = output + str(missing_feature) + ' and '
                     else:
-                        output = output + str(missing_feature)
+                        output += str(missing_feature)
                 else:
                     if missing_feature == missing_security_features_list[-2]:
                         output = output + str(missing_feature) + ', and '
                     elif missing_feature == missing_security_features_list[-1]:
-                        output = output + str(missing_feature)
+                        output += str(missing_feature)
                     else:
                         output = output + str(missing_feature) + ', '
 
-            return f'Not complex: Your password is missing {output}.'
+            return f'Simple password: You should add {output} to your sentence.'
 
         else:
-            return 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctuation.'
+            return 'Complex password: Your sentence contains upper and lowercase letters, digits, and punctuation.'
 
-    def check_for_patterns_in_password() -> str:
-        """
-        Called by the check_password_strength function
-        (as the user types),
-        this function checks if there are any repeating characters in the inputted password,
-        and returns an adequate message.
-        """
-        for character in inputted_password:
-            if inputted_password.count(character) > 1:
-                return 'Repeated character(s): Your password contains at least one repeated character.'
-
-        return 'No repeated characters: Your password contains no repeated characters.'
-
-    if len(inputted_password) == 0:
-        return input_password_msg
+    if inputted_password is None:
+        return ['', '']
     else:
-        prevalence_warning = check_if_password_is_common()
-        length_warning = check_password_length()
-        complexity_warning = check_password_complexity()
-        pattern_warning = check_for_patterns_in_password()
+        return [check_password_length(), check_password_complexity()]
 
-        return [prevalence_warning, length_warning, complexity_warning, pattern_warning]
+
+def produce_password(char_dict) -> list:
+    """
+    This function gets the characters that are needed to be highlighted:
+    starting letters of every word and any digits or punctuation
+    """
+    letters_to_be_coloured = {}
+    password = ''
+
+    first_letter_taken = False
+    for key, value in char_dict.items():
+        if value in string.punctuation or value in string.digits:
+            letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
+            password += value
+        elif value == 'space':
+            first_letter_taken = False
+        elif not first_letter_taken:
+            letters_to_be_coloured[f'1.{key}'] = f'1.{key + 1}'
+            password += value
+            first_letter_taken = True
+
+    return [letters_to_be_coloured, password]
+
+
+def copy_selected_text(labels) -> None:
+    """
+    Called upon pressing the copy button,
+    this function copies the selected text,
+    and focuses the keyboard on the input_box to deselect the text.
+    """
+    try:
+        for label in labels:
+            selected_text = str(label.selection_get())
+            clipboard.copy(selected_text)
+    except (ValueError, TclError):
+        # There is no need to warn the user when they try to copy nothing as it does not have any effect on the app
+        pass
