@@ -31,7 +31,6 @@ class DicewareToplevel(customtkinter.CTkToplevel):
     """
     This class creates the diceware toplevel window and its contents.
     """
-
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         # 1237 and 738 are the exact minimum width and height necessary to fit all diceroll widgets.
