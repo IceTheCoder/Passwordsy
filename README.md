@@ -4,10 +4,10 @@ A program that can generate a secure password of up to 100 characters, extract s
 Blog: https://icethedev2.github.io/
 
 ## Getting started
-To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
+To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub Desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
 
 ### Prerequisites
-- Git from git-scm.ro
+- Git from git-scm.com
 - Python from python.org (make sure to tick 'Add Python to PATH')
 - The following modules: PIL, Clipboard, Pynput. They are found in the requirements.txt file.
 
@@ -30,14 +30,14 @@ To use Passwordsy, you must get the program itself on your machine. To do this, 
 <a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775063281/in/dateposted-public/" title="48"><img src="https://live.staticflickr.com/65535/52775063281_c4485569e6_o.png"></a>
 
 ### Generate a memorable password from a given sentence and provide tips to improve it
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775549023/in/dateposted-public/" title="49"><img src="https://live.staticflickr.com/65535/52775549023_9458605963_o.png" width="902" height="332" alt="49"/></a>
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775549023/in/dateposted-public/" title="49"><img src="https://live.staticflickr.com/65535/52775549023_9458605963_o.png" alt="49"/></a>
   
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first project!  
 You can fork the project to play around with it and create a pull request to submit your suggestions. You can also open an issue to tell me about any problems my code might have.
 
 ## License
-This project is licensed under the MIT License. Read LICENSE.txt for more information.
+This project is licensed under a modified version of the MIT License. Read LICENSE for more information.
 
 ## Contact
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
