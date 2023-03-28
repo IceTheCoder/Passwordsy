@@ -1,0 +1,4 @@
+pillow
+clipboard
+pynput
+customtkinter
