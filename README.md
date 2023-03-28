@@ -20,30 +20,6 @@ python -m pip install clipboard
 python -m pip install pynput
 
 
-- Git from git-scm.com.
-- Python from python.org (make sure to tick 'Add python to PATH').
-- The following modules: PIL, customtkinter, clipboard, pynput Install them through the following commands in the Git Bash terminal:
-
-pip install pillow
-
-pip install customtkinter
-
-pip install clipboard
-
-pip install pynput
-
-- Git from git-scm.com.
-- Python from python.org (make sure to tick 'Add python to PATH').
-- The following modules: PIL, customtkinter, clipboard, pynput Install them through the following commands in the Git Bash terminal:
-
-pip install pillow
-
-pip install customtkinter
-
-pip install clipboard
-
-pip install pynput
-
 ### Installation
 - Open Git Bash
 - Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the ‘passwordsy’ folder on Desktop, type ‘cd Desktop/passwordsy/‘ in the terminal.
