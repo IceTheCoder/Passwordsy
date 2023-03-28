@@ -9,16 +9,7 @@ To use Passwordsy, you must get the program itself on your machine. To do this, 
 ### Prerequisites
 - Git from git-scm.ro
 - Python from python.org (make sure to tick 'Add Python to PATH')
-- The following modules: PIL, Clipboard, Pynput.
-
-Install them through the following commands in the Git Bash terminal:
-
-python -m pip install pillow
-
-python -m pip install clipboard
-
-python -m pip install pynput
-
+- The following modules: PIL, Clipboard, Pynput. They are found in the requirements.txt file.
 
 ### Installation
 - Open Git Bash
