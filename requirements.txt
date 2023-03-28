@@ -1,3 +1,4 @@
 pillow
 clipboard
 pynput
+customtkinter
