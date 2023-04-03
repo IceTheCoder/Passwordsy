@@ -2,9 +2,10 @@
 This module deals with the logical part of discovering vulnerabilities in a given password.
 """
 from __future__ import annotations
-
 import string
 from pynput.keyboard import Key, Controller
+from collections.abc import Iterable
+from dataclasses import dataclass
 
 keyboard = Controller()
 
@@ -40,11 +41,11 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
         """
         Given ["foo", "bar", "baz"], returns "foo, bar, and baz".
         """
-        lst = list(iter)
+        lst = list(iterable_input)
         if len(lst) <= 2:
             text = " and ".join(lst)  # e.g. "", "foo", or "foo and bar"
         else:
-            lst[-1] = f"and {list[-1]}"  # ["foo", "bar", "and baz"]
+            lst[-1] = f"and {lst[-1]}"  # ["foo", "bar", "and baz"]
             text = ", ".join(lst)  # "foo, bar, and baz"
         return text
 
