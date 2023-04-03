@@ -36,6 +36,18 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
     user_input = []
     user_input[:0] = inputted_password  # Adds each character of the input to a list.
 
+    def as_text_list(iterable_input: Iterable) -> str:
+        """
+        Given ["foo", "bar", "baz"], returns "foo, bar, and baz".
+        """
+        lst = list(iter)
+        if len(lst) <= 2:
+            text = " and ".join(lst)  # e.g. "", "foo", or "foo and bar"
+        else:
+            lst[-1] = f"and {list[-1]}"  # ["foo", "bar", "and baz"]
+            text = ", ".join(lst)  # "foo, bar, and baz"
+        return text
+
     def check_if_password_is_common() -> str:
         """
         Called by the check_password_strength function
@@ -72,6 +84,21 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
         elif 14 <= len(inputted_password):
             return f'Strong length: Your password has {str(len(inputted_password))} characters.'
 
+    @dataclass
+    class SecurityFeature:
+        """
+        A data class grouping together all attributes having to do with a
+        security feature.
+
+        Attributes:
+            name: the name of the feature for output purposes
+            chars: a set of characters matching the feature
+            count: the number of matches in user_input (initially 0)
+        """
+        name: str
+        chars: str
+        count: int = 0
+
     def check_password_complexity() -> str:
         """
         Called by the check_password_strength function
@@ -80,66 +107,21 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
         lowercase letters, uppercase letters, digits, and punctuation,
         and returns an adequate warning about them.
         """
-        missing_security_features_list = []
-
-        # Places each character into a list based on its type.
-        lowercase_letters = []
-        lowercase_letters[:0] = string.ascii_lowercase
-
-        uppercase_letters = []
-        uppercase_letters[:0] = string.ascii_uppercase
-
-        digits = []
-        digits[:0] = string.digits
-
-        punctuation = []
-        punctuation[:0] = string.punctuation
-
-        number_of_lowercase_letters = 0
-        number_of_uppercase_letters = 0
-        number_of_digits = 0
-        number_of_punctuation = 0
-
-        for character in user_input:
-            if character in lowercase_letters:
-                number_of_lowercase_letters += 1
-            elif character in uppercase_letters:
-                number_of_uppercase_letters += 1
-            elif character in digits:
-                number_of_digits += 1
-            elif character in punctuation:
-                number_of_punctuation += 1
-
-        if number_of_lowercase_letters == 0:
-            missing_security_features_list.append('lowercase letters')
-        if number_of_uppercase_letters == 0:
-            missing_security_features_list.append('uppercase letters')
-        if number_of_digits == 0:
-            missing_security_features_list.append('digits')
-        if number_of_punctuation == 0:
-            missing_security_features_list.append('punctuation')
-
-        if missing_security_features_list:
-            output = ''
-
-            for missing_feature in missing_security_features_list:
-                if len(missing_security_features_list) == 1:
-                    output = str(missing_feature)
-                elif len(missing_security_features_list) == 2:
-                    if missing_feature != missing_security_features_list[-1]:
-                        output = output + str(missing_feature) + ' and '
-                    else:
-                        output += str(missing_feature)
-                else:
-                    if missing_feature == missing_security_features_list[-2]:
-                        output = output + str(missing_feature) + ', and '
-                    elif missing_feature == missing_security_features_list[-1]:
-                        output += str(missing_feature)
-                    else:
-                        output = output + str(missing_feature) + ', '
-
+        security_features = [
+            SecurityFeature('lowercase letters', string.ascii_lowercase),
+            SecurityFeature('uppercase letters', string.ascii_uppercase),
+            SecurityFeature('digits', string.digits),
+            SecurityFeature('punctuation', string.punctuation)
+        ]
+        for c in user_input:
+            for sf in security_features:
+                if c in sf.chars:
+                    sf.count += 1
+        output = as_text_list(
+            sf.name for sf in security_features if sf.count == 0
+        )
+        if output:
             return f'Not complex: Your password is missing {output}.'
-
         else:
             return 'Complex: Your password contains lowercase letters, uppercase letters, digits, and punctuation.'
 
