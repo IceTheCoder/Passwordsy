@@ -9,7 +9,7 @@ To use Passwordsy, you must get the program itself on your machine. To do this, 
 ### Prerequisites
 - Git from git-scm.com
 - Python from python.org (make sure to tick 'Add Python to PATH')
-- The following modules: PIL, Clipboard, Pynput. They are found in the requirements.txt file.
+- The following modules: PIL, Clipboard, Pynput, CustomTkinter. They are found in the requirements.txt file.
 
 ### Installation
 - Open Git Bash
