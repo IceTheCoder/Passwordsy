@@ -459,7 +459,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 messagebox.showerror(error_title, message)
                 if message == invalid_input_error or message == double_error:
                     # https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter
-                    input_box.delete(0, 'end')
+                    self.input_box.delete(0, 'end')
 
         self.input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
         self.input_box.bind('<Return>', create_password_labels)  # https://www.youtube.com/watch?v=GLnNPjL1U2g
