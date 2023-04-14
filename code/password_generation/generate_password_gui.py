@@ -16,7 +16,6 @@ invalid_input_error = 'An error occurred. Try again with a whole number between 
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
 
-global input_box
 global copy_menu
 global passwords
 global show_hide_all_button
@@ -405,7 +404,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
                                               self.digits_var, self.punctuation_var),
-                input_box.get(), no_character_set_error, double_error, invalid_input_error)
+                self.input_box.get(), no_character_set_error, double_error, invalid_input_error)
 
             for p_label in self.password_labels:
                 p_label.grid(column=0, row=4 + self.password_labels.index(p_label), pady=10, padx=10)
@@ -440,9 +439,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
                 passwords = []
                 for p_label in self.password_labels:
-                    adapted_input = logic.adapt_input(input_box.get())
-                    input_box.delete(0, 'end')
-                    input_box.insert(1, str(adapted_input))
+                    adapted_input = logic.adapt_input(self.input_box.get())
+                    self.input_box.delete(0, 'end')
+                    self.input_box.insert(1, str(adapted_input))
 
                     message = logic.generate_password(adapted_input, self.lowercase_letters_var,
                                                       self.uppercase_letters_var, self.digits_var, self.punctuation_var)
@@ -469,11 +468,10 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                     # https://stackoverflow.com/questions/2260235/how-to-clear-the-entry-widget-after-a-button-is-pressed-in-tkinter
                     input_box.delete(0, 'end')
 
-        global input_box
-        input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
-        input_box.bind('<Return>', create_password_labels)  # https://www.youtube.com/watch?v=GLnNPjL1U2g
+        self.input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
+        self.input_box.bind('<Return>', create_password_labels)  # https://www.youtube.com/watch?v=GLnNPjL1U2g
 
-        input_box.grid(column=0, row=2, columnspan=self.title_columnspan)
+        self.input_box.grid(column=0, row=2, columnspan=self.title_columnspan)
 
         self.done_btn = customtkinter.CTkButton(self,
                                                 text='DONE',
@@ -488,7 +486,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         global copy_menu
         # https://youtu.be/KRuUtNxOb_k
         copy_menu = tk.Menu(self, tearoff=False)
-        copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(input_box, self.password_labels))
+        copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(self.input_box,
+                                                                                     self.password_labels))
 
         def show_text(textbox, message) -> None:
             """
