@@ -1,6 +1,7 @@
 """
 This module prepares the other_methods_window for the user when they click the 'try other methods...' button.
 """
+import tkinter
 import tkinter as tk
 from tkinter.font import Font
 import customtkinter
@@ -10,9 +11,14 @@ from password_generation import diceware_gui as diceware
 from password_generation import sentence_input_gui as sentence_input
 
 
-def open_link(url):
+def open_link(url: str) -> None:
     """
     This function opens a given link through the webbrowser library.
+
+    Parameters
+    ----------
+    url: str
+        The URL to be opened.
     """
     webbrowser.open_new(url)
 
@@ -30,9 +36,9 @@ class CreateToolTip:
     """
 
     # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
-    def __init__(self, widget, text='widget info'):
+    def __init__(self, widget: customtkinter.CTkLabel, text: str = 'widget info') -> None:
         self.button_hover_color = None
-        self.waittime = 500  # milliseconds
+        self.waittime = 250  # milliseconds
         self.wraplength = 180  # pixels
         self.widget = widget
         self.text = text
@@ -41,14 +47,14 @@ class CreateToolTip:
         self.id = None
         self.tw = None
 
-    def enter(self, event=None):
+    def enter(self, event: tkinter.Event = None) -> None:
         """
         Called when the user hovers over the given widget,
         this function shows the tooltip.
         """
         self.schedule()
 
-    def leave(self, event=None):
+    def leave(self, event: tkinter.Event = None) -> None:
         """
         Called when the user moves out of the given widget,
         this function shows the tooltip.
@@ -56,7 +62,7 @@ class CreateToolTip:
         self.unschedule()
         self.hidetip()
 
-    def schedule(self):
+    def schedule(self) -> None:
         """
         This function cancels any previously shown tooltips,
         and defines a unique ID for a new tooltip.
@@ -64,7 +70,7 @@ class CreateToolTip:
         self.unschedule()
         self.id = self.widget.after(self.waittime, self.showtip)
 
-    def unschedule(self):
+    def unschedule(self) -> None:
         """
         This function cancels any previously shown tooltips.
         """
@@ -73,7 +79,7 @@ class CreateToolTip:
         if identification:
             self.widget.after_cancel(identification)
 
-    def showtip(self, event=None):
+    def showtip(self, event: tkinter.Event = None) -> nONE:
         """
         This function creates a toplevel at the user's cursor's coordinates,
         creates a label within it,
@@ -85,7 +91,7 @@ class CreateToolTip:
         button_border_color = 'black'
 
         x = y = 0
-        x, y, cx, cy = self.widget.bbox("insert")
+        x, y, cx, cy = self.widget.bbox('insert')
         x += self.widget.winfo_rootx() + 25
         y += self.widget.winfo_rooty() + 20
         # creates a toplevel window
@@ -105,7 +111,7 @@ class CreateToolTip:
                                       command=lambda: open_link('https://en.wikipedia.org/wiki/Diceware'))
         btn.pack(ipadx=1)
 
-    def hidetip(self):
+    def hidetip(self) -> None:
         """
         This function destroys the toplevel.
         """
@@ -176,14 +182,14 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         self.withdraw()
         self.after(200, self.show_icon)
 
-    def show_icon(self):
+    def show_icon(self) -> None:
         """
         This function shows the icon of the toplevel window.
         """
         self.deiconify()
         self.iconbitmap('textures/logo.ico')
 
-    def open_diceware(self):
+    def open_diceware(self) -> None:
         """
         Called when the user clicks on the 'From the diceware' button,
         this function opens the diceware Toplevel window.
@@ -194,7 +200,7 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         else:
             self.diceware_window.focus()
 
-    def open_sentence_input(self):
+    def open_sentence_input(self) -> None:
         """
         Called when the user clicks on the 'From a sentence' button,
         this function opens the sentence input Toplevel window.
