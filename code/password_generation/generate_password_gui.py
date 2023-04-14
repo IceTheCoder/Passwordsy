@@ -16,8 +16,6 @@ invalid_input_error = 'An error occurred. Try again with a whole number between 
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
 double_error = 'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
 
-global show_hide_all_button
-
 
 class PasswordGenerationFrame(customtkinter.CTkFrame):
     """
