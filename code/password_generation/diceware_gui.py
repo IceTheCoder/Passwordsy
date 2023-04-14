@@ -13,9 +13,6 @@ import customtkinter
 
 import password_generation.diceware_logic as logic
 
-global widget_text_dict
-widget_text_dict = {}
-
 
 def resize(root, event=None):
     """
@@ -47,6 +44,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.password_state = 'shown'
 
         self.checkboxes_text = {}
+
+        self.widget_text_dict = {}
 
         # Give a weight to rows 0 to 15
         i = 0
@@ -101,8 +100,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             This function clears the window of any output widgets.
             """
-            global widget_text_dict
-            widget_text_dict = {}
+            self.widget_text_dict = {}
 
             for widget in self.output_widgets:
                 widget.destroy()
@@ -129,14 +127,13 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             this function aims to take a customtkinter Textbox,
             insert text into it, and bind it to show a copy pop-up menu when the user right-clicks.
             """
-            global widget_text_dict
 
             textbox.configure(state='normal')
             textbox.delete('1.0', 'end')
             textbox.insert('1.0', text)
             textbox.configure(state='disabled')
             textbox.bind('<Button-3>', show_copy_menu)
-            widget_text_dict[textbox] = text
+            self.widget_text_dict[textbox] = text
 
         def display_words(pair):
             """
@@ -202,9 +199,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             Called when the user clicks the show button,
             this function shows all passwords.
             """
-            global widget_text_dict
-            if widget_text_dict != {}:
-                for widget, text in widget_text_dict.items():
+            if self.widget_text_dict != {}:
+                for widget, text in self.widget_text_dict.items():
                     widget.configure(state='normal')
                     widget.insert('0.0', text)
                     widget.configure(state='disabled')
@@ -216,9 +212,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             Called when the user clicks the hide button,
             this function hides all passwords.
             """
-            global widget_text_dict
-
-            for widget, text in widget_text_dict.items():
+            for widget, text in self.widget_text_dict.items():
                 widget.configure(state='normal')
                 if widget.get('1.0', 'end') != '\n':
                     text = widget.get('1.0', 'end')
