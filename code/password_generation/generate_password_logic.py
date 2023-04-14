@@ -2,10 +2,7 @@
 import string
 import secrets
 import clipboard
-from pynput.keyboard import Controller
 from tkinter import TclError
-
-keyboard = Controller()
 
 
 def adapt_input(requested_password_length) -> int:
