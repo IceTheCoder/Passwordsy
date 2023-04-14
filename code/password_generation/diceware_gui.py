@@ -13,7 +13,6 @@ import customtkinter
 
 import password_generation.diceware_logic as logic
 
-global checkboxes_text
 global widget_text_dict
 widget_text_dict = {}
 
