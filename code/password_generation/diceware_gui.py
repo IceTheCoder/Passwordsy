@@ -14,7 +14,7 @@ import customtkinter
 import password_generation.diceware_logic as logic
 
 
-def resize(root, event=None):
+def resize(root: tk.Tk, event: tk.Event = None) -> None:
     """
     This function aims to reduce resizing lag.
     """
@@ -25,7 +25,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
     """
     This class creates the diceware toplevel window and its contents.
     """
-    def __init__(self, master, **kwargs):
+    def __init__(self, master: customtkinter.CTkToplevel, **kwargs) -> None:
         super().__init__(master, **kwargs)
         # 1237 and 738 are the exact minimum width and height necessary to fit all diceroll widgets.
         self.minsize(1237, 738)
@@ -80,7 +80,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.copy_menu.add_command(label='Copy',
                                    command=lambda: logic.copy_selected_text(self.output_widgets))
 
-        def show_copy_menu(event) -> None:
+        def show_copy_menu(event: tk.Event) -> None:
             """
             Called when the user releases a mouse button on a password label,
             this function uses the Tkinter module to display a contextual menu containing a 'copy' button
@@ -96,7 +96,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
         self.shown_passwords_text = 'PASSWORDS ARE: SHOWN'
 
-        def clear_window():
+        def clear_window() -> None:
             """
             This function clears the window of any output widgets.
             """
@@ -106,7 +106,6 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 widget.destroy()
 
             self.output_widgets = []
-            self.checkboxes_text
             self.checkboxes_text = {}
 
             self.password_state = 'shown'
@@ -121,7 +120,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                     command=clear_window)
         self.clear_button.grid(row=1, column=0, columnspan=self.button_columnspan, sticky='n')
 
-        def insert_text(textbox, text):
+        def insert_text(textbox: customtkinter.CTkTextbox, text: str) -> None:
             """
             Called when the user 'rolls the dice' from the display_words function,
             this function aims to take a customtkinter Textbox,
@@ -135,7 +134,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             textbox.bind('<Button-3>', show_copy_menu)
             self.widget_text_dict[textbox] = text
 
-        def display_words(pair):
+        def display_words(pair: dict) -> None:
             """
             Called when the user clicks the 'roll dice' button,
             this function displays the pairs of dice rolls and words to the user.
@@ -232,7 +231,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.withdraw()
         self.after(200, self.show_icon)
 
-        def close_second_window():
+        def close_second_window() -> None:
             """
             This function destroys the window when it is closed.
             """
@@ -241,7 +240,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
         self.protocol("WM_DELETE_WINDOW", close_second_window)
 
-    def show_icon(self):
+    def show_icon(self) -> None:
         """
         This function shows the icon of the toplevel window.
         """
