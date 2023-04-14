@@ -1,11 +1,15 @@
 """This module deals with the logical part of generating secure passwords."""
 import string
 import secrets
+import tkinter
+
 import clipboard
 from tkinter import TclError
 
+import customtkinter
 
-def adapt_input(requested_password_length) -> int:
+
+def adapt_input(requested_password_length: str) -> int:
     """
     Called by the create_password_labels function
     (upon pressing the done button),
@@ -31,8 +35,8 @@ def adapt_input(requested_password_length) -> int:
             raise ValueError
 
 
-def determine_error(valid_character_set_bool, requested_password_length, no_character_set_error, double_error,
-                    invalid_input_error) -> str:
+def determine_error(valid_character_set_bool: bool, requested_password_length: str, no_character_set_error: str,
+                    double_error: str, invalid_input_error: str) -> str:
     """
     Called by create_password_labels,
     (upon pressing the done button)
@@ -43,7 +47,7 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
 
     Parameters
     ----------
-    valid_character_set_bool: boolean
+    valid_character_set_bool: bool
         Whether at least one character set has been chosen, as determined by validate_character_sets.
     requested_password_length: str
         The input_box content.
@@ -68,7 +72,8 @@ def determine_error(valid_character_set_bool, requested_password_length, no_char
             return double_error
 
 
-def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var) -> bool:
+def validate_character_sets(lowercase_letters_var: tkinter.IntVar, uppercase_letters_var: tkinter.IntVar,
+                            digits_var: tkinter.IntVar, punctuation_var: tkinter.IntVar) -> bool:
     """
     Called by the create_password_labels function
     (upon pressing the done button),
@@ -77,13 +82,13 @@ def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits
 
     Parameters
     ----------
-    lowercase_letters_var: tkinter.IntVar()
+    lowercase_letters_var: tkinter.IntVar
         The variable of the lowercase letters checkbox.
-    uppercase_letters_var: tkinter.IntVar()
+    uppercase_letters_var: tkinter.IntVar
         The variable of the uppercase letters checkbox.
-    digits_var: tkinter.IntVar()
+    digits_var: tkinter.IntVar
         The variable of the digits checkbox.
-    punctuation_var: tkinter.IntVar()
+    punctuation_var: tkinter.IntVar
         The variable of the punctuation checkbox.
     """
     if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 \
@@ -93,8 +98,9 @@ def validate_character_sets(lowercase_letters_var, uppercase_letters_var, digits
         return True
 
 
-def generate_password(requested_password_length, lowercase_letters_var, uppercase_letters_var, digits_var,
-                      punctuation_var) -> str:
+def generate_password(requested_password_length: int, lowercase_letters_var: tkinter.IntVar(),
+                      uppercase_letters_var: tkinter.IntVar(), digits_var: tkinter.IntVar(),
+                      punctuation_var: tkinter.IntVar()) -> str:
     """
     Called by the validate_input function,
     this function returns a password based on the user's requested length and on the selected character sets.
@@ -130,11 +136,18 @@ def generate_password(requested_password_length, lowercase_letters_var, uppercas
             return password
 
 
-def copy_selected_text(input_box, labels) -> None:
+def copy_selected_text(input_box: customtkinter.CTkEntry, labels: list) -> None:
     """
     Called upon pressing the copy button,
     this function copies the selected text,
     and focuses the keyboard on the input_box to deselect the text.
+
+    Parameters
+    ----------
+    input_box: customtkinter.CTkEntry
+        The entry box.
+    labels: list
+        The list of password labels.
     """
     try:
         for label in labels:
@@ -147,7 +160,7 @@ def copy_selected_text(input_box, labels) -> None:
         pass
 
 
-def copy_password(index, passwords) -> None:
+def copy_password(index: int, passwords: list) -> None:
     """
     Called when the user clicks on one of the 4 copy button,
     this function adds to the clipboard the needed password
