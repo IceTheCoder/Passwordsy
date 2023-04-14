@@ -98,9 +98,9 @@ def validate_character_sets(lowercase_letters_var: tkinter.IntVar, uppercase_let
         return True
 
 
-def generate_password(requested_password_length: int, lowercase_letters_var: tkinter.IntVar(),
-                      uppercase_letters_var: tkinter.IntVar(), digits_var: tkinter.IntVar(),
-                      punctuation_var: tkinter.IntVar()) -> str:
+def generate_password(requested_password_length: int, lowercase_letters_var: tkinter.IntVar,
+                      uppercase_letters_var: tkinter.IntVar, digits_var: tkinter.IntVar,
+                      punctuation_var: tkinter.IntVar) -> str:
     """
     Called by the validate_input function,
     this function returns a password based on the user's requested length and on the selected character sets.
