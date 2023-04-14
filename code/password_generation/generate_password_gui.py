@@ -2,6 +2,7 @@
 Called upon app startup,
 this module prepares the GUI for password generation
 """
+import tkinter
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.font import Font
@@ -25,7 +26,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
     (length and character sets),
     and serves as a hub for all other password generation functions.
     """
-    def __init__(self, master, **kwargs):
+
+    def __init__(self, master: customtkinter.CTkFrame, **kwargs) -> None:
         super().__init__(master, **kwargs)
         self.gui_font_name = 'Roboto'
         self.password_font_name = 'Consolas'
@@ -57,21 +59,21 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.passwords = []
 
-        def clear_text_label(textbox):
+        def clear_text_label(textbox: customtkinter.CTkTextbox) -> None:
             """
             Called when the user clicks one of the hide buttons,
             this function deletes all content of the specific label.
 
             Parameters
             ----------
-            textbox: CTkTextbox
+            textbox: customtkinter.CTkTextbox
                 The text label to be cleared.
             """
             textbox.configure(state='normal')
             textbox.delete('1.0', 'end')
             textbox.configure(state='disabled')
 
-        def show_password(indicator, btn) -> None:
+        def show_password(indicator: int, btn: customtkinter.CTkButton) -> None:
             """
             Called when the user clicks one of the 4 show buttons,
             this function displays the specific password through the show_text function,
@@ -81,7 +83,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             ----------
             indicator: int
                 The number of the button that was clicked.
-            btn: CTkButton
+            btn: customtkinter.CTkButton
                 The button that was clicked.
             """
             # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
@@ -101,7 +103,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
                 self.password_labels[indicator].bind('<Button-3>', show_copy_menu)
 
-        def hide_password(indicator, btn) -> None:
+        def hide_password(indicator: int, btn: customtkinter.CTkButton) -> None:
             """
             Called when the user clicks one of the 4 hide buttons,
             this function clears the specific password_label through the clear_text_label function,
@@ -128,7 +130,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
                 self.password_labels[indicator].unbind('<Button-3>')
 
-        def run_function_based_on_slider_value(value) -> None:
+        def run_function_based_on_slider_value(value: float) -> None:
             """
             Called when the user moves the slider,
             this function checks what function to run based on the slider's value:
@@ -355,7 +357,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             checkbox.grid(column=5, row=4 + self.checkboxes.index(checkbox), pady=0, sticky='w')
             checkbox.select()
 
-        def show_copy_menu(event) -> None:
+        def show_copy_menu(event: tkinter.Event) -> None:
             """
             Called when the user releases a mouse button on a password label,
             this function uses the Tkinter module to display a contextual menu containing a 'copy' button
@@ -364,7 +366,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             Parameters
             ----------
-            event: tkinter.event
+            event: tkinter.Event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
             """
             # https://stackoverflow.com/questions/69425865/tkinter-event-x-y-mouse-position-wrong-value-only-when-mouse-movement-up
@@ -477,9 +479,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         # https://youtu.be/KRuUtNxOb_k
         self.copy_menu = tk.Menu(self, tearoff=False)
         self.copy_menu.add_command(label='Copy', command=lambda: logic.copy_selected_text(self.input_box,
-                                                                                     self.password_labels))
+                                                                                          self.password_labels))
 
-        def show_text(textbox, message) -> None:
+        def show_text(textbox: customtkinter.CTkTextbox, message: str) -> None:
             """
             Called by the create_password_labels function,
             this function updates the contents of the password_labels,
@@ -488,7 +490,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
             Parameters
             ----------
-            textbox: CTkTextbox
+            textbox: customtkinter.CTkTextbox
                 Each password label one by one if passwords are generated,
                 or the first password label if an error is generated.
             message: str
@@ -500,7 +502,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             # https://stackoverflow.com/questions/3842155/is-there-a-way-to-make-the-tkinter-text-widget-read-only
             textbox.configure(state='disabled')
 
-    def open_other_methods(self):
+    def open_other_methods(self) -> None:
         """
         Called when the user clicks on the 'try other methods' button,
         this function creates a Toplevel window containing other methods of password generation.
