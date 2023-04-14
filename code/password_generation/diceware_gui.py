@@ -13,7 +13,6 @@ import customtkinter
 
 import password_generation.diceware_logic as logic
 
-global number_of_dicerolls
 global clear_btn_image
 global checkboxes_text
 global widget_text_dict
@@ -72,8 +71,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         self.output_widgets = []
         self.text_widgets = []
 
-        global number_of_dicerolls
-        number_of_dicerolls = 0
+        self.number_of_dicerolls = 0
 
         self.roll_dice_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
                                                         border_color=self.button_border_colour, text='ROLL DICE',
@@ -109,19 +107,17 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             global widget_text_dict
             widget_text_dict = {}
 
-            global number_of_dicerolls
-
             for widget in self.output_widgets:
                 widget.destroy()
 
             self.output_widgets = []
-            number_of_dicerolls = 0
-
             global checkboxes_text
             checkboxes_text = {}
 
             self.password_state = 'shown'
             self.hide_show_button.configure(text=self.shown_passwords_text, command=hide_passwords)
+
+            self.number_of_dicerolls = 0
 
         self.clear_button = customtkinter.CTkButton(self, border_width=self.button_border_width,
                                                     border_color=self.button_border_colour, text='CLEAR',
@@ -155,19 +151,18 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             pair: dict
                 Contains the pairs of dice roll numbers and related words according to the dice ware wordlist.
             """
-            global number_of_dicerolls
             global checkboxes_text
 
             text_height = 1
             text_padx = 10
 
-            if number_of_dicerolls < 35:
-                column_to_be_placed_in = (number_of_dicerolls % 5) * 2
-                number_of_dicerolls += 1
+            if self.number_of_dicerolls < 35:
+                column_to_be_placed_in = (self.number_of_dicerolls % 5) * 2
+                self.number_of_dicerolls += 1
                 (diceroll, word), = pair.items()
 
                 self.diceroll_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=text_height)
-                self.diceroll_widget.grid(row=2 + 2 * ((number_of_dicerolls - 1) // 5),
+                self.diceroll_widget.grid(row=2 + 2 * ((self.number_of_dicerolls - 1) // 5),
                                           column=column_to_be_placed_in,
                                           pady=(5, 0), padx=text_padx)
                 insert_text(self.diceroll_widget, str(diceroll))
@@ -175,7 +170,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.text_widgets.append(self.diceroll_widget)
 
                 self.word_widget = customtkinter.CTkTextbox(self, font=self.word_font, height=text_height)
-                self.word_widget.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5),
+                self.word_widget.grid(row=3 + 2 * ((self.number_of_dicerolls - 1) // 5),
                                       column=column_to_be_placed_in,
                                       pady=(0, 5), padx=text_padx)
                 insert_text(self.word_widget, word)
@@ -187,7 +182,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                           checkbox_width=20, width=0,
                                                           checkbox_height=20, fg_color='gray',
                                                           hover_color=('grey', 'white'))
-                self.checkbox.grid(row=3 + 2 * ((number_of_dicerolls - 1) // 5), column=column_to_be_placed_in + 1,
+                self.checkbox.grid(row=3 + 2 * ((self.number_of_dicerolls - 1) // 5), column=column_to_be_placed_in + 1,
                                    sticky='w')
                 self.output_widgets.append(self.checkbox)
                 checkboxes_text[self.word_widget.get('1.0', 'end')] = self.checkbox
