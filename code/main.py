@@ -13,18 +13,34 @@ from password_strength import password_strength_gui
 
 class TabView(customtkinter.CTkTabview, ABC):
     """
-    This class creates the tabview of the app.
+    A CustomTkinter tab view with two tabs: 'Generate password' and 'Password strength'.
+
+    Inherits from customtkinter.CTkTabview to provide functionality for creating and managing tabs.
+
+    Attributes:
+        tab_names: list
+            A list of strings containing the names of the two tabs.
+
+    Methods:
+        __init__(self, master, **kwargs): Constructor for the TabView class.
+            Initializes the two tabs, sets their sizes, and adds the widgets to them.
+
+    Usage:
+        Instantiate the TabView class passing the master widget as an argument to create a CustomTkinter
+        tab view with two tabs: "Generate password" and "Password strength".
     """
+    tab_names = ["Generate password", "Password strength"]
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.configure(width=1200, height=485)
 
-        # Create the 2 tabs
-        self.add('Generate password')
-        self.add('Password strength')
+        # Create the tabs using the configured names
+        for tab_name in self.tab_names:
+            self.add(tab_name)
 
         self.generate_password_frame = generate_password_gui.PasswordGenerationFrame(
-            master=self.tab('Generate password'))
+            master=self.tab(self.tab_names[0]))
         self.generate_password_frame.pack(fill='both', expand=1)
         self.generate_password_frame.configure(fg_color=('#DBDBDB', '#2B2B2B'))
 
@@ -44,7 +60,7 @@ class TabView(customtkinter.CTkTabview, ABC):
         self.generate_password_frame.grid_propagate(False)
 
         # Create the password strength frame
-        self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab('Password strength'))
+        self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab(self.TAB_NAMES[1]))
         self.password_strength_frame.pack(fill='both', expand=1)
         self.password_strength_frame.configure(fg_color=('#DBDBDB', '#2B2B2B'))
 
