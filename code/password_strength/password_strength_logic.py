@@ -51,14 +51,14 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
         """
         Called by the check_password_strength function
         (as the user types),
-        this function checks if the inputted password is in the 100,000 most used passwords (modified_common_password),
+        this function checks if the inputted password is in the 100,000 most used passwords (common_passwords_read),
         and returns an appropriate message.
         It does this by counting the number of times an inputted_password is found in the SecLists list.
         """
-        if modified_common_passwords.count(inputted_password) > 0:
+        if common_passwords_read.count(inputted_password) > 0:
             return 'Common: Your password is common.'
 
-        elif modified_common_passwords.count(inputted_password) == 0:
+        elif common_passwords_read.count(inputted_password) == 0:
             return 'Not common: Your password isn\'t common.'
 
     def check_password_length() -> str:
