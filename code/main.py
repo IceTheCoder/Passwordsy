@@ -10,8 +10,6 @@ import customtkinter
 from password_generation import generate_password_gui
 from password_strength import password_strength_gui
 
-global root
-
 
 class TabView(customtkinter.CTkTabview, ABC):
     """
@@ -58,12 +56,11 @@ class TabView(customtkinter.CTkTabview, ABC):
             i += 1
 
 
-def resize(event):
+def resize(root_window, event=None):
     """
     This function aims to reduce resizing lag.
     """
-    global root
-    root.update_idletasks()
+    root_window.update_idletasks()
 
 
 class App(customtkinter.CTk):
@@ -85,7 +82,7 @@ class App(customtkinter.CTk):
         self.tab_view = TabView(master=self)
         self.tab_view.grid(column=0, row=0)
 
-        self.bind('<Configure>', resize)
+        self.bind('<Configure>', lambda a: resize(self))
 
 
 def main():
