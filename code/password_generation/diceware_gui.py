@@ -13,7 +13,6 @@ import customtkinter
 
 import password_generation.diceware_logic as logic
 
-global clear_btn_image
 global checkboxes_text
 global widget_text_dict
 widget_text_dict = {}
@@ -48,8 +47,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
 
         self.password_state = 'shown'
 
-        global checkboxes_text
-        checkboxes_text = {}
+        self.checkboxes_text = {}
 
         # Give a weight to rows 0 to 15
         i = 0
@@ -111,8 +109,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 widget.destroy()
 
             self.output_widgets = []
-            global checkboxes_text
-            checkboxes_text = {}
+            self.checkboxes_text
+            self.checkboxes_text = {}
 
             self.password_state = 'shown'
             self.hide_show_button.configure(text=self.shown_passwords_text, command=hide_passwords)
@@ -151,8 +149,6 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             pair: dict
                 Contains the pairs of dice roll numbers and related words according to the dice ware wordlist.
             """
-            global checkboxes_text
-
             text_height = 1
             text_padx = 10
 
@@ -185,7 +181,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                 self.checkbox.grid(row=3 + 2 * ((self.number_of_dicerolls - 1) // 5), column=column_to_be_placed_in + 1,
                                    sticky='w')
                 self.output_widgets.append(self.checkbox)
-                checkboxes_text[self.word_widget.get('1.0', 'end')] = self.checkbox
+                self.checkboxes_text[self.word_widget.get('1.0', 'end')] = self.checkbox
                 if self.password_state == 'hidden':
                     hide_passwords()
             else:
@@ -199,7 +195,7 @@ class DicewareToplevel(customtkinter.CTkToplevel):
                                                    border_color=self.button_border_colour, text='COPY SELECTIONS',
                                                    font=self.button_font, fg_color=self.button_fg_color,
                                                    hover_color=self.button_hover_color,
-                                                   command=lambda: logic.copy_selections(checkboxes_text))
+                                                   command=lambda: logic.copy_selections(self.checkboxes_text))
         self.copy_button.grid(row=16, column=0, columnspan=self.button_columnspan, pady=10, sticky='n')
 
         def show_passwords() -> None:
