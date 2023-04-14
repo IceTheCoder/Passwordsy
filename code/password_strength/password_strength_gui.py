@@ -11,9 +11,6 @@ input_password_msg = 'Please input a password.'
 
 copy_button_y_offset = 30
 
-global input_box
-global labels
-
 
 class PasswordStrengthFrame(customtkinter.CTkFrame):
     """
@@ -34,13 +31,6 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
                                                    font=title_font)
         instruction_label.grid(column=0, row=0)
 
-        global input_box
-        input_box = customtkinter.CTkEntry(self, width=250, corner_radius=8)
-        input_box.grid(column=0, row=1)
-        # https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind
-        input_box.bind('<KeyRelease>', display_warnings)
-        input_box.bind('<Button-3>', lambda event: display_paste_button(event, self.paste))
-
         first_label = customtkinter.CTkLabel(master=self, font=warning_font, text=input_password_msg)
 
         second_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
@@ -49,11 +39,17 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
 
         fourth_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
 
-        global labels
-        labels = [first_label, second_label, third_label, fourth_label]
+        self.labels = [first_label, second_label, third_label, fourth_label]
 
-        for label in labels:
-            label.grid(column=0, row=2 + labels.index(label), sticky='n')
+        for label in self.labels:
+            label.grid(column=0, row=2 + self.labels.index(label), sticky='n')
+
+        self.input_box = customtkinter.CTkEntry(self, width=250, corner_radius=8)
+        self.input_box.grid(column=0, row=1)
+        # https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind
+        self.input_box.bind('<KeyRelease>', lambda a: display_warnings(self.input_box, self.labels))
+        self.input_box.bind('<Button-3>', lambda event: display_paste_button(event, self.paste))
+
 
 
 def display_paste_button(event, paste_menu) -> None:
@@ -73,7 +69,7 @@ def display_paste_button(event, paste_menu) -> None:
     paste_menu.tk_popup(event.x_root, event.y_root - copy_button_y_offset)
 
 
-def display_warnings(event) -> None:
+def display_warnings(entry_box, w_labels, event=None) -> None:
     """
     Called as the user types
     (when they release a key),
@@ -83,19 +79,23 @@ def display_warnings(event) -> None:
 
     Parameters
     ----------
-    event:
+    entry_box: tkinter.Entry
+        The input box of the password.
+    w_labels: list
+        Warning labels.
+    event: tkinter.event
         Necessary for initiating the function as the user types.
     """
-    for label in labels:
+    for label in w_labels:
         label.configure(text='')
 
-    warnings = logic.check_password_strength(input_box.get(), input_password_msg)
+    warnings = logic.check_password_strength(entry_box.get(), input_password_msg)
 
     if warnings == input_password_msg:
-        labels[0].configure(text=warnings)
-        labels[0].grid(column=0, row=2, sticky='n')
+        w_labels[0].configure(text=warnings)
+        w_labels[0].grid(column=0, row=2, sticky='n')
     else:
         for index, warning in enumerate(warnings):
-            labels[index].configure(text=warning)
-        for label in labels:
-            label.grid(column=0, row=2 + labels.index(label), sticky='w')
+            w_labels[index].configure(text=warning)
+        for label in w_labels:
+            label.grid(column=0, row=2 + w_labels.index(label), sticky='w')
