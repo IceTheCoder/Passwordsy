@@ -11,7 +11,6 @@ input_password_msg = 'Please input a password.'
 
 copy_button_y_offset = 30
 
-global paste
 global input_box
 global labels
 
@@ -28,9 +27,8 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
         warning_font = customtkinter.CTkFont(family='Roboto', size=24)
 
-        global paste
-        paste = tk.Menu(self, tearoff=False)
-        paste.add_command(label='Paste', command=logic.paste_text)
+        self.paste = tk.Menu(self, tearoff=False)
+        self.paste.add_command(label='Paste', command=logic.paste_text)
 
         instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength',
                                                    font=title_font)
@@ -41,7 +39,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         input_box.grid(column=0, row=1)
         # https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind
         input_box.bind('<KeyRelease>', display_warnings)
-        input_box.bind('<Button-3>', display_paste_button)
+        input_box.bind('<Button-3>', lambda event: display_paste_button(event, self.paste))
 
         first_label = customtkinter.CTkLabel(master=self, font=warning_font, text=input_password_msg)
 
@@ -58,7 +56,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
             label.grid(column=0, row=2 + labels.index(label), sticky='n')
 
 
-def display_paste_button(event) -> None:
+def display_paste_button(event, paste_menu) -> None:
     """
     Called when the user right-clicks on the input_box,
     this function uses the Tkinter module to display a contextual menu
@@ -69,8 +67,10 @@ def display_paste_button(event) -> None:
     ----------
     event: tkinter.event
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+    paste_menu: tkinter.Menu
+        The contextual menu containing the paste button.
     """
-    paste.tk_popup(event.x_root, event.y_root - copy_button_y_offset)
+    paste_menu.tk_popup(event.x_root, event.y_root - copy_button_y_offset)
 
 
 def display_warnings(event) -> None:
