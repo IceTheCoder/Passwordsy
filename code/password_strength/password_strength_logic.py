@@ -6,17 +6,15 @@ import string
 from pynput.keyboard import Key, Controller
 from collections.abc import Iterable
 from dataclasses import dataclass
+from pathlib import Path
 
 keyboard = Controller()
 
 # passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
 # https://www.youtube.com/watch?v=DCaKj3eIrro
-common_passwords_file = open('password_strength\passwords.txt', 'r')
-common_passwords_read = common_passwords_file.readlines()
-modified_common_passwords = []
-
-for line in common_passwords_read:
-    modified_common_passwords.append(line.strip())  # Place each of the 100,000 most commonly used passwords into a list
+passwords_file = Path('password_strength/passwords.txt')
+with passwords_file.open() as f:
+    common_passwords_read = f.read().strip().splitlines()
 
 
 def check_password_strength(inputted_password, input_password_msg) -> list | str:
