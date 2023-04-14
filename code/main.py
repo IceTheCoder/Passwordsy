@@ -60,7 +60,7 @@ class TabView(customtkinter.CTkTabview, ABC):
         self.generate_password_frame.grid_propagate(False)
 
         # Create the password strength frame
-        self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab(self.TAB_NAMES[1]))
+        self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab(self.tab_names[1]))
         self.password_strength_frame.pack(fill='both', expand=1)
         self.password_strength_frame.configure(fg_color=('#DBDBDB', '#2B2B2B'))
 
