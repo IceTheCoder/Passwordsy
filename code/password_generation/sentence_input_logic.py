@@ -8,7 +8,7 @@ import clipboard
 from tkinter import TclError
 
 
-def check_password_strength(inputted_password) -> list | str:
+def check_password_strength(inputted_password: str) -> list | str:
     """
     Called upon pressing the done button,
     this function defines several functions that check
