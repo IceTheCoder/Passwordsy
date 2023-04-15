@@ -26,11 +26,16 @@ def roll_dice() -> dict:
     return final_pairs
 
 
-def copy_selected_text(labels) -> None:
+def copy_selected_text(labels: list) -> None:
     """
     Called upon pressing the copy button,
     this function copies the selected text,
     and focuses the keyboard on the input_box to deselect the text.
+
+    Parameters
+    ----------
+    labels: list
+        The list of labels containing passwords.
     """
     try:
         for label in labels:
@@ -41,9 +46,14 @@ def copy_selected_text(labels) -> None:
         pass
 
 
-def copy_selections(checkboxes_text_boxes) -> None:
+def copy_selections(checkboxes_text_boxes: dict) -> None:
     """
     This function will copy the selected text boxes to the clipboard.
+
+    Parameters
+    ----------
+    checkboxes_text_boxes: dict
+        The dict chaining together each checkbox to each respective password textbox.
     """
     text_to_be_copied = ''
     for key, value in checkboxes_text_boxes.items():

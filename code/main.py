@@ -10,23 +10,37 @@ import customtkinter
 from password_generation import generate_password_gui
 from password_strength import password_strength_gui
 
-global root
-
 
 class TabView(customtkinter.CTkTabview, ABC):
     """
-    This class creates the tabview of the app.
+    A CustomTkinter tab view with two tabs: 'Generate password' and 'Password strength'.
+
+    Inherits from customtkinter.CTkTabview to provide functionality for creating and managing tabs.
+
+    Attributes:
+        tab_names: list
+            A list of strings containing the names of the two tabs.
+
+    Methods:
+        __init__(self, master, **kwargs): Constructor for the TabView class.
+            Initializes the two tabs, sets their sizes, and adds the widgets to them.
+
+    Usage:
+        Instantiate the TabView class passing the master widget as an argument to create a CustomTkinter
+        tab view with two tabs: "Generate password" and "Password strength".
     """
-    def __init__(self, master, **kwargs):
+    tab_names = ["Generate password", "Password strength"]
+
+    def __init__(self, master: customtkinter.CTkTabview, **kwargs):
         super().__init__(master, **kwargs)
         self.configure(width=1200, height=485)
 
-        # Create the 2 tabs
-        self.add('Generate password')
-        self.add('Password strength')
+        # Create the tabs using the configured names
+        for tab_name in self.tab_names:
+            self.add(tab_name)
 
         self.generate_password_frame = generate_password_gui.PasswordGenerationFrame(
-            master=self.tab('Generate password'))
+            master=self.tab(self.tab_names[0]))
         self.generate_password_frame.pack(fill='both', expand=1)
         self.generate_password_frame.configure(fg_color=('#DBDBDB', '#2B2B2B'))
 
@@ -46,7 +60,7 @@ class TabView(customtkinter.CTkTabview, ABC):
         self.generate_password_frame.grid_propagate(False)
 
         # Create the password strength frame
-        self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab('Password strength'))
+        self.password_strength_frame = password_strength_gui.PasswordStrengthFrame(master=self.tab(self.tab_names[1]))
         self.password_strength_frame.pack(fill='both', expand=1)
         self.password_strength_frame.configure(fg_color=('#DBDBDB', '#2B2B2B'))
 
@@ -58,12 +72,18 @@ class TabView(customtkinter.CTkTabview, ABC):
             i += 1
 
 
-def resize(event):
+def resize(root_window: tk.Tk, event: tk.Event = None):
     """
     This function aims to reduce resizing lag.
+
+    Parameters
+    ----------
+    root_window: tk.Tk()
+        The main window of the app.
+    event:
+        Necessary for executing the function when the user resizes.
     """
-    global root
-    root.update_idletasks()
+    root_window.update_idletasks()
 
 
 class App(customtkinter.CTk):
@@ -85,7 +105,7 @@ class App(customtkinter.CTk):
         self.tab_view = TabView(master=self)
         self.tab_view.grid(column=0, row=0)
 
-        self.bind('<Configure>', resize)
+        self.bind('<Configure>', lambda a: resize(self))
 
 
 def main():
@@ -95,7 +115,6 @@ def main():
     two frames the user can switch between,
     and a basic configuration.
     """
-    global root
     root = App()
     root.mainloop()
 

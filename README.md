@@ -4,18 +4,18 @@ A program that can generate a secure password of up to 100 characters, extract s
 Blog: https://icethedev2.github.io/
 
 ## Getting started
-To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: clone it through Git, open it with GitHub Desktop, or download it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
+To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: cloning it through Git, opening it with GitHub Desktop, or downloading it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
 
 ### Prerequisites
 - Git from git-scm.com
-- Python from python.org (make sure to tick 'Add Python to PATH')
+- Python from python.org (make sure to tick 'Add Python to PATH' during the installation process)
 - The following modules: PIL, Clipboard, Pynput, CustomTkinter. They are found in the requirements.txt file.
 
 ### Installation
 - Open Git Bash
-- Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the 'passwordsy' folder on Desktop, type 'cd Desktop/passwordsy/' in the terminal.
+- Use cd (change directory) to move to the location you want the repository to be cloned in. For example, if you want the repository to be cloned in the 'projects' folder on Desktop, type 'cd Desktop/projects/' in the terminal.
 - Once you are in the desired folder, type 'git clone https://github.com/IceTheDev2/Passwordsy.git'.
-- Type 'cd Passwordsy' and then 'pip install -r requirements.txt' to move into the main directory of the repository and to install all the required dependencies. 
+- Type 'cd Passwordsy' and then 'pip install -r requirements.txt' to move into the main directory of the repository and to install all the required dependencies.
 - Type 'cd code' to the navigate to the file containing main.py.
 - Type 'python main.py' to run the program
 
@@ -54,6 +54,8 @@ E-mail: icethedev2@gmail.com
 * [u/creedxender](https://www.reddit.com/user/creedxender/) for suggesting a 'Secret string of letters, numbers, and/or symbols'.
 * [u/infra_d3ad](https://www.reddit.com/user/infra_d3ad/) for suggesting using diceware.
 * [u/modernknight87](https://www.reddit.com/user/modernknight87/) for suggesting 'The user input a sentence of their own choosing, takes the first letter of every word, and any numbers or symbols, and combines those as the produced password'.
+* [u/ekchew](https://www.reddit.com/user/ekchew/) for taking the time to rework the check_password_complexity function.
+* [u/Diapolo10](https://www.reddit.com/user/Diapolo10/) for taking the time to analyze large parts of my code and provide me with great suggestions on improving readability and preventing errors.
 * The [codemy.com Youtube channel](https://www.youtube.com/@Codemycom) for their great Tkinter tutorials, such as: [this one on keyboard event binding](https://youtu.be/GLnNPjL1U2g), [this one on cursor positions](https://youtu.be/Z4zePg2M5H8), [this one on Tkinter menus](https://youtu.be/KRuUtNxOb_k), [this one on message boxes](https://youtu.be/S3AaSwpb5GE).
 * The [SecLists repository](https://github.com/danielmiessler/SecLists) of danielmiessler, used here for the 100,000 most common passwords.
 * The [Diceware-Password-Generator repository](https://github.com/sameera-madushan/Diceware-Password-Generator) of sameera-madushan, used here to generate for a unique password-generation mode.
