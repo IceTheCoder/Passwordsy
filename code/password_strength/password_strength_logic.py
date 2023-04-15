@@ -80,21 +80,6 @@ def check_password_strength(inputted_password: str, input_password_msg: str) -> 
         elif 14 <= len(inputted_password):
             return f'Strong length: Your password has {str(len(inputted_password))} characters.'
 
-    @dataclass
-    class SecurityFeature:
-        """
-        A data class grouping together all attributes having to do with a
-        security feature.
-
-        Attributes:
-            name: the name of the feature for output purposes
-            chars: a set of characters matching the feature
-            count: the number of matches in user_input (initially 0)
-        """
-        name: str
-        chars: str
-        count: int = 0
-
     def check_password_complexity() -> str:
         """
         Called by the check_password_strength function
@@ -103,19 +88,35 @@ def check_password_strength(inputted_password: str, input_password_msg: str) -> 
         lowercase letters, uppercase letters, digits, and punctuation,
         and returns an adequate warning about them.
         """
-        security_features = [
-            SecurityFeature('lowercase letters', string.ascii_lowercase),
-            SecurityFeature('uppercase letters', string.ascii_uppercase),
-            SecurityFeature('digits', string.digits),
-            SecurityFeature('punctuation', string.punctuation)
-        ]
-        for c in user_input:
-            for sf in security_features:
-                if c in sf.chars:
-                    sf.count += 1
-        output = as_text_list(
-            sf.name for sf in security_features if sf.count == 0
-        )
+        missing_security_features_list = []
+
+        has_lowercase_letters = False
+        has_uppercase_letters = False
+        has_digits = False
+        has_punctuation = False
+
+        # User input is a list of each character of the inputted password
+        for character in user_input:
+            if character in string.ascii_lowercase:
+                has_lowercase_letters = True
+            elif character in string.ascii_uppercase:
+                has_uppercase_letters = True
+            elif character in string.digits:
+                has_digits = True
+            elif character in string.punctuation:
+                has_punctuation = True
+
+        if not has_lowercase_letters:
+            missing_security_features_list.append('lowercase letters')
+        if not has_uppercase_letters:
+            missing_security_features_list.append('uppercase letters')
+        if not has_digits:
+            missing_security_features_list.append('digits')
+        if not has_punctuation:
+            missing_security_features_list.append('punctuation')
+
+        output = as_text_list(missing_security_features_list)
+
         if output:
             return f'Not complex: Your password is missing {output}.'
         else:
