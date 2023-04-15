@@ -67,11 +67,9 @@ def check_password_strength(inputted_password: str, input_password_msg: str) -> 
         this function categorises the inputted password as very weak, weak, good, or strong depending on its length,
         and returns a suitable message.
         """
-        if len(inputted_password) == 1:
-            return f'Very weak length: Your password has only {str(len(inputted_password))} character.'
-
-        elif 0 < len(inputted_password) <= 7:
-            return f'Very weak length: Your password has only {str(len(inputted_password))} characters.'
+        if 0 < len(inputted_password) <= 7:
+            return f"Very weak length: Your password has only {len(inputted_password)} character" \
+                   f"{'s' if len(inputted_password) != 1 else ''}."
 
         elif 8 <= len(inputted_password) <= 10:
             return f'Weak length: Your password has only {str(len(inputted_password))} characters.'
