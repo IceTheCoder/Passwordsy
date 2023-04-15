@@ -101,11 +101,8 @@ def validate_character_sets(lowercase_letters_var: tkinter.IntVar, uppercase_let
     punctuation_var: tkinter.IntVar
         The variable of the punctuation checkbox.
     """
-    if lowercase_letters_var.get() == 0 and uppercase_letters_var.get() == 0 and digits_var.get() == 0 \
-            and punctuation_var.get() == 0:
-        return False
-    else:
-        return True
+    # https://www.reddit.com/user/Diapolo10/
+    return any(var.get() for var in (lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var))
 
 
 def generate_password(requested_password_length: int, lowercase_letters_var: tkinter.IntVar,
