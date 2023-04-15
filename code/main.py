@@ -72,7 +72,7 @@ class TabView(customtkinter.CTkTabview, ABC):
             i += 1
 
 
-def resize(root_window: tk.Tk(), event: tk.Event = None):
+def resize(root_window: tk.Tk, event: tk.Event = None):
     """
     This function aims to reduce resizing lag.
 
