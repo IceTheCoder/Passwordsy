@@ -79,7 +79,7 @@ class CreateToolTip:
         if identification:
             self.widget.after_cancel(identification)
 
-    def showtip(self, event: tkinter.Event = None) -> nONE:
+    def showtip(self, event: tkinter.Event = None) -> None:
         """
         This function creates a toplevel at the user's cursor's coordinates,
         creates a label within it,

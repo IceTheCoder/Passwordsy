@@ -16,6 +16,8 @@ def check_password_strength(inputted_password: str) -> list | str:
     and returns appropriate messages.
     It then calls these functions and returns a list of messages indicating the results of each check.
 
+    Returns an empty list when the inputted_password in None.
+
     Parameters
     ----------
     inputted_password: str
@@ -127,10 +129,15 @@ def check_password_strength(inputted_password: str) -> list | str:
         return [check_password_length(), check_password_complexity()]
 
 
-def produce_password(char_dict) -> list:
+def produce_password(char_dict: dict) -> list:
     """
     This function gets the characters that are needed to be highlighted:
     starting letters of every word and any digits or punctuation
+
+    Parameters
+    ----------
+    char_dict: dict
+        The dictionary chaining each character to its index.
     """
     letters_to_be_coloured = {}
     password = ''
@@ -150,11 +157,16 @@ def produce_password(char_dict) -> list:
     return [letters_to_be_coloured, password]
 
 
-def copy_selected_text(labels) -> None:
+def copy_selected_text(labels: list) -> None:
     """
     Called upon pressing the copy button,
     this function copies the selected text,
     and focuses the keyboard on the input_box to deselect the text.
+
+    Parameters
+    ----------
+    labels: list
+        The list of labels that contain text that could be copied.
     """
     try:
         for label in labels:

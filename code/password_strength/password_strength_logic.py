@@ -17,7 +17,7 @@ with passwords_file.open() as f:
     common_passwords_read = f.read().strip().splitlines()
 
 
-def check_password_strength(inputted_password, input_password_msg) -> list | str:
+def check_password_strength(inputted_password: str, input_password_msg: str) -> list | str:
     """
     Called upon pressing the done button,
     this function defines several functions that check
@@ -35,6 +35,7 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
     user_input = []
     user_input[:0] = inputted_password  # Adds each character of the input to a list.
 
+    # https://www.reddit.com/user/ekchew/
     def as_text_list(iterable_input: Iterable) -> str:
         """
         Given ["foo", "bar", "baz"], returns "foo, bar, and baz".
@@ -57,9 +58,7 @@ def check_password_strength(inputted_password, input_password_msg) -> list | str
         """
         if common_passwords_read.count(inputted_password) > 0:
             return 'Common: Your password is common.'
-
-        elif common_passwords_read.count(inputted_password) == 0:
-            return 'Not common: Your password isn\'t common.'
+        return 'Not common: Your password isn\'t common.'
 
     def check_password_length() -> str:
         """

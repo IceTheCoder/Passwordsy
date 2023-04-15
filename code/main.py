@@ -31,7 +31,7 @@ class TabView(customtkinter.CTkTabview, ABC):
     """
     tab_names = ["Generate password", "Password strength"]
 
-    def __init__(self, master, **kwargs):
+    def __init__(self, master: customtkinter.CTkTabview, **kwargs):
         super().__init__(master, **kwargs)
         self.configure(width=1200, height=485)
 
@@ -72,9 +72,16 @@ class TabView(customtkinter.CTkTabview, ABC):
             i += 1
 
 
-def resize(root_window, event=None):
+def resize(root_window: tk.Tk(), event: tk.Event = None):
     """
     This function aims to reduce resizing lag.
+
+    Parameters
+    ----------
+    root_window: tk.Tk()
+        The main window of the app.
+    event:
+        Necessary for executing the function when the user resizes.
     """
     root_window.update_idletasks()
 
@@ -108,7 +115,6 @@ def main():
     two frames the user can switch between,
     and a basic configuration.
     """
-    global root
     root = App()
     root.mainloop()
 

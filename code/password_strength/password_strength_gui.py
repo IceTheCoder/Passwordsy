@@ -1,6 +1,7 @@
 """
 This module prepares the password strength for the user upon app startup.
 """
+import tkinter
 import tkinter as tk
 from tkinter.font import Font
 import customtkinter
@@ -19,7 +20,8 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
     an entry box for password input, and four warning labels to display the strength of the password.
     It also creates a menu for pasting text, which is triggered by a right-click on the input box.
     """
-    def __init__(self, master, **kwargs):
+
+    def __init__(self, master: customtkinter.CTkFrame, **kwargs) -> None:
         super().__init__(master, **kwargs)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
         warning_font = customtkinter.CTkFont(family='Roboto', size=24)
@@ -51,8 +53,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         self.input_box.bind('<Button-3>', lambda event: display_paste_button(event, self.paste))
 
 
-
-def display_paste_button(event, paste_menu) -> None:
+def display_paste_button(event: tkinter.Event, paste_menu: tkinter.Menu) -> None:
     """
     Called when the user right-clicks on the input_box,
     this function uses the Tkinter module to display a contextual menu
@@ -61,7 +62,7 @@ def display_paste_button(event, paste_menu) -> None:
 
     Parameters
     ----------
-    event: tkinter.event
+    event: tkinter.Event
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     paste_menu: tkinter.Menu
         The contextual menu containing the paste button.
@@ -69,7 +70,7 @@ def display_paste_button(event, paste_menu) -> None:
     paste_menu.tk_popup(event.x_root, event.y_root - copy_button_y_offset)
 
 
-def display_warnings(entry_box, w_labels, event=None) -> None:
+def display_warnings(entry_box: customtkinter.CTkEntry, w_labels: list, event: tkinter.Event = None) -> None:
     """
     Called as the user types
     (when they release a key),
@@ -79,7 +80,7 @@ def display_warnings(entry_box, w_labels, event=None) -> None:
 
     Parameters
     ----------
-    entry_box: tkinter.Entry
+    entry_box: customtkinter.CTkEntry
         The input box of the password.
     w_labels: list
         Warning labels.
