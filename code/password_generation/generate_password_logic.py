@@ -24,10 +24,24 @@ def adapt_input(requested_password_length: str, min_length: int = 4, max_length:
     ----------
     requested_password_length: str
         The input of the user.
+    min_length: int
+        Minimum length of a password; set to 4, so it can contain all 4 character sets without errors.
+    max_length: int
+        Maximum length of a password; set to 100.
+
+    Raises
+    ------
+    ValueError
+        If no input has been given.
+
+    Returns
+    -------
+    int
+        The adapted password length as an integer.
     """
     if not requested_password_length:  # https://www.reddit.com/user/Diapolo10/
         raise ValueError
-    generated_password = max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
+    generated_password = max(min(abs(int(round(float(requested_password_length), 0))), max_length), min_length)
     return generated_password
 
 
