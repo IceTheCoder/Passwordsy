@@ -9,7 +9,7 @@ from tkinter import TclError
 import customtkinter
 
 
-def adapt_input(requested_password_length: str) -> int:
+def adapt_input(requested_password_length: str, min_length: int = 4, max_length: int = 100) -> int:
     """
     Called by the create_password_labels function
     (upon pressing the done button),
@@ -25,14 +25,10 @@ def adapt_input(requested_password_length: str) -> int:
     requested_password_length: str
         The input of the user.
     """
-    if requested_password_length == '':
+    if not requested_password_length:  # https://www.reddit.com/user/Diapolo10/
         raise ValueError
-    else:
-        try:
-            generated_password = max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
-            return generated_password
-        except ValueError:
-            raise ValueError
+    generated_password = max(min(abs(int(round(float(requested_password_length), 0))), 100), 4)
+    return generated_password
 
 
 def determine_error(valid_character_set_bool: bool, requested_password_length: str, no_character_set_error: str,
