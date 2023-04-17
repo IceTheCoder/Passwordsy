@@ -382,7 +382,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 if pass_label != event.widget:
                     pass_label.tag_unbind('copy_tag', '<Button-3>')
 
-        def create_password_labels() -> None:
+        def create_password_labels(event) -> None:
             """
             Called upon clicking the done button or pressing the ENTER key,
             this function calls determine_error and validate_character_sets of generate_password_logic,
@@ -393,6 +393,11 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             If an error has not occurred,
             the function calls generate_password of generate_password_logic.py to get 4 passwords,
             and calls the show_text function to display them to the user.
+
+            Parameters
+            ----------
+            event: tk.Event
+                Necessary for running the function when the user presses the RETURN key.
             """
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
