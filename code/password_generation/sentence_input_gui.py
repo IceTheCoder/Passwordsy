@@ -7,6 +7,7 @@ import customtkinter
 import string
 
 import password_generation.sentence_input_logic as logic
+import diacritics_fix as fix
 
 
 class SentenceInputToplevel(customtkinter.CTkToplevel):
