@@ -148,6 +148,9 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
 
         self.input_box.bind('<Key>', highlight_sentence)
         self.input_box.bind('<KeyRelease>', highlight_sentence)
+        self.input_box.bind('<KeyPress>', fix.on_key_press)
+        # https://stackoverflow.com/questions/75846986/certain-characters-like-%c8%9b-and-%c8%99-become-question-marks-as-i-type-them-in-a-tkin/76015278#76015278
+
         self.withdraw()
         self.after(200, self.show_icon)
 
