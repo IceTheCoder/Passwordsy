@@ -3,6 +3,9 @@ A program that can generate a secure password of up to 100 characters, extract s
 
 Blog: https://icethedev2.github.io/
 
+## Known limitations
+- Avoid using a keyboard layout that types diacritics through a shortcut (such as the Romanian Programmers, where ș is ALT + S, and ț is ALT + T). The diacritic might turn into its non-diacritic counterpart (Ț into T) or into a question mark. I recommend using a keyboard layout that types diacritics directly (such as the Romanian Standard, where ; types ș and ' types ț).
+
 ## Getting started
 To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: cloning it through Git, opening it with GitHub Desktop, or downloading it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
 
@@ -31,7 +34,7 @@ To use Passwordsy, you must get the program itself on your machine. To do this, 
 
 ### Generate a memorable password from a given sentence and provide tips to improve it
 <a data-flickr-embed="true" href="https://www.flickr.com/photos/197764307@N08/52775549023/in/dateposted-public/" title="49"><img src="https://live.staticflickr.com/65535/52775549023_9458605963_o.png" alt="49"/></a>
-  
+
 ## Contributing
 I'd love to hear your suggestions on how I can improve my first project!  
 You can fork the project to play around with it and create a pull request to submit your suggestions. You can also open an issue to tell me about any problems my code might have.
