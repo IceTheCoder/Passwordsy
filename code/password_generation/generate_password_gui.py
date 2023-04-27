@@ -468,6 +468,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
         self.input_box.bind('<Return>', create_password_labels)  # https://www.youtube.com/watch?v=GLnNPjL1U2g
+        self.input_box.bind('KeyPress', )
 
         self.input_box.grid(column=0, row=2, columnspan=self.title_columnspan)
 
