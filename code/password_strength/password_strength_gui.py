@@ -7,6 +7,7 @@ from tkinter.font import Font
 import customtkinter
 
 from password_strength import password_strength_logic as logic
+import diacritics_fix as fix
 
 input_password_msg = 'Please input a password.'
 
