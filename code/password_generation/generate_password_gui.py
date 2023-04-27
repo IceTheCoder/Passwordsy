@@ -12,6 +12,7 @@ from tkinter import TclError
 
 from password_generation import generate_password_logic as logic
 from password_generation import other_methods_gui as other
+import diacritics_fix as fix
 
 invalid_input_error = 'An error occurred. Try again with a whole number between 4 and 100.'
 no_character_set_error = 'An error occurred. Try again with at least 1 character set.'
@@ -468,6 +469,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
 
         self.input_box = customtkinter.CTkEntry(self, width=50, corner_radius=8)
         self.input_box.bind('<Return>', create_password_labels)  # https://www.youtube.com/watch?v=GLnNPjL1U2g
+        self.input_box.bind('<KeyPress>', fix.on_key_press)
+        # https://stackoverflow.com/questions/75846986/certain-characters-like-%c8%9b-and-%c8%99-become-question-marks-as-i-type-them-in-a-tkin/76015278#76015278
 
         self.input_box.grid(column=0, row=2, columnspan=self.title_columnspan)
 
