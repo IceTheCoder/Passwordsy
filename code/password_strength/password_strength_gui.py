@@ -51,6 +51,8 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         # https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind
         self.input_box.bind('<KeyRelease>', lambda a: display_warnings(self.input_box, self.labels))
         self.input_box.bind('<Button-3>', lambda event: display_paste_button(event, self.paste))
+        self.input_box.bind('<KeyPress>', fix.on_key_press)
+        # https://stackoverflow.com/questions/75846986/certain-characters-like-%c8%9b-and-%c8%99-become-question-marks-as-i-type-them-in-a-tkin/76015278#76015278
 
 
 def display_paste_button(event: tkinter.Event, paste_menu: tkinter.Menu) -> None:
