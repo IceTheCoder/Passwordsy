@@ -1,7 +1,7 @@
 """
 ..
 """
-REMEDIED_CHARS = {ord(c): c for c in 'ȘșȚț'}
+REMEDIED_CHARS = {ord(c): c for c in 'ĂăÂâÎîȘșTtȚțEeÉéÈèÊêËëIiÍíÌìÎîOoÓóÒòÔôÖöŐőUuÚúÙùÛûÜüŰűNnÑñÇçSsŚśŠšZzŽž'}
 
 
 def on_key_press(e):
