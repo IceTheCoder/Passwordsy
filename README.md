@@ -40,7 +40,7 @@ I'd love to hear your suggestions on how I can improve my first project!
 You can fork the project to play around with it and create a pull request to submit your suggestions. You can also open an issue to tell me about any problems my code might have.
 
 ## License
-This project is licensed under a modified version of the MIT License. Read LICENSE for more information.
+This repository is licensed under the MIT license with an added attribution. In short, you must include the exact copy of this project's license in your end-user application and also mention the sections in which my code was used. Read LICENSE for more information.
 
 ## Contact
 Project Link: https://github.com/IceTheDev2/Passwordsy/  
