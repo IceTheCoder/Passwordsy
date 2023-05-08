@@ -1,5 +1,5 @@
 """
-..
+This module deals with remedying certain diacritics. 
 """
 REMEDIED_CHARS = {ord(c): c for c in 'ĂăÂâÎîȘșTtȚțEeÉéÈèÊêËëIiÍíÌìÎîOoÓóÒòÔôÖöŐőUuÚúÙùÛûÜüŰűNnÑñÇçSsŚśŠšZzŽž'}
 
