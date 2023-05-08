@@ -478,7 +478,7 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                                                 text='DONE',
                                                 font=self.large_button_font,
                                                 border_width=self.button_border_width,
-                                                command=lambda: create_password_labels(),
+                                                command=lambda: create_password_labels(None),
                                                 border_color=self.button_border_color,
                                                 fg_color=self.button_fg_color,
                                                 hover_color=self.button_hover_color)
