@@ -1,10 +1,12 @@
 """
 This module deals with remedying certain diacritics. 
 """
+import tkinter
+
 REMEDIED_CHARS = {ord(c): c for c in 'ĂăÂâÎîȘșTtȚțEeÉéÈèÊêËëIiÍíÌìÎîOoÓóÒòÔôÖöŐőUuÚúÙùÛûÜüŰűNnÑñÇçSsŚśŠšZzŽž'}
 
 
-def on_key_press(e):
+def on_key_press(e: tkinter.Event):
     """
     ...
     """
