@@ -204,6 +204,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             Called when the user clicks the show button,
             this function shows all passwords.
+
+            Returns: None
             """
             if self.widget_text_dict != {}:
                 for widget, text in self.widget_text_dict.items():
