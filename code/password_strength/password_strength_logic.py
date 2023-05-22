@@ -28,6 +28,13 @@ def check_password_strength(inputted_password: str, input_password_msg: str) -> 
         The input of the user
     input_password_msg: str
         'Please input a password.'
+
+    Returns
+    -------
+    list
+        If a password was inputted, this function will return the list of warnings/tips.
+    str
+        If no password was inputted, this function will return a message asking the user to input one.
     """
     user_input = []
     user_input[:0] = inputted_password  # Adds each character of the input to a list.
