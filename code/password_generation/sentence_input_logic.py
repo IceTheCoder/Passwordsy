@@ -8,7 +8,7 @@ import clipboard
 from tkinter import TclError
 
 
-def check_password_strength(inputted_password: str) -> list | str:
+def check_password_strength(inputted_password: str) -> list:
     """
     Called upon pressing the done button,
     this function defines several functions that check
@@ -16,12 +16,16 @@ def check_password_strength(inputted_password: str) -> list | str:
     and returns appropriate messages.
     It then calls these functions and returns a list of messages indicating the results of each check.
 
-    Returns an empty list when the inputted_password in None.
-
     Parameters
     ----------
     inputted_password: str
-        The input of the user
+        The input of the user.
+
+    Returns
+    -------
+    list:
+        List that contains tips for the user to improve their password.
+        An empty list when the inputted_password is None.
     """
     user_input = []
     user_input[:0] = inputted_password  # Adds each character of the input to a list.
