@@ -19,6 +19,10 @@ def open_link(url: str) -> None:
     ----------
     url: str
         The URL to be opened.
+
+    Returns
+    -------
+    None
     """
     webbrowser.open_new(url)
 
@@ -34,7 +38,6 @@ class CreateToolTip:
 
     Modified to include a delay time by Victor Zaccardo, 25mar16
     """
-
     # https://stackoverflow.com/questions/3221956/how-do-i-display-tooltips-in-tkinter
     def __init__(self, widget: customtkinter.CTkLabel, text: str = 'widget info') -> None:
         self.button_hover_color = None
@@ -51,6 +54,10 @@ class CreateToolTip:
         """
         Called when the user hovers over the given widget,
         this function shows the tooltip.
+
+        Returns
+        -------
+        None
         """
         self.schedule()
 
@@ -58,6 +65,10 @@ class CreateToolTip:
         """
         Called when the user moves out of the given widget,
         this function shows the tooltip.
+
+        Returns
+        -------
+        None
         """
         self.unschedule()
         self.hidetip()
@@ -66,6 +77,10 @@ class CreateToolTip:
         """
         This function cancels any previously shown tooltips,
         and defines a unique ID for a new tooltip.
+
+        Returns
+        -------
+        None
         """
         self.unschedule()
         self.id = self.widget.after(self.waittime, self.showtip)
@@ -73,6 +88,10 @@ class CreateToolTip:
     def unschedule(self) -> None:
         """
         This function cancels any previously shown tooltips.
+
+        Returns
+        -------
+        None
         """
         identification = self.id
         self.id = None
@@ -84,6 +103,10 @@ class CreateToolTip:
         This function creates a toplevel at the user's cursor's coordinates,
         creates a label within it,
         and removes any other window decorations.
+
+        Returns
+        -------
+        None
         """
         button_border_width = 2
         button_fg_color = 'blue'
@@ -114,6 +137,10 @@ class CreateToolTip:
     def hidetip(self) -> None:
         """
         This function destroys the toplevel.
+
+        Returns
+        -------
+        None
         """
         tw = self.tw
         self.tw = None
@@ -185,6 +212,10 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
     def show_icon(self) -> None:
         """
         This function shows the icon of the toplevel window.
+
+        Returns
+        -------
+        None
         """
         self.deiconify()
         self.iconbitmap('textures/logo.ico')
@@ -193,6 +224,10 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         """
         Called when the user clicks on the 'From the diceware' button,
         this function opens the diceware Toplevel window.
+
+        Returns
+        -------
+        None
         """
         self.withdraw()
         if self.diceware_window is None or not self.diceware_window.winfo_exists():
@@ -204,6 +239,10 @@ class OtherMethodsWindow(customtkinter.CTkToplevel):
         """
         Called when the user clicks on the 'From a sentence' button,
         this function opens the sentence input Toplevel window.
+
+        Returns
+        -------
+        None
         """
         self.withdraw()
         if self.sentence_input_window is None or not self.sentence_input_window.winfo_exists():
