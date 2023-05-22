@@ -219,6 +219,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             Called when the user clicks the hide button,
             this function hides all passwords.
+
+            Returns: None
             """
             for widget, text in self.widget_text_dict.items():
                 widget.configure(state='normal')
