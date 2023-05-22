@@ -129,8 +129,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             Called when the user 'rolls the dice' from the display_words function,
             this function aims to take a customtkinter Textbox,
             insert text into it, and bind it to show a copy pop-up menu when the user right-clicks.
-            """
 
+            Returns: None
+            """
             textbox.configure(state='normal')
             textbox.delete('1.0', 'end')
             textbox.insert('1.0', text)
