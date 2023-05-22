@@ -256,6 +256,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
     def show_icon(self) -> None:
         """
         This function shows the icon of the toplevel window.
+
+        Returns: None
         """
         self.deiconify()
         self.iconbitmap('textures/logo.ico')
