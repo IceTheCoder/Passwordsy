@@ -24,7 +24,6 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
     an entry box for password input, and four warning labels to display the strength of the password.
     It also creates a menu for pasting text, which is triggered by a right-click on the input box.
     """
-
     def __init__(self, master: customtkinter.CTkFrame, **kwargs) -> None:
         super().__init__(master, **kwargs)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
