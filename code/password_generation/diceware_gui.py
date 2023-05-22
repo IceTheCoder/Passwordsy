@@ -87,13 +87,15 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             for copying the password to the clipboard on the x and y coordinates of the user's cursor,
             where the y coordinates are adjusted by 30 pixels.
 
-            Returns: Non
-
             Parameters
             ----------
             event: tkinter.event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
-                            """
+
+            Returns
+            -------
+            None
+            """
             self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
 
         self.shown_passwords_text = 'PASSWORDS ARE: SHOWN'
@@ -102,7 +104,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             This function clears the window of any output widgets.
 
-            Returns: None
+            Returns
+            -------
+            None
             """
             self.widget_text_dict = {}
 
@@ -130,7 +134,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             this function aims to take a customtkinter Textbox,
             insert text into it, and bind it to show a copy pop-up menu when the user right-clicks.
 
-            Returns: None
+            Returns
+            -------
+            None
             """
             textbox.configure(state='normal')
             textbox.delete('1.0', 'end')
@@ -144,12 +150,14 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             Called when the user clicks the 'roll dice' button,
             this function displays the pairs of dice rolls and words to the user.
 
-            Returns: None
-
             Parameters
             ----------
             pair: dict
                 Contains the pairs of dice roll numbers and related words according to the dice ware wordlist.
+
+            Returns
+            -------
+            None
             """
             text_height = 1
             text_padx = 10
@@ -205,7 +213,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             Called when the user clicks the show button,
             this function shows all passwords.
 
-            Returns: None
+            Returns
+            -------
+            None
             """
             if self.widget_text_dict != {}:
                 for widget, text in self.widget_text_dict.items():
@@ -220,7 +230,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             Called when the user clicks the hide button,
             this function hides all passwords.
 
-            Returns: None
+            Returns
+            -------
+            None
             """
             for widget, text in self.widget_text_dict.items():
                 widget.configure(state='normal')
@@ -246,7 +258,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             """
             This function destroys the window when it is closed.
 
-            Returns: None
+            Returns
+            -------
+            None
             """
             self.destroy()
             self.master.deiconify()
@@ -257,7 +271,9 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         """
         This function shows the icon of the toplevel window.
 
-        Returns: None
+        Returns
+        -------
+        None
         """
         self.deiconify()
         self.iconbitmap('textures/logo.ico')
