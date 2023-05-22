@@ -142,6 +142,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function checks what function to run based on the slider's value:
             if it is 0, it runs hide_all_passwords(), if it is 1, it runs show_all_passwords.
 
+            Returns: None
+
             Parameters
             ----------
             value: float
@@ -158,6 +160,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function goes through each password_label,
             inserts the specific password inside of it through the show_text function,
             and changes the button into a hide all button.
+
+            Returns: None
             """
             for indicator, btn in enumerate(self.show_hide_buttons):
                 show_password(indicator, btn)
@@ -167,6 +171,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             Called when the user clicks the 'hide all' button,
             this function goes through each password_label,
             and clears it.
+
+            Returns: None
             """
             for indicator, btn in enumerate(self.show_hide_buttons):
                 hide_password(indicator, btn)
@@ -370,6 +376,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             for copying the password to the clipboard on the x and y coordinates of the user's cursor,
             where the y coordinates are adjusted by 30 pixels.
 
+            Returns: None
+
             Parameters
             ----------
             event: tkinter.Event
@@ -399,6 +407,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             If an error has not occurred,
             the function calls generate_password of generate_password_logic.py to get 4 passwords,
             and calls the show_text function to display them to the user.
+
+            Returns: None
 
             Parameters
             ----------
@@ -501,6 +511,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             by enabling the label, deleting its current contents,
             inserting the new text, and then disabling the label again.
 
+            Returns: None
+
             Parameters
             ----------
             textbox: customtkinter.CTkTextbox
@@ -519,6 +531,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         """
         Called when the user clicks on the 'try other methods' button,
         this function creates a Toplevel window containing other methods of password generation.
+
+        Returns: None
         """
         if self.other_methods_window is None or not self.other_methods_window.winfo_exists():
             self.other_methods_window = other.OtherMethodsWindow(self)
