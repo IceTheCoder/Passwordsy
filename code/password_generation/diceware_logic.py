@@ -13,6 +13,8 @@ def roll_dice() -> dict:
     Called when the user clicks the 'dice roll' of the diceware frame,
     this function returns a random pair of the number formed by 5 dice rolls
     and the associated word with that number, according to the diceware wordlist.
+
+    Returns: dict
     """
     final_pairs = {}
     dice_roll = ''
@@ -32,6 +34,8 @@ def copy_selected_text(labels: list) -> None:
     this function copies the selected text,
     and focuses the keyboard on the input_box to deselect the text.
 
+    Returns: dict
+
     Parameters
     ----------
     labels: list
@@ -49,6 +53,8 @@ def copy_selected_text(labels: list) -> None:
 def copy_selections(checkboxes_text_boxes: dict) -> None:
     """
     This function will copy the selected text boxes to the clipboard.
+
+    Returns: dict
 
     Parameters
     ----------
