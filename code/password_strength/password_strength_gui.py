@@ -5,6 +5,7 @@ import tkinter
 import tkinter as tk
 from tkinter.font import Font
 import customtkinter
+from pynput.keyboard import Key, Controller
 
 from password_strength import password_strength_logic as logic
 import diacritics_fix as fix
@@ -12,6 +13,8 @@ import diacritics_fix as fix
 input_password_msg = 'Please input a password.'
 
 copy_button_y_offset = 30
+
+keyboard = Controller()
 
 
 class PasswordStrengthFrame(customtkinter.CTkFrame):
@@ -110,3 +113,15 @@ def display_warnings(entry_box: customtkinter.CTkEntry, w_labels: list, event: t
             w_labels[index].configure(text=warning)
         for label in w_labels:
             label.grid(column=0, row=2 + w_labels.index(label), sticky='w')
+
+
+def paste_text() -> None:
+    """
+    Called upon pressing the paste button,
+    this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
+    """
+    # https://youtu.be/DTnz8wA6wpw
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('v')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release('v')

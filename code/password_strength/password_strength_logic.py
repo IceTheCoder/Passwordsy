@@ -3,12 +3,9 @@ This module deals with the logical part of discovering vulnerabilities in a give
 """
 from __future__ import annotations
 import string
-from pynput.keyboard import Key, Controller
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-
-keyboard = Controller()
 
 # passwords.txt is from the https://github.com/danielmiessler/SecLists repository.
 # https://www.youtube.com/watch?v=DCaKj3eIrro
@@ -142,15 +139,3 @@ def check_password_strength(inputted_password: str, input_password_msg: str) -> 
         pattern_warning = check_for_patterns_in_password()
 
         return [prevalence_warning, length_warning, complexity_warning, pattern_warning]
-
-
-def paste_text() -> None:
-    """
-    Called upon pressing the paste button,
-    this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
-    """
-    # https://youtu.be/DTnz8wA6wpw
-    keyboard.press(Key.ctrl_l)
-    keyboard.press('v')
-    keyboard.release(Key.ctrl_l)
-    keyboard.release('v')
