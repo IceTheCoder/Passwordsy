@@ -144,6 +144,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             Called when the user clicks the 'roll dice' button,
             this function displays the pairs of dice rolls and words to the user.
 
+            Returns: None
+
             Parameters
             ----------
             pair: dict
