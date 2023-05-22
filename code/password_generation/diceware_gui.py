@@ -101,6 +101,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         def clear_window() -> None:
             """
             This function clears the window of any output widgets.
+
+            Returns: None
             """
             self.widget_text_dict = {}
 
