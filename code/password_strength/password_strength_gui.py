@@ -30,30 +30,37 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         self.paste = tk.Menu(self, tearoff=False)
         self.paste.add_command(label='Paste', command=logic.paste_text)
 
-        instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength',
-                                                   font=title_font)
-        instruction_label.grid(column=0, row=0)
+        self.instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength',
+                                                        font=title_font)
+        self.instruction_label.grid(column=0, row=0)
 
-        first_label = customtkinter.CTkLabel(master=self, font=warning_font, text=input_password_msg)
+        self.first_label = customtkinter.CTkLabel(master=self, font=warning_font, text=input_password_msg)
 
-        second_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
+        self.second_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
 
-        third_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
+        self.third_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
 
-        fourth_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
+        self.fourth_label = customtkinter.CTkLabel(master=self, font=warning_font, text='')
 
-        self.labels = [first_label, second_label, third_label, fourth_label]
+        self.labels = [self.first_label, self.second_label, self.third_label, self.fourth_label]
 
         for label in self.labels:
             label.grid(column=0, row=2 + self.labels.index(label), sticky='n')
 
         self.input_box = customtkinter.CTkEntry(self, width=250, corner_radius=8)
         self.input_box.grid(column=0, row=1)
+
+        all_ui = [self.paste, self.instruction_label, self.input_box] + self.labels
+
         # https://stackoverflow.com/questions/66035176/entry-widget-in-tkinter-with-key-bind
         self.input_box.bind('<KeyRelease>', lambda a: display_warnings(self.input_box, self.labels))
         self.input_box.bind('<Button-3>', lambda event: display_paste_button(event, self.paste))
         self.input_box.bind('<KeyPress>', fix.on_key_press)
         # https://stackoverflow.com/questions/75846986/certain-characters-like-%c8%9b-and-%c8%99-become-question-marks-as-i-type-them-in-a-tkin/76015278#76015278
+
+        for ui in all_ui:
+            ui.bind('<Button-1>', lambda a: display_warnings(self.input_box, self.labels))
+            ui.bind('<Button-3>', lambda a: display_warnings(self.input_box, self.labels))
 
 
 def display_paste_button(event: tkinter.Event, paste_menu: tkinter.Menu) -> None:
