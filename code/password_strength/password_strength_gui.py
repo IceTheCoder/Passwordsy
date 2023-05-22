@@ -30,7 +30,7 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
         warning_font = customtkinter.CTkFont(family='Roboto', size=24)
 
         self.paste = tk.Menu(self, tearoff=False)
-        self.paste.add_command(label='Paste', command=logic.paste_text)
+        self.paste.add_command(label='Paste', command=paste_text)
 
         self.instruction_label = customtkinter.CTkLabel(master=self, text='Type your password to check its strength',
                                                         font=title_font)
