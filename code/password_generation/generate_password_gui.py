@@ -113,6 +113,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function clears the specific password_label through the clear_text_label function,
             and changes the specific button to a show_button.
 
+            Returns: None
+
             Parameters
             ----------
             indicator: int
