@@ -67,6 +67,11 @@ def determine_error(valid_character_set_bool: bool, requested_password_length: s
         'An error occurred. Try again with at least 1 character set and a whole number between 4 and 100.'
     invalid_input_error: str
         'An error occurred. Try again with a whole number between 4 and 100.'
+
+    Returns
+    -------
+    str
+        The error to be shown to the user.
     """
     if valid_character_set_bool:
         try:
@@ -100,6 +105,11 @@ def validate_character_sets(lowercase_letters_var: tkinter.IntVar, uppercase_let
         The variable of the digits checkbox.
     punctuation_var: tkinter.IntVar
         The variable of the punctuation checkbox.
+
+    Returns
+    -------
+    bool
+        Whether or not there's at least 1 valid character set.
     """
     # https://www.reddit.com/user/Diapolo10/
     return any(var.get() for var in (lowercase_letters_var, uppercase_letters_var, digits_var, punctuation_var))
@@ -124,6 +134,11 @@ def generate_password(requested_password_length: int, lowercase_letters_var: tki
         The variable used to check if the digits checkbox has been selected or not.
     punctuation_var: tkinter.IntVar()
         The variable used to check if the punctuation checkbox has been selected or not.
+
+    Returns
+    -------
+    str
+        The password.
     """
     # Define all character sets that will be used in the password
     character_sets = []
@@ -155,12 +170,15 @@ def copy_selected_text(input_box: customtkinter.CTkEntry, labels: list) -> None:
         The entry box.
     labels: list
         The list of password labels.
+
+    Returns
+    -------
+    None
     """
     try:
         for label in labels:
             selected_text = str(label.selection_get())
             clipboard.copy(selected_text)
-
         input_box.focus_set()
     except (ValueError, TclError):
         # There is no need to warn the user when they try to copy nothing as it does not have any effect on the app
@@ -178,5 +196,9 @@ def copy_password(index: int, passwords: list) -> None:
         Which password_label has been selected to copy its password.
     passwords: list
         The list of generated password.
+
+    Returns
+    -------
+    None
     """
     clipboard.copy(passwords[index])

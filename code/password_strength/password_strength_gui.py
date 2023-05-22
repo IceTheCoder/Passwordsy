@@ -24,7 +24,6 @@ class PasswordStrengthFrame(customtkinter.CTkFrame):
     an entry box for password input, and four warning labels to display the strength of the password.
     It also creates a menu for pasting text, which is triggered by a right-click on the input box.
     """
-
     def __init__(self, master: customtkinter.CTkFrame, **kwargs) -> None:
         super().__init__(master, **kwargs)
         title_font = customtkinter.CTkFont(family='Roboto', size=36)
@@ -79,6 +78,10 @@ def display_paste_button(event: tkinter.Event, paste_menu: tkinter.Menu) -> None
         Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
     paste_menu: tkinter.Menu
         The contextual menu containing the paste button.
+
+    Returns
+    -------
+    None
     """
     paste_menu.tk_popup(event.x_root, event.y_root - copy_button_y_offset)
 
@@ -97,8 +100,12 @@ def display_warnings(entry_box: customtkinter.CTkEntry, w_labels: list, event: t
         The input box of the password.
     w_labels: list
         Warning labels.
-    event: tkinter.event
+    event: tkinter.Event
         Necessary for initiating the function as the user types.
+
+    Returns
+    -------
+    None
     """
     for label in w_labels:
         label.configure(text='')
@@ -119,6 +126,10 @@ def paste_text() -> None:
     """
     Called upon pressing the paste button,
     this function uses the keyboard module to simulate pressing CTRL and V to paste text into the input_box.
+
+    Returns
+    -------
+    None
     """
     # https://youtu.be/DTnz8wA6wpw
     keyboard.press(Key.ctrl_l)

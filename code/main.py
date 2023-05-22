@@ -72,7 +72,7 @@ class TabView(customtkinter.CTkTabview, ABC):
             i += 1
 
 
-def resize(root_window: tk.Tk, event: tk.Event = None):
+def resize(root_window: tk.Tk, event: tk.Event = None) -> None:
     """
     This function aims to reduce resizing lag.
 
@@ -82,6 +82,10 @@ def resize(root_window: tk.Tk, event: tk.Event = None):
         The main window of the app.
     event:
         Necessary for executing the function when the user resizes.
+
+    Returns
+    -------
+    None
     """
     root_window.update_idletasks()
 
@@ -108,12 +112,16 @@ class App(customtkinter.CTk):
         self.bind('<Configure>', lambda a: resize(self))
 
 
-def main():
+def main() -> None:
     """
     Called upon starting the program,
     this function uses the Tkinter module to create a window, notebook,
     two frames the user can switch between,
     and a basic configuration.
+
+    Returns
+    -------
+    None
     """
     root = App()
     root.mainloop()

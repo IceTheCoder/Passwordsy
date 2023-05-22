@@ -16,13 +16,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
     """
     def __init__(self, master: customtkinter.CTkToplevel, **kwargs) -> None:
         super().__init__(master, **kwargs)
-        """
-        Called upon starting the app,
-        this function prepares the 'input sentence' frame for when
-        the user wants to try other methods of password generation
-        by creating a basic Tkinter configuration, with an instruction, input,
-        and a way to display the produced password.
-        """
+
         self.geometry('900x300')
         self.title('Sentence input')
         self.iconbitmap('textures/logo.ico')
@@ -56,6 +50,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             ----------
             event: tk.Event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+
+            Returns
+            -------
+            None
             """
             self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
 
@@ -83,7 +81,7 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         self.copy_menu.add_command(label='Copy',
                                    command=lambda: logic.copy_selected_text(self.text_labels))
 
-        def highlight_sentence(event: tk.Event):
+        def highlight_sentence(event: tk.Event) -> None:
             """
             Called as the user types,
             this function calls the produce_password function of sentence_input_logic.py
@@ -94,6 +92,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             ----------
             event: tk.Event
                 Necessary for running the function as the user types.
+
+            Returns
+            -------
+            None
             """
             char_dict = {}
 
@@ -126,6 +128,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             ----------
             password: str
                 The password to be shown generated from the sentence.
+
+            Returns
+            -------
+            None
             """
             self.password_label.configure(state='normal')
             self.password_label.delete('1.0', 'end')
@@ -141,6 +147,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
             ----------
             warnings: list
                 List of the tips for the user's password.
+
+            Returns
+            -------
+            None
             """
             self.warning_label_1.configure(text=warnings[0])
             self.warning_label_1.place(relx=0.5, rely=0.75, anchor='center')
@@ -158,6 +168,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
         def close_second_window() -> None:
             """
             This function destroys the window when it is closed.
+
+            Returns
+            -------
+            None
             """
             self.destroy()
             self.master.deiconify()
@@ -167,6 +181,10 @@ class SentenceInputToplevel(customtkinter.CTkToplevel):
     def show_icon(self) -> None:
         """
         This function shows the icon of the toplevel window.
+
+        Returns
+        -------
+        None
         """
         self.deiconify()
         self.iconbitmap('textures/logo.ico')
