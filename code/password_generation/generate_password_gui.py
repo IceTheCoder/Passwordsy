@@ -64,12 +64,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             Called when the user clicks one of the hide buttons,
             this function deletes all content of the specific label.
 
-            Returns: None
-
             Parameters
             ----------
             textbox: customtkinter.CTkTextbox
                 The text label to be cleared.
+
+            Returns
+            -------
+            None
             """
             textbox.configure(state='normal')
             textbox.delete('1.0', 'end')
@@ -81,14 +83,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function displays the specific password through the show_text function,
             and changes the specific button to a hide button.
 
-            Returns: None
-
             Parameters
             ----------
             indicator: int
                 The number of the button that was clicked.
             btn: customtkinter.CTkButton
                 The button that was clicked.
+
+            Returns
+            -------
+            None
             """
             # https://stackoverflow.com/questions/68327/change-command-method-for-tkinter-button-in-python
             btn.configure(text='HIDE', command=lambda: hide_password(indicator, btn))
@@ -113,14 +117,16 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function clears the specific password_label through the clear_text_label function,
             and changes the specific button to a show_button.
 
-            Returns: None
-
             Parameters
             ----------
             indicator: int
                 The number of the button that was clicked.
             btn: CTKButton
                 The button that was clicked.
+
+            Returns
+            -------
+            None
             """
             btn.configure(text='SHOW', command=lambda: show_password(indicator, btn))
 
@@ -142,12 +148,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function checks what function to run based on the slider's value:
             if it is 0, it runs hide_all_passwords(), if it is 1, it runs show_all_passwords.
 
-            Returns: None
-
             Parameters
             ----------
             value: float
                 The slider's value
+
+            Returns
+            -------
+            None
             """
             if value == 0:
                 hide_all_passwords()
@@ -161,7 +169,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             inserts the specific password inside of it through the show_text function,
             and changes the button into a hide all button.
 
-            Returns: None
+            Returns
+            -------
+            None
             """
             for indicator, btn in enumerate(self.show_hide_buttons):
                 show_password(indicator, btn)
@@ -172,7 +182,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function goes through each password_label,
             and clears it.
 
-            Returns: None
+            Returns
+            -------
+            None
             """
             for indicator, btn in enumerate(self.show_hide_buttons):
                 hide_password(indicator, btn)
@@ -376,12 +388,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             for copying the password to the clipboard on the x and y coordinates of the user's cursor,
             where the y coordinates are adjusted by 30 pixels.
 
-            Returns: None
-
             Parameters
             ----------
             event: tkinter.Event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
+
+            Returns
+            -------
+            None
             """
             # https://stackoverflow.com/questions/69425865/tkinter-event-x-y-mouse-position-wrong-value-only-when-mouse-movement-up
             self.copy_menu.tk_popup(event.x_root, event.y_root - 30)  # https://youtu.be/Z4zePg2M5H8
@@ -408,12 +422,14 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             the function calls generate_password of generate_password_logic.py to get 4 passwords,
             and calls the show_text function to display them to the user.
 
-            Returns: None
-
             Parameters
             ----------
             event: tk.Event
                 Necessary for running the function when the user presses the RETURN key.
+
+            Returns
+            -------
+            None
             """
             message = logic.determine_error(
                 logic.validate_character_sets(self.lowercase_letters_var, self.uppercase_letters_var,
@@ -511,8 +527,6 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             by enabling the label, deleting its current contents,
             inserting the new text, and then disabling the label again.
 
-            Returns: None
-
             Parameters
             ----------
             textbox: customtkinter.CTkTextbox
@@ -520,6 +534,10 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
                 or the first password label if an error is generated.
             message: str
                 Each password or the error.
+
+            Returns
+            -------
+            None
             """
             textbox.configure(state='normal')
             textbox.delete('1.0', 'end')
@@ -532,7 +550,9 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
         Called when the user clicks on the 'try other methods' button,
         this function creates a Toplevel window containing other methods of password generation.
 
-        Returns: None
+        Returns
+        -------
+        None
         """
         if self.other_methods_window is None or not self.other_methods_window.winfo_exists():
             self.other_methods_window = other.OtherMethodsWindow(self)
