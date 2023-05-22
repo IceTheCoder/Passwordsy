@@ -245,6 +245,8 @@ class DicewareToplevel(customtkinter.CTkToplevel):
         def close_second_window() -> None:
             """
             This function destroys the window when it is closed.
+
+            Returns: None
             """
             self.destroy()
             self.master.deiconify()
