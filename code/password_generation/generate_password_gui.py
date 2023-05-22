@@ -64,6 +64,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             Called when the user clicks one of the hide buttons,
             this function deletes all content of the specific label.
 
+            Returns: None
+
             Parameters
             ----------
             textbox: customtkinter.CTkTextbox
