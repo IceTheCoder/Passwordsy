@@ -142,6 +142,11 @@ def produce_password(char_dict: dict) -> list:
     ----------
     char_dict: dict
         The dictionary chaining each character to its index.
+
+    Returns
+    -------
+    list
+        The list of letters to be coloured and the produced password.
     """
     letters_to_be_coloured = {}
     password = ''
@@ -171,6 +176,10 @@ def copy_selected_text(labels: list) -> None:
     ----------
     labels: list
         The list of labels that contain text that could be copied.
+
+    Returns
+    -------
+    None
     """
     try:
         for label in labels:
