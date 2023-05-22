@@ -81,6 +81,8 @@ class PasswordGenerationFrame(customtkinter.CTkFrame):
             this function displays the specific password through the show_text function,
             and changes the specific button to a hide button.
 
+            Returns: None
+
             Parameters
             ----------
             indicator: int
