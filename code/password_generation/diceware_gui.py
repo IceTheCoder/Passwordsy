@@ -87,11 +87,13 @@ class DicewareToplevel(customtkinter.CTkToplevel):
             for copying the password to the clipboard on the x and y coordinates of the user's cursor,
             where the y coordinates are adjusted by 30 pixels.
 
+            Returns: Non
+
             Parameters
             ----------
             event: tkinter.event
                 Gets the coordinates of the mouse cursor when the user releases a mouse button on a password_label.
-            """
+                            """
             self.copy_menu.tk_popup(event.x_root, event.y_root - 30)
 
         self.shown_passwords_text = 'PASSWORDS ARE: SHOWN'
