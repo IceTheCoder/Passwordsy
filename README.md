@@ -2,7 +2,7 @@
 A program that can generate a secure password of up to 100 characters, extract securely selected words from the diceware wordlist, generate a password from a sentence, and check for vulnerabilities in a given password.
 
 ## Known limitations
-- Avoid using a keyboard layout that types diacritics through a shortcut (such as the Romanian Programmers, where ș is ALT + S, and ț is ALT + T). The diacritic might turn into its non-diacritic counterpart (Ț into T) or into a question mark. I recommend using a keyboard layout that types diacritics directly (such as the Romanian Standard, where ; types ș and ' types ț).
+Avoid using a keyboard layout that types diacritics through a shortcut (such as the Romanian Programmers, where ș is ALT + S, and ț is ALT + T). The diacritic might turn into its non-diacritic counterpart (Ț into T) or into a question mark. I recommend using a keyboard layout that types diacritics directly (such as the Romanian Standard, where ; types ș and ' types ț).
 
 ## Getting started
 To use Passwordsy, you must get the program itself on your machine. To do this, you have 3 choices: cloning it through Git, opening it with GitHub Desktop, or downloading it as a ZIP. The following tutorial describes installing Passwordsy by cloning the repository with Git.
