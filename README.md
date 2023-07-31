@@ -53,13 +53,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Contact
-Project Link: https://github.com/IceTheDev2/Passwordsy/  
+Project Link: https://github.com/IceTheGameDev/Passwordsy/  
 
 Reddit: https://www.reddit.com/user/AnEntirePeach
 
-Youtube: https://www.youtube.com/channel/UCBqVJU4gjeik1RavAsVR6Pg
+Youtube: https://www.youtube.com/@IceTheGameDev
 
-E-mail: icethedev2@gmail.com
+E-mail: icethegamedev@yahoo.com
 
 ## Acknowledgements
 * The [r/Python](https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips and suggestions
