@@ -1,5 +1,5 @@
 # Passwordsy
-RETIRED REPO
+RETIRED REPOSITORY
 
 A program that can generate a secure password of up to 100 characters, extract securely selected words from the diceware wordlist, generate a password from a sentence, and check for vulnerabilities in a given password.
 
