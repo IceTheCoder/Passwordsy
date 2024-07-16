@@ -52,15 +52,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Contact
-Project Link: https://github.com/IceTheGameDev/Passwordsy/  
-
-Reddit: https://www.reddit.com/user/AnEntirePeach
-
-Youtube: https://www.youtube.com/@IceTheGameDev
-
-E-mail: icethegamedev@yahoo.com
-
 ## Acknowledgements
 * The [r/Python](https://www.reddit.com/r/Python/), [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) and [r/learnpython](https://www.reddit.com/r/learnpython/) communities on Reddit for providing me with great tips and suggestions
 * The GitHub contributors to this project, [dwaffle](https://github.com/dwaffle), [christopher-chandler](https://trello.com/c/f72vJsYk/50-https-githubcom-christopher-chandler), and [MartinMerkli](https://github.com/MartinMerkli)
